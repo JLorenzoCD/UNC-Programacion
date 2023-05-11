@@ -1,0 +1,102 @@
+{-
+4. Decidı si cada una de las siguientes formulas proposicionales es valida o no. En caso que una formula no
+sea valida, decidı si es satisfactible o no. En todos los casos justifica con una tabla de verdad, un ejemplo
+o un contraejemplo, segun corresponda.
+a) p                  -- Es satisfactible no valida
+b) p ≡ p              -- Es valida
+c) p ≡ p ≡ p          -- Es satisfactible no valida
+d) p ⇒ q ≡ q ⇒ p     -- Es satisfactible no valida
+e) p ∨ q ⇒ p         -- Es satisfactible no valida
+f) p ∧ q ⇒ p         -- Es valida
+g) p ⇒ q ∧ p         -- Es valida
+h) p ⇒ q ∨ p         -- Es satisfactible no valida
+i) p ⇒ q             -- Es satisfactible no valida
+j) p ⇒ (q ⇒ p)       -- Es valida
+k) p ≡ p ≡ True       -- Es valida
+l) True ∨ p           -- Es valida
+m) True ∧ p           -- Es satisfactible no valida
+n) False ∨ p          -- Es satisfactible no valida
+ñ) False ∧ p          -- No satisfactible
+-}
+
+{-
+5. Da ejemplos y una justificacion apropiada de una formula:
+a) valida (y por lo tanto satisfactible).           -- p ≡ p
+b) satisfactible pero no valida.                    -- p
+c) no satisfactible (y por lo tanto no valida).     -- p ≡ ¬p
+-}
+
+{-
+6. Demostra que las siguientes formulas son teoremas del Calculo Proposicional, es decir, son formulas validas
+utilizando solo axiomas (no se pueden usar teoremas). Realiza la demostracion justificando cada paso con
+un axioma y la sustitucion utilizada en el mismo.
+
+a) Reflexividad del equivalente: (p ≡ p) ≡ True
+b) Doble negacion: ¬¬p ≡ p
+c) Equivalencia y negacion: p ≡ False ≡ ¬p
+d) Neutro de la discrepancia: (p ̸≡ false) ≡ p
+
+a)
+(p ≡ p) ≡ True
+{Por A1}
+p ≡ (p ≡ True)
+{Por A2}
+p ≡ True ≡ p
+{Es A3, por lo que es axioma}
+
+
+b)
+-- Esta bien, pero la idea es ultilizar los Teoremas
+¬¬p ≡ p
+{Por A4}
+¬(¬p ≡ p)
+{Debido a que ¬p ≡ p es No Satisfactible, entonces (¬p ≡ p) ≡ False}
+¬False
+{Por ¬, la exprecion es Valida, entonces ¬False ≡ True}
+True
+
+¬¬p ≡ p
+{Por A4}
+¬(¬p ≡ p)
+{Por A2}
+¬(p ≡ ¬p)
+{Por A4}
+¬p ≡ ¬p
+{Por A3}
+¬p ≡ ¬p ≡ True
+{Por A2}
+¬p ≡ True ≡ ¬p
+{Es axioma A3}
+
+c)
+p ≡ False ≡ ¬p
+{Por A5}
+p ≡ ¬True ≡ ¬p
+{Por A4}
+p ≡ ¬(True ≡ ¬p)
+{Por A2}
+p ≡ ¬(¬p ≡ True)
+{Por A4}
+p ≡ ¬¬p ≡ True
+{Por el teorema anterior (punto b)}
+¬p ≡ ¬p ≡ True
+{Por A2}
+¬p ≡ True ≡ ¬p
+{Es axioma A3}
+
+d)
+(p ̸≡ False) ≡ p
+{Por A6}
+¬(p ≡ False) ≡ p
+{Por conmutatividad de ≡}
+¬(False ≡ p) ≡ p
+{Por A4}
+¬False ≡ p ≡ p
+{Por A5}
+¬¬True ≡ p ≡ p
+{Por el teorema anterior (punto b), ¬¬True ≡ True}
+True ≡ p ≡ p  
+{Por A2}
+p ≡ True ≡ p 
+{Es axioma A3}
+-}

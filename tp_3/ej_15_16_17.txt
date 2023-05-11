@@ -1,0 +1,192 @@
+{-
+15. Simplifique las siguientes expresiones. Utilice para ello los teoremas de Modus Ponens, Modus Tollens y
+Currificacion.
+a) (p ∧ q ⇒ r) ∧ p
+b) (p ⇒ q) ∧ (q ⇒ r) ⇒ (p ⇒ r)
+c) (p ⇒ (q ⇒ r)) ∧ ¬r
+
+a) (p ∧ q ⇒ r) ∧ p
+__(p ∧ q ⇒ r)__ ∧ p
+{T24 Currificacion}
+(p ⇒ (q ⇒ r)) ∧ p
+__(p ⇒ (q ⇒ r)) ∧ p__
+{T21 Modus ponens con equivalencia}
+p ∧ (q ⇒ r) -- Posible final (simplificacion)
+
+
+c) (p ⇒ (q ⇒ r)) ∧ ¬r
+__(p ⇒ (q ⇒ r))__ ∧ ¬r
+{T24 Currificacion}
+((p ∧ q) ⇒ r) ∧ ¬r
+__((p ∧ q) ⇒ r) ∧ ¬r__
+{T23 Modus tollens con equivalencia}
+¬(p ∧ q) ∧ ¬r
+__¬(p ∧ q) ∧ ¬r__
+{T12 De Morgan para ∨}
+¬((p ∧ q) ∨ r) -- Posible final (simplificacion)
+¬(__(p ∧ q)__ ∨ r)
+{A12 Regla dorada}
+¬((p ≡ q ≡ p ∨ q) ∨ r)
+¬(__(p ≡ q ≡ p ∨ q) ∨ r__)
+{A10 Distributividad ∨ con ≡}
+¬((p ≡ q) ∨ r ≡ p ∨ q ∨ r)
+{A6 Definicion ̸≡}
+(p ≡ q) ∨ r ̸≡ p ∨ q ∨ r -- Posible final (simplificacion)
+-}
+
+
+{-
+16. Demuestre
+a) p ⇒ (q ⇒ r) ≡ q ⇒ (p ⇒ r)
+b) ¬p ⇒ (p ⇒ q)
+
+
+a) p ⇒ (q ⇒ r) ≡ q ⇒ (p ⇒ r).
+__p ⇒ (q ⇒ r)__ ≡ q ⇒ (p ⇒ r)
+{T24 Currificacion}
+p ∧ q ⇒ r ≡ q ⇒ (p ⇒ r)
+__p ∧ q__ ⇒ r ≡ q ⇒ (p ⇒ r)
+{T7 Conmutatividad ∧}
+q ∧ p ⇒ r ≡ q ⇒ (p ⇒ r)
+__q ∧ p ⇒ r__ ≡ q ⇒ (p ⇒ r)
+{T24 Currificacion}
+q ⇒ (p ⇒ r) ≡ q ⇒ (p ⇒ r)
+{A3 Neutro ≡, Es Valido}
+
+b) ¬p ⇒ (p ⇒ q)
+{T24 Currificacion}
+¬p ∧ p ⇒ q
+__¬p ∧ p__ ⇒ q
+{T11 Principio de no contradiccion}
+False ⇒ q
+{T19 Caracterizacion ⇒}
+¬False ∨ q
+{A5 Definicion False}
+¬¬True ∨ q
+{T1 Doble negacion}
+True ∨ q
+{T3 Elemento absorbente ∨, Es Valido}
+-}
+
+
+{-
+17. Demuestre los siguientes teoremas de la implicacion:
+a) Transitividad: (p ⇒ q) ∧ (q ⇒ r) ⇒ (p ⇒ r).
+b) Monotonıa de la conjuncion: (p ⇒ q) ⇒ (p ∧ r ⇒ q ∧ r).
+c) Monotonıa disjuncion: (p ⇒ q) ⇒ (p ∨ r ⇒ q ∨ r)
+
+a)(p ⇒ q) ∧ (q ⇒ r) ⇒ (p ⇒ r)
+__(p ⇒ q)__ ∧ __(q ⇒ r)__ ⇒ (p ⇒ r)
+{T19 Caracterizacion ⇒}
+(¬p ∨ q) ∧ (¬q ∨ r) ⇒ (p ⇒ r)
+__(¬p ∨ q) ∧ (¬q ∨ r)__ ⇒ (p ⇒ r)
+{A12 Regla dorada}
+((¬p ∨ q) ≡ (¬q ∨ r) ≡ ¬p ∨ q ∨ ¬q ∨ r ) ⇒ (p ⇒ r)
+((¬p ∨ q) ≡ (¬q ∨ r) ≡ ¬p ∨ __q ∨ ¬q__ ∨ r ) ⇒ (p ⇒ r)
+{A11 Tercero excluido}
+((¬p ∨ q) ≡ (¬q ∨ r) ≡ ¬p ∨ True ∨ r ) ⇒ (p ⇒ r)
+((¬p ∨ q) ≡ (¬q ∨ r) ≡ __¬p ∨ True ∨ r __) ⇒ (p ⇒ r)
+{T3 Elemento absorbente ∨}
+((¬p ∨ q) ≡ (¬q ∨ r) ≡ True) ⇒ (p ⇒ r)
+{A3 Neutro ≡}
+((¬p ∨ q) ≡ (¬q ∨ r)) ⇒ (p ⇒ r)
+__((¬p ∨ q) ≡ (¬q ∨ r)) ⇒ (__p ⇒ r__)__
+{T19 Caracterizacion ⇒}
+¬((¬p ∨ q) ≡ (¬q ∨ r)) ∨ ¬p ∨ r
+__¬((¬p ∨ q) ≡ (¬q ∨ r))__ ∨ ¬p ∨ r
+{A4 Definicion ¬}
+(¬(¬p ∨ q) ≡ (¬q ∨ r)) ∨ ¬p ∨ r
+{A10 Distributividad ∨ con ≡}
+¬(¬p ∨ q) ∨ ¬p ∨ r ≡ ¬q ∨ r ∨ ¬p ∨ r
+__¬(¬p ∨ q)__ ∨ ¬p ∨ r ≡ ¬q ∨ r ∨ ¬p ∨ r
+{T12 De Morgan para ∨}
+(p ∧ ¬q) ∨ ¬p ∨ r ≡ ¬q ∨ r ∨ ¬p ∨ r
+__(p ∧ ¬q) ∨ ¬p__ ∨ r ≡ ¬q ∨ r ∨ ¬p ∨ r
+{T14 Distributividad de ∨ con ∧}
+(p ∨ ¬p) ∧ (¬q ∨ ¬p) ∨ r ≡ ¬q ∨ r ∨ ¬p ∨ r
+__(p ∨ ¬p)__ ∧ (¬q ∨ ¬p) ∨ r ≡ ¬q ∨ r ∨ ¬p ∨ r
+{A11 Tercero excluido}
+(True ∧ (¬q ∨ ¬p)) ∨ r ≡ ¬q ∨ r ∨ ¬p
+__(True ∧ (¬q ∨ ¬p)) ∨ r__ ≡ ¬q ∨ r ∨ ¬p
+{T14 Distributividad de ∨ con ∧}
+(True ∨ r) ∧ (¬q ∨ ¬p ∨ r) ≡ ¬q ∨ r ∨ ¬p
+__(True ∨ r)__ ∧ (¬q ∨ ¬p ∨ r) ≡ ¬q ∨ r ∨ ¬p
+{T3 Elemento absorbente ∨}
+True ∧ (¬q ∨ ¬p ∨ r) ≡ ¬q ∨ r ∨ ¬p
+__True ∧ (¬q ∨ ¬p ∨ r)__ ≡ ¬q ∨ r ∨ ¬p
+{T9 Neutro ∧}
+¬q ∨ r ∨ ¬p ≡ ¬q ∨ r ∨ ¬p
+{A3 Neutro ≡}
+True
+{Es Valido}
+
+b) (p ⇒ q) ⇒ (p ∧ r ⇒ q ∧ r)
+{T19 Caracterizacion ⇒}
+¬(p ⇒ q) ∨ (p ∧ r ⇒ q ∧ r)
+¬(__p ⇒ q__) ∨ (__p ∧ r ⇒ q ∧ r__)
+{T19 Caracterizacion ⇒}
+¬(¬p ∨ q) ∨ (¬(p ∧ r) ∨ (q ∧ r))
+__¬(¬p ∨ q)__ ∨ (¬(p ∧ r) ∨ (q ∧ r))
+{T12 De Morgan para ∨}
+(p ∧ ¬q) ∨ (¬(p ∧ r) ∨ (q ∧ r))
+(p ∧ ¬q) ∨ (__¬(p ∧ r)__ ∨ (q ∧ r))
+{T12 De Morgan para ∧}
+(p ∧ ¬q) ∨ (¬p ∨ ¬r ∨ (q ∧ r))
+__(p ∧ ¬q)__ ∨ (¬p ∨ ¬r ∨ __(q ∧ r)__)
+{A12 Regla dorada}
+(p ≡ ¬q ≡ p ∨ ¬q) ∨ (¬p ∨ ¬r ∨ (r ≡ q ≡ r ∨ q))
+(p ≡ ¬q ≡ p ∨ ¬q) ∨ (__¬p ∨ ¬r ∨ (r ≡ q ≡ r ∨ q)__)
+{A10 Distributividad ∨ con ≡}
+(p ≡ ¬q ≡ p ∨ ¬q) ∨ (¬p ∨ ¬r ∨ r ≡ ¬p ∨ ¬r ∨ q ≡ ¬p ∨ ¬r ∨ r ∨ q)
+(p ≡ ¬q ≡ p ∨ ¬q) ∨ (¬p ∨ __¬r ∨ r__ ≡ ¬p ∨ ¬r ∨ q ≡ ¬p ∨ __¬r ∨ r__ ∨ q)
+{A11 Tercero excluido}
+(p ≡ ¬q ≡ p ∨ ¬q) ∨ (¬p ∨ True ≡ ¬p ∨ ¬r ∨ q ≡ ¬p ∨ True ∨ q)
+(p ≡ ¬q ≡ p ∨ ¬q) ∨ (___¬p ∨ True___ ≡ ¬p ∨ ¬r ∨ q ≡ ___¬p ∨ True ∨ q___)
+{T3 Elemento absorbente ∨}
+(p ≡ ¬q ≡ p ∨ ¬q) ∨ (True ≡ ¬p ∨ ¬r ∨ q ≡ True)
+(p ≡ ¬q ≡ p ∨ ¬q) ∨ (__True ≡ ¬p ∨ ¬r ∨ q ≡ True__)
+{A3 Neutro ≡}
+(p ≡ ¬q ≡ p ∨ ¬q) ∨ (¬p ∨ ¬r ∨ q)
+{A10 Distributividad ∨ con ≡}
+p ∨ ¬p ∨ ¬r ∨ q ≡ ¬q ∨ ¬p ∨ ¬r ∨ q ≡ p ∨ ¬q ∨ ¬p ∨ ¬r ∨ q
+__p ∨ ¬p__ ∨ ¬r ∨ q ≡ __¬q ∨ q__ ∨ ¬p ∨ ¬r ≡ __p ∨ ¬p__ ∨ __¬q ∨ q__ ∨ ¬r)
+{A11 Tercero excluido}
+True ∨ ¬r ∨ q ≡ True ∨ ¬p ∨ ¬r ≡ True ∨ True ∨ ¬r)
+{T3 Elemento absorbente ∨}
+True ≡ True ≡ True)
+{A3 Neutro ≡}
+True
+{Es Valido}
+
+
+c) (p ⇒ q) ⇒ (p ∨ r ⇒ q ∨ r)
+__ __(p ⇒ q)__ ⇒ (__p ∨ r ⇒ q ∨ r__) __
+{T19 Caracterizacion ⇒}
+¬(¬p ∨ q) ∨ (¬(p ∨ r) ∨ q ∨ r)
+__¬(¬p ∨ q)__ ∨ (__¬(p ∨ r)__ ∨ q ∨ r)
+{T12 De Morgan para ∨}
+(p ∧ ¬q) ∨ ((¬p ∧ ¬r) ∨ q ∨ r)
+(__p ∧ ¬q__) ∨ (__(¬p ∧ ¬r)__ ∨ q ∨ r)
+{A12 Regla dorada}
+(p ≡ ¬q ≡ p ∨ ¬q) ∨ ((¬p ≡ ¬r ≡ ¬p ∨ ¬r) ∨ q ∨ r)
+(p ≡ ¬q ≡ p ∨ ¬q) ∨ (__(¬p ≡ ¬r ≡ ¬p ∨ ¬r) ∨ q ∨ r__)
+{A10 Distributividad ∨ con ≡}
+(p ≡ ¬q ≡ p ∨ ¬q) ∨ (¬p ∨ q ∨ r ≡ ¬r ∨ q ∨ r ≡ ¬p ∨ ¬r ∨ q ∨ r)
+(p ≡ ¬q ≡ p ∨ ¬q) ∨ (¬p ∨ q ∨ r ≡ __¬r ∨ r__ ∨ q ≡ ¬p ∨ __¬r ∨ r__ ∨ q)
+{A11 Tercero excluido}
+(p ≡ ¬q ≡ p ∨ ¬q) ∨ (¬p ∨ q ∨ r ≡ True ∨ q ≡ ¬p ∨ True ∨ q)
+(p ≡ ¬q ≡ p ∨ ¬q) ∨ (¬p ∨ q ∨ r ≡ __True ∨ q__ ≡ __¬p ∨ True ∨ q__)
+{T3 Elemento absorbente ∨}
+(p ≡ ¬q ≡ p ∨ ¬q) ∨ (¬p ∨ q ∨ r ≡ True ≡ True)
+{Tacho}
+(p ≡ ¬q ≡ p ∨ ¬q) ∨ (¬p ∨ q ∨ r)
+{A10 Distributividad ∨ con ≡}
+p ∨ ¬p ∨ q ∨ r ≡ ¬q ∨ ¬p ∨ q ∨ r ≡ p ∨ ¬q ∨ ¬p ∨ q ∨ r
+__p ∨ ¬p__ ∨ q ∨ r ≡ __¬q ∨ q__ ∨ ¬p ∨ r ≡ __p ∨ ¬p__ ∨ __q ∨ ¬q__ ∨ r
+{A11 Tercero excluido}
+True ∨ q ∨ r ≡ True ∨ ¬p ∨ r ≡ True ∨ True ∨ r
+__True ∨ q ∨ r__ ≡ __True ∨ ¬p ∨ r__ ≡ __True ∨ True ∨ r__
+{T3 Elemento absorbente ∨ y Tachado}
+True
+{Es Valido}
+-}

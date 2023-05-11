@@ -1,0 +1,226 @@
+{-
+7. Decidı si son validas o no las siguientes formulas. Justifica apropiadamente.
+a) p ≡ p ≡ p ≡ True
+b) ((p ̸≡ q) ≡ r) ≡ (p ̸≡ (q ≡ r))
+c) (p ≡ q) ≡ (¬p ≡ ¬q)
+d) ¬p ≡ False
+e) ¬(p ≡ q) ≡ (¬p ≡ ¬q)
+
+
+a) p ≡ p ≡ p ≡ True
+{Por A3}
+p ≡ p ≡ p
+{Por A3}
+True ≡ p
+{Es satisfactible, no valido}
+
+b) ((p ̸≡ q) ≡ r) ≡ (p ̸≡ (q ≡ r))
+{Por A6}
+(¬(p ≡ q) ≡ r) ≡ ¬(p ≡ (q ≡ r))
+{Si consideramos a (p ≡ q) como z}
+(¬z ≡ r) ≡ ¬(p ≡ (q ≡ r))
+{Por A4, en z}
+¬(z ≡ r) ≡ ¬(p ≡ (q ≡ r))
+{Reemplazando}
+¬((p ≡ q) ≡ r) ≡ ¬(p ≡ (q ≡ r))
+{Por A1}
+¬((p ≡ q) ≡ r) ≡ ¬((p ≡ q) ≡ r)
+{Por A3, ¬((p ≡ q) ≡ r) ≡ ¬((p ≡ q) ≡ r) ≡ True}
+True
+{Es valido}
+
+c) (p ≡ q) ≡ (¬p ≡ ¬q)
+{Por A4}
+(p ≡ q) ≡ ¬(p ≡ ¬q)
+{Por A2}
+(p ≡ q) ≡ ¬(¬q ≡ p)
+{Por A4}
+(p ≡ q) ≡ ¬¬(q ≡ p)
+{Por T1, ¬¬(q ≡ p) ≡ (q ≡ p)}
+(p ≡ q) ≡ (q ≡ p)
+{Valido, es axioma A2}
+
+d) ¬p ≡ False
+{Por A4}
+¬(p ≡ False)
+{Por A2}
+¬(False ≡ p)
+{Por A5}
+¬(¬True ≡ p)
+{Por A4}
+¬¬(True ≡ p)
+{Por T1}
+True ≡ p
+{Es satisfactible, no valido}
+
+e) ¬(p ≡ q) ≡ (¬p ≡ ¬q)
+{Por A4}
+¬(p ≡ q) ≡ ¬(q ≡ ¬p)
+{Por A2}
+¬(p ≡ q) ≡ ¬(¬p ≡ q)
+{Por A4}
+¬(p ≡ q) ≡ ¬¬(p ≡ q)
+{Por T1}
+¬(p ≡ q) ≡ (p ≡ q)
+{Por T2}
+False
+{Es no satisfactible}
+-}
+
+{-
+8. Demostra que las siguientes formulas son teoremas, justificando cada paso con el axioma aplicado.
+a) Distributividad de la disyuncion con la disyuncion: p ∨ (q ∨ r) ≡ (p ∨ q) ∨ (p ∨ r)
+b) Elemento absorbente de la disyuncion: p ∨ True ≡ True
+c) Elemento neutro de la disyuncion: p ∨ False ≡ p
+d) Teorema Estrella: p ∨ q ≡ p ∨ ¬q ≡ p
+
+a) p ∨ (q ∨ r) ≡ (p ∨ q) ∨ (p ∨ r)
+{Por A8}
+p ∨ (q ∨ r) ≡ (q ∨ p) ∨ (p ∨ r)
+{Por A7}
+p ∨ (q ∨ r) ≡ (q ∨ r) ∨ (p ∨ p)
+{Por A9}
+p ∨ (q ∨ r) ≡ (q ∨ r) ∨ p
+{Por A7}
+p ∨ (q ∨ r) ≡  p ∨ (q ∨ r)
+{Por A3}
+True
+
+b) p ∨ True ≡ True
+{Por A3}
+p ∨ (p ≡ p) ≡ True
+{Por A10}
+(p ∨ p) ≡ (p ∨ p) ≡ True
+{Por A9}
+p ≡ p ≡ True
+{Por A2}
+p ≡ True ≡ p 
+{Es valida, axioma A3}
+
+c) p ∨ False ≡ p
+{Por A5}
+p ∨ ¬True ≡ p
+{Por A3}
+p ∨ ¬(p ≡ p) ≡ p
+{Por A4}
+p ∨ ¬p ≡ p ≡ p
+{Por A3}
+p ∨ ¬p ≡ True
+{Por A11 es valido}
+
+d) (p ∨ q) ≡ (p ∨ ¬q) ≡ p {T5}
+{Por A10}
+p ∨ (q ≡ ¬q) ≡ p
+{Por A2}
+p ∨ (¬q ≡ q) ≡ p
+{Por A4}
+p ∨ ¬(q ≡ q) ≡ p
+{Por A3}
+p ∨ ¬True ≡ p
+{Por A5}
+p ∨ False ≡ p
+{Es valido por ejericio anterior, 8-c}
+-}
+
+{-
+9. Demostra que las siguientes formulas son teoremas justificando cada paso con el axioma o teorema aplicado.
+Aclaracion: Desde ahora en adelante, en cada ejercicio se pueden utilizar los teoremas del listado y los
+ya demostrados en los ejercicios anteriores.
+
+a) Distributividad de la disyuncion con la conjuncion: p ∨ (q ∧ r) ≡ (p ∨ q) ∧ (p ∨ r)
+b) Asociatividad de la conjuncion: (p ∧ q) ∧ r ≡ p ∧ (q ∧ r)
+
+a) p ∨ (q ∧ r) ≡ (p ∨ q) ∧ (p ∨ r)
+{Por A12}
+p ∨ (r ≡ q ≡ (r ∨ q)) ≡ (p ∨ q) ≡ (p ∨ r) ≡ (p ∨ q) ∨ (p ∨ r)
+{Por A10}
+p ∨ r ≡ p ∨ q ≡ (p ∨ (r ∨ q)) ≡ (p ∨ q) ≡ (p ∨ r) ≡ (p ∨ q) ∨ (p ∨ r)
+{Por A2}
+(p ∨ r) ≡ (p ∨ r) ≡ (p ∨ q) ≡ (p ∨ q) ≡ (p ∨ (r ∨ q)) ≡ (p ∨ q) ∨ (p ∨ r)
+{Por A3}
+True ≡ True ≡ (p ∨ (r ∨ q)) ≡ (p ∨ q) ∨ (p ∨ r)
+{Por A7}
+True ≡ True ≡ (p ∨ r ∨ q) ≡ ((p ∨ p) ∨ q ∨ r)
+{Por A9}
+True ≡ True ≡ (p ∨ r ∨ q) ≡ (p ∨ q ∨ r)
+{Por A7}
+True ≡ True ≡ (p ∨ r ∨ q) ≡ (p ∨ r ∨ q)
+{Por A3}
+True ≡ True ≡ True
+{Es True}
+
+b) (p ∧ q) ∧ r ≡ p ∧ (q ∧ r)
+__ (p ∧ q) ∧ r __≡ p ∧ (q ∧ r)
+{A12 Regla dorada}
+(p ∧ q) ≡ r ≡ (p ∧ q) ∨ r ≡ p ∧ (q ∧ r)
+(p ∧ q) ≡ r ≡ (p ∧ q) ∨ r ≡ __ p ∧ (q ∧ r) __
+{A12 Regla dorada}
+(p ∧ q) ≡ r ≡ (p ∧ q) ∨ r ≡ p ≡ (q ∧ r) ≡ p ∨ (q ∧ r)
+(__p ∧ q__) ≡ r ≡ (__p ∧ q__) ∨ r ≡ p ≡ (__q ∧ r__) ≡ p ∨ (__q ∧ r__)
+{A12 Regla dorada}
+(p ≡ q ≡ p ∨ q) ≡ r ≡ (p ≡ q ≡ p ∨ q) ∨ r ≡ p ≡ (q ≡ r ≡ q ∨ r) ≡ p ∨ (q ≡ r ≡ q ∨ r)
+{A2 Conmutatividad ≡}
+p ≡ p ≡ q ≡ q ≡ r ≡ r ≡ p ∨ q ≡ (p ≡ q ≡ p ∨ q) ∨ r ≡ q ∨ r ≡ p ∨ (q ≡ r ≡ q ∨ r)
+__ p ≡ p ≡ q ≡ q ≡ r ≡ r __ ≡ p ∨ q ≡ (p ≡ q ≡ p ∨ q) ∨ r ≡ q ∨ r ≡ p ∨ (q ≡ r ≡ q ∨ r)
+{A3 Neutro ≡}
+True ≡ True ≡ True ≡ p ∨ q ≡ (p ≡ q ≡ p ∨ q) ∨ r ≡ q ∨ r ≡ p ∨ (q ≡ r ≡ q ∨ r)
+__True ≡ True ≡ True ≡ p ∨ q__ ≡ (p ≡ q ≡ p ∨ q) ∨ r ≡ q ∨ r ≡ p ∨ (q ≡ r ≡ q ∨ r)
+{A3 Neutro ≡}
+p ∨ q ≡ (p ≡ q ≡ p ∨ q) ∨ r ≡ q ∨ r ≡ p ∨ (q ≡ r ≡ q ∨ r)
+p ∨ q ≡ __(p ≡ q ≡ p ∨ q) ∨ r __≡ q ∨ r ≡ __ p ∨ (q ≡ r ≡ q ∨ r) __
+{A10 Distributividad ∨ con ≡}
+p ∨ q ≡ p ∨ r ≡ q ∨ r ≡ (p ∨ q) ∨ r ≡ q ∨ r ≡ p ∨ q ≡ p ∨ r ≡ p ∨ (q ∨ r)
+p ∨ q ≡ p ∨ r ≡ q ∨ r ≡ __(p ∨ q) ∨ r__ ≡ q ∨ r ≡ p ∨ q ≡ p ∨ r ≡ p ∨ (q ∨ r)
+{A7 Asociatividad ∨}
+p ∨ q ≡ p ∨ r ≡ q ∨ r ≡ p ∨ (q ∨ r) ≡ q ∨ r ≡ p ∨ q ≡ p ∨ r ≡ p ∨ (q ∨ r)
+{A2 Conmutatividad ≡}
+__ p ∨ q ≡ p ∨ q __ ≡ __ p ∨ r ≡ p ∨ r __ ≡ __ q ∨ r ≡ q ∨ r __ ≡ __ p ∨ (q ∨ r) ≡ p ∨ (q ∨ r) __
+{A3 Neutro ≡}
+True ≡ True ≡ True ≡ True
+{A3 Neutro ≡}
+True
+{Es Valida}
+-}
+
+{-
+10. Decidı si cada una de las siguientes formulas proposicionales son validas o no. En todos los casos justifica
+con una demostracion o un contraejemplo, segun corresponda.
+a) p ∧ (q ≡ r) ≡ (p ∧ q) ≡ (p ∧ r)
+b) p ∧ (q ≡ r) ≡ (p ∧ q) ≡ (p ∧ r) ≡ p
+
+a) p ∧ (q ≡ r) ≡ (p ∧ q) ≡ (p ∧ r)
+{Por A12}
+p ≡ (q ≡ r) ≡ p ∨ (q ≡ r) ≡ p ≡ q ≡ p ∨ q ≡ p ≡ r ≡ p ∨ r
+{Por A2}
+p ≡ p ≡ p ≡ q ≡ q ≡ r ≡ r ≡ p ∨ q ≡ p ∨ r ≡ p ∨ (q ≡ r)
+{Por A3}
+True ≡ p ≡ True ≡ True ≡ p ∨ q ≡ p ∨ r ≡ p ∨ (q ≡ r)
+{Por A10}
+True ≡ p ≡ True ≡ True ≡ p ∨ q ≡ p ∨ r ≡ p ∨ q ≡ p ∨ r
+{Por A2}
+True ≡ p ≡ True ≡ True ≡ p ∨ r ≡ p ∨ r ≡ p ∨ q ≡ p ∨ q
+{Por A3}
+True ≡ p ≡ True ≡ True ≡ True ≡ True
+{Por A3}
+p
+{Por lo que no es valida, pero si satisfactible}
+
+b) p ∧ (q ≡ r) ≡ (p ∧ q) ≡ (p ∧ r) ≡ p
+{A12 Regla dorada}
+p ≡ (q ≡ r) ≡ p ∨ (q ≡ r) ≡ p ≡ q ≡ p ∨ q ≡ p ≡ r ≡ p ∨ r ≡ p
+{A2 Conmutatividad ≡}
+p ≡ p ≡ q ≡ r ≡ r ≡ p ∨ (q ≡ r) ≡ p ≡ p ≡ q ≡ p ∨ q ≡ p ∨ r
+__ p ≡ p __ ≡ __ q ≡ q __ ≡ __ r ≡ r __ ≡ p ∨ (q ≡ r) ≡ __ p ≡ p __ ≡ p ∨ q ≡ p ∨ r
+{A3 Neutro ≡}
+True ≡ True ≡ True ≡ p ∨ (q ≡ r) ≡ True ≡ p ∨ q ≡ p ∨ r
+{A10 Distributividad ∨ con ≡}
+True ≡ True ≡ True ≡ p ∨ q ≡ p ∨ r ≡ True ≡ p ∨ q ≡ p ∨ r
+{A2 Conmutatividad ≡}
+True ≡ True ≡ True ≡ p ∨ q ≡ p ∨ q ≡ p ∨ r ≡ p ∨ r ≡ True
+True ≡ True ≡ True ≡ __ p ∨ q ≡ p ∨ q __ ≡ __ p ∨ r ≡ p ∨ r __ ≡ True
+{A3 Neutro ≡}
+True ≡ True ≡ True ≡ True ≡ True ≡ True
+{A3 Neutro ≡}
+True
+{Es Valido}
+-}

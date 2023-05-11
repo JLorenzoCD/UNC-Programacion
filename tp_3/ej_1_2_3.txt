@@ -1,0 +1,79 @@
+1)  ^               raıces y potencias
+2)  ∗, /            producto y division
+3)  max , min       maximo y mınimo
+4)  +, −            suma y resta
+5)  =, ⩽, ⩾        operadores de comparacion
+6)  ¬               negacion
+7)  ∨ ∧             disyuncion y conjuncion
+8)  ⇒ ⇐            implicacion y consecuencia
+9)  ≡ ̸≡             equivalencia y discrepancia
+
+
+1. Saca todos los parentesis que sean superfluos segun las reglas de precedencia de los operadores booleanos.
+a) ((((a = b) ∧ (b = c)) ⇒ (a = c)) ≡ True)
+b) (((p ⇒ q) ∧ (q ⇒ p)) ⇒ (p ≡ q))
+c) (((p ∧ q) ∨ (¬r)) ⇒ (p ∧ (q ∨ r)))
+
+a)  a = b ∧ b = c ⇒ a = c ≡ True
+
+b)  (p ⇒ q) ∧ (q ⇒ p) ⇒ (p ≡ q)
+
+c)  (p ∧ q) ∨ ¬r ⇒ p ∧ (q ∨ r)
+
+
+
+2. Introducı parentesis para hacer explıcita la precedencia.
+a) p ∨ q ⇒ r ≡ (p ⇒ r) ∧ (q ⇒ r)
+b) p ⇒ q ≡ p ∨ q ≡ q
+c) p ⇒ q ≡ ¬p ∨ q
+
+a) (((p ∨ q) ⇒ r) ≡ ((p ⇒ r) ∧ (q ⇒ r)))
+
+b) ((p ⇒ q) ≡ (p ∨ q) ≡ q)
+
+c) ((p ⇒ q) ≡ ((¬p) ∨ q))
+
+
+
+3. ¿Estan bien escritas las siguientes expresiones? Para evitar errores, introducı parentesis de acuerdo a las
+reglas de precedencia, y en caso de ser posible escribı una tabla declarando el tipo de cada variable.
+a) ((True ∧ False) ⇒ False) ≡ False
+b) 2 = 3 ∨ 3 = 4 ∨ a ∗ a + 2 ⩽ b + 7
+c) (x ∧ y ≡ a) ∧ z ⩽ w
+d) x + 3 ⇒ y
+e) (x + 3 = y) ∧ ¬z
+f) a ∨ b = 3 + y
+g) a ⩾ b ∧ 3 + 2 < 4 ⇒ c ≡ b + 1 = 2
+h) a + 2 ⩾ c ⇒ 3 + 2 < b ≡ c ≡ b = 2 ∗ a
+i) ¬a ∗ b + c = d ∨ p ⇒ q ≡ r ⇐ s ∧ j = k + l ∗ m
+
+a) ((True ∧ False) ⇒ False) ≡ False
+
+b) (2 = 3) ∨ (3 = 4) ∨ (((a ∗ a) + 2) ⩽ (b + 7))
+con a, b :: Int
+
+c) ((x ∧ y) ≡ a) ∧ (z ⩽ w)
+con x, y, a :: Bool
+con z, w :: Int
+
+d) x + 3 ⇒ y
+No se puede
+
+e) ((x + 3) = y) ∧ ¬(z)
+con x, y :: Int
+con z :: Bool
+
+f) a ∨ (b = (3 + y))
+con a :: Bool
+con b, y :: Int
+
+g) ((a ⩾ b) ∧ ((3 + 2) < 4) ⇒ c) ≡ ((b + 1) = 2)
+con a, b :: Int
+con c :: Bool
+
+h) (((a + 2) ⩾ c) ⇒ ((3 + 2) < b)) ≡ c ≡ (b = (2 ∗ a))
+No se puede porque c tendria que ser un Int y a la vex Bool
+
+i) ((¬(((a ∗ b) + c) = d) ∨ p) ⇒ q) ≡ (r ⇐ (s ∧ (j = (k + (l ∗ m)))))
+con a, b, x, d, j, k, l, m :: Int
+con p, q , r, s :: Bool

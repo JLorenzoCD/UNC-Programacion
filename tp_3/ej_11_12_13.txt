@@ -1,0 +1,234 @@
+{-
+####################### 11 #######################
+Demuestre los siguientes teoremas del caclulo proposicional.
+a) Caracterizacion de implicacion: p ⇒ q ≡ ¬p ∨ q
+b) Definicion dual de implicacion: p ⇒ q ≡ p ∧ q ≡ p
+c) Absurdo: p ⇒ False ≡ ¬p.
+d) Debilitamiento para ∧: p ∧ q ⇒ p.
+e) Debilitamiento para ∨: p ⇒ p ∨ q.
+f) Modus Ponens p ∧ (p ⇒ q) ≡ p ∧ q.
+g) Modus Tollens (p ⇒ q) ∧ ¬q ≡ ¬p ∧ ¬q.
+h) Contrarreciproca p ⇒ q ≡ ¬q ⇒ ¬p.
+
+
+
+b) p ⇒ q ≡ p ∧ q ≡ p
+{Por A2 (Conmutatividad ≡)}
+p ⇒ q ≡ p ≡ p ∧ q 
+{Por A12 (Regla dorada)}
+p ⇒ q ≡ p ≡ p ≡ q ≡ p ∨ q
+{Por A3 (Neutro ≡)}
+p ⇒ q ≡ True ≡ q ≡ p ∨ q
+{Por A3 (Neutro ≡)}
+p ⇒ q ≡ q ≡ p ∨ q
+{Por A2 (Conmutatividad ≡)}
+p ⇒ q ≡ p ∨ q ≡ q
+{Por A13 (Definición de ⇒), es Valida}
+
+c) p ⇒ False ≡ ¬p.
+{Definicion de implicacion con negacion}
+¬p ∨ False ≡ ¬p
+{A5 Definicion False}
+¬p ∨ ¬True ≡ ¬p
+{T13 De Morgan para ∧}
+¬(p ∧ True) ≡ ¬p
+{T9 Neutro ∧}
+¬p ≡ ¬p
+{A3 Neutro ≡}
+True
+
+d) p ∧ q ⇒ p
+{Definicion de implicacion con negacion}
+¬(p ∧ q) ∨ p
+{T13 De Morgan para ∧}
+(¬p ∨ ¬q) ∨ p
+{A7 Asociatividad ∨}
+¬p ∨ p ∨ ¬q
+{A11 Tercero excluido}
+True ∨ ¬q
+{T3 Elemento absorbente ∨, por lo que es Valido}
+
+e) p ⇒ p ∨ q
+{A13 Definicion de ⇒}
+p ∨ p ∨ q ≡ p ∨ q
+{A9 Idempotencia ∨}
+p ∨ q ≡ p ∨ q
+{A3 Neutro ≡}
+True
+{Es Valido}
+
+f) p ∧ __ (p ⇒ q) __ ≡ p ∧ q
+{Definicion de implicacion con negacion}
+__ p ∧ (¬p ∨ q) __ ≡ p ∧ q
+{T15 Distributividad de ∧ con ∨}
+__ (p ∧ ¬p) __ ∨ (p ∧ q) ≡ p ∧ q
+{T11 Principio de no contradiccion}
+__ False ∨ (p ∧ q) __ ≡ p ∧ q
+{T4 Elemento neutro ∨}
+__ p ∧ q ≡ p ∧ q __
+{A3 Neutro ≡}
+True
+{Es Valido}
+
+g) (p ⇒ q) ∧ ¬q ≡ ¬p ∧ ¬q
+__ (p ⇒ q)__ ∧ ¬q ≡ ¬p ∧ ¬q
+{Definicion de implicacion con negacion}
+(¬p ∨ q) ∧ ¬q ≡ ¬p ∧ ¬q
+
+__ (¬p ∨ q) ∧ ¬q __ ≡ ¬p ∧ ¬q
+{T15 Distributividad de ∧ con ∨}
+(¬q ∧ ¬p) ∨ (¬q ∧ q) ≡ ¬p ∧ ¬q
+
+(¬q ∧ ¬p) ∨ (¬q ∧ q) ≡ __¬p ∧ ¬q__
+{T12 De Morgan para ∨}
+(¬q ∧ ¬p) ∨ (¬q ∧ q) ≡ ¬(p ∨ q)
+
+__ (¬q ∧ ¬p) __ ∨ (¬q ∧ q) ≡ ¬(p ∨ q)
+{T12 De Morgan para ∨}
+¬(p ∨ q) ∨ (¬q ∧ q) ≡ ¬(p ∨ q)
+
+¬(p ∨ q) ∨ __ (¬q ∧ q) __ ≡ ¬(p ∨ q)
+{T11 Principio de no contradiccion}
+¬(p ∨ q) ∨ False ≡ ¬(p ∨ q)
+
+___¬(p ∨ q) ∨ False__ ≡ ¬(p ∨ q)
+{T4 Elemento neutro ∨}
+¬(p ∨ q)  ≡ ¬(p ∨ q)
+
+__ ¬(p ∨ q)  ≡ ¬(p ∨ q) __
+{A3 Neutro ≡}
+True
+{Es Valido}
+
+
+h) p ⇒ q ≡ ¬q ⇒ ¬p
+
+__ p ⇒ q __ ≡ __ ¬q ⇒ ¬p __
+{T19 Caracterizacion ⇒}
+¬p ∨ q ≡  ¬¬q ∨ ¬p
+
+¬p ∨ q ≡  __ ¬¬q __ ∨ ¬p
+{T1 Doble negacion}
+¬p ∨ q ≡  q ∨ ¬p
+{Es A7 (Asociatividad ∨), Por lo que es valido}
+-}
+
+
+{-
+####################### 12 #######################
+Simplifique las siguientes expresiones eliminando los sımbolos de implicacion que sean posibles aplicando
+los teoremas de Modus Ponens y Modus Tollens. (Observe que estas expresiones no son teoremas)
+a) (p ⇒ q) ∧ (q ⇒ r) ∧ p
+b) (p ⇒ q) ∧ (q ⇒ r) ∧ ¬r
+c) ((p ⇒ q) ⇒ (p ⇒ r)) ∧ ¬(p ⇒ r)
+
+a) (p ⇒ q) ∧ (q ⇒ r) ∧ p
+{T7 Conmutatividad ∧}
+p ∧ (p ⇒ q) ∧ (q ⇒ r)
+
+__ p ∧ (p ⇒ q) __ ∧ (q ⇒ r)
+{T21 Modus ponens con equivalencia}
+p ∧ q ∧ (q ⇒ r)
+
+p ∧ __ q ∧ (q ⇒ r) __
+{T21 Modus ponens con equivalencia}
+p ∧ q ∧ r
+{Simplificacion}
+
+
+b) (p ⇒ q) ∧ (q ⇒ r) ∧ ¬r
+
+(p ⇒ q) ∧ __ (q ⇒ r) ∧ ¬r __
+{T23 Modus tollens con equivalencia}
+(p ⇒ q) ∧ ¬q ∧ ¬r
+
+__ (p ⇒ q) ∧ ¬q __ ∧ ¬r
+{T23 Modus tollens con equivalencia}
+¬p ∧ ¬q ∧ ¬r
+{Simplificacion}
+
+c) ((p ⇒ q) ⇒ (p ⇒ r)) ∧ ¬(p ⇒ r)
+
+( __ (p ⇒ q) ⇒ (p ⇒ r) __ ) ∧ ¬(p ⇒ r)
+{T19 Caracterizacion ⇒}
+¬(p ⇒ q) ∧ (p ⇒ r) ∧ ¬(p ⇒ r)
+
+¬(p ⇒ q) ∧ __ (p ⇒ r) ∧ ¬(p ⇒ r) __
+{T11 Principio de no contradiccion}
+¬(p ⇒ q) ∧ False
+
+¬(p ⇒ q) ∧ __False__
+{A5 Definicion False}
+¬(p ⇒ q) ∧ ¬True
+
+__ ¬(p ⇒ q) ∧ ¬True __
+{T12 De Morgan para ∨}
+¬((p ⇒ q) ∨ True)
+
+¬(__(p ⇒ q) ∨ True__)
+{T3 Elemento absorbente ∨}
+¬(True)
+
+{A5 Definicion False}
+False
+{No satisfactible}
+-}
+
+{-
+####################### 13 #######################
+a) (p ⇒ (q ⇒ r)) ∧ (p ∧ q) ≡ p ∧ q ∧ r
+
+
+
+
+b) ¬p ∧ (s ∨ t ⇒ p) ≡ ¬s ∧ ¬p ∧ ¬t
+
+¬p ∧ __(s ∨ t ⇒ p)__ ≡ ¬s ∧ ¬p ∧ ¬t
+{T19 Caracterizacion ⇒}
+¬p ∧ (¬(s ∨ t) ∨ p) ≡ ¬s ∧ ¬p ∧ ¬t
+
+¬p ∧ (__¬(s ∨ t)__ ∨ p) ≡ ¬s ∧ ¬p ∧ ¬t
+{T12 De Morgan para ∨}
+¬p ∧ ((¬s ∧ ¬t) ∨ p) ≡ ¬s ∧ ¬p ∧ ¬t
+
+¬p ∧ (__(¬s ∧ ¬t) ∨ p__) ≡ ¬s ∧ ¬p ∧ ¬t
+{T14 Distributividad de ∨ con ∧}
+¬p ∧ (¬s ∨ p) ∧ (¬t ∨ p) ≡ ¬s ∧ ¬p ∧ ¬t
+
+__¬p ∧ (¬s ∨ p)__ ∧ (¬t ∨ p) ≡ ¬s ∧ ¬p ∧ ¬t
+{T15 Distributividad de ∧ con ∨}
+(¬p ∧ ¬s) ∨ (¬p ∧ p) ∧ (¬t ∨ p) ≡ ¬s ∧ ¬p ∧ ¬t
+
+(¬p ∧ ¬s) ∨ __(¬p ∧ p)__ ∧ (¬t ∨ p) ≡ ¬s ∧ ¬p ∧ ¬t
+{T11 Principio de no contradiccion}
+(¬p ∧ ¬s) ∨ False ∧ (¬t ∨ p) ≡ ¬s ∧ ¬p ∧ ¬t
+
+__ (¬p ∧ ¬s) ∨ False__ ∧ (¬t ∨ p) ≡ ¬s ∧ ¬p ∧ ¬t
+{T4 Elemento neutro ∨}
+(¬p ∧ ¬s) ∧ (¬t ∨ p) ≡ ¬s ∧ ¬p ∧ ¬t
+
+__(¬p ∧ ¬s) ∧ (¬t ∨ p)__ ≡ ¬s ∧ ¬p ∧ ¬t
+{T15 Distributividad de ∧ con ∨}
+(¬p ∧ ¬s ∧ ¬t) ∨ (¬p ∧ ¬s ∧ p)≡ ¬s ∧ ¬p ∧ ¬t
+
+{T7 Conmutatividad ∧}
+(¬p ∧ ¬s ∧ ¬t) ∨ (__(¬p ∧ p)__ ∧ ¬s)≡ ¬s ∧ ¬p ∧ ¬t
+{T11 Principio de no contradiccion}
+(¬p ∧ ¬s ∧ ¬t) ∨ (False ∧ ¬s)≡ ¬s ∧ ¬p ∧ ¬t
+
+(¬p ∧ ¬s ∧ ¬t) ∨ __(False ∧ ¬s)__≡ ¬s ∧ ¬p ∧ ¬t
+{T10 Elemento absorbente ∧}
+(¬p ∧ ¬s ∧ ¬t) ∨ False ≡ ¬s ∧ ¬p ∧ ¬t
+
+__(¬p ∧ ¬s ∧ ¬t) ∨ False__ ≡ ¬s ∧ ¬p ∧ ¬t
+{T4 Elemento neutro ∨}
+¬p ∧ ¬s ∧ ¬t ≡ ¬s ∧ ¬p ∧ ¬t
+
+{T7 Conmutatividad ∧}
+¬p ∧ ¬s ∧ ¬t ≡ ¬p ∧ ¬s ∧ ¬t
+
+__¬p ∧ ¬s ∧ ¬t ≡ ¬p ∧ ¬s ∧ ¬t__
+{A3 Neutro ≡}
+True
+{Es Valido}
+-}
