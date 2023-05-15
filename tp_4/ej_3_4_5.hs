@@ -57,7 +57,7 @@ W se cumple en xs = [(Cuadrado, Rojo, 8), (Cuadrado, Verde, 2)]
 W no cumple en xs = [(Circulo, Verde, 8), (Circulo, Amarillo, 12)]
 
 i) Si hay cırculos rojos en xs entonces hay cuadrados rojos.
-W = < ∃x : x ∈ℓ xs ∧ Circulo.x ∧ Rojo.x : Cuadrado.x ∧ Rojo.x>
+W = < ∃x, y : x,y ∈ℓ xs ∧ Circulo.x ∧ Rojo.x : Cuadrado.y ∧ Rojo.y>
 W se cumple en xs = [(Circulo, Rojo, 8), (Cuadrado, Rojo, 2)]
 W no cumple en xs = [(Circulo, Rojo, 8), (Circulo, Amarillo, 12)]
 -}
