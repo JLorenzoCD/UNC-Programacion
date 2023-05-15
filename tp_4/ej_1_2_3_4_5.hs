@@ -138,7 +138,7 @@ hay_cuadrado_cv (x:xs)
 -- e) Todos los cırculos de xs son azules y de tamaño menor a 10.
 todos_circulos_ca_tam_menor_10 :: [Figura] -> Bool
 todos_circulos_ca_tam_menor_10 [] = True
-todos_circulos_ca_tam_menor_10 (x:xs) 
+todos_circulos_ca_tam_menor_10 (x:xs)
     | circulo x = azul x && (tam x < 10) && todos_circulos_ca_tam_menor_10 xs
     | otherwise = todos_circulos_ca_tam_menor_10 xs
 
@@ -163,11 +163,21 @@ hay_cuadrado_tam_menor_5 :: [Figura] -> Bool
 hay_cuadrado_tam_menor_5 [] = False
 hay_cuadrado_tam_menor_5 (x:xs)
     | cuadrado x && (tam x < 5) = True
-    | otherwise = hay_cuadrado_tam_menor_5 xs 
+    | otherwise = hay_cuadrado_tam_menor_5 xs
 
-{-
 -- i) Si hay cırculos rojos en xs entonces hay cuadrados rojos.
+hay_circulo_cr :: [Figura] -> Bool
+hay_circulo_cr [] = False
+hay_circulo_cr (x:xs)
+    | (circulo x) && (rojo x) = True
+    | otherwise = hay_circulo_cr xs
+
+hay_cuadrado_cr :: [Figura] -> Bool
+hay_cuadrado_cr [] = False
+hay_cuadrado_cr (x:xs)
+    | (cuadrado x) && (rojo x) = True
+    | otherwise = hay_cuadrado_cr xs
+
 hay_circulo_cr_entonces_hay_cuadrado_cr :: [Figura] -> Bool
 hay_circulo_cr_entonces_hay_cuadrado_cr [] = True
-hay_circulo_cr_entonces_hay_cuadrado_cr (x:xs)
--}
+hay_circulo_cr_entonces_hay_cuadrado_cr xs = (not (hay_circulo_cr xs)) || hay_cuadrado_cr xs
