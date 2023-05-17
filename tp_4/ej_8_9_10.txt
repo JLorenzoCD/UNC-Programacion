@@ -1,0 +1,59 @@
+8. Formaliza las siguientes sentencias escritas en lenguaje natural, utilizando cuantificadores y predicados
+arbitrarios para aquellas propiedades elementales. Cuando haya listas involucradas podes utilizar los ope-
+radores sobre listas que ya conoces.
+
+a) Todo entero es par o impar.
+< ∀x : entero.x : mod.x.2 = 0 ∨ mod.x.2 = 1 >
+
+b) La lista xs consiste solo de 0’s y 1’s.
+< ∀x : x ∈ℓ xs : x = 0 ∨ x = 1 >
+
+c) Si el 1 esta en xs, entonces tambien el 0 esta.
+< ∀x : x ∈ℓ xs : x = 1 ⇒ 0 ∈ℓ xs >                      -- OPCION 1
+= < ∀x : True : 1 ∈ℓ xs ⇒ 0 ∈ℓ xs >                     -- como (1 ∈ℓ xs ⇒ 0 ∈ℓ xs) es libre podemos operar
+= < ∀x : True : True > ∧ (1 ∈ℓ xs ⇒ 0 ∈ℓ xs)
+= 1 ∈ℓ xs ⇒ 0 ∈ℓ xs
+= ¬(1 ∈ℓ xs) ∨ (0 ∈ℓ xs)                                 -- OPCION 2
+< ∃x : x ∈ℓ xs : x = 1 > ⇒ < ∃x : x ∈ℓ xs : x = 0 >     -- OPCION 3
+
+d) La lista xs contiene al menos un True.
+< ∃x : x ∈ℓ xs : x = True >
+
+e) Si xs es no vacıa, su primer elemento es 0.
+< ∀x : x ∈ℓ xs : (length xs > 0) ⇒ (xs !! 0) = 0>
+
+f ) Todos los elementos de xs son iguales.
+< ∀x,y : x,y ∈ℓ xs : x = y >
+
+g) Todos los elementos de la lista xs son distintos.
+< ∀x,y : entero.x ∧ entero.y ∧ (0 < x,y < length xs) ∧ x < y : (xs !! x) /= (xs !! y) >
+
+h) La lista xs esta ordenada de manera decreciente.
+< ∀x : entero.x ∧ 0 <= x < (length xs - 1) : (xs !! x) > (xs !! x + 1) >
+
+i) Las listas xs e ys tienen los mismos elementos.
+< ∀x : entero.x ∧ (0 < x < length xs) ∧ length xs = length ys : (xs !! x) = (ys !! x) >
+xs = ys             -- La forma mas simple
+
+j) Todos los elementos de xs tienen al menos un elemento.
+< ∀xs : xs ∈ℓ xss : length xs > 0 >
+
+
+
+9. Una propiedad que nos interesa expresar muchas veces es la unicidad, es decir, expresar que una propiedad se cumple una y solo una vez. Expresa las siguientes propiedades:
+
+a) Hay solo un hombre en el mundo que es Papa.
+-- hs = Hombres
+< ∃p : p ∈ hs : p = "Papa" ∧ < ∀h : h ∈ℓ hs ∧ p /= h : h /= "Papa" > >
+
+b) En la lista xs hay solo un 0.
+< ∃x : entero.x ∧ (0 <= x <= length xs) : (xs !! x) = 0 ∧ < ∀y : entero.y ∧ (0 <= y <= length xs) ∧ x /= y : (xs !! y) /= 0 > >
+
+c) x aparece solo una vez en xs.
+< ∃x : entero.x ∧ (0 <= x <= length xs) : (xs !! x) = z ∧ < ∀y : entero.y ∧ (0 <= y <= length xs) ∧ x /= y : (xs !! y) /= z > >
+
+d) Hay un unico cuadrado azul en xs.
+< ∃x : entero.x ∧ (0 <= x <= length xs) : (xs !! x) = z ∧ Cuadrado.z ∧ Azul.z ∧ < ∀y : entero.y ∧ (0 <= y <= length xs) ∧ x /= y : (xs !! y) = m ∧ Cuadrado.m ∧ Azul.m > >
+
+
+10. ¿Como expresarıas la propiedad “x ocurre exactamente dos veces en xs”?
