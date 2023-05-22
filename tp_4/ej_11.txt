@@ -69,6 +69,33 @@ __⟨∀x : : R.x ⇒ T.x⟩ ∧ ⟨∀x : : R.x ⇒ U.x⟩__ ≡ ⟨∀x : R.x 
 {Por tachado es True}
 
 d) Regla del Termino del ∃ (bis): ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : R.x : U.x⟩ ≡ ⟨∃x : R.x : T.x ∨ U.x⟩.
+⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : R.x : U.x⟩ ≡ ⟨∃x : R.x : T.x ∨ U.x⟩
+
+__⟨∃x : R.x : T.x⟩__ ∨ __⟨∃x : R.x : U.x⟩__ ≡ ⟨∃x : R.x : T.x ∨ U.x⟩
+{A5 Definicion de ∃}
+¬⟨∀x : R.x : ¬T.x⟩ ∨ ¬⟨∀x : R.x : ¬U.x⟩ ≡ ⟨∃x : R.x : T.x ∨ U.x⟩
+
+__¬⟨∀x : R.x : ¬T.x⟩ ∨ ¬⟨∀x : R.x : ¬U.x⟩__ ≡ ⟨∃x : R.x : T.x ∨ U.x⟩
+{T13 De Morgan para ∧}
+¬( ⟨∀x : R.x : ¬T.x⟩ ∧ ⟨∀x : R.x : ¬U.x⟩ ) ≡ ⟨∃x : R.x : T.x ∨ U.x⟩
+
+¬( __⟨∀x : R.x : ¬T.x⟩ ∧ ⟨∀x : R.x : ¬U.x⟩__ ) ≡ ⟨∃x : R.x : T.x ∨ U.x⟩
+{A2 Regla de termino de ∀}
+¬⟨∀x : R.x : ¬T.x ∧ ¬U.x⟩ ≡ ⟨∃x : R.x : T.x ∨ U.x⟩
+
+__¬⟨∀x : R.x : ¬T.x ∧ ¬U.x⟩__ ≡ ⟨∃x : R.x : T.x ∨ U.x⟩
+{A5 Definicion de ∃}
+⟨∃x : R.x : ¬(¬T.x ∧ ¬U.x) ⟩ ≡ ⟨∃x : R.x : T.x ∨ U.x⟩
+
+⟨∃x : R.x : __¬(¬T.x ∧ ¬U.x)__ ⟩ ≡ ⟨∃x : R.x : T.x ∨ U.x⟩
+{T12 De Morgan para ∨}
+⟨∃x : R.x : ¬¬(T.x ∨ U.x) ⟩ ≡ ⟨∃x : R.x : T.x ∨ U.x⟩
+
+⟨∃x : R.x : __¬¬(T.x ∨ U.x)__ ⟩ ≡ ⟨∃x : R.x : T.x ∨ U.x⟩
+{T1 Doble negacion}
+⟨∃x : R.x : T.x ∨ U.x ⟩ ≡ ⟨∃x : R.x : T.x ∨ U.x⟩
+{Por tachado es True}
+
 e) Particion de Rango del ∀: ⟨∀x : R.x ∨ S.x : T.x⟩ ≡ ⟨∀x : R.x : T.x⟩ ∧ ⟨∀x : S.x : T.x⟩.
 f) Particion de rango para ∃: ⟨∃x : R.x ∨ S.x : T.x⟩ ≡ ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : S.x : T.x⟩.
 g) Rango unitario: ⟨∃x : x = A : T.x⟩ ≡ T.A, donde A representa una constante del universo
