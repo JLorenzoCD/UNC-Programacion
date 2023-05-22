@@ -1,0 +1,25 @@
+12. Demostra los siguientes teoremas utilizando axiomas y teoremas ya demostrados.
+
+a) Rango vacıo del ∀: ⟨∀x : False : T.x⟩ ≡ True.
+⟨∀x : False : T.x⟩ ≡ True
+
+__⟨∀x : False : T.x⟩__ ≡ True
+{A1 Intercambio entre rango y termino de ∀}
+⟨∀x : : False ⇒ T.x⟩ ≡ True
+
+⟨∀x : : __False ⇒ T.x__⟩ ≡ True
+{T19 Caracterizacion ⇒, y negacion de False}
+⟨∀x : : True ∨ ¬T.x⟩ ≡ True
+
+__⟨∀x : : True ∨ ¬T.x⟩__ ≡ True
+{A3 Distributividad de ∨ con ∀}
+True ∨ ⟨∀x : : ¬T.x⟩ ≡ True
+
+__True ∨ ⟨∀x : : ¬T.x⟩__ ≡ True
+{T3 Elemento absorbente ∨}
+True ≡ True
+{Por tachado es True}
+
+b) Rango vacıo del ∃: ⟨∃x : False : T.x⟩ ≡ False.
+c) Regla del Termino constante del ∀: ⟨∀x : : C⟩ ≡ C.
+d) Regla del Termino constante del ∃: ⟨∃x : : C⟩ ≡ C.
