@@ -97,6 +97,21 @@ __¬⟨∀x : R.x : ¬T.x ∧ ¬U.x⟩__ ≡ ⟨∃x : R.x : T.x ∨ U.x⟩
 {Por tachado es True}
 
 e) Particion de Rango del ∀: ⟨∀x : R.x ∨ S.x : T.x⟩ ≡ ⟨∀x : R.x : T.x⟩ ∧ ⟨∀x : S.x : T.x⟩.
+⟨∀x : R.x ∨ S.x : T.x⟩ ≡ ⟨∀x : R.x : T.x⟩ ∧ ⟨∀x : S.x : T.x⟩
+
+__⟨∀x : R.x ∨ S.x : T.x⟩__ ≡ ⟨∀x : R.x : T.x⟩ ∧ ⟨∀x : S.x : T.x⟩
+{A1 Intercambio entre rango y termino de ∀}
+⟨∀x : : R.x ∨ S.x ⇒ T.x⟩ ≡ ⟨∀x : R.x : T.x⟩ ∧ ⟨∀x : S.x : T.x⟩
+
+⟨∀x : : __R.x ∨ S.x ⇒ T.x__⟩ ≡ ⟨∀x : R.x : T.x⟩ ∧ ⟨∀x : S.x : T.x⟩
+{T29 Distributividad a izquierda ⇒ y ∨}
+⟨∀x : : (R.x ⇒ T.x) ∧ (S.x ⇒ T.x) ⟩ ≡ ⟨∀x : R.x : T.x⟩ ∧ ⟨∀x : S.x : T.x⟩
+
+__⟨∀x : : (R.x ⇒ T.x) ∧ (S.x ⇒ T.x) ⟩__ ≡ ⟨∀x : R.x : T.x⟩ ∧ ⟨∀x : S.x : T.x⟩
+{A2 Regla de termino de ∀}
+⟨∀x : R.x : T.x⟩ ∧ ⟨∀x : S.x : T.x⟩ ≡ ⟨∀x : R.x : T.x⟩ ∧ ⟨∀x : S.x : T.x⟩
+{Por tachado es True}
+
 f) Particion de rango para ∃: ⟨∃x : R.x ∨ S.x : T.x⟩ ≡ ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : S.x : T.x⟩.
 g) Rango unitario: ⟨∃x : x = A : T.x⟩ ≡ T.A, donde A representa una constante del universo
 h) Distributividad de ∧ con ∃: Z ∧ ⟨∃x : : T.x⟩ ≡ ⟨∃x : : Z ∧ T.x⟩, si x no ocurre libre en Z.
