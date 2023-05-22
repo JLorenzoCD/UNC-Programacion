@@ -55,5 +55,5 @@ c) x aparece solo una vez en xs.
 d) Hay un unico cuadrado azul en xs.
 < ∃x : entero.x ∧ (0 <= x <= length xs) : (xs !! x) = z ∧ Cuadrado.z ∧ Azul.z ∧ < ∀y : entero.y ∧ (0 <= y <= length xs) ∧ x /= y : (xs !! y) = m ∧ Cuadrado.m ∧ Azul.m > >
 
-
 10. ¿Como expresarıas la propiedad “x ocurre exactamente dos veces en xs”?
+< ∃x : entero.x ∧ entero.y ∧ (0 <= x,y < length xs) ∧ x /= y : (xs !! x) = A ∧ (xs !! y) == A ∧ < ∀z : entero.z ∧ (0 <= z < length xs) ∧ z /= y ∧ z /= x : (xs !! z) /= A > >
