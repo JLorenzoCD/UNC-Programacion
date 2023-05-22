@@ -153,3 +153,25 @@ T.A ≡ T.A
 {Por tachado es True}
 
 h) Distributividad de ∧ con ∃: Z ∧ ⟨∃x : : T.x⟩ ≡ ⟨∃x : : Z ∧ T.x⟩, si x no ocurre libre en Z.
+Z ∧ ⟨∃x : : T.x⟩ ≡ ⟨∃x : : Z ∧ T.x⟩
+
+Z ∧ __⟨∃x : : T.x⟩__ ≡ ⟨∃x : : Z ∧ T.x⟩
+{A5 Definicion de ∃}
+Z ∧ ¬⟨∀x : : ¬T.x⟩ ≡ ⟨∃x : : Z ∧ T.x⟩
+
+__Z ∧ ¬⟨∀x : : ¬T.x⟩__ ≡ ⟨∃x : : Z ∧ T.x⟩
+{T12 De Morgan para ∨}
+¬(¬Z ∨ ⟨∀x : : ¬T.x⟩) ≡ ⟨∃x : : Z ∧ T.x⟩
+
+¬(__¬Z ∨ ⟨∀x : : ¬T.x⟩__) ≡ ⟨∃x : : Z ∧ T.x⟩
+{A3 Distributividad de ∨ con ∀}
+¬(⟨∀x :: ¬Z ∨ ¬T.x⟩) ≡ ⟨∃x : : Z ∧ T.x⟩
+
+¬(⟨∀x :: __¬Z ∨ ¬T.x__⟩) ≡ ⟨∃x : : Z ∧ T.x⟩
+{T12 De Morgan para ∧}
+¬(⟨∀x :: ¬(Z ∧ T.x)⟩) ≡ ⟨∃x : : Z ∧ T.x⟩
+
+¬(⟨∀x :: ¬(Z ∧ T.x)⟩) ≡ ⟨∃x : : Z ∧ T.x⟩
+{A5 Definicion de ∃}
+⟨∃x : : Z ∧ T.x⟩ ≡ ⟨∃x : : Z ∧ T.x⟩
+{Por tachado es True}
