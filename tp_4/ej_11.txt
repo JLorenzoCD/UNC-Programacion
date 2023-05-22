@@ -137,4 +137,19 @@ __¬(¬( ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : S.x : T.x⟩ ))__ ≡ ⟨∃x : R.
 {Por tachado es True}
 
 g) Rango unitario: ⟨∃x : x = A : T.x⟩ ≡ T.A, donde A representa una constante del universo
+⟨∃x : x = A : T.x⟩ ≡ T.A
+
+__⟨∃x : x = A : T.x⟩__ ≡ T.A
+{A5 Definicion de ∃}
+¬⟨∀x : x = A : ¬T.x⟩ ≡ T.A
+
+¬__⟨∀x : x = A : ¬T.x⟩__ ≡ T.A
+{A4 Rango unitario de ∀}
+¬(¬T.A) ≡ T.A
+
+__¬(¬T.A)__ ≡ T.A
+{T1 Doble negacion}
+T.A ≡ T.A
+{Por tachado es True}
+
 h) Distributividad de ∧ con ∃: Z ∧ ⟨∃x : : T.x⟩ ≡ ⟨∃x : : Z ∧ T.x⟩, si x no ocurre libre en Z.
