@@ -25,6 +25,29 @@ __¬⟨∀x : : ¬(R.x ∧ T.x) ⟩__ ≡ ⟨∃x : : R.x ∧ T.x⟩
 {Por tachado es True}
 
 b) Regla del Termino del ∃: ⟨∃x : : T.x⟩ ∨ ⟨∃x : : U.x⟩ ≡ ⟨∃x : : T.x ∨ U.x⟩.
+⟨∃x : : T.x⟩ ∨ ⟨∃x : : U.x⟩ ≡ ⟨∃x : : T.x ∨ U.x⟩
+
+__⟨∃x : : T.x⟩ ∨ ⟨∃x : : U.x⟩__ ≡ ⟨∃x : : T.x ∨ U.x⟩
+{A5 Definicion de ∃}
+¬⟨∀x : : ¬T.x⟩ ∨ ¬⟨∀x : : ¬U.x⟩ ≡ ⟨∃x : : T.x ∨ U.x⟩
+
+__¬⟨∀x : : ¬T.x⟩ ∨ ¬⟨∀x : : ¬U.x⟩__ ≡ ⟨∃x : : T.x ∨ U.x⟩
+{T13 De Morgan para ∧}
+¬(⟨∀x : : ¬T.x⟩ ∧ ⟨∀x : : ¬U.x⟩) ≡ ⟨∃x : : T.x ∨ U.x⟩
+
+¬(__⟨∀x : : ¬T.x⟩ ∧ ⟨∀x : : ¬U.x⟩__) ≡ ⟨∃x : : T.x ∨ U.x⟩
+{A2 Regla de termino de ∀}
+¬(⟨∀x : : ¬T.x ∧ ¬U.x⟩) ≡ ⟨∃x : : T.x ∨ U.x⟩
+
+¬(⟨∀x : : __¬T.x ∧ ¬U.x__⟩) ≡ ⟨∃x : : T.x ∨ U.x⟩
+{T12 De Morgan para ∨}
+¬⟨∀x : : ¬(T.x ∨ U.x) ⟩ ≡ ⟨∃x : : T.x ∨ U.x⟩
+
+__¬⟨∀x : : ¬(T.x ∨ U.x) ⟩__ ≡ ⟨∃x : : T.x ∨ U.x⟩
+{A5 Definicion de ∃}
+⟨∃x : : T.x ∨ U.x ⟩ ≡ ⟨∃x : : T.x ∨ U.x⟩
+{Por tachado es True}
+
 c) Regla del Termino del ∀ (bis): ⟨∀x : R.x : T.x⟩ ∧ ⟨∀x : R.x : U.x⟩ ≡ ⟨∀x : R.x : T.x ∧ U.x⟩.
 d) Regla del Termino del ∃ (bis): ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : R.x : U.x⟩ ≡ ⟨∃x : R.x : T.x ∨ U.x⟩.
 e) Particion de Rango del ∀: ⟨∀x : R.x ∨ S.x : T.x⟩ ≡ ⟨∀x : R.x : T.x⟩ ∧ ⟨∀x : S.x : T.x⟩.
