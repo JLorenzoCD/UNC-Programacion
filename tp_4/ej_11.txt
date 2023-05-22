@@ -113,5 +113,28 @@ __⟨∀x : : (R.x ⇒ T.x) ∧ (S.x ⇒ T.x) ⟩__ ≡ ⟨∀x : R.x : T.x⟩ �
 {Por tachado es True}
 
 f) Particion de rango para ∃: ⟨∃x : R.x ∨ S.x : T.x⟩ ≡ ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : S.x : T.x⟩.
+⟨∃x : R.x ∨ S.x : T.x⟩ ≡ ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : S.x : T.x⟩
+
+__⟨∃x : R.x ∨ S.x : T.x⟩__ ≡ ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : S.x : T.x⟩
+{A5 Definicion de ∃}
+¬⟨∀x : R.x ∨ S.x : ¬T.x⟩ ≡ ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : S.x : T.x⟩
+
+¬__⟨∀x : R.x ∨ S.x : ¬T.x⟩__ ≡ ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : S.x : T.x⟩
+{Particion de Rango del ∀, punto anterior (11-e)}
+¬( ⟨∀x : R.x : ¬T.x⟩ ∧ ⟨∀x : S.x : ¬T.x⟩ ) ≡ ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : S.x : T.x⟩
+
+¬( __⟨∀x : R.x : ¬T.x⟩__ ∧ __⟨∀x : S.x : ¬T.x⟩__ ) ≡ ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : S.x : T.x⟩
+{A5 Definicion de ∃}
+¬( ¬⟨∃x : R.x : T.x⟩ ∧ ¬⟨∃x : S.x : T.x⟩ ) ≡ ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : S.x : T.x⟩
+
+¬( __¬⟨∃x : R.x : T.x⟩ ∧ ¬⟨∃x : S.x : T.x⟩__ ) ≡ ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : S.x : T.x⟩
+{T12 De Morgan para ∨}
+¬(¬( ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : S.x : T.x⟩ )) ≡ ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : S.x : T.x⟩
+
+__¬(¬( ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : S.x : T.x⟩ ))__ ≡ ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : S.x : T.x⟩
+{T1 Doble negacion}
+⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : S.x : T.x⟩ ≡ ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : S.x : T.x⟩
+{Por tachado es True}
+
 g) Rango unitario: ⟨∃x : x = A : T.x⟩ ≡ T.A, donde A representa una constante del universo
 h) Distributividad de ∧ con ∃: Z ∧ ⟨∃x : : T.x⟩ ≡ ⟨∃x : : Z ∧ T.x⟩, si x no ocurre libre en Z.
