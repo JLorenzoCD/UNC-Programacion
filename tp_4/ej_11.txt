@@ -1,0 +1,33 @@
+11. Demostra justificando cada paso con axiomas del calculo de cuantificadores los siguientes teoremas basicos. Una vez demostrados podes utilizarlos para los ejercicios siguientes.
+
+a) Intercambio entre rango y termino ∃: ⟨∃x : R.x : T.x⟩ ≡ ⟨∃x : : R.x ∧ T.x⟩.
+⟨∃x : R.x : T.x⟩ ≡ ⟨∃x : : R.x ∧ T.x⟩
+
+__⟨∃x : R.x : T.x⟩__ ≡ ⟨∃x : : R.x ∧ T.x⟩
+{A5 Definicion de ∃}
+¬⟨∀x : R.x : ¬T.x⟩ ≡ ⟨∃x : : R.x ∧ T.x⟩
+
+¬__⟨∀x : R.x : ¬T.x⟩__ ≡ ⟨∃x : : R.x ∧ T.x⟩
+{A1 Intercambio entre rango y termino de ∀}
+¬⟨∀x : : R.x ⇒ ¬T.x⟩ ≡ ⟨∃x : : R.x ∧ T.x⟩
+
+¬⟨∀x : : __R.x ⇒ ¬T.x__⟩ ≡ ⟨∃x : : R.x ∧ T.x⟩
+{T19 Caracterizacion ⇒}
+¬⟨∀x : : ¬R.x ∨ ¬T.x⟩ ≡ ⟨∃x : : R.x ∧ T.x⟩
+
+¬⟨∀x : : __¬R.x ∨ ¬T.x__⟩ ≡ ⟨∃x : : R.x ∧ T.x⟩
+T13 De Morgan para ∧
+¬⟨∀x : : ¬(R.x ∧ T.x) ⟩ ≡ ⟨∃x : : R.x ∧ T.x⟩
+
+__¬⟨∀x : : ¬(R.x ∧ T.x) ⟩__ ≡ ⟨∃x : : R.x ∧ T.x⟩
+{A5 Definicion de ∃}
+⟨∃x : : R.x ∧ T.x ⟩ ≡ ⟨∃x : : R.x ∧ T.x⟩
+{Por tachado es True}
+
+b) Regla del Termino del ∃: ⟨∃x : : T.x⟩ ∨ ⟨∃x : : U.x⟩ ≡ ⟨∃x : : T.x ∨ U.x⟩.
+c) Regla del Termino del ∀ (bis): ⟨∀x : R.x : T.x⟩ ∧ ⟨∀x : R.x : U.x⟩ ≡ ⟨∀x : R.x : T.x ∧ U.x⟩.
+d) Regla del Termino del ∃ (bis): ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : R.x : U.x⟩ ≡ ⟨∃x : R.x : T.x ∨ U.x⟩.
+e) Particion de Rango del ∀: ⟨∀x : R.x ∨ S.x : T.x⟩ ≡ ⟨∀x : R.x : T.x⟩ ∧ ⟨∀x : S.x : T.x⟩.
+f) Particion de rango para ∃: ⟨∃x : R.x ∨ S.x : T.x⟩ ≡ ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : S.x : T.x⟩.
+g) Rango unitario: ⟨∃x : x = A : T.x⟩ ≡ T.A, donde A representa una constante del universo
+h) Distributividad de ∧ con ∃: Z ∧ ⟨∃x : : T.x⟩ ≡ ⟨∃x : : Z ∧ T.x⟩, si x no ocurre libre en Z.
