@@ -49,6 +49,25 @@ __¬⟨∀x : : ¬(T.x ∨ U.x) ⟩__ ≡ ⟨∃x : : T.x ∨ U.x⟩
 {Por tachado es True}
 
 c) Regla del Termino del ∀ (bis): ⟨∀x : R.x : T.x⟩ ∧ ⟨∀x : R.x : U.x⟩ ≡ ⟨∀x : R.x : T.x ∧ U.x⟩.
+⟨∀x : R.x : T.x⟩ ∧ ⟨∀x : R.x : U.x⟩ ≡ ⟨∀x : R.x : T.x ∧ U.x⟩
+
+__⟨∀x : R.x : T.x⟩__ ∧ __⟨∀x : R.x : U.x⟩__ ≡ ⟨∀x : R.x : T.x ∧ U.x⟩
+{A1 Intercambio entre rango y termino de ∀}
+⟨∀x : : R.x ⇒ T.x⟩ ∧ ⟨∀x : : R.x ⇒ U.x⟩ ≡ ⟨∀x : R.x : T.x ∧ U.x⟩
+
+__⟨∀x : : R.x ⇒ T.x⟩ ∧ ⟨∀x : : R.x ⇒ U.x⟩__ ≡ ⟨∀x : R.x : T.x ∧ U.x⟩
+{A2 Regla de termino de ∀}
+⟨∀x : : (R.x ⇒ T.x) ∧ (R.x ⇒ U.x)⟩ ≡ ⟨∀x : R.x : T.x ∧ U.x⟩
+
+⟨∀x : : __(R.x ⇒ T.x) ∧ (R.x ⇒ U.x)__⟩ ≡ ⟨∀x : R.x : T.x ∧ U.x⟩
+{T28 Distributividad a derecha ⇒ y ∧}
+⟨∀x : : R.x ⇒ (T.x ∧ U.x) ⟩ ≡ ⟨∀x : R.x : T.x ∧ U.x⟩
+
+⟨∀x : : __R.x ⇒ (T.x ∧ U.x)__ ⟩ ≡ ⟨∀x : R.x : T.x ∧ U.x⟩
+{A1 Intercambio entre rango y termino de ∀}
+⟨∀x : R.x : T.x ∧ U.x ⟩ ≡ ⟨∀x : R.x : T.x ∧ U.x⟩
+{Por tachado es True}
+
 d) Regla del Termino del ∃ (bis): ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : R.x : U.x⟩ ≡ ⟨∃x : R.x : T.x ∨ U.x⟩.
 e) Particion de Rango del ∀: ⟨∀x : R.x ∨ S.x : T.x⟩ ≡ ⟨∀x : R.x : T.x⟩ ∧ ⟨∀x : S.x : T.x⟩.
 f) Particion de rango para ∃: ⟨∃x : R.x ∨ S.x : T.x⟩ ≡ ⟨∃x : R.x : T.x⟩ ∨ ⟨∃x : S.x : T.x⟩.
