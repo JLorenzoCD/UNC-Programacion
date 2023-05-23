@@ -53,3 +53,17 @@ C ≡ C
 {Es valido}
 
 d) Regla del Termino constante del ∃: ⟨∃x : : C⟩ ≡ C.
+⟨∃x : : C⟩ ≡ C
+
+__⟨∃x : : C⟩__ ≡ C
+{A5 Definicion de ∃}
+¬⟨∀x : : ¬C⟩ ≡ C
+
+¬__⟨∀x : : ¬C⟩__ ≡ C
+{Regla del Termino constante del ∀, punto anterior, (12-c)}
+¬¬C ≡ C
+
+__¬¬C__ ≡ C
+{T1 Doble negacion}
+C ≡ C
+{Es valido}
