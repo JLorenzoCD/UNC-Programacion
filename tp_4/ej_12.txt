@@ -21,5 +21,16 @@ True ≡ True
 {Por tachado es True}
 
 b) Rango vacıo del ∃: ⟨∃x : False : T.x⟩ ≡ False.
+⟨∃x : False : T.x⟩ ≡ False
+
+__⟨∃x : False : T.x⟩__ ≡ False
+{A5 Definicion de ∃}
+¬⟨∀x : False : ¬T.x⟩ ≡ False
+
+¬__⟨∀x : False : ¬T.x⟩__ ≡ False
+{Rango vacıo del ∀, punto anterior (12-a)}
+¬True ≡ False
+{Definicio de False, por lo tanto Valido}
+
 c) Regla del Termino constante del ∀: ⟨∀x : : C⟩ ≡ C.
 d) Regla del Termino constante del ∃: ⟨∃x : : C⟩ ≡ C.
