@@ -33,4 +33,23 @@ __⟨∃x : False : T.x⟩__ ≡ False
 {Definicio de False, por lo tanto Valido}
 
 c) Regla del Termino constante del ∀: ⟨∀x : : C⟩ ≡ C.
+⟨∀x : : C⟩ ≡ C
+
+⟨∀x : : __C__⟩ ≡ C
+{T4 Elemento neutro ∨}
+⟨∀x : : C ∨ False⟩ ≡ C
+
+⟨∀x : : __C ∨ False__⟩ ≡ C
+{A3 Distributividad de ∨ con ∀}
+C ∨ ⟨∀x : : False⟩ ≡ C
+
+C ∨ __⟨∀x : : False⟩__ ≡ C
+{Por cuantificador ∀, como se cumple el rango pero noncua la condicion, es False}
+C ∨ False ≡ C
+
+__C ∨ False__ ≡ C
+{T4 Elemento neutro ∨}
+C ≡ C
+{Es valido}
+
 d) Regla del Termino constante del ∃: ⟨∃x : : C⟩ ≡ C.
