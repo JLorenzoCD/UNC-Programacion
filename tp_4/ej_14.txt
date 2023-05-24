@@ -25,3 +25,23 @@ __⟨∀x : x ∈ℓ ks ∨  x == k : T.x⟩__ ≡ T.k ∧ ⟨∀x : x ∈ℓ ks
 
 
 b) ⟨∃x : x ∈ℓ (k:ks) : T.x⟩ ≡ T.k ∨ ⟨∃x : x ∈ℓ ks : T.x⟩
+
+⟨∃x : __x ∈ℓ (k:ks)__ : T.x⟩ ≡ T.k ∨ ⟨∃x : x ∈ℓ ks : T.x⟩
+{Definicion del operador ∈ℓ}
+⟨∃x : pert x (k:ks) : T.x⟩ ≡ T.k ∨ ⟨∃x : x ∈ℓ ks : T.x⟩
+
+⟨∃x : __pert x (k:ks)__ : T.x⟩ ≡ T.k ∨ ⟨∃x : x ∈ℓ ks : T.x⟩
+{Por pert - Caso 2}
+⟨∃x : x == k ∨ pert x ks : T.x⟩ ≡ T.k ∨ ⟨∃x : x ∈ℓ ks : T.x⟩
+
+⟨∃x : x == k ∨ __pert x ks__ : T.x⟩ ≡ T.k ∨ ⟨∃x : x ∈ℓ ks : T.x⟩
+{Definicion del operador ∈ℓ}
+⟨∃x : x == k ∨ x ∈ℓ ks : T.x⟩ ≡ T.k ∨ ⟨∃x : x ∈ℓ ks : T.x⟩
+
+__⟨∃x : x == k ∨ x ∈ℓ ks : T.x⟩__ ≡ T.k ∨ ⟨∃x : x ∈ℓ ks : T.x⟩
+{T10 Particion de rango de ∃}
+⟨∃x : x == k : T.x⟩ ∨ ⟨∃x : x ∈ℓ ks : T.x⟩ ≡ T.k ∨ ⟨∃x : x ∈ℓ ks : T.x⟩
+
+__⟨∃x : x == k : T.x⟩__ ∨ ⟨∃x : x ∈ℓ ks : T.x⟩ ≡ T.k ∨ ⟨∃x : x ∈ℓ ks : T.x⟩
+{T9 Rango unitario de ∃}
+T.k ∨ ⟨∃x : x ∈ℓ ks : T.x⟩ ≡ T.k ∨ ⟨∃x : x ∈ℓ ks : T.x⟩
