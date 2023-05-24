@@ -38,6 +38,6 @@ cuadrado.k ∨ algunCuadrado ks ≡ __⟨∃x : x == k : cuadrado.x⟩__ ∨ ⟨
 cuadrado.k ∨ algunCuadrado ks ≡ cuadrado.k ∨ ⟨∃x : x ∈ℓ ks : cuadrado.x⟩
 
 cuadrado.k ∨ algunCuadrado ks ≡ cuadrado.k ∨ __⟨∃x : x ∈ℓ ks : cuadrado.x⟩__
-{Por Caso Inductivo}
+{Por Hipotesis Inductiva}
 cuadrado.k ∨ algunCuadrado ks ≡ cuadrado.k ∨ algunCuadrado ks
 {Es Valido}
