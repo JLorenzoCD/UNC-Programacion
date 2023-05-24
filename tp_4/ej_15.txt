@@ -1,0 +1,43 @@
+15. Dada la definicion de la funcion algunCuadrado:
+algunCuadrado :: [Figura] -> Bool
+algunCuadrado [ ] = False                                   -- Caso 3
+algunCuadrado (x : xs) = cuadrado.x || algunCuadrado xs     -- Caso 4
+
+* Demostra por induccion la siguiente formula:
+algunCuadrado xs ≡ ⟨∃x : x ∈ℓ xs : cuadrado.x⟩.
+
+############ Caso base xs = []
+algunCuadrado [] ≡ ⟨∃x : x ∈ℓ [] : cuadrado.x⟩
+
+__algunCuadrado []__ ≡ ⟨∃x : x ∈ℓ [] : cuadrado.x⟩
+{Por algunCuadrado - Caso 3}
+False ≡ ⟨∃x : x ∈ℓ [] : cuadrado.x⟩
+
+False ≡ ⟨∃x : __x ∈ℓ []__ : cuadrado.x⟩
+{Por pert - Caso 1}
+False ≡ ⟨∃x : False : cuadrado.x⟩
+{Por T14 Rango Vacıo de ∃, Es Valido}
+
+############ Caso xs = (k:ks)
+algunCuadrado (k:ks) ≡ ⟨∃x : x ∈ℓ (k:ks) : cuadrado.x⟩
+
+__algunCuadrado (k:ks)__ ≡ ⟨∃x : x ∈ℓ (k:ks) : cuadrado.x⟩
+{Por algunCuadrado - Caso 4}
+cuadrado.k ∨ algunCuadrado ks ≡ ⟨∃x : x ∈ℓ (k:ks) : cuadrado.x⟩
+
+cuadrado.k ∨ algunCuadrado ks ≡ ⟨∃x : __x ∈ℓ (k:ks)__ : cuadrado.x⟩
+{Por per - Caso 2}
+cuadrado.k ∨ algunCuadrado ks ≡ ⟨∃x : x == k ∨ x ∈ℓ ks : cuadrado.x⟩
+
+cuadrado.k ∨ algunCuadrado ks ≡ __⟨∃x : x == k ∨ x ∈ℓ ks : cuadrado.x⟩__
+{T10 Particion de rango de ∃}
+cuadrado.k ∨ algunCuadrado ks ≡ ⟨∃x : x == k : cuadrado.x⟩ ∨ ⟨∃x : x ∈ℓ ks : cuadrado.x⟩
+
+cuadrado.k ∨ algunCuadrado ks ≡ __⟨∃x : x == k : cuadrado.x⟩__ ∨ ⟨∃x : x ∈ℓ ks : cuadrado.x⟩
+{T9 Rango unitario de ∃}
+cuadrado.k ∨ algunCuadrado ks ≡ cuadrado.k ∨ ⟨∃x : x ∈ℓ ks : cuadrado.x⟩
+
+cuadrado.k ∨ algunCuadrado ks ≡ cuadrado.k ∨ __⟨∃x : x ∈ℓ ks : cuadrado.x⟩__
+{Por Caso Inductivo}
+cuadrado.k ∨ algunCuadrado ks ≡ cuadrado.k ∨ algunCuadrado ks
+{Es Valido}
