@@ -1,0 +1,30 @@
+13. Demostra que las siguientes formulas son validas, justificando en cada paso el axioma o teorema del Calculo de Predicados utilizado.
+
+a) ⟨∀x : circulo.x : amarillo.x⟩ ≡ ⟨∀x : ¬amarillo.x : ¬circulo.x⟩.
+
+__⟨∀x : circulo.x : amarillo.x⟩__ ≡ ⟨∀x : ¬amarillo.x : ¬circulo.x⟩
+{A1 Intercambio entre rango y termino de ∀}
+⟨∀x : : circulo.x ⇒ amarillo.x⟩ ≡ ⟨∀x : ¬amarillo.x : ¬circulo.x⟩
+
+⟨∀x : : __circulo.x ⇒ amarillo.x__⟩ ≡ ⟨∀x : ¬amarillo.x : ¬circulo.x⟩
+{T19 Caracterizacion ⇒}
+⟨∀x : : ¬ circulo.x ∨ amarillo.x⟩ ≡ ⟨∀x : ¬amarillo.x : ¬circulo.x⟩
+
+__⟨∀x : : ¬ circulo.x ∨ amarillo.x⟩__ ≡ ⟨∀x : ¬amarillo.x : ¬circulo.x⟩
+{A5 Definicion de ∃}
+¬⟨∃x : : ¬(¬ circulo.x ∨ amarillo.x)⟩ ≡ ⟨∀x : ¬amarillo.x : ¬circulo.x⟩
+
+¬⟨∃x : : __¬(¬ circulo.x ∨ amarillo.x)__⟩ ≡ ⟨∀x : ¬amarillo.x : ¬circulo.x⟩
+{T13 De Morgan para ∨}
+¬⟨∃x : : circulo.x ∧ ¬amarillo.x ⟩ ≡ ⟨∀x : ¬amarillo.x : ¬circulo.x⟩
+
+¬__⟨∃x : : ¬amarillo.x ∧ circulo.x ⟩__ ≡ ⟨∀x : ¬amarillo.x : ¬circulo.x⟩
+{T6 Intercambio entre rango y termino de ∃}
+¬⟨∃x : ¬amarillo.x : circulo.x ⟩ ≡ ⟨∀x : ¬amarillo.x : ¬circulo.x⟩
+
+__¬⟨∃x : ¬amarillo.x : circulo.x ⟩__ ≡ ⟨∀x : ¬amarillo.x : ¬circulo.x⟩
+{A5 Definicion de ∃}
+⟨∀x : ¬amarillo.x : ¬circulo.x⟩ ≡ ⟨∀x : ¬amarillo.x : ¬circulo.x⟩
+{Es Valido}
+
+b) ⟨∃x : cuadrado.x : amarillo.x⟩ ⇒ ⟨∃x : : cuadrado.x⟩.
