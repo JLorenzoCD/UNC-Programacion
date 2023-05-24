@@ -28,3 +28,36 @@ __¬⟨∃x : ¬amarillo.x : circulo.x ⟩__ ≡ ⟨∀x : ¬amarillo.x : ¬circ
 {Es Valido}
 
 b) ⟨∃x : cuadrado.x : amarillo.x⟩ ⇒ ⟨∃x : : cuadrado.x⟩.
+
+__⟨∃x : cuadrado.x : amarillo.x⟩ ⇒ ⟨∃x : : cuadrado.x⟩__
+{T18 Definicion dual ⇒}
+⟨∃x : cuadrado.x : amarillo.x⟩ ∧ ⟨∃x : : cuadrado.x⟩ ≡ ⟨∃x : cuadrado.x : amarillo.x⟩
+
+__⟨∃x : cuadrado.x : amarillo.x⟩__ ∧ __⟨∃x : : cuadrado.x⟩__ ≡ ⟨∃x : cuadrado.x : amarillo.x⟩
+{A5 Definicion de ∃}
+¬⟨∀x : cuadrado.x : ¬amarillo.x⟩ ∧ ¬⟨∀x : : ¬cuadrado.x⟩ ≡ ⟨∃x : cuadrado.x : amarillo.x⟩
+
+¬⟨∀x : cuadrado.x : ¬amarillo.x⟩ ∧ ¬⟨∀x : : ¬cuadrado.x⟩ ≡ ⟨∃x : cuadrado.x : amarillo.x⟩
+{A2 Regla de termino de ∀}
+¬⟨∀x : cuadrado.x : ¬amarillo.x ∧ ¬cuadrado.x⟩ ≡ ⟨∃x : cuadrado.x : amarillo.x⟩
+
+¬⟨∀x : cuadrado.x : __¬amarillo.x ∧ ¬cuadrado.x__⟩ ≡ ⟨∃x : cuadrado.x : amarillo.x⟩
+{T12 De Morgan para ∨}
+¬⟨∀x : cuadrado.x : ¬(amarillo.x ∨ cuadrado.x) ⟩ ≡ ⟨∃x : cuadrado.x : amarillo.x⟩
+
+__¬⟨∀x : cuadrado.x : ¬(amarillo.x ∨ cuadrado.x)⟩__ ≡ ⟨∃x : cuadrado.x : amarillo.x⟩
+{A5 Definicion de ∃}
+⟨∃x : cuadrado.x : amarillo.x ∨ cuadrado.x⟩ ≡ ⟨∃x : cuadrado.x : amarillo.x⟩
+
+__⟨∃x : cuadrado.x : amarillo.x ∨ cuadrado.x⟩__ ≡ ⟨∃x : cuadrado.x : amarillo.x⟩
+{T7 Regla del termino de ∃}
+⟨∃x : : cuadrado.x ∨ amarillo.x ∨ cuadrado.x⟩ ≡ ⟨∃x : cuadrado.x : amarillo.x⟩
+
+⟨∃x : : __cuadrado.x ∨ cuadrado.x__ ∨ amarillo.x⟩ ≡ ⟨∃x : cuadrado.x : amarillo.x⟩
+{A9 Idempotencia ∨}
+⟨∃x : : cuadrado.x ∨ amarillo.x⟩ ≡ ⟨∃x : cuadrado.x : amarillo.x⟩
+
+__⟨∃x : : cuadrado.x ∨ amarillo.x⟩__ ≡ ⟨∃x : cuadrado.x : amarillo.x⟩
+{T7 Regla del termino de ∃}
+⟨∃x : cuadrado.x : amarillo.x⟩ ≡ ⟨∃x : cuadrado.x : amarillo.x⟩
+{Es Valido}
