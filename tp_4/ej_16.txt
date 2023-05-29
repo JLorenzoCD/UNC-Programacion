@@ -87,3 +87,59 @@ __todas_tam_menor_5 (k:xs)__ ≡ < ∀x : x ∈ℓ (k:xs) : tam.x < 5 >
 {Por Hipotesis Inductiva}
 tam.k < 5 ∧ todas_tam_menor_5 xs ≡ tam.k < 5 ∧ todas_tam_menor_5 xs
 {Es Valido}
+
+
+
+#################################### c) Todos los triangulos de xs son rojos.
+Hipotesis Inductiva = todos_triangulos_cr xs ≡ < ∀x : x ∈ℓ xs : triangulo.x ⇒ rojo.x >
+
+############ Caso base xs = []
+todos_triangulos_cr [] ≡ < ∀x : x ∈ℓ [] : triangulo.x ⇒ rojo.x >
+
+__todos_triangulos_cr []__ ≡ < ∀x : x ∈ℓ [] : triangulo.x ⇒ rojo.x >
+{Por todos_triangulos_cr - Caso 3}
+True ≡ < ∀x : x ∈ℓ [] : triangulo.x ⇒ rojo.x >
+
+True ≡ < ∀x : __x ∈ℓ []__ : triangulo.x ⇒ rojo.x >
+True ≡ __< ∀x : False : triangulo.x ⇒ rojo.x >__
+True ≡ True
+{Es Valido}
+
+############ Caso base xs = (k:xs)
+todos_triangulos_cr (k:xs) ≡ < ∀x : x ∈ℓ (k:xs) : triangulo.x ⇒ rojo.x >
+
+todos_triangulos_cr (k:xs) ≡ < ∀x : __x ∈ℓ (k:xs)__ : triangulo.x ⇒ rojo.x >
+todos_triangulos_cr (k:xs) ≡ __< ∀x : x == k ∨ x ∈ℓ xs : triangulo.x ⇒ rojo.x >__
+todos_triangulos_cr (k:xs) ≡ __< ∀x : x == k : triangulo.x ⇒ rojo.x >__ ∧ < ∀x : x ∈ℓ xs : triangulo.x ⇒ rojo.x >
+todos_triangulos_cr (k:xs) ≡ triangulo.k ⇒ rojo.k ∧ < ∀x : x ∈ℓ xs : triangulo.x ⇒ rojo.x >
+
+todos_triangulos_cr (k:xs) ≡ __triangulo.k ⇒ rojo.k__ ∧ < ∀x : x ∈ℓ xs : triangulo.x ⇒ rojo.x >
+{T19 Caracterizacion ⇒}
+todos_triangulos_cr (k:xs) ≡ ¬triangulo.k ∨ rojo.k ∧ < ∀x : x ∈ℓ xs : triangulo.x ⇒ rojo.x >
+{Se debe evauar los casos}
+
+## Caso triangulo.x ≡ True
+todos_triangulos_cr (k:xs) ≡ __¬triangulo.k__ ∨ rojo.k ∧ < ∀x : x ∈ℓ xs : triangulo.x ⇒ rojo.x >
+todos_triangulos_cr (k:xs) ≡ __False ∨ rojo.k__ ∧ < ∀x : x ∈ℓ xs : triangulo.x ⇒ rojo.x >
+todos_triangulos_cr (k:xs) ≡ rojo.k ∧ < ∀x : x ∈ℓ xs : triangulo.x ⇒ rojo.x >
+
+__todos_triangulos_cr (k:xs)__ ≡ rojo.k ∧ < ∀x : x ∈ℓ xs : triangulo.x ⇒ rojo.x >
+{Por todos_triangulos_cr - Caso 4-a}
+rojo.x ∧ todos_triangulos_cr xs ≡ rojo.k ∧ < ∀x : x ∈ℓ xs : triangulo.x ⇒ rojo.x >
+
+rojo.x ∧ todos_triangulos_cr xs ≡ rojo.k ∧ __< ∀x : x ∈ℓ xs : triangulo.x ⇒ rojo.x >__
+{Por Hipotesis Inductiva}
+rojo.x ∧ todos_triangulos_cr xs ≡ rojo.k ∧ todos_triangulos_cr xs
+{Es Valido}
+
+## Caso triangulo.x ≡ False
+todos_triangulos_cr (k:xs) ≡ __¬triangulo.k__ ∨ rojo.k ∧ < ∀x : x ∈ℓ xs : triangulo.x ⇒ rojo.x >
+todos_triangulos_cr (k:xs) ≡ __True ∨ rojo.k__ ∧ < ∀x : x ∈ℓ xs : triangulo.x ⇒ rojo.x >
+todos_triangulos_cr (k:xs) ≡ __True ∧ < ∀x : x ∈ℓ xs : triangulo.x ⇒ rojo.x >__
+todos_triangulos_cr (k:xs) ≡ < ∀x : x ∈ℓ xs : triangulo.x ⇒ rojo.x >
+
+__todos_triangulos_cr (k:xs)__ ≡ < ∀x : x ∈ℓ xs : triangulo.x ⇒ rojo.x >
+{Por todos_triangulos_cr - Caso 4-b}
+todos_triangulos_cr xs ≡ < ∀x : x ∈ℓ xs : triangulo.x ⇒ rojo.x >
+{Por Hipotesis Inductiva, es Valido}
+
