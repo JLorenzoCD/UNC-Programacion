@@ -1,0 +1,44 @@
+16. Demostra por induccion que las funciones definidas en el Ejercicio 5 (implementaciones) satisfacen las propiedades del Ejercicio 3 que las especifican. (A esta tarea se la denomina verificacion).
+
+#################################### a) Todas las figuras de xs son rojas.
+Hipotesis Inductiva = todas_cr xs ≡ <∀x : x ∈ℓ xs : rojo.x>
+
+############ Caso base xs = []
+todas_cr [] ≡ < ∀x : x ∈ℓ [] : rojo.x >
+
+todas_cr [] ≡ < ∀x : __x ∈ℓ []__ : rojo.x >
+{Por pert - Caso 1}
+todas_cr [] ≡ < ∀x : False : rojo.x >
+
+__todas_cr []__ ≡ < ∀x : False : rojo.x >
+{Por todas_cr - Caso 3}
+True ≡ < ∀x : False : rojo.x >
+
+True ≡ __< ∀x : False : rojo.x >__
+{T5 Rango Vacıo de ∀}
+True ≡ True
+{Es Valido}
+
+############ Caso base xs = (k:xs)
+todas_cr (k:xs) ≡ < ∀x : x ∈ℓ (k:xs) : rojo.x >
+
+__todas_cr (k:xs)__ ≡ < ∀x : x ∈ℓ (k:xs) : rojo.x >
+{Por todas_cr - Caso 2}
+rojo.k ∧ todas_cr xs ≡ < ∀x : x ∈ℓ (k:xs) : rojo.x >
+
+rojo.k ∧ todas_cr xs ≡ < ∀x : __x ∈ℓ (k:xs)__ : rojo.x >
+{Por pert - Caso 2}
+rojo.k ∧ todas_cr xs ≡ < ∀x : x == k ∨ x ∈ℓ xs : rojo.x >
+
+rojo.k ∧ todas_cr xs ≡ __< ∀x : x == k ∨ x ∈ℓ xs : rojo.x >__
+{T1 Particion de rango de ∀}
+rojo.k ∧ todas_cr xs ≡ ⟨∀x : x == k : rojo.x⟩ ∧ ⟨∀x : x ∈ℓ xs : rojo.x⟩
+
+rojo.k ∧ todas_cr xs ≡ __⟨∀x : x == k : rojo.x⟩__ ∧ ⟨∀x : x ∈ℓ xs : rojo.x⟩
+{A4 Rango unitario de ∀}
+rojo.k ∧ todas_cr xs ≡ rojo.k ∧ ⟨∀x : x ∈ℓ xs : rojo.x⟩
+
+rojo.k ∧ todas_cr xs ≡ rojo.k ∧ __⟨∀x : x ∈ℓ xs : rojo.x⟩__
+{Por Hipotesis Inductiva}
+rojo.k ∧ todas_cr xs ≡ rojo.k ∧ todas_cr xs
+{Es Valido}
