@@ -81,59 +81,41 @@ todas_tam_menor_5 (x:xs) = (tam x < 5 ) && todas_tam_menor_5 xs
 -- c) Todos los triangulos de xs son rojos.
 todos_triangulos_cr :: [Figura] -> Bool
 todos_triangulos_cr [] = True
-todos_triangulos_cr (x:xs)
-        | triangulo x = rojo x && todos_triangulos_cr xs
-        | otherwise = todos_triangulos_cr xs
+todos_triangulos_cr (x:xs) = ((not triangulo x) || rojo x) && todos_triangulos_cr xs
 
 -- d) Existe un cuadrado verde en xs.
 hay_cuadrado_cv :: [Figura] -> Bool
 hay_cuadrado_cv [] = False
-hay_cuadrado_cv (x:xs)
-    | cuadrado x && verde x = True
-    | otherwise = hay_cuadrado_cv xs
+hay_cuadrado_cv (x:xs) = = (cuadrado x && verde x) || hay_cuadrado_cv xs
 
 -- e) Todos los cırculos de xs son azules y de tamaño menor a 10.
 todos_circulos_ca_tam_menor_10 :: [Figura] -> Bool
 todos_circulos_ca_tam_menor_10 [] = True
-todos_circulos_ca_tam_menor_10 (x:xs)
-    | circulo x = azul x && (tam x < 10) && todos_circulos_ca_tam_menor_10 xs
-    | otherwise = todos_circulos_ca_tam_menor_10 xs
-
+todos_circulos_ca_tam_menor_10 (x:xs) = ((not circulo x) || (azul x && (tam x < 10))) && todos_circulos_ca_tam_menor_10 xs
 
 -- f) Ningun triangulo de xs es azul.
 ningun_triangulo_ca :: [Figura] -> Bool
 ningun_triangulo_ca [] = True
-ningun_triangulo_ca (x:xs)
-    | triangulo x = azul x && ningun_triangulo_ca xs
-    | otherwise = ningun_triangulo_ca xs
-
+ningun_triangulo_ca (x:xs) = (triangulo x || (not azul x)) && ningun_triangulo_ca xs
 
 -- g) En xs no hay cırculos amarillos ni verdes.
 no_circulos_ca_ni_cv :: [Figura] -> Bool
 no_circulos_ca_ni_cv [] = True
-no_circulos_ca_ni_cv (x:xs)
-    | circulo x = not (amarillo x || verde x) && no_circulos_ca_ni_cv xs
-    | otherwise = no_circulos_ca_ni_cv xs
+no_circulos_ca_ni_cv (x:xs) = (circulo x || (not (amarillo x || verde x))) && no_circulos_ca_ni_cv xs
 
 -- h) Existe (al menos) un cuadrado de tamaño menor a 5 en xs.
 hay_cuadrado_tam_menor_5 :: [Figura] -> Bool
 hay_cuadrado_tam_menor_5 [] = False
-hay_cuadrado_tam_menor_5 (x:xs)
-    | cuadrado x && (tam x < 5) = True
-    | otherwise = hay_cuadrado_tam_menor_5 xs
+hay_cuadrado_tam_menor_5 (x:xs) = (cuadrado x && (tam x < 5)) || hay_cuadrado_tam_menor_5 xs
 
 -- i) Si hay cırculos rojos en xs entonces hay cuadrados rojos.
 hay_circulo_cr :: [Figura] -> Bool
 hay_circulo_cr [] = False
-hay_circulo_cr (x:xs)
-    | (circulo x) && (rojo x) = True
-    | otherwise = hay_circulo_cr xs
+hay_circulo_cr (x:xs) = (circulo x && rojo x) || hay_circulo_cr xs
 
 hay_cuadrado_cr :: [Figura] -> Bool
 hay_cuadrado_cr [] = False
-hay_cuadrado_cr (x:xs)
-    | (cuadrado x) && (rojo x) = True
-    | otherwise = hay_cuadrado_cr xs
+hay_cuadrado_cr (x:xs) = (cuadrado x && rojo x) || hay_cuadrado_cr xs
 
 hay_circulo_cr_entonces_hay_cuadrado_cr :: [Figura] -> Bool
 hay_circulo_cr_entonces_hay_cuadrado_cr [] = True
