@@ -1,0 +1,46 @@
+17. Dada la definicion de la funcion soloCeros:
+soloCeros :: [Num] -> Bool
+soloCeros [ ] = True                                -- Caso 3
+soloCeros (x : xs) = x==0 && soloCeros xs           -- Caso 4
+
+* Demostra por induccion la siguiente formula:
+soloCeros xs ≡ ⟨∀x : x ∈ℓ xs : x = 0⟩.
+
+############ Caso base xs = []
+soloCeros [] ≡ ⟨∀x : x ∈ℓ [] : x = 0⟩
+
+soloCeros [] ≡ ⟨∀x : x ∈ℓ [] : x = 0⟩
+{Por soloCeros - Caso 3}
+True ≡ ⟨∀x : x ∈ℓ [] : x = 0⟩
+
+True ≡ ⟨∀x : __x ∈ℓ []__ : x = 0⟩
+{Por pert - Caso 1}
+True ≡ ⟨∀x : False : x = 0⟩
+
+True ≡ ⟨∀x : False : x = 0⟩
+{Por T5 Rango Vacıo de ∀, Es Valido}
+
+
+############ Caso base xs = (k:xs)
+soloCeros (k:xs) ≡ ⟨∀x : x ∈ℓ (k:xs) : x = 0⟩
+
+__soloCeros (k:xs)__ ≡ ⟨∀x : x ∈ℓ (k:xs) : x = 0⟩
+{Por soloCeros - Caso 4}
+x = 0 ∧ soloCeros xs ≡ ⟨∀x : x ∈ℓ (k:xs) : x = 0⟩
+
+x = 0 ∧ soloCeros xs ≡ ⟨∀x : __x ∈ℓ (k:xs)__ : x = 0⟩
+{Por pert - Caso 2}
+x = 0 ∧ soloCeros xs ≡ ⟨∀x : x == k ∨ x ∈ℓ xs : x = 0⟩
+
+x = 0 ∧ soloCeros xs ≡ __⟨∀x : x == k ∨ x ∈ℓ xs : x = 0⟩__
+{T1 Particion de rango de ∀}
+x = 0 ∧ soloCeros xs ≡ ⟨∀x : x == k : x = 0⟩ ∧ ⟨∀x : x ∈ℓ xs : x = 0⟩
+
+x = 0 ∧ soloCeros xs ≡ __⟨∀x : x == k : x = 0⟩__ ∧ ⟨∀x : x ∈ℓ xs : x = 0⟩
+{A4 Rango unitario de ∀}
+x = 0 ∧ soloCeros xs ≡ x = 0 ∧ ⟨∀x : x ∈ℓ xs : x = 0⟩
+
+x = 0 ∧ soloCeros xs ≡ x = 0 ∧ __⟨∀x : x ∈ℓ xs : x = 0⟩__
+{Por Hipotesis Inductiva}
+x = 0 ∧ soloCeros xs ≡ x = 0 ∧ soloCeros xs
+{Es Valido}
