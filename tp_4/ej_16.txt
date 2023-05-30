@@ -146,10 +146,6 @@ todos_triangulos_cr xs ≡ < ∀x : x ∈ℓ xs : triangulo.x ⇒ rojo.x >
 
 
 #################################### d) Existe un cuadrado verde en xs.
--- hay_cuadrado_cv :: [Figura] -> Bool
--- hay_cuadrado_cv [] = False
--- hay_cuadrado_cv (x:xs) = = (cuadrado x && verde x) || hay_cuadrado_cv xs
-
 Hipotesis Inductiva = hay_cuadrado_cv xs ≡ < ∃x : x ∈ℓ xs : cuadrado.x ∧ verde.x >
 
 ############ Caso base xs = []
