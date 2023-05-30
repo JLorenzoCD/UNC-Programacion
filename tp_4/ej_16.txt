@@ -143,3 +143,38 @@ __todos_triangulos_cr (k:xs)__ ≡ < ∀x : x ∈ℓ xs : triangulo.x ⇒ rojo.x
 todos_triangulos_cr xs ≡ < ∀x : x ∈ℓ xs : triangulo.x ⇒ rojo.x >
 {Por Hipotesis Inductiva, es Valido}
 
+
+
+#################################### d) Existe un cuadrado verde en xs.
+-- hay_cuadrado_cv :: [Figura] -> Bool
+-- hay_cuadrado_cv [] = False
+-- hay_cuadrado_cv (x:xs) = = (cuadrado x && verde x) || hay_cuadrado_cv xs
+
+Hipotesis Inductiva = hay_cuadrado_cv xs ≡ < ∃x : x ∈ℓ xs : cuadrado.x ∧ verde.x >
+
+############ Caso base xs = []
+hay_cuadrado_cv [] ≡ < ∃x : x ∈ℓ [] : cuadrado.x ∧ verde.x >
+hay_cuadrado_cv [] ≡ < ∃x : __x ∈ℓ []__ : cuadrado.x ∧ verde.x >
+hay_cuadrado_cv [] ≡ __< ∃x : False : cuadrado.x ∧ verde.x >__
+hay_cuadrado_cv [] ≡ False
+
+__hay_cuadrado_cv []__ ≡ False
+{Por hay_cuadrado_cv - Caso 3}
+False ≡ False
+{Es Valido}
+
+############ Caso base xs = (k:xs)
+hay_cuadrado_cv (k:xs) ≡ < ∃x : x ∈ℓ (k:xs) : cuadrado.x ∧ verde.x >
+hay_cuadrado_cv (k:xs) ≡ < ∃x : __x ∈ℓ (k:xs)__ : cuadrado.x ∧ verde.x >
+hay_cuadrado_cv (k:xs) ≡ __< ∃x : x == k ∨ x ∈ℓ xs : cuadrado.x ∧ verde.x >__
+hay_cuadrado_cv (k:xs) ≡ __< ∃x : x == k : cuadrado.x ∧ verde.x >__ ∨ < ∃x : x ∈ℓ xs : cuadrado.x ∧ verde.x >
+hay_cuadrado_cv (k:xs) ≡ (cuadrado.k ∧ verde.k) ∨ < ∃x : x ∈ℓ xs : cuadrado.x ∧ verde.x >
+
+___hay_cuadrado_cv (k:xs)___ ≡ (cuadrado.k ∧ verde.k) ∨ < ∃x : x ∈ℓ xs : cuadrado.x ∧ verde.x >
+{Por hay_cuadrado_cv - Caso 4}
+(cuadrado.k ∧ verde.k) ∨ hay_cuadrado_cv xs ≡ (cuadrado.k ∧ verde.k) ∨ < ∃x : x ∈ℓ xs : cuadrado.x ∧ verde.x >
+
+(cuadrado.k ∧ verde.k) ∨ __hay_cuadrado_cv xs__ ≡ (cuadrado.k ∧ verde.k) ∨ < ∃x : x ∈ℓ xs : cuadrado.x ∧ verde.x >
+{Por Hipotesis Inductiva}
+(cuadrado.k ∧ verde.k) ∨ < ∃x : x ∈ℓ xs : cuadrado.x ∧ verde.x > ≡ (cuadrado.k ∧ verde.k) ∨ < ∃x : x ∈ℓ xs : cuadrado.x ∧ verde.x >
+{Es Valido}
