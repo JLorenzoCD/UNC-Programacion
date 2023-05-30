@@ -174,3 +174,38 @@ ___hay_cuadrado_cv (k:xs)___ ≡ (cuadrado.k ∧ verde.k) ∨ < ∃x : x ∈ℓ 
 {Por Hipotesis Inductiva}
 (cuadrado.k ∧ verde.k) ∨ < ∃x : x ∈ℓ xs : cuadrado.x ∧ verde.x > ≡ (cuadrado.k ∧ verde.k) ∨ < ∃x : x ∈ℓ xs : cuadrado.x ∧ verde.x >
 {Es Valido}
+
+
+
+#################################### e) Todos los cırculos de xs son azules y de tamaño menor a 10.
+Hipotesis Inductiva = todos_circulos_ca_tam_menor_10 xs ≡ < ∀x : x ∈ℓ xs ∧ circulo.x : azul.x ∧ tam.x < 10 >
+
+############ Caso base xs = []
+todos_circulos_ca_tam_menor_10 [] ≡ < ∀x : x ∈ℓ [] ∧ circulo.x : azul.x ∧ tam.x < 10 >
+todos_circulos_ca_tam_menor_10 [] ≡ < ∀x : __x ∈ℓ []__ ∧ circulo.x : azul.x ∧ tam.x < 10 >
+todos_circulos_ca_tam_menor_10 [] ≡ < ∀x : __False ∧ circulo.x__ : azul.x ∧ tam.x < 10 >
+todos_circulos_ca_tam_menor_10 [] ≡ __< ∀x : False : azul.x ∧ tam.x < 10 >__
+todos_circulos_ca_tam_menor_10 [] ≡ True
+
+__todos_circulos_ca_tam_menor_10 []__ ≡ True
+{Por todos_circulos_ca_tam_menor_10 - Caso 3}
+True ≡ True
+{Es Valido}
+
+############ Caso base xs = (k:xs)
+todos_circulos_ca_tam_menor_10 (k:xs) ≡ < ∀x : x ∈ℓ (k:xs) __∧ circulo.x__ : azul.x ∧ tam.x < 10 >
+todos_circulos_ca_tam_menor_10 (k:xs) ≡ < ∀x : __x ∈ℓ (k:xs)__ : circulo.x ⇒ (azul.x ∧ tam.x < 10) >
+todos_circulos_ca_tam_menor_10 (k:xs) ≡ __< ∀x : x == k ∨ x ∈ℓ xs : circulo.x ⇒ (azul.x ∧ tam.x < 10) >__
+todos_circulos_ca_tam_menor_10 (k:xs) ≡ __< ∀x : x == k : circulo.x ⇒ (azul.x ∧ tam.x < 10) >__ ∧ < ∀x : x ∈ℓ xs : circulo.x ⇒ (azul.x ∧ tam.x < 10) >
+todos_circulos_ca_tam_menor_10 (k:xs) ≡ (circulo.k ⇒ (azul.k ∧ tam.k < 10)) ∧ < ∀x : x ∈ℓ xs : circulo.x ⇒ (azul.x ∧ tam.x < 10) >
+
+__todos_circulos_ca_tam_menor_10 (k:xs)__ ≡ (circulo.k ⇒ (azul.k ∧ tam.k < 10)) ∧ < ∀x : x ∈ℓ xs : circulo.x ⇒ (azul.x ∧ tam.x < 10) >
+{Por todos_circulos_ca_tam_menor_10 - Caso 4}
+__((¬circulo.k) ∨ (azul.k ∧ (tam.k < 10)))__ ∧ todos_circulos_ca_tam_menor_10 xs ≡ (circulo.k ⇒ (azul.k ∧ tam.k < 10)) ∧ < ∀x : x ∈ℓ xs : circulo.x ⇒ (azul.x ∧ tam.x < 10) >
+(circulo.k ⇒ (azul.k ∧ tam.k < 10)) ∧ todos_circulos_ca_tam_menor_10 xs ≡ (circulo.k ⇒ (azul.k ∧ tam.k < 10)) ∧ < ∀x : x ∈ℓ xs : __circulo.x ⇒ (azul.x ∧ tam.x < 10)__ >
+(circulo.k ⇒ (azul.k ∧ tam.k < 10)) ∧ todos_circulos_ca_tam_menor_10 xs ≡ (circulo.k ⇒ (azul.k ∧ tam.k < 10)) ∧ < ∀x : x ∈ℓ xs ∧ circulo.x : azul.x ∧ tam.x < 10 >
+
+(circulo.k ⇒ (azul.k ∧ tam.k < 10)) ∧ __todos_circulos_ca_tam_menor_10 xs__ ≡ (circulo.k ⇒ (azul.k ∧ tam.k < 10)) ∧ < ∀x : x ∈ℓ xs ∧ circulo.x : azul.x ∧ tam.x < 10 >
+{Por Hipotesis Inductiva}
+(circulo.k ⇒ (azul.k ∧ tam.k < 10)) ∧ < ∀x : x ∈ℓ xs ∧ circulo.x : azul.x ∧ tam.x < 10 > ≡ (circulo.k ⇒ (azul.k ∧ tam.k < 10)) ∧ < ∀x : x ∈ℓ xs ∧ circulo.x : azul.x ∧ tam.x < 10 >
+{Es Valido}
