@@ -1,0 +1,183 @@
+1. Elegir UNA de las siguientes formulas y demostrar que es un teorema del Calculo Proposicional. En cada paso de la demostracion indicar que axioma o teorema se utiliza, y subrayar la subformula involucrada. Se pueden utilizar, sin demostrar, los axiomas y teoremas dados en el Digesto Proposicional. Si se resuelven los dos ejercicios se corregira el primero que aparezca en la respuesta.
+
+a) [25 pto(s)] p ∧ (q ≡ r) ≡ (p ∧ q) ≡ (p ∧ r) ≡ p ∧ (r ∨ ¬r)
+b) [25 pto(s)] p ∨ q ≡ p ≡ ¬(p ∧ ¬q ≡ q) ≡ p ∨ False
+
+
+2. Formalizar las siguiente propiedad escrita en lenguaje natural, en el lenguaje de la logica de predicados:
+
+a) [25 pto(s)] “Los primeros N elementos de la lista xs estan ordenados de forma creciente (puede tener repetidos)”.
+Ejemplos: Con N igual a 3, las listas [−1, 0, 0] y [−4, −3, 7, 4, 2] satisfacen la propiedad. Con N igual a 2, las listas [6, 5] y [9, 6, 7] no la satisfacen.
+
+
+3. [25 pto(s)] Demostrar que la siguiente formula es teorema del Calculo de Predicados. En cada paso de la demostracion indique que axioma o teorema se utiliza, y subraye la subformula involucrada. Se pueden utilizar, sin demostrar, los axiomas y teoremas dados en el Digesto Proposicional y en el Digesto de Predicados.
+
+⟨∀x : : ¬(P.x ⇒ Q.x)⟩ ∨ ⟨∃x : : False ∧ P.x⟩ ≡ (⟨∀x : : P.x⟩ ∧ ⟨∀x : : ¬Q.x⟩).
+
+
+4. [25 pto(s)] Dada la definicion de la funcion todoCyG y de la funcion ∈ℓ:
+∈ℓ : A → [A] → Bool
+e ∈ℓ [ ] .= False                                                   - Caso 1
+e ∈ℓ (x ▷ xs) .= (e = x) ∨ e ∈ℓ xs                                  - Caso 2
+
+todoCyG : [Figura] → Bool
+todoCyG.[ ] .= True                                                 - Caso 3
+todoCyG.(x ▷ xs).= circulo.x ∧ tam.x ≥ 10 ∧ todoCyG.xs              - Caso 4
+
+Demostrar por induccion la siguiente formula:
+**********  todoCyT.xs ≡ ⟨∀y : y ∈ℓ xs : circulo.y ∧ tam.y ≥ 10⟩.  **********
+
+
+
+###########################################################################################
+##################################### Resolucion ##########################################
+###########################################################################################
+
+
+###################### 1)
+a) p ∧ (q ≡ r) ≡ (p ∧ q) ≡ (p ∧ r) ≡ p ∧ (r ∨ ¬r)
+
+p ∧ (q ≡ r) ≡ (p ∧ q) ≡ (p ∧ r) ≡ p ∧ __(r ∨ ¬r)__
+{A11 Tercero excluido}
+p ∧ (q ≡ r) ≡ (p ∧ q) ≡ (p ∧ r) ≡ p ∧ True
+
+p ∧ (q ≡ r) ≡ (p ∧ q) ≡ (p ∧ r) ≡ __p ∧ True__
+{T9 Neutro ∧}
+p ∧ (q ≡ r) ≡ (p ∧ q) ≡ (p ∧ r) ≡ p
+
+___p ∧ (q ≡ r)___ ≡ (p ∧ q) ≡ (p ∧ r) ≡ p
+{A12 Regla dorada}
+p ≡ (q ≡ r) ≡ p ∨ (q ≡ r) ≡ (p ∧ q) ≡ (p ∧ r) ≡ p
+{A2 Conmutatividad ≡}
+__p ≡ p__ ≡ (q ≡ r) ≡ p ∨ (q ≡ r) ≡ (p ∧ q) ≡ (p ∧ r)
+{Tachado}
+q ≡ r ≡ p ∨ (q ≡ r) ≡ (p ∧ q) ≡ (p ∧ r)
+
+q ≡ r ≡ __p ∨ (q ≡ r)__ ≡ (p ∧ q) ≡ (p ∧ r)
+{A10 Distributividad ∨ con ≡ y A2 Conmutatividad ≡}
+r ≡ (p ∨ q) ≡ q ≡ (p ∨ r) ≡ (p ∧ q) ≡ (p ∧ r)
+
+r ≡ (p ∨ q) ≡ q ≡ (p ∨ r) ≡ ___(p ∧ q)___ ≡ ___(p ∧ r)___
+{A12 Regla dorada}
+r ≡ (p ∨ q) ≡ q ≡ (p ∨ r) ≡ p ≡ q ≡ p ∨ q ≡ p ≡ r ≡ p ∨ r
+
+r ≡ (p ∨ q) ≡ q ≡ (p ∨ r) ≡ p ≡ q ≡ p ∨ q ≡ p ≡ r ≡ p ∨ r
+{A2 Conmutatividad ≡}
+r ≡ r ≡ p ∨ q ≡ p ∨ q ≡ p ∨ r ≡ p ∨ r ≡ p ≡ p ≡ q ≡ q
+
+__r ≡ r__ ≡ __p ∨ q ≡ p ∨ q__ ≡ __p ∨ r ≡ p ∨ r__ ≡ __p ≡ p__ ≡ q ≡ q
+{Tachado}
+q ≡ q
+{A3 Neutro ≡}
+True
+{Es Valido}
+
+###################### 1)
+b) p ∨ q ≡ p ≡ ¬(p ∧ ¬q ≡ q) ≡ p ∨ False
+
+p ∨ q ≡ p ≡ ¬(p ∧ ¬q ≡ q) ≡ __p ∨ False__
+{T4 Elemento neutro ∨}
+p ∨ q ≡ p ≡ ¬(p ∧ ¬q ≡ q) ≡ p
+{A2 Conmutatividad ≡}
+p ∨ q ≡ ¬(p ∧ ¬q ≡ q) ≡ __p ≡ p__
+{Tachado}
+p ∨ q ≡ ¬(p ∧ ¬q ≡ q)
+
+p ∨ q ≡ __¬(p ∧ ¬q ≡ q)__
+{A4 Definicion ¬}
+p ∨ q ≡ ¬(p ∧ ¬q) ≡ q
+
+p ∨ q ≡ __¬(p ∧ ¬q)__ ≡ q
+{T13 De Morgan para ∧}
+p ∨ q ≡ ¬p ∨ __¬¬q__ ≡ q
+{T1 Doble negacion}
+p ∨ q ≡ ¬p ∨ q ≡ q
+{T5 Teorema (∗), Por lo que es Valido}
+
+
+
+###################### 2)
+“Los primeros N elementos de la lista xs estan ordenados de forma creciente (puede tener repetidos)”
+⟨∀ i,j : entero.i.j ∧ 0 <= i,j < min(N, length xs) ∧ i < j : xs !! i <= xs !! j⟩
+
+
+
+###################### 3)
+⟨∀x : : ¬(P.x ⇒ Q.x)⟩ ∨ ⟨∃x : : False ∧ P.x⟩ ≡ (⟨∀x : : P.x⟩ ∧ ⟨∀x : : ¬Q.x⟩).
+
+⟨∀x : : ¬(P.x ⇒ Q.x)⟩ ∨ ⟨∃x : : __False ∧ P.x__⟩ ≡ (⟨∀x : : P.x⟩ ∧ ⟨∀x : : ¬Q.x⟩).
+{T10 Elemento absorbente ∧}
+⟨∀x : : ¬(P.x ⇒ Q.x)⟩ ∨ ⟨∃x : : False⟩ ≡ (⟨∀x : : P.x⟩ ∧ ⟨∀x : : ¬Q.x⟩).
+
+⟨∀x : : ¬(P.x ⇒ Q.x)⟩ ∨ __⟨∃x : : False⟩__ ≡ (⟨∀x : : P.x⟩ ∧ ⟨∀x : : ¬Q.x⟩).
+{T13 Regla del termino constante de ∃}
+⟨∀x : : ¬(P.x ⇒ Q.x)⟩ ∨ False ≡ (⟨∀x : : P.x⟩ ∧ ⟨∀x : : ¬Q.x⟩).
+
+__⟨∀x : : ¬(P.x ⇒ Q.x)⟩ ∨ False__ ≡ (⟨∀x : : P.x⟩ ∧ ⟨∀x : : ¬Q.x⟩).
+{T4 Elemento neutro ∨}
+⟨∀x : : ¬(P.x ⇒ Q.x)⟩ ≡ (⟨∀x : : P.x⟩ ∧ ⟨∀x : : ¬Q.x⟩).
+
+⟨∀x : : ¬(__P.x ⇒ Q.x__)⟩ ≡ ⟨∀x : : P.x⟩ ∧ ⟨∀x : : ¬Q.x⟩
+{T19 Caracterizacion ⇒}
+⟨∀x : : ¬(¬P.x ∨ Q.x)⟩ ≡ ⟨∀x : : P.x⟩ ∧ ⟨∀x : : ¬Q.x⟩
+
+⟨∀x : : __¬(¬P.x ∨ Q.x)__⟩ ≡ ⟨∀x : : P.x⟩ ∧ ⟨∀x : : ¬Q.x⟩
+{T12 De Morgan para ∨}
+⟨∀x : : ¬¬P.x ∧ ¬Q.x⟩ ≡ ⟨∀x : : P.x⟩ ∧ ⟨∀x : : ¬Q.x⟩
+
+⟨∀x : : __¬¬P.x__ ∧ ¬Q.x⟩ ≡ ⟨∀x : : P.x⟩ ∧ ⟨∀x : : ¬Q.x⟩
+{T1 Doble negacion}
+⟨∀x : : P.x ∧ ¬Q.x⟩ ≡ ⟨∀x : : P.x⟩ ∧ ⟨∀x : : ¬Q.x⟩
+
+⟨∀x : : P.x ∧ ¬Q.x⟩ ≡ ⟨∀x : : P.x⟩ ∧ ⟨∀x : : ¬Q.x⟩
+{Es A2 Regla de termino de ∀, Por lo tanto Valido}
+
+
+
+###################### 4)
+Hipotesis Inductiva ===> todoCyT xs ≡ ⟨∀y : y ∈ℓ xs : circulo.y ∧ tam.y ≥ 10⟩
+
+### Caso base xs = []
+todoCyT [] ≡ ⟨∀y : y ∈ℓ [] : circulo.y ∧ tam.y ≥ 10⟩
+
+__todoCyT []__ ≡ ⟨∀y : y ∈ℓ [] : circulo.y ∧ tam.y ≥ 10⟩
+{todoCyG - Caso 3}
+True ≡ ⟨∀y : y ∈ℓ [] : circulo.y ∧ tam.y ≥ 10⟩
+
+True ≡ ⟨∀y : __y ∈ℓ []__ : circulo.y ∧ tam.y ≥ 10⟩
+{∈ℓ - Caso 1}
+True ≡ ⟨∀y : False : circulo.y ∧ tam.y ≥ 10⟩
+
+True ≡ __⟨∀y : False : circulo.y ∧ tam.y ≥ 10⟩__
+{T5 Rango Vacıo de ∀}
+True ≡ True
+{Es Valido}
+
+
+### Caso xs = (k:xs)
+todoCyT (k:xs) ≡ ⟨∀y : y ∈ℓ (k:xs) : circulo.y ∧ tam.y ≥ 10⟩
+
+todoCyT (k:xs) ≡ ⟨∀y : y ∈ℓ (k:xs) : circulo.y ∧ tam.y ≥ 10⟩
+{T3 Cambio de variable de ∀}
+todoCyT (k:xs) ≡ ⟨∀x : x ∈ℓ (k:xs) : circulo.x ∧ tam.x ≥ 10⟩
+
+todoCyT (k:xs) ≡ ⟨∀x : __x ∈ℓ (k:xs)__ : circulo.x ∧ tam.x ≥ 10⟩
+{∈ℓ - Caso 2}
+todoCyT (k:xs) ≡ ⟨∀x : (x ≡ k) ∨ x ∈ℓ xs : circulo.x ∧ tam.x ≥ 10⟩
+
+todoCyT (k:xs) ≡ ⟨∀x : (x ≡ k) ∨ x ∈ℓ xs : circulo.x ∧ tam.x ≥ 10⟩
+{T1 Particion de rango de ∀}
+
+
+todoCyT (k:xs) ≡ __⟨∀x : x ≡ k : circulo.x ∧ tam.x ≥ 10⟩__ ∧ ⟨∀x : x ∈ℓ xs : circulo.x ∧ tam.x ≥ 10⟩
+{A4 Rango unitario de ∀}
+todoCyT (k:xs) ≡ (circulo.k ∧ tam.k ≥ 10) ∧ ⟨∀x : x ∈ℓ xs : circulo.x ∧ tam.x ≥ 10⟩
+
+__todoCyT (k:xs)__ ≡ (circulo.k ∧ tam.k ≥ 10) ∧ ⟨∀x : x ∈ℓ xs : circulo.x ∧ tam.x ≥ 10⟩
+{todoCyT - Caso 4}
+(circulo.k ∧ tam.k ≥ 10) ∧ todoCyG.xs  ≡ (circulo.k ∧ tam.k ≥ 10) ∧ ⟨∀x : x ∈ℓ xs : circulo.x ∧ tam.x ≥ 10⟩
+
+(circulo.k ∧ tam.k ≥ 10) ∧ todoCyG.xs  ≡ (circulo.k ∧ tam.k ≥ 10) ∧ ⟨∀x : x ∈ℓ xs : circulo.x ∧ tam.x ≥ 10⟩
+{Por Hipotesis Inductiva, y cambio de variable}
+(circulo.k ∧ tam.k ≥ 10) ∧ todoCyG.xs  ≡ (circulo.k ∧ tam.k ≥ 10) ∧ todoCyG.xs
+{Es Valido}
