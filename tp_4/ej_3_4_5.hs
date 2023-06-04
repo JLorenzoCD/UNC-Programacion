@@ -96,7 +96,7 @@ todos_circulos_ca_tam_menor_10 (x:xs) = ((not circulo x) || (azul x && (tam x < 
 -- f) Ningun triangulo de xs es azul.
 ningun_triangulo_ca :: [Figura] -> Bool
 ningun_triangulo_ca [] = True
-ningun_triangulo_ca (x:xs) = (triangulo x || (not azul x)) && ningun_triangulo_ca xs
+ningun_triangulo_ca (x:xs) = ((not triangulo x) || (not azul x)) && ningun_triangulo_ca xs
 
 -- g) En xs no hay cırculos amarillos ni verdes.
 no_circulos_ca_ni_cv :: [Figura] -> Bool
