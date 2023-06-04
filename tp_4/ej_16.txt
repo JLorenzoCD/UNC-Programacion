@@ -209,3 +209,36 @@ __((¬circulo.k) ∨ (azul.k ∧ (tam.k < 10)))__ ∧ todos_circulos_ca_tam_meno
 {Por Hipotesis Inductiva}
 (circulo.k ⇒ (azul.k ∧ tam.k < 10)) ∧ < ∀x : x ∈ℓ xs ∧ circulo.x : azul.x ∧ tam.x < 10 > ≡ (circulo.k ⇒ (azul.k ∧ tam.k < 10)) ∧ < ∀x : x ∈ℓ xs ∧ circulo.x : azul.x ∧ tam.x < 10 >
 {Es Valido}
+
+
+
+#################################### f) Ningun triangulo de xs es azul.
+Hipotesis Inductiva = ningun_triangulo_ca xs ≡ <∀x : x ∈ℓ xs ∧ triangulo.x : ¬azul.x>
+
+############ Caso base xs = []
+ningun_triangulo_ca [] ≡ <∀x : x ∈ℓ [] ∧ triangulo.x : ¬azul.x>
+ningun_triangulo_ca [] ≡ <∀x : __x ∈ℓ []__ ∧ triangulo.x : ¬azul.x>
+ningun_triangulo_ca [] ≡ <∀x : __False ∧ triangulo.x__ : ¬azul.x>
+ningun_triangulo_ca [] ≡ __<∀x : False : ¬azul.x>__
+ningun_triangulo_ca [] ≡ True
+{Por ningun_triangulo_ca - Caso 3, Es Valido}
+
+############ Caso base xs = (k:xs)
+ningun_triangulo_ca (k:xs) ≡ <∀x : x ∈ℓ (k:xs) ∧ triangulo.x : ¬azul.x>
+ningun_triangulo_ca (k:xs) ≡ <∀x : x ∈ℓ (k:xs) __∧ triangulo.x__ : ¬azul.x>
+ningun_triangulo_ca (k:xs) ≡ <∀x : __x ∈ℓ (k:xs)__ : triangulo.x ⇒ ¬azul.x>
+ningun_triangulo_ca (k:xs) ≡ __<∀x : x = k ∧ x ∈ℓ xs : triangulo.x ⇒ ¬azul.x>__
+ningun_triangulo_ca (k:xs) ≡ __<∀x : x = k : triangulo.x ⇒ ¬azul.x>__ ∧ <∀x : x ∈ℓ xs : triangulo.x ⇒ ¬azul.x>
+ningun_triangulo_ca (k:xs) ≡ (triangulo.k ⇒ ¬azul.k) ∧ <∀x : x ∈ℓ xs : triangulo.x ⇒ ¬azul.x>
+ningun_triangulo_ca (k:xs) ≡ (¬triangulo.k ∨ ¬azul.k) ∧ <∀x : x ∈ℓ xs : triangulo.x ⇒ ¬azul.x>
+
+__ningun_triangulo_ca (k:xs)__ ≡ (¬triangulo.k ∨ ¬azul.k) ∧ <∀x : x ∈ℓ xs : triangulo.x ⇒ ¬azul.x>
+{Por ningun_triangulo_ca - Caso 4}
+(¬triangulo.k ∨ ¬azul.k) ∧ __ningun_triangulo_ca xs__ ≡ (¬triangulo.k ∨ ¬azul.k) ∧ <∀x : x ∈ℓ xs : triangulo.x ⇒ ¬azul.x>
+{Por Hipotesis Inductiva}
+(¬triangulo.k ∨ ¬azul.k) ∧ <∀x : x ∈ℓ xs ∧ triangulo.x : ¬azul.x> ≡ (¬triangulo.k ∨ ¬azul.k) ∧ <∀x : x ∈ℓ xs : triangulo.x ⇒ ¬azul.x>
+
+
+(¬triangulo.k ∨ ¬azul.k) ∧ <∀x : x ∈ℓ xs __∧ triangulo.x__ : ¬azul.x> ≡ (¬triangulo.k ∨ ¬azul.k) ∧ <∀x : x ∈ℓ xs : triangulo.x ⇒ ¬azul.x>
+(¬triangulo.k ∨ ¬azul.k) ∧ <∀x : x ∈ℓ xs : triangulo.x ⇒ ¬azul.x> ≡ (¬triangulo.k ∨ ¬azul.k) ∧ <∀x : x ∈ℓ xs : triangulo.x ⇒ ¬azul.x>
+{Es Valido}
