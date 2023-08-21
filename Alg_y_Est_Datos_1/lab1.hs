@@ -40,3 +40,8 @@ factorial x = x * factorial (x - 1)
 -- e
 promedio :: [Int] -> Int
 promedio xs = div (sumatoria xs) (length xs)
+
+-- ######################## 3 ########################
+pertenece :: Int -> [Int] -> Bool
+pertenece n [] = False
+pertenece n (x:xs) = n == x || pertenece n xs
