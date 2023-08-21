@@ -15,8 +15,8 @@ esVocal c = c == 'a' || c== 'e' || c== 'i' || c== 'o' || c== 'u'
 valorAbsoluto :: Int -> Int
 valorAbsoluto x = if x >= 0 then x else (-x)
 
--- ######################## 2 ########################
 
+-- ######################## 2 ########################
 -- a
 paratodo :: [Bool] -> Bool
 paratodo [] = True
@@ -41,10 +41,12 @@ factorial x = x * factorial (x - 1)
 promedio :: [Int] -> Int
 promedio xs = div (sumatoria xs) (length xs)
 
+
 -- ######################## 3 ########################
 pertenece :: Int -> [Int] -> Bool
 pertenece n [] = False
 pertenece n (x:xs) = n == x || pertenece n xs
+
 
 -- ######################## 4 ########################
 -- a
@@ -66,3 +68,8 @@ sumatoria_4 (x:xs) fun = fun x + (sumatoria_4 xs fun)
 productoria_4 :: [a] -> (a -> Int) -> Int
 productoria_4 [] fun = 1
 productoria_4 (x:xs) fun = fun x * (productoria_4 xs fun)
+
+
+-- ######################## 5 ########################
+paratodo_5 :: [Bool] -> Bool
+paratodo_5 l = paratodo_4 l id
