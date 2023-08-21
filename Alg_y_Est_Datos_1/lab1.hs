@@ -57,7 +57,7 @@ paratodo_4 (x:xs) fun = fun x && (paratodo_4 xs fun)
 -- b
 existe_4 :: [a] -> (a -> Bool) -> Bool
 existe_4 [] fun = False
-existe_4 (x:xs) fun = fun x && (existe_4 xs fun)
+existe_4 (x:xs) fun = fun x || (existe_4 xs fun)
 
 -- c
 sumatoria_4 :: [a] -> (a -> Int) -> Int
