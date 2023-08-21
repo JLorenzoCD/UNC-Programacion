@@ -45,3 +45,24 @@ promedio xs = div (sumatoria xs) (length xs)
 pertenece :: Int -> [Int] -> Bool
 pertenece n [] = False
 pertenece n (x:xs) = n == x || pertenece n xs
+
+-- ######################## 4 ########################
+-- a
+paratodo_4 :: [a] -> (a -> Bool) -> Bool
+paratodo_4 [] fun = True
+paratodo_4 (x:xs) fun = fun x && (paratodo_4 xs fun)
+
+-- b
+existe_4 :: [a] -> (a -> Bool) -> Bool
+existe_4 [] fun = False
+existe_4 (x:xs) fun = fun x && (existe_4 xs fun)
+
+-- c
+sumatoria_4 :: [a] -> (a -> Int) -> Int
+sumatoria_4 [] fun = 0
+sumatoria_4 (x:xs) fun = fun x + (sumatoria_4 xs fun)
+
+-- d
+productoria_4 :: [a] -> (a -> Int) -> Int
+productoria_4 [] fun = 1
+productoria_4 (x:xs) fun = fun x * (productoria_4 xs fun)
