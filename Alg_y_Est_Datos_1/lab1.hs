@@ -198,3 +198,25 @@ primIguales (y:(x:xs))
 -- b
 primIguales' :: (Eq a) => [a] -> [a]
 primIguales' (x:xs) = x : primIgualesA' x xs
+
+
+-- ######################## 12 ########################
+cuantGen :: (b -> b -> b) -> b -> [a] -> (a -> b) -> b
+cuantGen op z [] t = z
+cuantGen op z (x:xs) t = (t x) `op` (cuantGen op z xs t)
+
+-- a
+paratodo'' :: [a] -> (a -> Bool) -> Bool
+paratodo'' xs fun = cuantGen (&&) True xs fun
+
+-- b
+existe'' :: [a] -> (a -> Bool) -> Bool
+existe'' xs fun = cuantGen (||) False xs fun
+
+-- c
+sumatoria'' :: [a] -> (a -> Int) -> Int
+sumatoria'' xs fun = cuantGen (+) 0 xs fun
+
+-- d
+productoria'' :: [a] -> (a -> Int) -> Int
+productoria'' xs fun = cuantGen (*) 1 xs fun
