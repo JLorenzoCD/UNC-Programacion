@@ -185,3 +185,16 @@ primIgualesA y (x:xs)
 -- b
 primIgualesA' :: (Eq a) => a -> [a] -> [a]
 primIgualesA' y xs = takeWhile (y ==) xs
+
+
+-- ######################## 11 ########################
+-- a
+primIguales :: (Eq a) => [a] -> [a]
+primIguales [] = []
+primIguales (y:(x:xs))
+    | y == x = y : primIguales (x:xs)
+    | otherwise = y : []
+
+-- b
+primIguales' :: (Eq a) => [a] -> [a]
+primIguales' (x:xs) = x : primIgualesA' x xs
