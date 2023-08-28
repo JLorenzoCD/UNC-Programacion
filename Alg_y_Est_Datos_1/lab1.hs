@@ -229,3 +229,8 @@ distanciaEdicion xs [] = length xs
 distanciaEdicion (x:xs) (y:ys)
     | x == y = distanciaEdicion xs ys
     | x /= y = 1 + distanciaEdicion xs ys
+
+
+-- ######################## 14 ########################
+primQueCumplen :: [a] -> (a -> Bool) -> [a]
+primQueCumplen xs fn = takeWhile fn xs
