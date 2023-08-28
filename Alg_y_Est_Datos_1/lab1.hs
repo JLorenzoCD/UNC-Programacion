@@ -94,6 +94,7 @@ existeDivisor n l = existe' l (\x -> mod n x == 0)
 
 -- e
 esPrimo :: Int -> Bool
+esPrimo 1 = False
 esPrimo n = not (existeDivisor n [2..(n-1)])
 
 -- f
@@ -155,3 +156,19 @@ dupElemLista (x:xs) = dupElem x : dupElemLista xs
 -- b
 dupElemLista' :: [Int] -> [Int]
 dupElemLista' xs = map dupElem xs
+
+
+-- ######################## 9 ########################
+-- a
+soloPrimos :: [Int] -> [Int]
+soloPrimos [] = []
+soloPrimos (x:xs) = if esPrimo x then x : soloPrimos xs else soloPrimos xs
+
+-- b
+soloPrimos' :: [Int] -> [Int]
+soloPrimos' xs = filter esPrimo xs
+
+{-
+-- c
+Ya lo habia hecho con filter -.-
+-}
