@@ -124,6 +124,7 @@ todosFib :: [Int] -> Bool
 todosFib [] = True
 todosFib (x:xs) = esFib x && todosFib xs
 
+
 -- ######################## 7 ########################
 {-
 -- a
@@ -140,3 +141,17 @@ esPositivo :: Int -> Bool
 esPositivo n = n >= 0
 filter esPositivo [1, -4, 6, 2, -8] => [1,6,2]
 -}
+
+
+-- ######################## 8 ########################
+dupElem :: Int -> Int
+dupElem n = n*2
+
+-- a
+dupElemLista :: [Int] -> [Int]
+dupElemLista [] = []
+dupElemLista (x:xs) = dupElem x : dupElemLista xs
+
+-- b
+dupElemLista' :: [Int] -> [Int]
+dupElemLista' xs = map dupElem xs
