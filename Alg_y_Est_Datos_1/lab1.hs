@@ -50,26 +50,27 @@ pertenece n (x:xs) = n == x || pertenece n xs
 
 -- ######################## 4 ########################
 -- a
-paratodo_4 :: [a] -> (a -> Bool) -> Bool
-paratodo_4 [] fun = True
-paratodo_4 (x:xs) fun = fun x && (paratodo_4 xs fun)
+paratodo' :: [a] -> (a -> Bool) -> Bool
+paratodo' [] fun = True
+paratodo' (x:xs) fun = fun x && (paratodo' xs fun)
 
 -- b
-existe_4 :: [a] -> (a -> Bool) -> Bool
-existe_4 [] fun = False
-existe_4 (x:xs) fun = fun x || (existe_4 xs fun)
+existe' :: [a] -> (a -> Bool) -> Bool
+existe' [] fun = False
+existe' (x:xs) fun = fun x || (existe' xs fun)
 
 -- c
-sumatoria_4 :: [a] -> (a -> Int) -> Int
-sumatoria_4 [] fun = 0
-sumatoria_4 (x:xs) fun = fun x + (sumatoria_4 xs fun)
+sumatoria' :: [a] -> (a -> Int) -> Int
+sumatoria' [] fun = 0
+sumatoria' (x:xs) fun = fun x + (sumatoria' xs fun)
 
 -- d
-productoria_4 :: [a] -> (a -> Int) -> Int
-productoria_4 [] fun = 1
-productoria_4 (x:xs) fun = fun x * (productoria_4 xs fun)
+productoria' :: [a] -> (a -> Int) -> Int
+productoria' [] fun = 1
+productoria' (x:xs) fun = fun x * (productoria' xs fun)
 
 
 -- ######################## 5 ########################
-paratodo_5 :: [Bool] -> Bool
-paratodo_5 l = paratodo_4 l id
+paratodo'' :: [Bool] -> Bool
+paratodo'' l = paratodo' l id
+
