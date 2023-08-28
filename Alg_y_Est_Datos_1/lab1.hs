@@ -74,3 +74,32 @@ productoria' (x:xs) fun = fun x * (productoria' xs fun)
 paratodo'' :: [Bool] -> Bool
 paratodo'' l = paratodo' l id
 
+
+-- ######################## 6 ########################
+-- a
+todosPares :: [Int] -> Bool
+todosPares l = paratodo' l even
+
+-- b
+hayMultiplo :: Int -> [Int] -> Bool
+hayMultiplo n l = existe' l (\x -> mod x n == 0) -- Esto es una exprecion lambda del tipo (\x -> fn x)
+
+-- c
+sumaCuadrados :: Int -> Int
+sumaCuadrados n = sumatoria' [0..(n - 1)] (^2)
+
+-- d
+existeDivisor :: Int -> [Int] -> Bool
+existeDivisor n l = existe' l (\x -> mod n x == 0)
+
+-- e
+esPrimo :: Int -> Bool
+esPrimo n = not (existeDivisor n [2..(n-1)])
+
+-- f
+factorial' :: Int -> Int
+factorial' n = productoria' [1..n] id
+
+-- g
+multiplicaPrimos :: [Int] -> Int
+multiplicaPrimos l = productoria' (filter esPrimo l) id
