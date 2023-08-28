@@ -123,3 +123,20 @@ esFib n = existe' (generarListaFib n 0) (\x -> n == x)
 todosFib :: [Int] -> Bool
 todosFib [] = True
 todosFib (x:xs) = esFib x && todosFib xs
+
+-- ######################## 7 ########################
+{-
+-- a
+La funcion map obtiene una lista y una funcion, y modifica/transforma cada elemento mediante la funcion recibida
+La funcion filter obtiene una lista y una funcion, y retorna la lista con los elementos que cumplan que al pasarla por la funcion recibida den True
+
+-- b
+succ :: Int -> Int
+succ n = n+1
+map succ [1, -4, 6, 2, -8] => [2,-3,7,3,-7]
+
+-- c
+esPositivo :: Int -> Bool
+esPositivo n = n >= 0
+filter esPositivo [1, -4, 6, 2, -8] => [1,6,2]
+-}
