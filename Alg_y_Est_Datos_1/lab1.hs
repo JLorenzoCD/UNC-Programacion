@@ -172,3 +172,16 @@ soloPrimos' xs = filter esPrimo xs
 -- c
 Ya lo habia hecho con filter -.-
 -}
+
+
+-- ######################## 10 ########################
+-- a
+primIgualesA :: (Eq a) => a -> [a] -> [a]
+primIgualesA y [] = []
+primIgualesA y (x:xs)
+    | x == y = x : primIgualesA y xs
+    | otherwise = []
+
+-- b
+primIgualesA' :: (Eq a) => a -> [a] -> [a]
+primIgualesA' y xs = takeWhile (y ==) xs
