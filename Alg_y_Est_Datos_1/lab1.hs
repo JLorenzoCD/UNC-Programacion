@@ -103,3 +103,23 @@ factorial' n = productoria' [1..n] id
 -- g
 multiplicaPrimos :: [Int] -> Int
 multiplicaPrimos l = productoria' (filter esPrimo l) id
+
+-- h
+fib :: Int -> Int
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n - 1) + fib (n - 2)
+
+generarListaFib :: Int -> Int -> [Int]
+generarListaFib n x
+    | n == fib x = fib x : []
+    | n < fib x = []
+    | fib x < n = fib x : generarListaFib n (x + 1)
+
+esFib :: Int -> Bool
+esFib n = existe' (generarListaFib n 0) (\x -> n == x)
+
+-- i
+todosFib :: [Int] -> Bool
+todosFib [] = True
+todosFib (x:xs) = esFib x && todosFib xs
