@@ -234,3 +234,34 @@ distanciaEdicion (x:xs) (y:ys)
 -- ######################## 14 ########################
 primQueCumplen :: [a] -> (a -> Bool) -> [a]
 primQueCumplen xs fn = takeWhile fn xs
+
+
+-- ######################## 15 ########################
+{-
+-- a
+Bien tipado, puede ser una tupla que contenga cualquier tipo y cumple los casos de definicion
+
+-- b
+Esta mal tipado o mal definido, en caso de ser recursiva debe tener caso base ([]), la definicion con elementos seria ((a,b):xs), y si es directamente sin tocar los elementos (xs)
+
+-- c
+Bien tipado, falta caso base si es que utiliza recursion, si la funcion necesita utilizar los elementos de la tupla, entonces falta definir como ((a,b):xs)
+
+-- d
+Bien tipado, falta caso base si es que utiliza recursion, falta definir para caso ((a,b):[]) si #xs es impar
+
+-- e
+Como ( 1:2:[] == [1,2] = True, es decir, x:[] == [x] == True) entonces esta bien tipado, falta caso base si es que utiliza recursion, falta ((x,a) : xs), y si se busca tuplas que el primer elemento sea cero, tambien seria valido el caso ((0,a):xs)
+
+-- f
+Bien tipado siempre y cuando por el tipo de a este pueda ser 1, falta caso base si es que utiliza recursion y falta caso ((x,y):xs).
+
+-- g
+Como a puede ser el nombre de una funcion que cumpla a :: (Int -> Int), entonces es un tipado valido
+
+-- h
+El tipo esta bien (por lo mismo que el anterior), falta caso base si es que utiliza recursion, falta caso donde el segundo parametro pueda ser cualquier Int
+
+-- i
+Mal tipado o mal definido, el tipado esperaba una fun, mientras que la definicion espera 3 Int, falta caso donde todos los parametros pueda ser cualquier Int
+-}
