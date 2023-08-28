@@ -220,3 +220,12 @@ sumatoria'' xs fun = cuantGen (+) 0 xs fun
 -- d
 productoria'' :: [a] -> (a -> Int) -> Int
 productoria'' xs fun = cuantGen (*) 1 xs fun
+
+
+-- ######################## 13 ########################
+distanciaEdicion :: [Char] -> [Char] -> Int
+distanciaEdicion [] ys = length ys
+distanciaEdicion xs [] = length xs
+distanciaEdicion (x:xs) (y:ys)
+    | x == y = distanciaEdicion xs ys
+    | x /= y = 1 + distanciaEdicion xs ys
