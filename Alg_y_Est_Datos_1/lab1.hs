@@ -1,4 +1,4 @@
--- ######################## 1 ########################
+-- ejercicio 1
 -- a
 esCero :: Int -> Bool
 esCero x = x == 0
@@ -16,7 +16,7 @@ valorAbsoluto :: Int -> Int
 valorAbsoluto x = if x >= 0 then x else (-x)
 
 
--- ######################## 2 ########################
+-- ejercicio 2
 -- a
 paratodo :: [Bool] -> Bool
 paratodo [] = True
@@ -42,13 +42,13 @@ promedio :: [Int] -> Int
 promedio xs = div (sumatoria xs) (length xs)
 
 
--- ######################## 3 ########################
+-- ejercicio 3
 pertenece :: Int -> [Int] -> Bool
 pertenece n [] = False
 pertenece n (x:xs) = n == x || pertenece n xs
 
 
--- ######################## 4 ########################
+-- ejercicio 4
 -- a
 paratodo' :: [a] -> (a -> Bool) -> Bool
 paratodo' [] fun = True
@@ -70,12 +70,12 @@ productoria' [] fun = 1
 productoria' (x:xs) fun = fun x * (productoria' xs fun)
 
 
--- ######################## 5 ########################
+-- ejercicio 5
 paratodo'' :: [Bool] -> Bool
 paratodo'' l = paratodo' l id
 
 
--- ######################## 6 ########################
+-- ejercicio 6
 -- a
 todosPares :: [Int] -> Bool
 todosPares l = paratodo' l even
@@ -126,7 +126,7 @@ todosFib [] = True
 todosFib (x:xs) = esFib x && todosFib xs
 
 
--- ######################## 7 ########################
+-- ejercicio 7
 {-
 -- a
 La funcion map obtiene una lista y una funcion, y modifica/transforma cada elemento mediante la funcion recibida
@@ -144,7 +144,7 @@ filter esPositivo [1, -4, 6, 2, -8] => [1,6,2]
 -}
 
 
--- ######################## 8 ########################
+-- ejercicio 8
 dupElem :: Int -> Int
 dupElem n = n*2
 
@@ -158,7 +158,7 @@ dupElemLista' :: [Int] -> [Int]
 dupElemLista' xs = map dupElem xs
 
 
--- ######################## 9 ########################
+-- ejercicio 9
 -- a
 soloPrimos :: [Int] -> [Int]
 soloPrimos [] = []
@@ -174,7 +174,7 @@ Ya lo habia hecho con filter -.-
 -}
 
 
--- ######################## 10 ########################
+-- ejercicio 10
 -- a
 primIgualesA :: (Eq a) => a -> [a] -> [a]
 primIgualesA y [] = []
@@ -187,7 +187,7 @@ primIgualesA' :: (Eq a) => a -> [a] -> [a]
 primIgualesA' y xs = takeWhile (y ==) xs
 
 
--- ######################## 11 ########################
+-- ejercicio 11
 -- a
 primIguales :: (Eq a) => [a] -> [a]
 primIguales [] = []
@@ -200,7 +200,7 @@ primIguales' :: (Eq a) => [a] -> [a]
 primIguales' (x:xs) = x : primIgualesA' x xs
 
 
--- ######################## 12 ########################
+-- ejercicio 12
 cuantGen :: (b -> b -> b) -> b -> [a] -> (a -> b) -> b
 cuantGen op z [] t = z
 cuantGen op z (x:xs) t = (t x) `op` (cuantGen op z xs t)
@@ -222,7 +222,7 @@ productoria'' :: [a] -> (a -> Int) -> Int
 productoria'' xs fun = cuantGen (*) 1 xs fun
 
 
--- ######################## 13 ########################
+-- ejercicio 13
 distanciaEdicion :: [Char] -> [Char] -> Int
 distanciaEdicion [] ys = length ys
 distanciaEdicion xs [] = length xs
@@ -231,12 +231,12 @@ distanciaEdicion (x:xs) (y:ys)
     | x /= y = 1 + distanciaEdicion xs ys
 
 
--- ######################## 14 ########################
+-- ejercicio 14
 primQueCumplen :: [a] -> (a -> Bool) -> [a]
 primQueCumplen xs fn = takeWhile fn xs
 
 
--- ######################## 15 ########################
+-- ejercicio 15
 {-
 -- a
 Bien tipado, puede ser una tupla que contenga cualquier tipo y cumple los casos de definicion
