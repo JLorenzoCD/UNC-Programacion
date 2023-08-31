@@ -265,3 +265,29 @@ El tipo esta bien (por lo mismo que el anterior), falta caso base si es que util
 -- i
 Mal tipado o mal definido, el tipado esperaba una fun, mientras que la definicion espera 3 Int, falta caso donde todos los parametros pueda ser cualquier Int
 -}
+
+
+-- ejercicio 16
+{-
+-- a
+f (x,y) = y
+f (x,y) = id y          -- No si es valido para la consigna
+f tupla = fst tupla     -- No si es valido para la consigna
+
+-- b
+                        -- Si a,b,c son del mismo tipo
+f (x,y) = a + y         -- Numeros (con distintos tipos de operaciones)
+f (xs,ys) = as ++ ys    -- Listas   (con distintos tipos de operaciones)
+
+f (i,xs) = xs !! i      -- Distintos tipos  (puede ser i :: Int, xs :: [Char], c :: Char, etc..)
+
+z :: Int                -- Retornando constante
+z = 5
+f (x,y) = z
+
+-- c
+f fn a = fn a           -- No se me ocurre otra forma debido a que no se el tipo de b
+
+-- d
+f fn as = fn as         -- No se me ocurre otra forma debido a que no se el tipo de b
+-}
