@@ -15,6 +15,12 @@ esVocal c = c == 'a' || c== 'e' || c== 'i' || c== 'o' || c== 'u'
 valorAbsoluto :: Int -> Int
 valorAbsoluto x = if x >= 0 then x else (-x)
 
+{-
+########################### EJEMPLO DE EJECUCION ###########################
+esCero 5                 ==>     False
+esPositivo 10            ==>     True
+-}
+
 
 -- ejercicio 2
 -- a
@@ -42,11 +48,22 @@ promedio :: [Int] -> Int
 promedio xs = div (sumatoria xs) (length xs)
 
 
+{-
+########################### EJEMPLO DE EJECUCION ###########################
+factorial 5                 ==>     120
+promedio [5,3,7]            ==>     5
+-}
+
 -- ejercicio 3
 pertenece :: Int -> [Int] -> Bool
 pertenece n [] = False
 pertenece n (x:xs) = n == x || pertenece n xs
 
+{-
+########################### EJEMPLO DE EJECUCION ###########################
+pertenece 5 [5,3,7]         ==>     True
+pertenece 1000 [5,3,7]      ==>     False
+-}
 
 -- ejercicio 4
 -- a
@@ -69,11 +86,21 @@ productoria' :: [a] -> (a -> Int) -> Int
 productoria' [] fun = 1
 productoria' (x:xs) fun = fun x * (productoria' xs fun)
 
+{-
+########################### EJEMPLO DE EJECUCION ###########################
+sumatoria' [4,6,9,2] (1+)          ==>     25
+paratodo'  [0,0,0,0] esCero        ==>     True
+-}
 
 -- ejercicio 5
 paratodo'' :: [Bool] -> Bool
 paratodo'' l = paratodo' l id
 
+{-
+########################### EJEMPLO DE EJECUCION ###########################
+paratodo'' [True, False]            =>      False
+paratodo'' []                       =>      True
+-}
 
 -- ejercicio 6
 -- a
@@ -125,6 +152,11 @@ todosFib :: [Int] -> Bool
 todosFib [] = True
 todosFib (x:xs) = esFib x && todosFib xs
 
+{-
+########################### EJEMPLO DE EJECUCION ###########################
+todosPares [2,4..10]        ==>     True
+esFib 1597                  ==>     True
+-}
 
 -- ejercicio 7
 {-
@@ -157,6 +189,11 @@ dupElemLista (x:xs) = dupElem x : dupElemLista xs
 dupElemLista' :: [Int] -> [Int]
 dupElemLista' xs = map dupElem xs
 
+{-
+########################### EJEMPLO DE EJECUCION ###########################
+dupElemLista [5,3,7]                     ==>     [10,6,14]
+dupElemLista' [5,3,7,1,2,3]              ==>     [10,6,14,2,4,6]
+-}
 
 -- ejercicio 9
 -- a
@@ -173,6 +210,11 @@ soloPrimos' xs = filter esPrimo xs
 Ya lo habia hecho con filter -.-
 -}
 
+{-
+########################### EJEMPLO DE EJECUCION ###########################
+soloPrimos' [1..100]      ==>     [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97]
+soloPrimos' [5,3,7]       ==>     [5,3,7]
+-}
 
 -- ejercicio 10
 -- a
@@ -186,6 +228,11 @@ primIgualesA y (x:xs)
 primIgualesA' :: (Eq a) => a -> [a] -> [a]
 primIgualesA' y xs = takeWhile (y ==) xs
 
+{-
+########################### EJEMPLO DE EJECUCION ###########################
+primIgualesA 'A' "HOLAAAA"                  ==>     "" o []
+primIgualesA' 'A' "AAAAAAAAPRUEBEME"        ==>     "AAAAAAAA" o ['A','A','A','A','A','A','A','A']
+-}
 
 -- ejercicio 11
 -- a
@@ -199,6 +246,11 @@ primIguales (y:(x:xs))
 primIguales' :: (Eq a) => [a] -> [a]
 primIguales' (x:xs) = x : primIgualesA' x xs
 
+{-
+########################### EJEMPLO DE EJECUCION ###########################
+primIguales "333333357"     ==>     "3333333" o ['3','3','3','3','3','3','3']
+primIguales' "asdabsnfk"     ==>     "a" o ['a']
+-}
 
 -- ejercicio 12
 cuantGen :: (b -> b -> b) -> b -> [a] -> (a -> b) -> b
@@ -206,8 +258,8 @@ cuantGen op z [] t = z
 cuantGen op z (x:xs) t = (t x) `op` (cuantGen op z xs t)
 
 -- a
-paratodo'' :: [a] -> (a -> Bool) -> Bool
-paratodo'' xs fun = cuantGen (&&) True xs fun
+paratodo''' :: [a] -> (a -> Bool) -> Bool
+paratodo''' xs fun = cuantGen (&&) True xs fun
 
 -- b
 existe'' :: [a] -> (a -> Bool) -> Bool
@@ -221,6 +273,11 @@ sumatoria'' xs fun = cuantGen (+) 0 xs fun
 productoria'' :: [a] -> (a -> Int) -> Int
 productoria'' xs fun = cuantGen (*) 1 xs fun
 
+{-
+########################### EJEMPLO DE EJECUCION ###########################
+existe'' [-100,-50,1] esPositivo         ==>     True
+productoria'' [5,3,7] dupElem            ==>     840
+-}
 
 -- ejercicio 13
 distanciaEdicion :: [Char] -> [Char] -> Int
@@ -230,11 +287,20 @@ distanciaEdicion (x:xs) (y:ys)
     | x == y = distanciaEdicion xs ys
     | x /= y = 1 + distanciaEdicion xs ys
 
+{-
+########################### EJEMPLO DE EJECUCION ###########################
+distanciaEdicion "TEXTO DISTINTO" "A ESTE OTRO?"            ==>     14
+distanciaEdicion "MI DOMINGOOOOO" "MI DOMINGO NOOOOO!"      ==>     6
+-}
 
 -- ejercicio 14
 primQueCumplen :: [a] -> (a -> Bool) -> [a]
 primQueCumplen xs fn = takeWhile fn xs
 
+{-
+########################### EJEMPLO DE EJECUCION ###########################
+primQueCumplen [1,1,1,1,5,5,5,3,3,3,2,6,4] (\x -> (x + 1) `mod` 2 == 0)   => [1,1,1,1,5,5,5,3,3,3]
+-}
 
 -- ejercicio 15
 {-
