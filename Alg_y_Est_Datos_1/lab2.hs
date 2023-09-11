@@ -90,21 +90,6 @@ contar_velocistas [Ajedrecista, Ciclista Carretera, Ciclista BMX, Velocista 500]
 -}
 
 -- d
-contar_futbolistas :: [Deportista] -> Zona -> Int
-contar_futbolistas [] _ = 0
-contar_futbolistas ((Futbolista Arco _ _ _) :xs) Arco = 1 + contar_futbolistas xs Arco
-contar_futbolistas ((Futbolista Defensa _ _ _) :xs) Defensa =  1 + contar_futbolistas xs Defensa
-contar_futbolistas ((Futbolista Mediocampo _ _ _) :xs) Mediocampo = 1 + contar_futbolistas xs Mediocampo
-contar_futbolistas ((Futbolista Delantera _ _ _) :xs) Delantera =  1 + contar_futbolistas xs Delantera
-contar_futbolistas (_:xs) z = contar_futbolistas xs z
-
-{-
-########################### EJEMPLO DE EJECUCION ###########################
-contar_futbolistas [Futbolista Defensa 6 Derecha 180, Ajedrecista, Futbolista Arco 1 Derecha 190, Futbolista Defensa 15 Izquierda 175] Defensa      =>      2
--}
-
--- e
--- TODO: No funciona correctamente
 es_futbolista_y_de_zona :: Deportista -> Zona -> Bool
 es_futbolista_y_de_zona (Futbolista Arco _ _ _) Arco = True
 es_futbolista_y_de_zona (Futbolista Defensa _ _ _) Defensa = True
@@ -112,11 +97,22 @@ es_futbolista_y_de_zona (Futbolista Mediocampo _ _ _) Mediocampo = True
 es_futbolista_y_de_zona (Futbolista Delantera _ _ _) Delantera = True
 es_futbolista_y_de_zona _ _ = False
 
-contar_futbolistas' :: [Deportista] -> Zona -> Int
-contar_futbolistas' (x:xs) z = length (filter (\x -> es_futbolista_y_de_zona x z) xs)
+contar_futbolistas :: [Deportista] -> Zona -> Int
+contar_futbolistas [] _ = 0
+contar_futbolistas (x:xs) z
+        | (es_futbolista_y_de_zona x z) = 1 + contar_futbolistas xs z
+        | otherwise = contar_futbolistas xs z
 
 {-
 ########################### EJEMPLO DE EJECUCION ###########################
-TODO: No funciona correctamente
-contar_futbolistas' [Futbolista Delantera 6 Derecha 180, Ajedrecista, Futbolista Arco 1 Derecha 190, Futbolista Delantera 15 Izquierda 175] Delantera
+contar_futbolistas [Futbolista Defensa 6 Derecha 180, Ajedrecista, Futbolista Arco 1 Derecha 190, Futbolista Defensa 15 Izquierda 175] Defensa      =>      2
+-}
+
+-- e
+contar_futbolistas' :: [Deportista] -> Zona -> Int
+contar_futbolistas' xs z = length (filter (\x -> es_futbolista_y_de_zona x z) xs)
+
+{-
+########################### EJEMPLO DE EJECUCION ###########################
+contar_futbolistas' [Futbolista Delantera 6 Derecha 180, Ajedrecista, Futbolista Arco 1 Derecha 190, Futbolista Delantera 15 Izquierda 175] Delantera       =>      2
 -}
