@@ -171,3 +171,15 @@ NotaMusical Do Sostenido <= NotaMusical Re Sostenido        =>  True
 -}
 
 
+-- ###################### 6 ######################
+-- a
+primerElemento :: [a] -> Maybe a
+primerElemento [] = Nothing
+primerElemento (x:xs) = Just x
+
+{-
+########################### EJEMPLO DE EJECUCION ###########################
+primerElemento [1,2,3,4]      =>      Just 1
+primerElemento [2,3,4]        =>      Just 2
+primerElemento []             =>      Nothing
+-}
