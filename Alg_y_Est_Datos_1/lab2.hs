@@ -1,5 +1,5 @@
--- ###################### Lab 2 ######################
--- ###################### 1 ######################
+-- ========================================== Lab 2 ==========================================
+-- ############################################ 1 ############################################
 -- a
 data Carrera = Matematica | Fisica | Computacion | Astronomia
     deriving (Show, Eq, Ord, Bounded)
@@ -30,19 +30,20 @@ cifradoAmericano La = 'A'
 cifradoAmericano Si = 'B'
 
 
--- ###################### 2 ######################
+-- ############################################ 2 ############################################
 {-
 Realizado en la linea 38 del archivo.
 -}
 
--- ###################### 3 ######################
+
+-- ############################################ 3 ############################################
 -- a
 minimoElemento :: Ord a => [a] -> a
 minimoElemento [a] = a
 minimoElemento (x:(y:xs)) = x `min` minimoElemento (y:xs)
 
 {-
-########################### EJEMPLO DE EJECUCION ###########################
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -- minimoElemento ['H','A','a','b']             =>          'A'
 -- minimoElemento [1,2,3,4,5,65]                =>           1
 -}
@@ -58,7 +59,8 @@ Se agrego el deriving a la propiedad Bounded para obtener el minimo.
 minimoElemento' [Fa, La, Sol, Re, Fa]       =>      Re
 -}
 
--- ###################### 4 ######################
+
+-- ############################################ 4 ############################################
 -- a
 data Zona = Arco | Defensa | Mediocampo | Delantera
 data TipoReves = DosManos | UnaMano
@@ -85,7 +87,7 @@ contar_velocistas ((Velocista _):xs) = 1 + contar_velocistas xs
 contar_velocistas (_:xs) = contar_velocistas xs
 
 {-
-########################### EJEMPLO DE EJECUCION ###########################
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 contar_velocistas [Ajedrecista, Ciclista Carretera, Ciclista BMX, Velocista 500]    =>  1
 -}
 
@@ -104,7 +106,7 @@ contar_futbolistas (x:xs) z
         | otherwise = contar_futbolistas xs z
 
 {-
-########################### EJEMPLO DE EJECUCION ###########################
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 contar_futbolistas [Futbolista Defensa 6 Derecha 180, Ajedrecista, Futbolista Arco 1 Derecha 190, Futbolista Defensa 15 Izquierda 175] Defensa      =>      2
 -}
 
@@ -113,12 +115,12 @@ contar_futbolistas' :: [Deportista] -> Zona -> Int
 contar_futbolistas' xs z = length (filter (\x -> es_futbolista_y_de_zona x z) xs)
 
 {-
-########################### EJEMPLO DE EJECUCION ###########################
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 contar_futbolistas' [Futbolista Delantera 6 Derecha 180, Ajedrecista, Futbolista Arco 1 Derecha 190, Futbolista Delantera 15 Izquierda 175] Delantera       =>      2
 -}
 
 
--- ###################### 5 ######################
+-- ############################################ 5 ############################################
 -- a
 sonidoNatural :: NotaBasica -> Int
 sonidoNatural Do = 0
@@ -142,7 +144,7 @@ sonidoCromatico (NotaMusical n Natural) = (sonidoNatural n)
 sonidoCromatico (NotaMusical n Sostenido) = (sonidoNatural n) + 1
 
 {-
-########################### EJEMPLO DE EJECUCION ###########################
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 sonidoCromatico (NotaMusical Do Bemol)      =>  -1
 sonidoCromatico (NotaMusical Re Natural)    =>  2
 -}
@@ -152,7 +154,7 @@ instance Eq NotaMusical where
     x == y = sonidoCromatico x == sonidoCromatico y
 
 {-
-########################### EJEMPLO DE EJECUCION ###########################
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 NotaMusical Do Sostenido == NotaMusical Do Natural          =>  False
 NotaMusical Do Sostenido == NotaMusical Do Sostenido        =>  True
 NotaMusical Do Sostenido == NotaMusical Re Sostenido        =>  False
@@ -163,7 +165,7 @@ instance Ord NotaMusical where
     x <= y = sonidoCromatico x <= sonidoCromatico y
 
 {-
-########################### EJEMPLO DE EJECUCION ###########################
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 NotaMusical Do Bemol <= NotaMusical Do Natural              =>  True
 NotaMusical Do Sostenido <= NotaMusical Do Natural          =>  False
 NotaMusical Do Sostenido <= NotaMusical Do Sostenido        =>  True
@@ -171,14 +173,14 @@ NotaMusical Do Sostenido <= NotaMusical Re Sostenido        =>  True
 -}
 
 
--- ###################### 6 ######################
+-- ############################################ 6 ############################################
 -- a
 primerElemento :: [a] -> Maybe a
 primerElemento [] = Nothing
 primerElemento (x:xs) = Just x
 
 {-
-########################### EJEMPLO DE EJECUCION ###########################
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 primerElemento [1,2,3,4]      =>      Just 1
 primerElemento [2,3,4]        =>      Just 2
 primerElemento []             =>      Nothing
