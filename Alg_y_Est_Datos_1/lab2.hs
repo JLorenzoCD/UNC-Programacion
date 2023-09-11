@@ -116,3 +116,58 @@ contar_futbolistas' xs z = length (filter (\x -> es_futbolista_y_de_zona x z) xs
 ########################### EJEMPLO DE EJECUCION ###########################
 contar_futbolistas' [Futbolista Delantera 6 Derecha 180, Ajedrecista, Futbolista Arco 1 Derecha 190, Futbolista Delantera 15 Izquierda 175] Delantera       =>      2
 -}
+
+
+-- ###################### 5 ######################
+-- a
+sonidoNatural :: NotaBasica -> Int
+sonidoNatural Do = 0
+sonidoNatural Re = 2
+sonidoNatural Mi = 4
+sonidoNatural Fa = 5
+sonidoNatural Sol = 7
+sonidoNatural La = 9
+sonidoNatural Si = 11
+
+-- b
+data Alteracion = Bemol | Natural | Sostenido
+
+-- c
+data NotaMusical = NotaMusical NotaBasica Alteracion
+
+-- d
+sonidoCromatico :: NotaMusical -> Int
+sonidoCromatico (NotaMusical n Bemol) = (sonidoNatural n) - 1
+sonidoCromatico (NotaMusical n Natural) = (sonidoNatural n)
+sonidoCromatico (NotaMusical n Sostenido) = (sonidoNatural n) + 1
+
+{-
+########################### EJEMPLO DE EJECUCION ###########################
+sonidoCromatico (NotaMusical Do Bemol)      =>  -1
+sonidoCromatico (NotaMusical Re Natural)    =>  2
+-}
+
+-- e
+instance Eq NotaMusical where
+    x == y = sonidoCromatico x == sonidoCromatico y
+
+{-
+########################### EJEMPLO DE EJECUCION ###########################
+NotaMusical Do Sostenido == NotaMusical Do Natural          =>  False
+NotaMusical Do Sostenido == NotaMusical Do Sostenido        =>  True
+NotaMusical Do Sostenido == NotaMusical Re Sostenido        =>  False
+-}
+
+-- f
+instance Ord NotaMusical where
+    x <= y = sonidoCromatico x <= sonidoCromatico y
+
+{-
+########################### EJEMPLO DE EJECUCION ###########################
+NotaMusical Do Bemol <= NotaMusical Do Natural              =>  True
+NotaMusical Do Sostenido <= NotaMusical Do Natural          =>  False
+NotaMusical Do Sostenido <= NotaMusical Do Sostenido        =>  True
+NotaMusical Do Sostenido <= NotaMusical Re Sostenido        =>  True
+-}
+
+
