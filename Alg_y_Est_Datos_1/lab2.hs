@@ -62,10 +62,10 @@ minimoElemento' [Fa, La, Sol, Re, Fa]       =>      Re
 
 -- ############################################ 4 ############################################
 -- a
-data Zona = Arco | Defensa | Mediocampo | Delantera
-data TipoReves = DosManos | UnaMano
-data Modalidad = Carretera | Pista | Monte | BMX
-data PiernaHabil = Izquierda | Derecha
+data Zona = Arco | Defensa | Mediocampo | Delantera deriving Show
+data TipoReves = DosManos | UnaMano deriving Show
+data Modalidad = Carretera | Pista | Monte | BMX deriving Show
+data PiernaHabil = Izquierda | Derecha deriving Show
 
 type Altura = Int
 type NumCamiseta = Int
@@ -76,7 +76,7 @@ data Deportista = Ajedrecista
                 | Velocista Altura
                 | Tenista TipoReves ManoHabil Altura
                 | Futbolista Zona NumCamiseta PiernaHabil Altura
-
+    deriving Show
 -- b
 -- :t Ciclista      =>      Ciclista :: Modalidad -> Deportista
 
@@ -185,3 +185,47 @@ primerElemento [1,2,3,4]      =>      Just 1
 primerElemento [2,3,4]        =>      Just 2
 primerElemento []             =>      Nothing
 -}
+
+
+-- ############################################ 7 ############################################
+data Cola = VaciaC | Encolada Deportista Cola
+    deriving Show
+
+-- a - 1)
+atender :: Cola -> Maybe Cola
+atender VaciaC = Nothing
+atender x = Just x
+
+{-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+atender (Encolada Ajedrecista VaciaC)   =>   Just (Encolada Ajedrecista VaciaC)
+-}
+
+-- a - 2)
+encolar :: Deportista -> Cola -> Cola
+encolar d VaciaC = Encolada d VaciaC
+encolar d (Encolada d' c) = Encolada d' (encolar d c)
+
+{-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+encolar (Ciclista BMX) (Encolada Ajedrecista (Encolada (Velocista 500) (Encolada Ajedrecista VaciaC)))      =>      Encolada Ajedrecista (Encolada (Velocista 500) (Encolada Ajedrecista (Encolada (Ciclista BMX) VaciaC)))
+-}
+
+-- a - 3)
+busca :: Cola -> Zona -> Maybe Deportista
+busca VaciaC _  = Nothing
+busca (Encolada d c) z
+    | es_futbolista_y_de_zona d z = Just d
+    | otherwise = busca c z
+
+{-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+busca (Encolada Ajedrecista (Encolada (Velocista 500) (Encolada Ajedrecista (Encolada (Ciclista BMX) (Encolada (Futbolista Arco 1 Derecha 190) (Encolada (Futbolista Delantera 15 Izquierda 175) VaciaC)))))) Mediocampo        =>      Nothing
+
+busca (Encolada Ajedrecista (Encolada (Velocista 500) (Encolada Ajedrecista (Encolada (Ciclista BMX) (Encolada (Futbolista Arco 1 Derecha 190) (Encolada (Futbolista Delantera 15 Izquierda 175) VaciaC)))))) Arco              =>      Just (Futbolista Arco 1 Derecha 190)
+
+busca (Encolada Ajedrecista (Encolada (Velocista 500) (Encolada Ajedrecista (Encolada (Ciclista BMX) (Encolada (Futbolista Arco 1 Derecha 190) (Encolada (Futbolista Delantera 15 Izquierda 175) VaciaC)))))) Delantera              =>      Just (Futbolista Delantera 15 Izquierda 175)
+-}
+
+-- b
+-- A una lista
