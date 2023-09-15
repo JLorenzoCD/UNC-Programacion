@@ -44,6 +44,7 @@ minimoElemento (x:(y:xs)) = x `min` minimoElemento (y:xs)
 
 {-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 -- minimoElemento ['H','A','a','b']             =>          'A'
 -- minimoElemento [1,2,3,4,5,65]                =>           1
 -}
@@ -88,6 +89,7 @@ contar_velocistas (_:xs) = contar_velocistas xs
 
 {-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 contar_velocistas [Ajedrecista, Ciclista Carretera, Ciclista BMX, Velocista 500]    =>  1
 -}
 
@@ -107,6 +109,7 @@ contar_futbolistas (x:xs) z
 
 {-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 contar_futbolistas [Futbolista Defensa 6 Derecha 180, Ajedrecista, Futbolista Arco 1 Derecha 190, Futbolista Defensa 15 Izquierda 175] Defensa      =>      2
 -}
 
@@ -116,6 +119,7 @@ contar_futbolistas' xs z = length (filter (\x -> es_futbolista_y_de_zona x z) xs
 
 {-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 contar_futbolistas' [Futbolista Delantera 6 Derecha 180, Ajedrecista, Futbolista Arco 1 Derecha 190, Futbolista Delantera 15 Izquierda 175] Delantera       =>      2
 -}
 
@@ -145,6 +149,7 @@ sonidoCromatico (NotaMusical n Sostenido) = (sonidoNatural n) + 1
 
 {-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 sonidoCromatico (NotaMusical Do Bemol)      =>  -1
 sonidoCromatico (NotaMusical Re Natural)    =>  2
 -}
@@ -155,6 +160,7 @@ instance Eq NotaMusical where
 
 {-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 NotaMusical Do Sostenido == NotaMusical Do Natural          =>  False
 NotaMusical Do Sostenido == NotaMusical Do Sostenido        =>  True
 NotaMusical Do Sostenido == NotaMusical Re Sostenido        =>  False
@@ -166,6 +172,7 @@ instance Ord NotaMusical where
 
 {-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 NotaMusical Do Bemol <= NotaMusical Do Natural              =>  True
 NotaMusical Do Sostenido <= NotaMusical Do Natural          =>  False
 NotaMusical Do Sostenido <= NotaMusical Do Sostenido        =>  True
@@ -181,6 +188,7 @@ primerElemento (x:xs) = Just x
 
 {-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 primerElemento [1,2,3,4]      =>      Just 1
 primerElemento [2,3,4]        =>      Just 2
 primerElemento []             =>      Nothing
@@ -198,6 +206,7 @@ atender x = Just x
 
 {-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 atender (Encolada Ajedrecista VaciaC)   =>   Just (Encolada Ajedrecista VaciaC)
 -}
 
@@ -208,6 +217,7 @@ encolar d (Encolada d' c) = Encolada d' (encolar d c)
 
 {-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 encolar (Ciclista BMX) (Encolada Ajedrecista (Encolada (Velocista 500) (Encolada Ajedrecista VaciaC)))      =>      Encolada Ajedrecista (Encolada (Velocista 500) (Encolada Ajedrecista (Encolada (Ciclista BMX) VaciaC)))
 -}
 
@@ -220,6 +230,7 @@ busca (Encolada d c) z
 
 {-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 busca (Encolada Ajedrecista (Encolada (Velocista 500) (Encolada Ajedrecista (Encolada (Ciclista BMX) (Encolada (Futbolista Arco 1 Derecha 190) (Encolada (Futbolista Delantera 15 Izquierda 175) VaciaC)))))) Mediocampo        =>      Nothing
 
 busca (Encolada Ajedrecista (Encolada (Velocista 500) (Encolada Ajedrecista (Encolada (Ciclista BMX) (Encolada (Futbolista Arco 1 Derecha 190) (Encolada (Futbolista Delantera 15 Izquierda 175) VaciaC)))))) Arco              =>      Just (Futbolista Arco 1 Derecha 190)
@@ -280,13 +291,65 @@ la_borrar a' (Nodo a b ls)
 
 {-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 la_concat (Nodo 1 2 (Nodo 3 4 Vacia)) (Nodo 5 6 Vacia)             =>  Nodo 1 2 (Nodo 5 6 (Nodo 3 4 Vacia))
-
 la_agregar (Nodo 1 2 (Nodo 5 6 (Nodo 3 4 Vacia))) 8 9              =>  Nodo 1 2 (Nodo 5 6 (Nodo 3 4 (Nodo 8 9 Vacia)))
-
 la_pares (Nodo 1 2 (Nodo 5 6 (Nodo 3 4 (Nodo 8 9 Vacia))))         =>  [(1,2),(5,6),(3,4),(8,9)]
-
 la_busca (Nodo 1 2 (Nodo 5 6 (Nodo 3 4 (Nodo 8 9 Vacia)))) 5       =>  Just 6
-
 la_borrar 3 (Nodo 1 2 (Nodo 5 6 (Nodo 3 4 (Nodo 8 9 Vacia))))      =>  Nodo 1 2 (Nodo 5 6 (Nodo 8 9 Vacia))
 -}
+
+
+-- ######################################## OPCIONALES ########################################
+-- ############################################ 9 ############################################
+data Arbol a = Hoja | Rama ( Arbol a ) a ( Arbol a ) deriving (Show)
+
+type Prefijos = Arbol String
+
+can , cana , canario , canas , cant , cantar , canto :: Prefijos
+can     = Rama cana "can" cant
+cana    = Rama canario "a" canas
+canario = Rama Hoja "rio" Hoja
+canas   = Rama Hoja "s" Hoja
+cant    = Rama cantar "t" canto
+cantar  = Rama Hoja "ar" Hoja
+canto   = Rama Hoja "o" Hoja
+
+-- a
+a_long :: Arbol a -> Int
+a_long (Rama Hoja _ Hoja) = 1
+a_long (Rama izquierda _ derecha) = 1 + (a_long izquierda) + (a_long derecha)
+
+-- b
+a_hojas :: Arbol a -> Int
+a_hojas Hoja = 1
+a_hojas (Rama izquierda _ derecha) = (a_hojas izquierda) + (a_hojas derecha)
+
+-- c
+a_inc :: Num a => Arbol a -> Arbol a
+a_inc (Rama Hoja n Hoja) = Rama Hoja (n + 1) Hoja
+a_inc (Rama izquierda n derecha) = Rama (a_inc izquierda) (n + 1) (a_inc derecha)
+
+-- d
+a_map :: (a -> b) -> Arbol a -> Arbol b
+a_map fn (Rama Hoja dato Hoja) = Rama Hoja (fn dato) Hoja
+a_map fn (Rama izquierda dato derecha) = Rama (a_map fn izquierda) (fn dato) (a_map fn derecha)
+
+{-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+uno                    =>  Rama (Rama (Rama Hoja 4 Hoja) 2 (Rama Hoja 5 Hoja)) 1 (Rama Hoja 3 Hoja)
+
+a_inc uno              =>  Rama (Rama (Rama Hoja 5 Hoja) 3 (Rama Hoja 6 Hoja)) 2 (Rama Hoja 4 Hoja)
+a_map (\x -> x*2) uno  =>  Rama (Rama (Rama Hoja 8 Hoja) 4 (Rama Hoja 10 Hoja)) 2 (Rama Hoja 6 Hoja)
+-}
+
+type MisNumeros = Arbol Int
+
+uno , dos , tres , cuatro , cinco :: MisNumeros
+uno     = Rama dos 1 tres
+dos    = Rama cuatro 2 cinco
+tres    = Rama Hoja 3 Hoja
+cuatro = Rama Hoja 4 Hoja
+cinco   = Rama Hoja 5 Hoja
+
