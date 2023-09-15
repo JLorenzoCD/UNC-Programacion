@@ -229,3 +229,64 @@ busca (Encolada Ajedrecista (Encolada (Velocista 500) (Encolada Ajedrecista (Enc
 
 -- b
 -- A una lista
+
+
+-- ############################################ 8 ############################################
+data ListaAsoc a b = Vacia | Nodo a b ( ListaAsoc a b ) deriving (Show)
+
+type Diccionario = ListaAsoc String String      -- La clave/indice es la palabra y el dato es el significado
+type Padron = ListaAsoc Int String              -- La clave/indice es el DNI y el dato es el lugar de votacion
+
+-- a
+type GuiaTelefonica = ListaAsoc String Int      -- La clave/indice es el Nombre y el dato es el telefono
+
+-- b - 1)
+la_long :: ListaAsoc a b -> Int
+la_long Vacia = 0
+la_long (Nodo _ _ ls) = 1 + (la_long ls)
+
+-- b - 2)
+la_concat :: ListaAsoc a b -> ListaAsoc a b -> ListaAsoc a b
+la_concat Vacia ls2 = ls2
+la_concat ls1 Vacia = ls1
+la_concat (Nodo a b ls1) (Nodo a' b' ls2) = Nodo a b (Nodo a' b' ( la_concat ls1 ls2))
+
+-- b - 3)
+la_agregar :: (Eq a) => ListaAsoc a b -> a -> b -> ListaAsoc a b
+la_agregar Vacia a' b' = Nodo a' b' (Vacia)
+la_agregar (Nodo a b ls) a' b'
+    | a == a' = Nodo a b' (ls)
+    | otherwise = Nodo a b (la_agregar ls a' b')
+
+-- b - 4)
+la_pares :: ListaAsoc a b -> [(a, b)]
+la_pares Vacia = []
+la_pares (Nodo a b ls) = (a, b) : (la_pares ls)
+
+-- b - 5)
+la_busca :: (Eq a) => ListaAsoc a b -> a -> Maybe b
+la_busca Vacia _ = Nothing
+la_busca (Nodo a b ls) a'
+    | a == a' = Just b
+    | otherwise = la_busca ls a'
+
+-- b - 6)
+la_borrar :: (Eq a) => a -> ListaAsoc a b -> ListaAsoc a b
+la_borrar _ Vacia = Vacia
+la_borrar a' (Nodo a b ls)
+    | a == a' = ls
+    | otherwise = Nodo a b (la_borrar a' ls)
+
+
+{-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+la_concat (Nodo 1 2 (Nodo 3 4 Vacia)) (Nodo 5 6 Vacia)             =>  Nodo 1 2 (Nodo 5 6 (Nodo 3 4 Vacia))
+
+la_agregar (Nodo 1 2 (Nodo 5 6 (Nodo 3 4 Vacia))) 8 9              =>  Nodo 1 2 (Nodo 5 6 (Nodo 3 4 (Nodo 8 9 Vacia)))
+
+la_pares (Nodo 1 2 (Nodo 5 6 (Nodo 3 4 (Nodo 8 9 Vacia))))         =>  [(1,2),(5,6),(3,4),(8,9)]
+
+la_busca (Nodo 1 2 (Nodo 5 6 (Nodo 3 4 (Nodo 8 9 Vacia)))) 5       =>  Just 6
+
+la_borrar 3 (Nodo 1 2 (Nodo 5 6 (Nodo 3 4 (Nodo 8 9 Vacia))))      =>  Nodo 1 2 (Nodo 5 6 (Nodo 8 9 Vacia))
+-}
