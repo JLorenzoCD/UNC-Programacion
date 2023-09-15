@@ -304,6 +304,7 @@ la_borrar 3 (Nodo 1 2 (Nodo 5 6 (Nodo 3 4 (Nodo 8 9 Vacia))))      =>  Nodo 1 2 
 -- ############################################ 9 ############################################
 data Arbol a = Hoja | Rama ( Arbol a ) a ( Arbol a ) deriving (Show)
 
+{-
 type Prefijos = Arbol String
 
 can , cana , canario , canas , cant , cantar , canto :: Prefijos
@@ -314,6 +315,7 @@ canas   = Rama Hoja "s" Hoja
 cant    = Rama cantar "t" canto
 cantar  = Rama Hoja "ar" Hoja
 canto   = Rama Hoja "o" Hoja
+-}
 
 -- a
 a_long :: Arbol a -> Int
@@ -338,12 +340,6 @@ a_map fn (Rama izquierda dato derecha) = Rama (a_map fn izquierda) (fn dato) (a_
 {-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-uno                    =>  Rama (Rama (Rama Hoja 4 Hoja) 2 (Rama Hoja 5 Hoja)) 1 (Rama Hoja 3 Hoja)
-
-a_inc uno              =>  Rama (Rama (Rama Hoja 5 Hoja) 3 (Rama Hoja 6 Hoja)) 2 (Rama Hoja 4 Hoja)
-a_map (\x -> x*2) uno  =>  Rama (Rama (Rama Hoja 8 Hoja) 4 (Rama Hoja 10 Hoja)) 2 (Rama Hoja 6 Hoja)
--}
-
 type MisNumeros = Arbol Int
 
 uno , dos , tres , cuatro , cinco :: MisNumeros
@@ -353,3 +349,70 @@ tres    = Rama Hoja 3 Hoja
 cuatro = Rama Hoja 4 Hoja
 cinco   = Rama Hoja 5 Hoja
 
+
+uno                    =>  Rama (Rama (Rama Hoja 4 Hoja) 2 (Rama Hoja 5 Hoja)) 1 (Rama Hoja 3 Hoja)
+
+a_inc uno              =>  Rama (Rama (Rama Hoja 5 Hoja) 3 (Rama Hoja 6 Hoja)) 2 (Rama Hoja 4 Hoja)
+a_map (\x -> x*2) uno  =>  Rama (Rama (Rama Hoja 8 Hoja) 4 (Rama Hoja 10 Hoja)) 2 (Rama Hoja 6 Hoja)
+-}
+
+
+-- ############################################ 10 ############################################
+-- a
+data ABB a = VacioABB | RamaABB ( ABB a ) a ( ABB a ) deriving (Show)
+type MisNumerosIngles = ABB Int
+
+five, three, eight, one, four, ten :: MisNumerosIngles
+five   = RamaABB three 5 eight
+three  = RamaABB one 3 four
+eight    = RamaABB VacioABB 8 ten
+one    = RamaABB VacioABB 1 VacioABB
+four   = RamaABB VacioABB 4 VacioABB
+ten    = RamaABB VacioABB 10 VacioABB
+
+-- b
+insertarABB :: (Ord a) => a -> ABB a -> ABB a
+insertarABB dato (VacioABB) = RamaABB VacioABB dato VacioABB
+insertarABB dato (RamaABB izquierda dato' derecha)
+    | dato' < dato = RamaABB izquierda dato' (insertarABB dato derecha)
+    | dato <= dato' = RamaABB (insertarABB dato izquierda) dato' derecha
+
+--c
+buscarABB :: (Eq a) => a -> ABB a -> Bool
+buscarABB _ VacioABB = False
+buscarABB dato (RamaABB izquierda dato' derecha)
+    | dato == dato' = True
+    | otherwise = (buscarABB dato izquierda) || (buscarABB dato derecha)
+
+-- d
+mayor_a_todos :: Ord a => a -> ABB a -> Bool
+mayor_a_todos _ VacioABB = True
+mayor_a_todos dato (RamaABB izquierda dato' derecha)
+    | dato' < dato = (mayor_a_todos dato izquierda) && (mayor_a_todos dato derecha)
+    | otherwise = False
+
+
+menor_a_todos :: Ord a => a -> ABB a -> Bool
+menor_a_todos _ VacioABB = True
+menor_a_todos dato (RamaABB izquierda dato' derecha)
+    | dato <= dato' = (menor_a_todos dato izquierda) && (menor_a_todos dato derecha)
+    | otherwise = False
+
+
+verificarABB :: (Ord a) => ABB a -> Bool
+verificarABB VacioABB = True
+verificarABB (RamaABB izquierda dato derecha)
+    | (mayor_a_todos dato izquierda) && (menor_a_todos dato derecha) = (verificarABB izquierda) && (verificarABB derecha)
+    | otherwise = False
+
+
+{-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ EJEMPLO DE EJECUCION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ejemplo1 = RamaABB ( RamaABB VacioABB 10 VacioABB ) 2 ( RamaABB VacioABB 11 VacioABB )
+ejemplo2 = RamaABB ( RamaABB ( RamaABB VacioABB 1 VacioABB ) 3 ( RamaABB VacioABB 7 VacioABB ) ) 5 ( RamaABB VacioABB 8 ( RamaABB VacioABB 10 VacioABB ) )
+
+verificarABB ejemplo1   =>  False
+verificarABB ejemplo2   =>  False
+verificarABB five       =>  True        (ejercicio 9, ejemplo de ejecucion)
+-}
