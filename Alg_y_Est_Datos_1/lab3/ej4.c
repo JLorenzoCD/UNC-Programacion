@@ -85,3 +85,15 @@ void apartado_b(void)
     printf("z: %i \n", z);
     printf("m: %i \n", m);
 }
+
+/*
+Ejecucion del ejercicio
+-- a
+Ejecucion 1         |[σ0 : (x => 1,   y => 2)]|   =>   |[σ : (x => 2,   y => 2)]|
+Ejecucion 2         |[σ0 : (x => 15,  y => 7)]|   =>   |[σ : (x => 0,   y => 7)]|
+
+-- b
+Ejecucion 1         |[σ0 : (x => 5,   y => 4,  z => 8,  m => 0)]|   =>   |[σ0 : (x => 5,   y => 4,  z => 8,  m => 4)]|
+Ejecucion 2         |[σ0 : (x => 1,   y => 2,  z => 3,  m => 4)]|   =>   |[σ0 : (x => 1,   y => 2,  z => 3,  m => 1)]|
+Ejecucion 3         |[σ0 : (x => 4,   y => 3,  z => 2,  m => 1)]|   =>   |[σ0 : (x => 4,   y => 3,  z => 2,  m => 2)]|
+*/

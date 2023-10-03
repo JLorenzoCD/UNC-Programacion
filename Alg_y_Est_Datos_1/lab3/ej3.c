@@ -85,3 +85,21 @@ void programa_c(void)
     printf("x: %i \n", x);
     printf("y: %i \n", y);
 }
+
+/*
+Ejecucion del ejercicio
+-- 1.a
+Ejecucion 1         |[σ0 : (x => 7)]|   =>   |[σ : (x => 5)]|
+Ejecucion 2         |[σ0 : (x => 15)]|  =>   |[σ : (x => 5)]|
+Ejecucion 3         |[σ0 : (x => -86]|  =>   |[σ : (x => 5)]|
+
+-- 1.b
+Ejecucion 1         |[σ0 : (x => 7,   y => 3)]|   =>   |[σ : (x => 10,   y => 6)]|
+Ejecucion 2         |[σ0 : (x => 15,  y => 7)]|   =>   |[σ : (x => 22,   y => 14)]|
+Ejecucion 3         |[σ0 : (x => -86, y => 1)]|   =>   |[σ : (x => -85,  y => 2)]|
+
+-- 1.c
+Ejecucion 1         |[σ0 : (x => 7,   y => 3)]|   =>   |[σ : (x => 13,   y => 6)]|
+Ejecucion 2         |[σ0 : (x => 15,  y => 7)]|   =>   |[σ : (x => 29,   y => 14)]|
+Ejecucion 3         |[σ0 : (x => -86, y => 1)]|   =>   |[σ : (x => -84,  y => 2)]|
+*/
