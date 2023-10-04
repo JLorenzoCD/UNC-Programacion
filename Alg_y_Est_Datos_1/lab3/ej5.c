@@ -43,7 +43,7 @@ void ejercicio_h(void){
         i -= 1;
         printf("Valor de i posterior a la resta: %i\n\n", i);
     }
-    
+
     printf("Termina el programa con i = %i\n", i);
 }
 
@@ -61,7 +61,7 @@ void ejercicio_i(void){
         i = 0;
         printf("Valor de i posterior a la resta: %i\n\n", i);
     }
-    
+
     printf("Termina el programa con i = %i\n", i);
 }
 
@@ -121,9 +121,9 @@ void punto_2(void){
         printf("Previo a las operaciones: x = %d, res = %s, i = %d\n", x, res ? "True": "False", i);
 
         res = res && (x % i != 0);
+        i += 1;
 
         printf("Posteriores a las operaciones: x = %d, res = %s, i = %d\n", x, res ? "True": "False", i);
-        i += 1;
     }
 }
 
@@ -135,5 +135,5 @@ Ejecucion i    |[σ0 : (i => 400)]|   =>   |[σ : (i => 0)]|
 
 -- b
 Ejecucion 1    |[σ0 : (x => 13,   y => 3,  i => 0)]|        =>   |[σ : (x => 1,   y => 3,  i => 4)]|
-Ejecucion 2    |[σ0 : (x => 5,   res => False,  i => 0)]|   =>   |[σ : (x => 5,   res => True,  i => 4)]|
+Ejecucion 2    |[σ0 : (x => 5,   res => False,  i => 0)]|   =>   |[σ : (x => 5,   res => True,  i => 5)]|
 */
