@@ -54,20 +54,17 @@ void imprimir_arreglo(int n_max, int a[]){
 }
 
 comp_t cuantos(int tam, int a[], int elem){
-    comp_t x;
-    x.menores = 0;
-    x.iguales = 0;
-    x.mayores = 0;
+    comp_t cuant = { .menores = 0, .iguales = 0, .mayores = 0};
 
     for(int i = 0; i < tam; i++){
         if(a[i] < elem){
-            x.menores += 1;
+            cuant.menores += 1;
         }else if (elem == a[i]){
-            x.iguales += 1;
+            cuant.iguales += 1;
         }else{
-            x.mayores += 1;
+            cuant.mayores += 1;
         }
     }
 
-    return x;
+    return cuant;
 }
