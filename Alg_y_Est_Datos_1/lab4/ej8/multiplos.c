@@ -81,9 +81,7 @@ bool todos_pares(int tam, int a[]){
     bool son_pares = true;
 
     for(int i = 0; i < tam && son_pares; i++){
-        if(a[i] % 2 != 0){
-            son_pares = false;
-        }
+        son_pares = a[i] % 2 == 0;
     }
 
     return son_pares;
@@ -93,9 +91,7 @@ bool existe_multiplo(int m, int tam, int a[]){
     bool hay_multiplo = false;
 
     for(int i = 0; i < tam && !hay_multiplo; i++){
-        if(a[i] % m == 0){
-            hay_multiplo = true;
-        }
+        hay_multiplo = a[i] % m == 0;
     }
 
     return hay_multiplo;

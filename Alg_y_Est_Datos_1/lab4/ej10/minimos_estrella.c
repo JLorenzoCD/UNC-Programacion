@@ -5,7 +5,7 @@
 void pedir_arreglo(int n_max, int a[]);
 void imprimir_arreglo(int n_max, int a[]);
 
-bool el_en_arreglo(int tam, int a[], int el);
+bool elem_en_arreglo(int tam, int a[], int elem);
 
 int minimo_pares(int tam, int a[]);
 int minimo_impares(int tam, int a[]);
@@ -25,8 +25,8 @@ int main(void){
         printf("El minimo par del arreglo es: %i\n", min_par);
     }
 
-    // La validacion de el_en_arreglo se realiza debido a que INT_MAX es impar (2147483647)
-    if(min_impar != INT_MAX || el_en_arreglo(N, arr, INT_MAX)){
+    // La validacion de elem_en_arreglo se realiza debido a que INT_MAX es impar (2147483647)
+    if(min_impar != INT_MAX || elem_en_arreglo(N, arr, INT_MAX)){
         printf("El minimo impar del arreglo es: %i\n", min_impar);
     }
 
@@ -80,13 +80,11 @@ int minimo_impares(int tam, int a[]){
     return min_impar;
 }
 
-bool el_en_arreglo(int tam, int a[], int el){
+bool elem_en_arreglo(int tam, int a[], int elem){
     bool esta = false;
 
     for(int i = 0; i < tam && !esta; i++){
-        if(el == a[i]){
-            esta = true;
-        }
+        esta = elem == a[i];
     }
 
     return esta;
