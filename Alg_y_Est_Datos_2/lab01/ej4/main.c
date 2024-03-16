@@ -8,6 +8,8 @@ $ ./reader ../input/example-unsorted.in
 // First, the standard lib includes, alphabetically ordered
 #include <assert.h>
 #include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 // My modules
 #include "array_helpers.h"
