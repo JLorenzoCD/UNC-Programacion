@@ -1,7 +1,17 @@
-// $ gcc -Wall -Werror -Wextra -pedantic -std=c99 -c array_helpers.c
-// $ gcc -Wall -Werror -Wextra -pedantic -std=c99 -c main.c
-// $ gcc -Wall -Werror -Wextra -pedantic -std=c99 array_helpers.o main.o -o reader
-// $ ./reader ../input/example-easy.in
+/*
+$ gcc -Wall -Werror -Wextra -pedantic -std=c99 -c array_helpers.c
+$ gcc -Wall -Werror -Wextra -pedantic -std=c99 -c main.c
+$ gcc -Wall -Werror -Wextra -pedantic -std=c99 array_helpers.o main.o -o reader
+$ ./reader ../input/example-easy.in
+*/
+
+/*
+-¿Por qué en la compilación con gcc no se le pasa array_helpers.h como
+parámetro?
+
+Se puede con el comando:
+$ gcc -Wall -Werror -Wextra -pedantic -std=c99 main.c array_helpers.c -o reader && ./reader ../input/example-easy.in
+*/
 
 /* First, the standard lib includes, alphabetically ordered */
 #include <assert.h>
