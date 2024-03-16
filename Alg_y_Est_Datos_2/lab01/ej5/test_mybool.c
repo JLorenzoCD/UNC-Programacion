@@ -1,5 +1,10 @@
+// $ gcc -Wall -Werror -Wextra -pedantic -std=c99 ./mybool.h ./test_mybool.c -o main.out && ./main.out
+
+// Standar modules
 #include <stdio.h>    /* printf()...            */
 #include <stdlib.h>   /* EXIT_SUCCESS           */
+
+// My modules
 #include "mybool.h"   /* mybool, true, false... */
 
 int main(void) {
