@@ -10,13 +10,11 @@
 #define MAX_SIZE 100000
 
 unsigned int array_from_stdin(int array[], unsigned int max_size) {
-    FILE *file = stdin;
-
     unsigned int length;
     printf("Set the length of the array (MAX LENGTH=%u): ", max_size);
-    int fscanf_result = fscanf(file, "%u", &length); // Set length
+    int scanf_result = scanf("%u", &length); // Set length
 
-    if (fscanf_result <= 0) {
+    if (scanf_result <= 0) {
         printf("Error reading array length\n");
         exit(EXIT_FAILURE);
     }
@@ -29,12 +27,10 @@ unsigned int array_from_stdin(int array[], unsigned int max_size) {
     printf("\n");
     int x;
     for (unsigned int i = 0; i < length; i++) { // Set items
-        printf("arr[%u] = ", i);
-        fscanf(file, "%d", &x);
+        printf("arr[%u] = ", i); scanf("%d", &x);
         array[i] = x;
     }
 
-    fclose(file); //* No se si es necesario, pero por las dudas lo dejo
     return length;
 }
 
