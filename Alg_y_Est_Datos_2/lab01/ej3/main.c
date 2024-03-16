@@ -13,17 +13,18 @@ Se puede con el comando:
 $ gcc -Wall -Werror -Wextra -pedantic -std=c99 main.c array_helpers.c -o reader && ./reader ../input/example-easy.in
 */
 
-/* First, the standard lib includes, alphabetically ordered */
+// First, the standard lib includes, alphabetically ordered
 #include <assert.h>
 #include <stdbool.h>
 
+// My modules
 #include "array_helpers.h"
 
-/* Maximum allowed length of the array */
+// Maximum allowed length of the array
 #define MAX_SIZE 100000
 
 void print_help(char *program_name) {
-    /* Print the usage help of this program. */
+    // Print the usage help of this program.
     printf("Usage: %s <input file path>\n\n"
         "Loads an array given in a file in disk and prints it on the screen."
         "\n\n"
@@ -41,7 +42,7 @@ void print_help(char *program_name) {
 }
 
 char *parse_filepath(int argc, char *argv[]) {
-    /* Parse the filepath given by command line argument. */
+    // Parse the filepath given by command line argument.
     char *result = NULL;
     // Program takes exactly two arguments
     // (the program's name itself and the input-filepath)
@@ -60,16 +61,16 @@ char *parse_filepath(int argc, char *argv[]) {
 int main(int argc, char *argv[]) {
     char *filepath = NULL;
 
-    /* parse the filepath given in command line arguments */
+    // parse the filepath given in command line arguments
     filepath = parse_filepath(argc, argv);
 
-    /* create an array of MAX_SIZE elements */
+    // create an array of MAX_SIZE elements
     int array[MAX_SIZE];
 
-    /* parse the file to fill the array and obtain the actual length */
+    // parse the file to fill the array and obtain the actual length
     unsigned int length = array_from_file(array, MAX_SIZE, filepath);
 
-    /*dumping the array*/
+    // dumping the array
     array_dump(array, length);
 
     return EXIT_SUCCESS;
