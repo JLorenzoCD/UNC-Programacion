@@ -1,5 +1,5 @@
-#ifndef ARRAY_HELPERS_MODULE
-#define ARRAY_HELPERS_MODULE
+#ifndef _ARRAY_HELPERS_H_
+#define _ARRAY_HELPERS_H_
 #pragma once // En toeoria solo con esta linea al incicio bastaria, pero al aprecer no es standar a si que se utiliza el #ifndef ....
 
 // Standard libs
