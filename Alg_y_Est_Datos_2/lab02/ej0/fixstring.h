@@ -5,7 +5,7 @@
 
 #define FIXSTRING_MAX 100
 
-typedef char fixstring [FIXSTRING_MAX];
+typedef char fixstring[FIXSTRING_MAX];
 
 unsigned int fstring_length(fixstring s);
 /*
@@ -25,7 +25,4 @@ bool fstring_less_eq(fixstring s1, fixstring s2);
  * Indicates if string <s1> is less than string <s2> using alphabetical order
  *
  */
-
-
 #endif
-
