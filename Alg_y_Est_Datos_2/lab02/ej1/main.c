@@ -1,3 +1,16 @@
+/*
+$ gcc -Wall -Werror -Wextra -pedantic -std=c99 -c array_helpers.c sort.c main.c
+$ gcc -Wall -Werror -Wextra -pedantic -std=c99 -no-pie array_helpers.o sort.o sort_helpers.o main.o -o sorter
+$ ./sorter ../input/example-unsorted.in
+
+
+$ gcc -Wall -Werror -Wextra -pedantic -std=c99 -c array_helpers.c sort.c main.c && gcc -Wall -Werror -Wextra -pedantic -std=c99 -no-pie array_helpers.o sort.o sort_helpers.o main.o -o sorter &&  ./sorter ../input/example-unsorted.in
+
+Analizar los resultados del programa y responder: ¿Qué relación implementa la función
+goes_before()?¿Cuál es el criterio que usa?
+Debe ser una comparacion entre absolutos del tipo |a| < |b|.
+*/
+
 /* First, the standard lib includes, alphabetically ordered */
 #include <assert.h>
 #include <stdio.h>
