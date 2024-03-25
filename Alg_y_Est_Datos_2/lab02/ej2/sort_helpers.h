@@ -16,9 +16,8 @@ void swap(int a[], unsigned int i, unsigned int j);
 
 unsigned int partition(int a[], unsigned int izq, unsigned int der);
 /* Permutes elements of a[izq..der] and returns pivot such that:
-     - izq <= pivot <= der
-     - elements in a[izq,pivot) all 'go_before' (according to function goes_before) a[pivot]
-     - a[pivot] 'goes_before' all the elements in a(pivot,der]
+      - izq <= pivot <= der
+      - elements in a[izq,pivot) all 'go_before' (according to function goes_before) a[pivot]
+      - a[pivot] 'goes_before' all the elements in a(pivot,der]
 */
-
 #endif

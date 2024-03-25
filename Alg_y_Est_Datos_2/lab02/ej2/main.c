@@ -13,19 +13,21 @@ static const unsigned int MAX_SIZE = 100000u;
 
 void print_help(char *program_name) {
     /* Print the usage help of this program. */
-    printf("Usage: %s <input file path>\n\n"
-           "Sort an array given in a file in disk.\n"
-           "\n"
-           "The input file must have the following format:\n"
-           " * The first line must contain only a positive integer,"
-           " which is the length of the array.\n"
-           " * The second line must contain the members of the array"
-           " separated by one or more spaces. Each member must be an integer."
-           "\n\n"
-           "In other words, the file format is:\n"
-           "<amount of array elements>\n"
-           "<array elem 1> <array elem 2> ... <array elem N>\n\n",
-           program_name);
+    printf(
+        "Usage: %s <input file path>\n\n"
+        "Sort an array given in a file in disk.\n"
+        "\n"
+        "The input file must have the following format:\n"
+        " * The first line must contain only a positive integer,"
+        " which is the length of the array.\n"
+        " * The second line must contain the members of the array"
+        " separated by one or more spaces. Each member must be an integer."
+        "\n\n"
+        "In other words, the file format is:\n"
+        "<amount of array elements>\n"
+        "<array elem 1> <array elem 2> ... <array elem N>\n\n",
+        program_name
+    );
 }
 
 char *parse_filepath(int argc, char *argv[]) {
@@ -66,5 +68,6 @@ int main(int argc, char *argv[]) {
 
     /* check if it is a permutation of original */
     assert(array_is_permutation_of(copy, array, length));
+
     return EXIT_SUCCESS;
 }
