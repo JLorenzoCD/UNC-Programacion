@@ -1,3 +1,12 @@
+/*
+$ gcc -Wall -Werror -Wextra -pedantic -std=c99 -c array_helpers.c sort.c main.c
+$ gcc -Wall -Werror -Wextra -pedantic -std=c99 -no-pie array_helpers.o sort.o sort_helpers.o main.o -o sorter
+$ ./sorter ../input/example-unsorted.in
+
+
+$ gcc -Wall -Werror -Wextra -pedantic -std=c99 -c array_helpers.c sort.c main.c && gcc -Wall -Werror -Wextra -pedantic -std=c99 -no-pie array_helpers.o sort.o sort_helpers.o main.o -o sorter &&  ./sorter ../input/example-unsorted.in
+*/
+
 /* First, the standard lib includes, alphabetically ordered */
 #include <assert.h>
 #include <stdio.h>
@@ -59,6 +68,9 @@ int main(int argc, char *argv[]) {
     /* create a copy of the array, to do some checks later */
     int copy[MAX_SIZE];
     array_copy(copy, array, length);
+
+    /* using the quick sort algorithm to sort the array */
+    quick_sort(array, length);
 
     /* show the ordered array in the screen */
     array_dump(array, length);
