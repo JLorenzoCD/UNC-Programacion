@@ -1,3 +1,15 @@
+/*
+$ gcc -Wall -Werror -Wextra -pedantic -std=c99 array_helpers.c fixstring.c sort_helpers.c sort.c main.c -o word_sorter
+$ ./word_sorter ./input/example-easywords.in
+$ ./word_sorter ./input/example-names.in
+
+
+$ gcc -Wall -Werror -Wextra -pedantic -std=c99 array_helpers.c fixstring.c sort_helpers.c sort.c main.c -o word_sorter && ./word_sorter ./input/example-easywords.in
+
+
+$ gcc -Wall -Werror -Wextra -pedantic -std=c99 $(find . -name '*.c') -o word_sorter && ./word_sorter ./input/example-easywords.in
+*/
+
 /* First, the standard lib includes, alphabetically ordered */
 #include <assert.h>
 #include <stdio.h>
@@ -14,19 +26,21 @@ static const unsigned int MAX_SIZE = 1000u;
 
 void print_help(char *program_name) {
     /* Print the usage help of this program. */
-    printf("Usage: %s <input file path>\n\n"
-           "Sort an array given in a file in disk.\n"
-           "\n"
-           "The input file must have the following format:\n"
-           " * The first line must contain only a positive integer,"
-           " which is the length of the array.\n"
-           " * The second line must contain the members of the array"
-           " separated by one or more spaces. Each member must be an integer."
-           "\n\n"
-           "In other words, the file format is:\n"
-           "<amount of array elements>\n"
-           "<array elem 1> <array elem 2> ... <array elem N>\n\n",
-           program_name);
+    printf(
+        "Usage: %s <input file path>\n\n"
+        "Sort an array given in a file in disk.\n"
+        "\n"
+        "The input file must have the following format:\n"
+        " * The first line must contain only a positive integer,"
+        " which is the length of the array.\n"
+        " * The second line must contain the members of the array"
+        " separated by one or more spaces. Each member must be an integer."
+        "\n\n"
+        "In other words, the file format is:\n"
+        "<amount of array elements>\n"
+        "<array elem 1> <array elem 2> ... <array elem N>\n\n",
+        program_name
+    );
 }
 
 char *parse_filepath(int argc, char *argv[]) {

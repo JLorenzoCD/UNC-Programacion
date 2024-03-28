@@ -30,7 +30,8 @@ void array_dump(fixstring a[], unsigned int length) {
         fprintf(stdout, "%s", a[i]);
         if (i < length - 1) {
             fprintf(stdout, " ");
-        } else {
+        }
+        else {
             fprintf(stdout, "\n");
         }
     }
@@ -49,9 +50,11 @@ bool array_is_permutation_of(fixstring a[], fixstring b[], unsigned int length) 
     return (result);
 }
 
-unsigned int array_from_file(fixstring array[],
-                 unsigned int max_size,
-                 const char *filepath) {
+unsigned int array_from_file(
+    fixstring array[],
+    unsigned int max_size,
+    const char *filepath
+) {
     FILE *file = NULL;
     file = fopen(filepath, "r");
     if (file == NULL) {
@@ -71,7 +74,7 @@ unsigned int array_from_file(fixstring array[],
         exit(EXIT_FAILURE);
     }
     while (i < size) {
-        res = fscanf(file," %" STR_VALUE(FIXSTRING_MAX) "s ", array[i]);
+        res = fscanf(file, " %" STR_VALUE(FIXSTRING_MAX) "s ", array[i]);
         if (res != 1) {
             fprintf(stderr, "Invalid array.\n");
             exit(EXIT_FAILURE);

@@ -19,8 +19,8 @@ void array_dump(fixstring a[], unsigned int length);
 */
 
 void array_copy(fixstring dst[], fixstring src[], unsigned int length);
-/* 
-   Copy the array 'src' into the array 'dst' 
+/*
+    Copy the array 'src' into the array 'dst'
 */
 
 unsigned int array_from_file(fixstring a[], unsigned int max_size, const char *filepath);
@@ -36,7 +36,7 @@ unsigned int array_from_file(fixstring a[], unsigned int max_size, const char *f
     must contain 'length' amount of elements separated by one or more
     blank characters.
 
-    Those elements are copied into the array 'a'. 
+    Those elements are copied into the array 'a'.
     The array_length must be lower or equal to 'max_size'.
 
     Returns the length of the array.
