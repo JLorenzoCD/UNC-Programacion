@@ -1,3 +1,12 @@
+/*
+$ gcc -Wall -Werror -Wextra -pedantic -std=c99 -c array_helpers.c sort.c main.c
+$ gcc -Wall -Werror -Wextra -pedantic -std=c99 -no-pie array_helpers.o sort.o sort_helpers.o main.o -o sorter
+$ ./sorter ../input/example-unsorted.in
+
+
+$ gcc -Wall -Werror -Wextra -pedantic -std=c99 -c array_helpers.c sort.c main.c && gcc -Wall -Werror -Wextra -pedantic -std=c99 -no-pie array_helpers.o sort.o sort_helpers.o main.o -o sorter &&  ./sorter ../input/example-unsorted.in
+*/
+
 /* First, the standard lib includes, alphabetically ordered */
 #include <assert.h>
 #include <stdio.h>
@@ -11,21 +20,35 @@
 /* Maximum allowed length of the array */
 static const unsigned int MAX_SIZE = 100000u;
 
+void start_statistics() {
+    /* reset counters and set time */
+    reset_comparisons_counter();
+    reset_swaps_counter();
+    set_current_time();
+}
+
+void show_statistics(char algorithm_name[]) {
+    printf("statistics for %s\n", algorithm_name);
+    printf("time elapsed=%g,    comparisons: %10u,    swaps: %10u\n", calculate_elapsed_time(), comparisons_number(), swaps_number());
+}
+
 void print_help(char *program_name) {
     /* Print the usage help of this program. */
-    printf("Usage: %s <input file path>\n\n"
-           "Sort an array given in a file in disk.\n"
-           "\n"
-           "The input file must have the following format:\n"
-           " * The first line must contain only a positive integer,"
-           " which is the length of the array.\n"
-           " * The second line must contain the members of the array"
-           " separated by one or more spaces. Each member must be an integer."
-           "\n\n"
-           "In other words, the file format is:\n"
-           "<amount of array elements>\n"
-           "<array elem 1> <array elem 2> ... <array elem N>\n\n",
-           program_name);
+    printf(
+        "Usage: %s <input file path>\n\n"
+        "Sort an array given in a file in disk.\n"
+        "\n"
+        "The input file must have the following format:\n"
+        " * The first line must contain only a positive integer,"
+        " which is the length of the array.\n"
+        " * The second line must contain the members of the array"
+        " separated by one or more spaces. Each member must be an integer."
+        "\n\n"
+        "In other words, the file format is:\n"
+        "<amount of array elements>\n"
+        "<array elem 1> <array elem 2> ... <array elem N>\n\n",
+        program_name
+    );
 }
 
 char *parse_filepath(int argc, char *argv[]) {
@@ -58,36 +81,28 @@ int main(int argc, char *argv[]) {
     int copy[MAX_SIZE];
     array_copy(copy, array, length);
 
-    /* reset counters and set time */
-    reset_comparisons_counter();
-    reset_swaps_counter();
-    set_current_time();
-
-    /* do the actual sorting */
+    /* Statistics of selection_sort */
+    start_statistics();
     selection_sort(copy, length);
+    show_statistics("selection_sort");
 
-    /* show statistics for selection_sort */
-    printf("statistics for selection_sort\n");
-    printf("time elapsed=%g,    comparisons: %10u,    swaps: %10u\n", calculate_elapsed_time(), comparisons_number(), swaps_number());
+    /* Copying the arrangement again to undo the sort */
+    array_copy(copy, array, length);
 
-    /* all the same for insertion_sort */
-    /* Usando la idea de las líneas de códigos anteriores
-       muestre las estadísticas (tiempo de ejecución, número de comparaciones e
-       intercambios realizados) para insertion_sort. No te olvides que antes debes
-       copiar el arreglo original, resetear los contadores y setear el tiempo.
-    */
-    /* needs implementation */
+    /* Statistics of insertion_sort */
+    printf("\n\n");
+    start_statistics();
+    insertion_sort(copy, length);
+    show_statistics("insertion_sort");
 
+    /* Copying the arrangement again to undo the sort */
+    array_copy(copy, array, length);
 
-    /* all the same for quick_sort */
-    /* Usando la idea de las líneas de códigos anteriores
-       muestre las estadísticas (tiempo de ejecución, número de comparaciones e
-       intercambios realizados) para quick_sort. No te olvides que antes debes
-       copiar el arreglo original, resetear los contadores y setear el tiempo.
-    */
-    /* needs implementation */
-
-
+    /* Statistics of quick_sort */
+    printf("\n\n");
+    start_statistics();
+    quick_sort(copy, length);
+    show_statistics("quick_sort");
 
     return EXIT_SUCCESS;
 }
