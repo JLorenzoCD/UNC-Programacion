@@ -22,3 +22,11 @@ bool array_is_sorted(fixstring array[], unsigned int length) {
     }
     return (i >= length);
 }
+
+bool array_is_sorted_len(fixstring array[], unsigned int length) {
+    unsigned int i = 1;
+    while (i < length && fstring_length(array[i - 1]) <= fstring_length(array[i])) {
+        i++;
+    }
+    return (i >= length);
+}

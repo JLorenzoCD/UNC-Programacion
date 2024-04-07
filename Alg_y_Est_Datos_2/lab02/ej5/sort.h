@@ -14,4 +14,6 @@ void quick_sort(fixstring a[], unsigned int length);
 
 */
 
+void quick_sort_len(fixstring a[], unsigned int length);
+
 #endif

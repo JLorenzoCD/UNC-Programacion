@@ -40,3 +40,36 @@ static void quick_sort_rec(fixstring a[], unsigned int izq, unsigned int der) {
 void quick_sort(fixstring a[], unsigned int length) {
     quick_sort_rec(a, 0, (length == 0) ? 0 : length - 1);
 }
+
+
+static unsigned int partition_len(fixstring a[], unsigned int izq, unsigned int der) {
+    unsigned int ppiv = izq;
+    unsigned int i = izq + 1;
+    unsigned int j = der;
+
+    while (i <= j) {
+        if (fstring_length(a[i]) <= fstring_length(a[ppiv])) { i++; }
+        else if (fstring_length(a[ppiv]) <= fstring_length(a[j])) { j--; }
+        else if (fstring_length(a[ppiv]) <= fstring_length(a[i]) && fstring_length(a[j]) <= fstring_length(a[ppiv])) {
+            swap(a, i, j);
+            i++;
+            j--;
+        }
+    }
+    swap(a, ppiv, j);
+    ppiv = j;
+
+    return ppiv;
+}
+
+static void quick_sort_rec_len(fixstring a[], unsigned int izq, unsigned int der) {
+    if (izq < der) {
+        unsigned int ppiv = partition_len(a, izq, der);
+        quick_sort_rec_len(a, izq, (ppiv == 0u ? 0u : ppiv - 1));
+        quick_sort_rec_len(a, ppiv + 1, der);
+    }
+}
+
+void quick_sort_len(fixstring a[], unsigned int length) {
+    quick_sort_rec_len(a, 0, (length == 0) ? 0 : length - 1);
+}
