@@ -44,6 +44,7 @@ void print_help(char *program_name) {
         "<int> -> *<char>*\n"
         "<int> -> *<char>*\n"
         "<int> -> *<char>*\n"
+        "Where <int> is an integer belonging to the interval [0,1000) and <char> is a character, integers are not allowed to be repeated, the minimum must start at 0 and all integers must be up to the maximum integer found.\n"
         "\n\n"
         "Example:\n"
         "2 -> *l*\n"
