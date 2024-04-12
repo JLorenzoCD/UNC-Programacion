@@ -1,4 +1,8 @@
 /*
+gcc -Werror -Wall -Wextra -pedantic -std=c99 helpers.c sort.c main.c -o mysort && ./mysort ../input/atp-players2022.in
+*/
+
+/*
   @file main.c
   @brief Main program function implementation
 */
