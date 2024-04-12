@@ -6,7 +6,7 @@
 unsigned int fstring_length(fixstring s) {
     unsigned int i = 0;
 
-    while (s[i] != '\0') {
+    while (i < FIXSTRING_MAX && s[i] != '\0') {
         i += 1;
     }
 
@@ -16,7 +16,7 @@ unsigned int fstring_length(fixstring s) {
 bool fstring_eq(fixstring s1, fixstring s2) {
     unsigned int i = 0;
 
-    while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i]) {
+    while (i < FIXSTRING_MAX && !(s1[i] == '\0' || s2[i] == '\0') && s1[i] == s2[i]) {
         i += 1;
     }
 
@@ -26,11 +26,11 @@ bool fstring_eq(fixstring s1, fixstring s2) {
 bool fstring_less_eq(fixstring s1, fixstring s2) {
     unsigned int i = 0;
 
-    while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i]) {
+    while (i < FIXSTRING_MAX && !(s1[i] == '\0' || s2[i] == '\0') && s1[i] == s2[i]) {
         i += 1;
     }
 
-    return s1[i] < s2[i];
+    return s1[i] <= s2[i];
 }
 
 void fstring_set(fixstring s1, const fixstring s2) {
