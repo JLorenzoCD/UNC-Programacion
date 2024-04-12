@@ -11,7 +11,7 @@
 #include "sort.h"
 #include "player.h"
 
-bool goes_before(player_t x, player_t y){
+bool goes_before(player_t x, player_t y) {
     // completar aquí
     return true;
 }

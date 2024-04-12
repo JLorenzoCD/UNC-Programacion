@@ -4,15 +4,16 @@
 */
 #ifndef _HELPERS_H
 #define _HELPERS_H
-#include <stdbool.h>
+
 #include "player.h"
+#include <stdbool.h>
 
 /**
  * @brief Return whether the array 'other' is a permutation of the array 'a'
  *        The arrays 'a' and 'other' must have both the same 'length'.
  *
- * @param[in]      a array of players
- * @param[in]      other another array of players
+ * @param[in]  a      array of players
+ * @param[in]  other  another array of players
  * @param[in]  length length of both arrays
  *
  * @return true is 'a' is permutation of 'other', false otherwise
@@ -27,7 +28,6 @@ bool array_is_permutation_of(player_t a[], player_t other[], unsigned int length
  * @param[in]      length  Length of both arrays
  */
 void array_copy(player_t dst[], player_t src[], unsigned int length);
-
 
 /**
  * @brief Loads the contents of the file into the array of players.
