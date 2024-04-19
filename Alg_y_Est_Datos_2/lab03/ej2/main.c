@@ -18,18 +18,20 @@
  */
 void print_help(char *program_name) {
   /* Print the usage help of this program. */
-  printf("Usage: %s <input file path>\n\n"
-         "Load climate data from a given file in disk.\n"
-         "\n"
-         "The input file must exist in disk and every line in it must have the "
-         "following format:\n\n"
-         "<year> <month> <day> <temperature> <high> <low> <pressure> "
-         "<moisture> <precipitations>\n\n"
-         "Those elements must be integers and will be copied into the "
-         "multidimensional integer array 'a'.\n"
-         "The dimensions of the array are given by the macro tclimate.\n"
-         "\n\n",
-         program_name);
+  printf(
+    "Usage: %s <input file path>\n\n"
+    "Load climate data from a given file in disk.\n"
+    "\n"
+    "The input file must exist in disk and every line in it must have the "
+    "following format:\n\n"
+    "<year> <month> <day> <temperature> <high> <low> <pressure> "
+    "<moisture> <precipitations>\n\n"
+    "Those elements must be integers and will be copied into the "
+    "multidimensional integer array 'a'.\n"
+    "The dimensions of the array are given by the macro tclimate.\n"
+    "\n\n",
+    program_name
+  );
 }
 
 /**
@@ -78,7 +80,7 @@ int main(int argc, char *argv[]) {
   // array_dump(array);
 
   int min_temp = lowest_historical_min_temp(array);
-  printf("La temperatura minima registrada es de: '%i'\n", min_temp);
+  printf("La temperatura minima registrada es de: %i dècimas\n", min_temp);
 
   int a_min_temp[YEARS];
   higher_max_temp_annually(array, a_min_temp);
@@ -87,13 +89,13 @@ int main(int argc, char *argv[]) {
   highest_monthly_amount_of_rainfall(array, a_max_rainfall);
 
   for (unsigned int year = 0; year < YEARS; year++) {
-    printf("La minima temperatura del año %u fue de %i décimas\n",
-           FST_YEAR + year, a_min_temp[year]);
+    printf("La maxima temperatura del año %u fue de %i décimas\n",
+      FST_YEAR + year, a_min_temp[year]);
   }
 
   for (unsigned int year = 0; year < YEARS; year++) {
     printf("El mes con mayor precipitacion del año %u fue el %u\n",
-           FST_YEAR + year, a_max_rainfall[year] + 1u);
+      FST_YEAR + year, a_max_rainfall[year] + 1u);
   }
 
   return (EXIT_SUCCESS);

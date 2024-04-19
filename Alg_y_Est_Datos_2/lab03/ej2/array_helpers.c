@@ -16,8 +16,7 @@
  * @param[in] day Day of the month. We assume all month have 28 days.
  * @return True when is the last line of the file, False otherwise
  */
-static bool is_last_line(unsigned int year, unsigned int month,
-                         unsigned int day) {
+static bool is_last_line(unsigned int year, unsigned int month, unsigned int day) {
   return year == YEARS - 1u && month == december && day == DAYS - 1u;
 }
 
