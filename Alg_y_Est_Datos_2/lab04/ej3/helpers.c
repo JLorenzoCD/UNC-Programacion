@@ -56,21 +56,18 @@ bool array_is_permutation_of(player_t a[], player_t b[], unsigned int length) {
  *
  * @return Amount of read characters
  */
-static unsigned int process_string(FILE *file, char separator, char result[], unsigned int result_max_size)
-{
+static unsigned int process_string(FILE *file, char separator, char result[], unsigned int result_max_size) {
     unsigned int str_size = 0u;
     char c = (char)((int)separator + 1);
     while (!feof(file) && c != separator) {
         c = fgetc(file);
-        if (c != separator && str_size < result_max_size - 1u)
-        {
+        if (c != separator && str_size < result_max_size - 1u) {
             result[str_size] = c;
-            ++str_size;    
+            ++str_size;
         }
-        else if (c != separator && str_size >= result_max_size - 1u)
-        {
+        else if (c != separator && str_size >= result_max_size - 1u) {
             fprintf(stderr, "Max string length reached: %u \n", result_max_size);
-            exit(EXIT_FAILURE);           
+            exit(EXIT_FAILURE);
         }
     }
     result[str_size] = '\0';
@@ -97,9 +94,9 @@ static unsigned int process_unsigned(FILE *file) {
 
 void atp_dump(player_t atp[], unsigned int length) {
     for (unsigned int i = 0u; i < length; ++i) {
-        fprintf(stdout,"%s ", atp[i]->name);
-        fprintf(stdout,"%s ", atp[i]->country);
-        fprintf(stdout,"%u %u %u %u\n", atp[i]->rank, atp[i]->age, atp[i]->points, atp[i]->tournaments);
+        fprintf(stdout, "%s ", atp[i]->name);
+        fprintf(stdout, "%s ", atp[i]->country);
+        fprintf(stdout, "%u %u %u %u\n", atp[i]->rank, atp[i]->age, atp[i]->points, atp[i]->tournaments);
     }
 }
 

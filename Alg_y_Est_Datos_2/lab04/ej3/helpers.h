@@ -4,7 +4,9 @@
 */
 #ifndef _HELPERS_H
 #define _HELPERS_H
+
 #include <stdbool.h>
+
 #include "player.h"
 
 /**
@@ -20,7 +22,7 @@
 bool array_is_permutation_of(player_t a[], player_t other[], unsigned int length);
 
 /**
- * @brief Copy the array 'src' into the array 'dst' 
+ * @brief Copy the array 'src' into the array 'dst'
  *
  * @param[in]      dst     The destination
  * @param[in]      src     The source
@@ -31,7 +33,7 @@ void array_copy(player_t dst[], player_t src[], unsigned int length);
 
 /**
  * @brief Loads the contents of the file into the array of players.
- *        NOTE: this method reserves memory for each player element. 
+ *        NOTE: this method reserves memory for each player element.
  *        The caller is responsible for free these memory.
  *
  * @param[in]  filepath  Filepath to player atp file

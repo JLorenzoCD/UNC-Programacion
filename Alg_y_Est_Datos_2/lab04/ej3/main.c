@@ -1,3 +1,5 @@
+// gcc -Wall -Wextra -pedantic -Werror -std=c99 $(find . -name "*.c") -o main.out && ./main.out ./input/atp-players2022.in
+
 /*
   @file main.c
   @brief Main program function implementation
@@ -7,7 +9,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
 
 /* Then, this project's includes, alphabetically ordered */
 #include "helpers.h"
@@ -22,17 +23,19 @@
  */
 void print_help(char *program_name) {
     /* Print the usage help of this program. */
-    printf("Usage: %s <input file path>\n\n"
-           "Sort an array given in a file in disk.\n"
-           "\n"
-           "The input file must have the following format:\n"
-           " * Each line must contain the name of a player"
-           " without spaces followed by a three-letter country"
-           " code, the rank of the player, his age, his atp points"
-           " and the number of tournaments played during the year.\n"
-           " * Values must be separated by one or more spaces.\n"
-           " * Numeric values must be natural numbers.\n\n",
-           program_name);
+    printf(
+        "Usage: %s <input file path>\n\n"
+        "Sort an array given in a file in disk.\n"
+        "\n"
+        "The input file must have the following format:\n"
+        " * Each line must contain the name of a player"
+        " without spaces followed by a three-letter country"
+        " code, the rank of the player, his age, his atp points"
+        " and the number of tournaments played during the year.\n"
+        " * Values must be separated by one or more spaces.\n"
+        " * Numeric values must be natural numbers.\n\n",
+        program_name
+    );
 }
 
 /**
@@ -91,7 +94,7 @@ int main(int argc, char *argv[]) {
         end = clock();
 
         /* cpu_time used to sort the array */
-        double used_cpu_time = ((double) (end - start)) / CLOCKS_PER_SEC;
+        double used_cpu_time = ((double)(end - start)) / CLOCKS_PER_SEC;
 
         /* show the ordered array in the screen */
         atp_dump(atp, length);
@@ -106,5 +109,10 @@ int main(int argc, char *argv[]) {
     /* check if it is a permutation of original */
     assert(array_is_permutation_of(copy, atp, length));
     destroy(atp, length);
+
+    /*
+    En el Lab03 - Ej3 - La ordenacion me tardo 0.002395 seconds. Mientra que la ordenacion con punteros me tardo 0.0.000536 seconds.
+    */
+
     return (EXIT_SUCCESS);
 }
