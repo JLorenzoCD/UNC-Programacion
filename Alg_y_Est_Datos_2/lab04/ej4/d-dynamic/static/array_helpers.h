@@ -22,7 +22,7 @@ unsigned int array_from_file(int a[], unsigned int max_size, const char *filepat
     must contain 'length' amount of elements separated by one or more
     blank characters.
 
-    Those elements are copied into the array 'a'. 
+    Those elements are copied into the array 'a'.
     The array_length must be lower or equal to 'max_size'.
 
     Returns the length of the array.
