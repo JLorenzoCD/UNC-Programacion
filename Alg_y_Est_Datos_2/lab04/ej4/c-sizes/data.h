@@ -3,7 +3,7 @@
 
 #define NAME_MAXSIZE 30
 
-typedef char name_t [NAME_MAXSIZE];
+typedef char name_t[NAME_MAXSIZE];
 
 typedef struct _s_data {
     name_t name;
@@ -11,6 +11,4 @@ typedef struct _s_data {
     unsigned int height;
 } data_t;
 
-
 #endif
-
