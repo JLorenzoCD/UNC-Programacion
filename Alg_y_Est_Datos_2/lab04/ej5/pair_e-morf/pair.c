@@ -1,3 +1,4 @@
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -24,20 +25,28 @@ pair_t pair_new(elem x, elem y) {
 }
 
 elem pair_first(pair_t p) {
+    assert(p != NULL && "p is a pointer to NULL");
+
     return p->fst;
 }
 
 elem pair_second(pair_t p) {
+    assert(p != NULL && "p is a pointer to NULL");
+
     return p->snd;
 }
 
 pair_t pair_swapped(pair_t p) {
+    assert(p != NULL && "p is a pointer to NULL");
+
     return pair_new(p->snd, p->fst);
 }
 
 pair_t pair_destroy(pair_t p) {
-    free(p);
-    p = NULL;
+    if (p != NULL) {
+        free(p);
+        p = NULL;
+    }
 
     return p;
 }
