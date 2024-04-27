@@ -11,10 +11,12 @@ static const unsigned int MAX_SIZE = 100000u;
 
 void print_help(char *program_name) {
     /* Print the usage help of this program. */
-    printf("Usage: %s <input file path>\n\n"
-           "Compute average for the list of numbers in file.\n"
-           "\n",
-           program_name);
+    printf(
+        "Usage: %s <input file path>\n\n"
+        "Compute average for the list of numbers in file.\n"
+        "\n",
+        program_name
+    );
 }
 
 char *parse_filepath(int argc, char *argv[]) {
@@ -31,19 +33,25 @@ char *parse_filepath(int argc, char *argv[]) {
     return (result);
 }
 
-
 float average(list l) {
-/*
-    Needs implementation.
-*/
+    unsigned int sum = 0u;
+    unsigned int length = length_list(l);
+
+    for (unsigned int i = 0u; i < length; i++) {
+        sum += index_list(l, i);
+    }
+
+    return (length == 0u ? 0u : (float)sum / length);
 }
 
 list array_to_list(int array[], unsigned int length) {
-    /* Initialize the list */
+    list l = empty_list();
+
     for (unsigned int i = 0u; i < length; ++i) {
-        /* Add element to the list  */
+        addr_list(l, array[i]);
     }
-    /* Return list */
+
+    return l;
 }
 
 int main(int argc, char *argv[]) {
