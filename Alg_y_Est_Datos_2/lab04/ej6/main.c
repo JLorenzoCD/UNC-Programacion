@@ -7,13 +7,15 @@
 
 void print_help(char *program_name) {
     /* Print the usage help of this program. */
-    printf("Usage: %s <input file path>\n\n"
-           "Check if in a given file there is a perfect match between all opening and closing parentheses.\n"
-           "\n",
-           program_name);
+    printf(
+        "Usage: %s <input file path>\n\n"
+        "Check if in a given file there is a perfect match between all opening and closing parentheses.\n"
+        "\n",
+        program_name
+    );
 }
 
-FILE * open_input_file(const char *filepath) {
+FILE* open_input_file(const char *filepath) {
     FILE *file = NULL;
     file = fopen(filepath, "r");
     if (file == NULL) {
@@ -23,7 +25,7 @@ FILE * open_input_file(const char *filepath) {
     return (file);
 }
 
-char *parse_filepath(int argc, char *argv[]) {
+char* parse_filepath(int argc, char *argv[]) {
     /* Parse the filepath given by command line argument. */
     char *result = NULL;
 
@@ -42,17 +44,26 @@ bool matching_parentheses(FILE * file) {
     bool balanced = true;
     char letter;
 
+    c = counter_init();
+
     while (!feof(file) && balanced) {
         letter = fgetc(file);
+
         if (letter == '(') {
             counter_inc(c);
-        } else if (counter_is_init(c)) {
+        }
+        else if (counter_is_init(c)) {
             balanced = (letter != ')');
-        } else if (letter == ')') {
+        }
+        else if (letter == ')') {
             counter_dec(c);
         }
     }
-    return (balanced && counter_is_init(c));
+    balanced = balanced && counter_is_init(c);
+
+    counter_destroy(c);
+
+    return balanced;
 }
 
 int main(int argc, char *argv[]) {
@@ -68,7 +79,8 @@ int main(int argc, char *argv[]) {
     /* call the function for the matching parentheses check */
     if (matching_parentheses(file)) {
         printf("Parentheses match.\n");
-    } else {
+    }
+    else {
         printf("Parentheses mismatch.\n");
     }
 

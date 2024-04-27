@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 /* counter as a pointer to structs to guarantee encapsulation */
-typedef struct _counter * counter;
+typedef struct _counter *counter;
 
 
 /* Constructors */
@@ -39,7 +39,7 @@ counter counter_copy(counter c);
 
 void counter_destroy(counter c);
 /*
-   Frees memory for c.
+    Frees memory for c.
 */
 
 #endif
