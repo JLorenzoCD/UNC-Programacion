@@ -34,7 +34,7 @@ char *parse_filepath(int argc, char *argv[]) {
 }
 
 float average(list l) {
-    unsigned int sum = 0u;
+    int sum = 0u;
     unsigned int length = length_list(l);
 
     for (unsigned int i = 0u; i < length; i++) {
