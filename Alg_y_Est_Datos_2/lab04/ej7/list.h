@@ -14,7 +14,7 @@ list empty_list(void);
     Being l the returned list, is_empty_list(l) should be true.
 */
 
-void addl_list(list_elem e, list l);
+void addl_list(list_elem e, list *l);
 /*
     Adds the element e to the beginning of the list l.
 */
@@ -32,13 +32,13 @@ list_elem head_list(list l);
     Returns the first element of the list l.
 */
 
-void tail_list(list l);
+void tail_list(list *l);
 /*
     PRE: !is_empty_list(l).
     Delete the first element of the list l.
 */
 
-void addr_list(list l, list_elem e);
+void addr_list(list *l, list_elem e);
 /*
     Adds element e to the end of list l.
 */
@@ -48,7 +48,7 @@ unsigned int length_list(list l);
     Returns the number of elements in the list l.
 */
 
-void concat_list(list l1, list l2);
+void concat_list(list *l1, list *l2);
 /*
     Add all the elements of l2 to the end of l1 in the same order.
 */
@@ -59,13 +59,13 @@ list_elem index_list(list l, unsigned int n);
     PRE: length_list(l) > n
 */
 
-void take_list(list l, unsigned int n);
+void take_list(list *l, unsigned int n);
 /*
     Leave only the first n elements in it, eliminating the rest.
     PRE: length_list(l) > n
 */
 
-void drop_list(list l, unsigned int n);
+void drop_list(list *l, unsigned int n);
 /*
     Remove the first n elements from l.
     PRE: length_list(l) > n
@@ -78,7 +78,7 @@ list copy_list(list l1);
 
 
 /* Destroy */
-void destroy_list(list l);
+void destroy_list(list *l);
 /*
     Frees memory for l.
 */

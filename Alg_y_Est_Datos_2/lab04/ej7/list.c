@@ -15,10 +15,11 @@ struct _node {
 /* Constructors */
 list empty_list(void) {
     list l = NULL;
+
     return l;
 }
 
-void addl_list(list_elem e, list l) {
+void addl_list(list_elem e, list *l) {
     list p = NULL;
 
     p = (list)malloc(sizeof(struct _node));
@@ -28,9 +29,9 @@ void addl_list(list_elem e, list l) {
     }
 
     p->elem = e;
-    p->next = l;
+    p->next = *l;
 
-    l = p;
+    *l = p;
     p = NULL;
 }
 
@@ -48,29 +49,29 @@ list_elem head_list(list l) {
     return l->elem;
 }
 
-void tail_list(list l) {
-    assert(!is_empty_list(l));
+void tail_list(list *l) {
+    assert(!is_empty_list(*l));
 
-    list p = l;
+    list p = *l;
 
-    l = l->next;
+    *l = (*l)->next;
 
     free(p);
     p = NULL;
 }
 
-void addr_list(list l, list_elem e) {
+void addr_list(list *l, list_elem e) {
     list p, q;
 
     p = (list)malloc(sizeof(struct _node));
     p->elem = e;
     p->next = NULL;
 
-    if (l == NULL) {
-        l = p;
+    if (*l == NULL) {
+        *l = p;
     }
     else {
-        q = l;
+        q = *l;
         while (q->next != NULL) {
             q = q->next;
         }
@@ -92,18 +93,18 @@ unsigned int length_list(list l) {
     return length;
 }
 
-void concat_list(list l1, list l2) {
-    if (l1 == NULL) {
-        l1 = l2;
+void concat_list(list *l1, list *l2) {
+    if (*l1 == NULL) {
+        *l1 = *l2;
     }
     else {
-        list p = l1;
+        list p = *l1;
 
         while (p->next != NULL) {
             p = p->next;
         }
 
-        p->next = l2;
+        p->next = *l2;
     }
 }
 
@@ -111,7 +112,7 @@ list_elem index_list(list l, unsigned int n) {
     list p = l;
     unsigned int length = length_list(l);
 
-    assert(!(n < length));
+    assert(n < length);
 
     for (unsigned int i = 0; i < n; i++) {
         p = p->next;
@@ -120,33 +121,33 @@ list_elem index_list(list l, unsigned int n) {
     return p->elem;
 }
 
-void take_list(list l, unsigned int n) {
-    list p = l;
-    unsigned int length = length_list(l);
+void take_list(list *l, unsigned int n) {
+    list p = *l;
+    unsigned int length = length_list(*l);
 
-    assert(!(n < length));
+    assert(n < length);
 
     for (unsigned int i = 0; i < n; i++) {
         p = p->next;
     }
 
-    destroy_list(p->next);
+    destroy_list(&p->next);
     p->next = NULL;
 }
 
-void drop_list(list l, unsigned int n) {
-    list p = l;
-    unsigned int length = length_list(l);
+void drop_list(list *l, unsigned int n) {
+    list p = *l;
+    unsigned int length = length_list(*l);
 
-    assert(!(n < length));
+    assert(n < length);
 
     for (unsigned int i = 0; i < n; i++) {
         p = p->next;
     }
 
-    l = p->next;
+    *l = p->next;
 
-    destroy_list(p);
+    destroy_list(&p);
 }
 
 list copy_list(list l1) {
@@ -155,7 +156,7 @@ list copy_list(list l1) {
     list l2 = empty_list();
 
     while (p != NULL) {
-        addr_list(l2, p->elem);
+        addr_list(&l2, p->elem);
     }
 
     return l2;
@@ -165,18 +166,18 @@ list copy_list(list l1) {
 
 
 /* Destroy */
-void destroy_list(list l) {
-    if (l != NULL) {
-        list p = l;
+void destroy_list(list *l) {
+    if (*l != NULL) {
+        list p = *l;
 
         while (p != NULL) {
-            l = p->next;
+            *l = p->next;
 
             free(p);
-            p = l;
+            p = *l;
         }
 
-        l = NULL;
+        *l = NULL;
     }
 }
 

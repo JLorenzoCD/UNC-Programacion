@@ -48,7 +48,7 @@ list array_to_list(int array[], unsigned int length) {
     list l = empty_list();
 
     for (unsigned int i = 0u; i < length; ++i) {
-        addr_list(l, array[i]);
+        addr_list(&l, array[i]);
     }
 
     return l;
