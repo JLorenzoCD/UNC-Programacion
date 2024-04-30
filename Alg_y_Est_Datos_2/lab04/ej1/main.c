@@ -19,8 +19,8 @@ typedef struct _person {
 int main(void) {
 
   int x = 1;
-  person_t m = {90, 'M'};
-  int a[] = {0, 1, 2, 3};
+  person_t m = { 90, 'M' };
+  int a[] = { 0, 1, 2, 3 };
 
   /* Completar aquí:
      Al finalizar la ejecución las variables deben tener los siguientes valores
@@ -48,7 +48,7 @@ int main(void) {
   q->name_initial = 'F';
 
   p = a;
-  *(p + 1u) = 42;
+  p[1] = 42;
 
   printf("x = %d\n", x);
   printf("m = (%d, %c)\n", m.age, m.name_initial);
