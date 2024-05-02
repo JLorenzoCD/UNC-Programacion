@@ -48,7 +48,7 @@ unsigned int length_list(list l);
     Returns the number of elements in the list l.
 */
 
-void concat_list(list *l1, list *l2);
+void concat_list(list *l1, list l2);
 /*
     Add all the elements of l2 to the end of l1 in the same order.
 */
