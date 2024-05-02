@@ -1,16 +1,15 @@
-# Vars of Makefile
 CFLAGS = -Wall -Werror -Wextra -pedantic -std=c99
 
 all: b
 
 b: main.o
-	gcc $(CFLAGS) $< -o $@.out
+	gcc $(CFLAGS) main.o -o $@
 
 main.o: main.c data.h
-	gcc $(CFLAGS) -c $<
+	gcc $(CFLAGS) main.c -c
 
 run: b
-	./b.out
+	./b
 
 clear:
-	@rm -f ./main.o ./b.out
+	rm -f main.o ./b

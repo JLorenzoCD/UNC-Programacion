@@ -1,16 +1,15 @@
-# Vars of Makefile
 CFLAGS = -Wall -Werror -Wextra -pedantic -std=c99
 
 all: a
 
 a: array.o
-	gcc $(CFLAGS) $< -o $@.out
+	gcc $(CFLAGS) array.o -o $@
 
 array.o: array.c
-	gcc $(CFLAGS) -c $<
+	gcc $(CFLAGS) array.c -c
 
 run: a
-	./a.out
+	./a
 
 clear:
-	@rm -f ./array.o ./a.out
+	rm -f array.o ./a
