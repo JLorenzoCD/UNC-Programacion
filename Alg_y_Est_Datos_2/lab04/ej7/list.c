@@ -19,7 +19,7 @@ list empty_list(void) {
   return l;
 }
 
-void addl_list(list_elem e, list *l) {
+list addl_list(list_elem e, list *l) {
   list p = NULL;
 
   p = (list)malloc(sizeof(struct _node));
@@ -33,6 +33,8 @@ void addl_list(list_elem e, list *l) {
 
   *l = p;
   p = NULL;
+
+  return *l;
 }
 
 
@@ -47,7 +49,7 @@ list_elem head_list(list l) {
   return l->elem;
 }
 
-void tail_list(list *l) {
+list tail_list(list *l) {
   assert(!is_empty_list(*l));
 
   list p = *l;
@@ -56,9 +58,11 @@ void tail_list(list *l) {
 
   free(p);
   p = NULL;
+
+  return *l;
 }
 
-void addr_list(list *l, list_elem e) {
+list addr_list(list *l, list_elem e) {
   list p, q;
 
   p = (list)malloc(sizeof(struct _node));
@@ -76,6 +80,8 @@ void addr_list(list *l, list_elem e) {
 
     q->next = p;
   }
+
+  return *l;
 }
 
 unsigned int length_list(list l) {
@@ -91,7 +97,7 @@ unsigned int length_list(list l) {
   return length;
 }
 
-void concat_list(list *l1, list l2) {
+list concat_list(list *l1, list l2) {
   list cpy = copy_list(l2);
 
   if (*l1 == NULL) {
@@ -106,6 +112,8 @@ void concat_list(list *l1, list l2) {
 
     p->next = cpy;
   }
+
+  return *l1;
 }
 
 list_elem index_list(list l, unsigned int n) {
@@ -121,33 +129,38 @@ list_elem index_list(list l, unsigned int n) {
   return p->elem;
 }
 
-void take_list(list *l, unsigned int n) {
+list take_list(list *l, unsigned int n) {
   list p = *l;
   unsigned int length = length_list(*l);
 
   assert(n < length);
 
-  for (unsigned int i = 0; i < n; i++) {
+  for (unsigned int i = 0; i < n - 1u; i++) {
     p = p->next;
   }
 
   destroy_list(&p->next);
   p->next = NULL;
+
+  return *l;
 }
 
-void drop_list(list *l, unsigned int n) {
+list drop_list(list *l, unsigned int n) {
   list p = *l;
   unsigned int length = length_list(*l);
 
   assert(n < length);
 
-  for (unsigned int i = 0; i < n; i++) {
+  for (unsigned int i = 0; i < n - 1u; i++) {
     p = p->next;
   }
 
   *l = p->next;
+  p->next = NULL;
 
   destroy_list(&p);
+
+  return *l;
 }
 
 list copy_list(list l1) {
@@ -167,7 +180,7 @@ list copy_list(list l1) {
 
 
 /* Destroy */
-void destroy_list(list *l) {
+list destroy_list(list *l) {
   if (*l != NULL) {
     list p = *l;
 
@@ -180,4 +193,6 @@ void destroy_list(list *l) {
 
     *l = NULL;
   }
+
+  return *l;
 }

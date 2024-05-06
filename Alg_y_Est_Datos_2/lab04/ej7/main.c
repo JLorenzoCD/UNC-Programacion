@@ -75,5 +75,39 @@ int main(int argc, char *argv[]) {
     /* call the average function */
     printf("The average is: %.2f \n", average(l));
 
+    // Probando algunos procedimientos de la lista
+    /*
+    printf("\n");
+    printf("\n");
+    printf("\n");
+
+    int xa[] = { 1,2,3,4,5 };
+    int ya[] = { 6,7,8,9,10 };
+
+    list x = array_to_list(xa, 5u);
+    list y = array_to_list(ya, 5u);
+
+    concat_list(&x, y);
+    for (unsigned int i = 0; i < 10u; i++) {
+        printf("%d, ", index_list(x, i));
+    }
+    printf("\n");
+
+    take_list(&x, 8u);
+    for (unsigned int i = 0; i < 8u; i++) {
+        printf("%d, ", index_list(x, i));
+    }
+    printf("\n");
+
+    drop_list(&x, 2u);
+    for (unsigned int i = 0; i < 6u; i++) {
+        printf("%d, ", index_list(x, i));
+    }
+
+    printf("\n");
+    printf("\n");
+    */
+
+
     return (EXIT_SUCCESS);
 }
