@@ -54,6 +54,8 @@ float average(list l) {
         tail_list(&temp);
     }
 
+    destroy_list(&temp);
+
     return (length == 0u ? 0u : (float)sum / length);
 }
 
@@ -121,8 +123,12 @@ int main(int argc, char *argv[]) {
 
     printf("\n");
     printf("\n");
+
+    destroy_list(&x);
+    destroy_list(&y);
     */
 
+    destroy_list(&l);
 
     return (EXIT_SUCCESS);
 }
