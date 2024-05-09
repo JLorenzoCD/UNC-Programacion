@@ -51,16 +51,16 @@ char *string_filter(const char *str, char c) {
 }
 
 bool string_is_symmetric(const char *str) {
-    bool is_symetric = true;
+    bool is_symmetric = true;
     size_t len = string_length(str);
 
     if (len != 0u) {
-        for (size_t i = 0u; i < (len / 2) && is_symetric; i++) {
+        for (size_t i = 0u; i < (len / 2) && is_symmetric; i++) {
             if (str[i] != str[len - 1u - i]) {
-                is_symetric = false;
+                is_symmetric = false;
             }
         }
     }
 
-    return is_symetric;
+    return is_symmetric;
 }
