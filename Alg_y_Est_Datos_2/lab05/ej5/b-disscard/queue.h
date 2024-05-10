@@ -24,7 +24,7 @@ queue queue_enqueue(queue q, queue_elem e);
  *
  * PRE: {q --> queue}
  *  q = queue_enqueue(q, e);
- * POS: {q --> queue && !queue_is_empty() && queue_first(q) == e}
+ * POS: {q --> queue && !queue_is_empty()}
  *
  */
 

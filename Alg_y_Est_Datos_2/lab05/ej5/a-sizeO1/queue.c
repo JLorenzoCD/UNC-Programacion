@@ -61,7 +61,7 @@ queue queue_enqueue(queue q, queue_elem e) {
          *
          */
     }
-    assert(invrep(q) && !queue_is_empty(q) && queue_first(q) == e);
+    assert(invrep(q) && !queue_is_empty(q));
     return q;
 }
 
