@@ -13,7 +13,8 @@ char *string_clone(const char *str, size_t length) {
     */
 
     if (MAX_LENGTH <= length) {
-        length = MAX_LENGTH - 1u;
+        printf("The rope size is larger allowed: %u(MAX_LENGTH) < %lu(length)\n", MAX_LENGTH - 1u, length);
+        exit(EXIT_FAILURE);
     }
 
     char *output = NULL;
