@@ -26,26 +26,24 @@ char *string_filter(const char *str, char c) {
     }
 
     char *filter = NULL;
-    filter = (char*)malloc(sizeof(char) * len_filter);
+    filter = (char*)malloc(sizeof(char) * (len_filter + 1u)); // (+ 1u) para colocar el \0
     if (filter == NULL) {
         printf("Not enough memory\n");
         exit(EXIT_FAILURE);
     }
 
-    size_t i, j;
-    i = 0u;
-    j = 0u;
-    while (i < len) {
+    size_t  j = 0u;
+    for (size_t i = 0u; i < len; i++) {
         if (str[i] != c) {
             filter[j] = str[i];
 
             j++;
         }
-
-        i++;
     }
 
-    assert(i == len && j == len_filter);
+    filter[len_filter] = '\0';
+
+    assert(j == len_filter);
 
     return filter;
 }
