@@ -34,7 +34,7 @@ char *string_clone(const char *str, size_t length) {
 
 
 int main(void) {
-    char original[] = ""
+    char *original = ""
         "______ time ago in a galaxy far, far away...\n\n\n"
         ANSI_BRGOLD
         "         _______..___________.     ___      .______             \n"
@@ -73,7 +73,12 @@ int main(void) {
         "                Jedi....\n" ANSI_WHITE;
     char *copy = NULL;
 
-    copy = string_clone(original, sizeof(original) / sizeof(*original));
+    /*
+    No funciona colocar "sizeof(original) / sizeof(*original)", debido a que el sizeof de un arreglo, da la cantidad de elementos que contiene, en cambio, un sizeof de un puntero a un arreglo me da el sizeof del puntero, el cual es 8UL
+    */
+
+    size_t length = 1812u;
+    copy = string_clone(original, length);
 
     printf("Original:\n" ANSI_CYAN
         " %s\n", original);
