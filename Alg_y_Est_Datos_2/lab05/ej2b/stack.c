@@ -20,7 +20,7 @@ struct _s_stack {
 
 
 
-
+//! Si s == NULL, me tira error en todos lados, entonces tengo que realizar el invariante teniendo en cuenta esto
 // Constructors
 stack stack_empty() {
     stack new_stack = NULL;
@@ -117,14 +117,11 @@ stack_elem *stack_to_array(stack s) {
 
 // Destroy
 stack stack_destroy(stack *s) {
-    if (!stack_is_empty(*s)) {
+    if (*s != NULL) {
         while (!stack_is_empty(*s)) {
             stack_pop(s);
         }
 
-    }
-
-    if (*s != NULL) {
         free(*s);
         *s = NULL;
     }
