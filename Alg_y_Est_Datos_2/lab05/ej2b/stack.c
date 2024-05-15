@@ -18,9 +18,14 @@ struct _s_stack {
 };
 
 
+/* static bool invrep(stack s) {
+    //! Si s == NULL, me tira error en todos lados, entonces tengo que realizar el invariante teniendo en cuenta esto
+    bool inv = true;
+
+    return inv;
+} */
 
 
-//! Si s == NULL, me tira error en todos lados, entonces tengo que realizar el invariante teniendo en cuenta esto
 // Constructors
 stack stack_empty() {
     stack new_stack = NULL;
@@ -38,6 +43,10 @@ stack stack_empty() {
 }
 
 stack stack_push(stack *s, stack_elem e) {
+    if (*s == NULL) {
+        *s = stack_empty();
+    }
+
     node p = NULL;
 
     p = (node)malloc(sizeof(struct _s_node));
@@ -74,7 +83,7 @@ stack stack_pop(stack *s) {
 }
 
 unsigned int stack_size(stack s) {
-    return s->size;
+    return s == NULL ? 0u : s->size;
 }
 
 stack_elem stack_top(stack s) {
@@ -84,7 +93,7 @@ stack_elem stack_top(stack s) {
 }
 
 bool stack_is_empty(stack s) {
-    return s->size == 0u;
+    return s == NULL || s->size == 0u;
 }
 
 stack_elem *stack_to_array(stack s) {

@@ -10,7 +10,11 @@ struct _s_stack {
     stack next;
 };
 
+/* static bool invrep(stack s) {
+    bool inv = true;
 
+    return inv;
+} */
 
 
 // Constructors
