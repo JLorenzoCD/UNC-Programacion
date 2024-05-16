@@ -109,6 +109,22 @@ queue queue_dequeue(queue q) {
     return q;
 }
 
+queue queue_disscard(queue q, unsigned int n) {
+    assert(invrep(q) && !queue_is_empty(q) && n < q->size);
+
+    unsigned int i = 0u;
+
+    while (i <= n) {
+        q = queue_dequeue(q);
+
+        i++;
+    }
+
+    assert(invrep(q));
+
+    return q;
+}
+
 void queue_dump(queue q, FILE *file) {
     file = file == NULL ? stdout : file;
 

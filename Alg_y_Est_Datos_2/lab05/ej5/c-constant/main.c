@@ -59,6 +59,12 @@ int main(int argc, char *argv[]) {
     printf("length: %u\n", queue_size(q));
     queue_dump(q, stdout);
 
+    /* if (!queue_is_empty(q)) {
+        queue_user_disscard(q);
+
+        queue_dump(q, stdout);
+    } */
+
     queue_destroy(q);
 
     return EXIT_SUCCESS;
