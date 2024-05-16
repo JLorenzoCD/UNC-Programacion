@@ -109,10 +109,8 @@ stack_elem *stack_to_array(stack s) {
 
 // Destroy
 stack stack_destroy(stack *s) {
-    if (!stack_is_empty(*s)) {
-        while (!stack_is_empty(*s)) {
-            stack_pop(s);
-        }
+    while (!stack_is_empty(*s)) {
+        stack_pop(s);
     }
 
     *s = NULL;
