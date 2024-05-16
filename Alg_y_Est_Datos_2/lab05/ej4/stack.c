@@ -117,6 +117,8 @@ stack_elem *stack_to_array(stack s) {
 
 // Destroy
 stack stack_destroy(stack s) {
+    assert(invrep(s));
+
     if (s->elems != NULL) {
         free(s->elems);
         s->elems = NULL;
