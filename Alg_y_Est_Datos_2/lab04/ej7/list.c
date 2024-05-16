@@ -19,7 +19,7 @@ list empty_list(void) {
   return l;
 }
 
-list addl_list(list_elem e, list *l) {
+list addl_list(list_elem e, list l) {
   list p = NULL;
 
   p = (list)malloc(sizeof(struct _node));
@@ -29,12 +29,12 @@ list addl_list(list_elem e, list *l) {
   }
 
   p->elem = e;
-  p->next = *l;
+  p->next = l;
 
-  *l = p;
+  l = p;
   p = NULL;
 
-  return *l;
+  return l;
 }
 
 
@@ -49,31 +49,31 @@ list_elem head_list(list l) {
   return l->elem;
 }
 
-list tail_list(list *l) {
-  assert(!is_empty_list(*l));
+list tail_list(list l) {
+  assert(!is_empty_list(l));
 
-  list p = *l;
+  list p = l;
 
-  *l = (*l)->next;
+  l = l->next;
 
   free(p);
   p = NULL;
 
-  return *l;
+  return l;
 }
 
-list addr_list(list *l, list_elem e) {
+list addr_list(list l, list_elem e) {
   list p, q;
 
   p = (list)malloc(sizeof(struct _node));
   p->elem = e;
   p->next = NULL;
 
-  if (*l == NULL) {
-    *l = p;
+  if (l == NULL) {
+    l = p;
   }
   else {
-    q = *l;
+    q = l;
     while (q->next != NULL) {
       q = q->next;
     }
@@ -81,7 +81,7 @@ list addr_list(list *l, list_elem e) {
     q->next = p;
   }
 
-  return *l;
+  return l;
 }
 
 unsigned int length_list(list l) {
@@ -97,14 +97,14 @@ unsigned int length_list(list l) {
   return length;
 }
 
-list concat_list(list *l1, list l2) {
+list concat_list(list l1, list l2) {
   list cpy = copy_list(l2);
 
-  if (*l1 == NULL) {
-    *l1 = cpy;
+  if (l1 == NULL) {
+    l1 = cpy;
   }
   else {
-    list p = *l1;
+    list p = l1;
 
     while (p->next != NULL) {
       p = p->next;
@@ -113,7 +113,7 @@ list concat_list(list *l1, list l2) {
     p->next = cpy;
   }
 
-  return *l1;
+  return l1;
 }
 
 list_elem index_list(list l, unsigned int n) {
@@ -129,9 +129,9 @@ list_elem index_list(list l, unsigned int n) {
   return p->elem;
 }
 
-list take_list(list *l, unsigned int n) {
-  list p = *l;
-  unsigned int length = length_list(*l);
+list take_list(list l, unsigned int n) {
+  list p = l;
+  unsigned int length = length_list(l);
 
   assert(n < length);
 
@@ -139,15 +139,15 @@ list take_list(list *l, unsigned int n) {
     p = p->next;
   }
 
-  destroy_list(&p->next);
+  destroy_list(p->next);
   p->next = NULL;
 
-  return *l;
+  return l;
 }
 
-list drop_list(list *l, unsigned int n) {
-  list p = *l;
-  unsigned int length = length_list(*l);
+list drop_list(list l, unsigned int n) {
+  list p = l;
+  unsigned int length = length_list(l);
 
   assert(n < length);
 
@@ -155,12 +155,12 @@ list drop_list(list *l, unsigned int n) {
     p = p->next;
   }
 
-  *l = p->next;
+  l = p->next;
   p->next = NULL;
 
-  destroy_list(&p);
+  destroy_list(p);
 
-  return *l;
+  return l;
 }
 
 list copy_list(list l1) {
@@ -169,7 +169,7 @@ list copy_list(list l1) {
   list l2 = empty_list();
 
   while (p != NULL) {
-    addr_list(&l2, p->elem);
+    l2 = addr_list(l2, p->elem);
     p = p->next;
   }
 
@@ -180,19 +180,19 @@ list copy_list(list l1) {
 
 
 /* Destroy */
-list destroy_list(list *l) {
-  if (*l != NULL) {
-    list p = *l;
+list destroy_list(list l) {
+  if (l != NULL) {
+    list p = l;
 
     while (p != NULL) {
-      *l = p->next;
+      l = p->next;
 
       free(p);
-      p = *l;
+      p = l;
     }
 
-    *l = NULL;
+    l = NULL;
   }
 
-  return *l;
+  return l;
 }

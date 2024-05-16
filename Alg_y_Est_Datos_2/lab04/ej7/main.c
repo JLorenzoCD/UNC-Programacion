@@ -51,10 +51,10 @@ float average(list l) {
     list temp = copy_list(l);
     while (!is_empty_list(temp)) {
         sum += head_list(temp);
-        tail_list(&temp);
+        temp = tail_list(temp);
     }
 
-    destroy_list(&temp);
+    destroy_list(temp);
 
     return (length == 0u ? 0u : (float)sum / length);
 }
@@ -63,7 +63,7 @@ list array_to_list(int array[], unsigned int length) {
     list l = empty_list();
 
     for (unsigned int i = 0u; i < length; ++i) {
-        addr_list(&l, array[i]);
+        l = addr_list(l, array[i]);
     }
 
     return l;
@@ -104,19 +104,19 @@ int main(int argc, char *argv[]) {
     list x = array_to_list(xa, 5u);
     list y = array_to_list(ya, 5u);
 
-    concat_list(&x, y);
+    x = concat_list(x, y);
     for (unsigned int i = 0; i < 10u; i++) {
         printf("%d, ", index_list(x, i));
     }
     printf("\n");
 
-    take_list(&x, 8u);
+    x = take_list(x, 8u);
     for (unsigned int i = 0; i < 8u; i++) {
         printf("%d, ", index_list(x, i));
     }
     printf("\n");
 
-    drop_list(&x, 2u);
+    x = drop_list(x, 2u);
     for (unsigned int i = 0; i < 6u; i++) {
         printf("%d, ", index_list(x, i));
     }
@@ -124,11 +124,11 @@ int main(int argc, char *argv[]) {
     printf("\n");
     printf("\n");
 
-    destroy_list(&x);
-    destroy_list(&y);
+    destroy_list(x);
+    destroy_list(y);
     */
 
-    destroy_list(&l);
+    destroy_list(l);
 
     return (EXIT_SUCCESS);
 }
