@@ -8,22 +8,22 @@ int main(void) {
     stack s = stack_empty();
 
     printf("TEST #1: ¿Funciona bien stack_pop() para pilas de tamaño 1?\n");
-    stack_push(&s, 1);
+    s = stack_push(s, 1);
     assert(stack_size(s) == 1u);
-    stack_pop(&s);
+    s = stack_pop(s);
     assert(stack_size(s) == 0u);
     printf("TEST #1: OK\n\n");
 
 
     printf("TEST #2: Si la pila queda vacía, ¿puedo volver a insertar elementos?\n");
-    stack_push(&s, 5);
-    stack_push(&s, 2);
+    s = stack_push(s, 5);
+    s = stack_push(s, 2);
     assert(stack_size(s) == 2u);
     printf("TEST #2: OK\n\n");
 
 
     printf("TEST #3: La función stack_to_array() devuelve NULL para una pila vacía?\n");
-    stack_destroy(&s);
+    s = stack_destroy(s);
     s = stack_empty();
     assert(stack_size(s) == 0u);
 
@@ -37,13 +37,13 @@ int main(void) {
     int arr_reverse[] = { 5, 4, 3, 2, 1 };
     int *arr_of_stack = NULL;
 
-    stack_destroy(&s);
+    s = stack_destroy(s);
     s = stack_empty();
     assert(stack_size(s) == 0u);
 
     size_t len_arr = sizeof(arr) / sizeof(*arr);
     for (size_t i = 0u; i < len_arr; i++) {
-        stack_push(&s, arr[i]);
+        s = stack_push(s, arr[i]);
     }
 
     arr_of_stack = stack_to_array(s);
@@ -54,7 +54,7 @@ int main(void) {
     printf("TEST #4: OK\n\n");
 
 
-    stack_destroy(&s);
+    s = stack_destroy(s);
     free(arr_of_stack);
 
     printf("Pasaron todos los tests.\n");

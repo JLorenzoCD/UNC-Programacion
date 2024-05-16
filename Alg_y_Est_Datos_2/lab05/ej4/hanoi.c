@@ -23,11 +23,12 @@ hanoi_t hanoi_init(unsigned int disk_count) {
     assert(hanoi != NULL);
 
     hanoi->aux = stack_empty();
-    hanoi->target = NULL;
+    hanoi->source = stack_empty();
+    hanoi->target = stack_empty();
     hanoi->disk_count = disk_count;
 
     for (unsigned int i = disk_count; i > 0; --i) {
-        hanoi->source = stack_push(&hanoi->source, i);
+        hanoi->source = stack_push(hanoi->source, i);
     }
 
     return hanoi;
@@ -55,9 +56,9 @@ void hanoi_print(hanoi_t hanoi) {
 hanoi_t hanoi_destroy(hanoi_t hanoi) {
     assert(hanoi != NULL);
 
-    stack_destroy(&hanoi->aux);
-    stack_destroy(&hanoi->source);
-    stack_destroy(&hanoi->target);
+    stack_destroy(hanoi->aux);
+    stack_destroy(hanoi->source);
+    stack_destroy(hanoi->target);
 
     free(hanoi);
 
@@ -69,8 +70,8 @@ static void move(unsigned int current, hanoi_t hanoi, stack *source_ptr, stack *
         move(current - 1, hanoi, source_ptr, aux_ptr, target_ptr);
 
         stack_elem elem = stack_top(*source_ptr);
-        *source_ptr = stack_pop(source_ptr);
-        *target_ptr = stack_push(target_ptr, elem);
+        *source_ptr = stack_pop(*source_ptr);
+        *target_ptr = stack_push(*target_ptr, elem);
 
         hanoi_print(hanoi);
 

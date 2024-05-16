@@ -10,11 +10,9 @@ struct _s_stack {
     stack next;
 };
 
-/* static bool invrep(stack s) {
-    bool inv = true;
-
-    return inv;
-} */
+static bool invrep(stack s) {
+    return s != NULL;
+}
 
 
 // Constructors
@@ -24,7 +22,7 @@ stack stack_empty() {
     return new_stack;
 }
 
-stack stack_push(stack *s, stack_elem e) {
+stack stack_push(stack s, stack_elem e) {
     stack p = NULL;
 
     p = (stack)malloc(sizeof(struct _s_stack));
@@ -34,27 +32,29 @@ stack stack_push(stack *s, stack_elem e) {
     }
 
     p->elem = e;
-    p->next = *s;
+    p->next = s;
 
-    *s = p;
+    s = p;
 
-    return *s;
+    assert(invrep(s));
+
+    return s;
 }
 
 
 
 
 // Operations
-stack stack_pop(stack *s) {
-    assert(!stack_is_empty(*s));
+stack stack_pop(stack s) {
+    assert(invrep(s));
 
-    stack p = *s;
-    *s = p->next;
+    stack p = s;
+    s = p->next;
     p->next = NULL;
 
     free(p);
 
-    return *s;
+    return s;
 }
 
 unsigned int stack_size(stack s) {
@@ -70,7 +70,7 @@ unsigned int stack_size(stack s) {
 }
 
 stack_elem stack_top(stack s) {
-    assert(!stack_is_empty(s));
+    assert(invrep(s) && !stack_is_empty(s));
 
     return s->elem;
 }
@@ -108,12 +108,12 @@ stack_elem *stack_to_array(stack s) {
 
 
 // Destroy
-stack stack_destroy(stack *s) {
-    while (!stack_is_empty(*s)) {
-        stack_pop(s);
+stack stack_destroy(stack s) {
+    while (!stack_is_empty(s)) {
+        s = stack_pop(s);
     }
 
-    *s = NULL;
+    s = NULL;
 
-    return *s;
+    return s;
 }

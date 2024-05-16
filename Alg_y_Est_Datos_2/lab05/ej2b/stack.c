@@ -18,12 +18,9 @@ struct _s_stack {
 };
 
 
-/* static bool invrep(stack s) {
-    //! Si s == NULL, me tira error en todos lados, entonces tengo que realizar el invariante teniendo en cuenta esto
-    bool inv = true;
-
-    return inv;
-} */
+static bool invrep(stack s) {
+    return s != NULL;
+}
 
 
 // Constructors
@@ -39,13 +36,13 @@ stack stack_empty() {
     new_stack->elems = NULL;
     new_stack->size = 0u;
 
+    assert(invrep(new_stack));
+
     return new_stack;
 }
 
-stack stack_push(stack *s, stack_elem e) {
-    if (*s == NULL) {
-        *s = stack_empty();
-    }
+stack stack_push(stack s, stack_elem e) {
+    assert(invrep(s));
 
     node p = NULL;
 
@@ -56,47 +53,57 @@ stack stack_push(stack *s, stack_elem e) {
     }
 
     p->elem = e;
-    p->next = (*s)->elems;
+    p->next = s->elems;
 
-    (*s)->elems = p;
-    (*s)->size++;
+    s->elems = p;
+    s->size++;
 
-    return *s;
+    assert(invrep(s));
+
+    return s;
 }
 
 
 
 
 // Operations
-stack stack_pop(stack *s) {
-    assert(!stack_is_empty(*s));
+stack stack_pop(stack s) {
+    assert(invrep(s) && !stack_is_empty(s));
 
-    node p = (*s)->elems;
-    (*s)->elems = p->next;
+    node p = s->elems;
+    s->elems = p->next;
     p->next = NULL;
 
     free(p);
 
-    (*s)->size--;
+    s->size--;
 
-    return *s;
+    assert(invrep(s));
+
+    return s;
 }
 
 unsigned int stack_size(stack s) {
-    return s == NULL ? 0u : s->size;
+    assert(invrep(s));
+
+    return s->size;
 }
 
 stack_elem stack_top(stack s) {
-    assert(!stack_is_empty(s));
+    assert(invrep(s) && !stack_is_empty(s));
 
     return s->elems->elem;
 }
 
 bool stack_is_empty(stack s) {
-    return s == NULL || s->size == 0u;
+    assert(invrep(s));
+
+    return s->size == 0u;
 }
 
 stack_elem *stack_to_array(stack s) {
+    assert(invrep(s));
+
     unsigned int len = stack_size(s);
 
     stack_elem *array = NULL;
@@ -125,15 +132,17 @@ stack_elem *stack_to_array(stack s) {
 
 
 // Destroy
-stack stack_destroy(stack *s) {
-    if (*s != NULL) {
-        while (!stack_is_empty(*s)) {
-            stack_pop(s);
-        }
+stack stack_destroy(stack s) {
+    assert(invrep(s));
 
-        free(*s);
-        *s = NULL;
+    while (!stack_is_empty(s)) {
+        stack_pop(s);
     }
 
-    return *s;
+    free(s);
+    s = NULL;
+
+    assert(s == NULL);
+
+    return s;
 }

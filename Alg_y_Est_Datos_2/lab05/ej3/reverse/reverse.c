@@ -62,7 +62,7 @@ int main(int argc, char *argv[]) {
     stack s = stack_empty();
 
     for (unsigned int i = 0; i < length; i++) {
-        stack_push(&s, array[i]);
+        s = stack_push(s, array[i]);
     }
 
     new_array = stack_to_array(s);
@@ -70,7 +70,7 @@ int main(int argc, char *argv[]) {
     printf("Reversed: ");
     array_dump(new_array, length);
 
-    stack_destroy(&s);
+    s = stack_destroy(s);
     free(new_array);
 
     return (EXIT_SUCCESS);

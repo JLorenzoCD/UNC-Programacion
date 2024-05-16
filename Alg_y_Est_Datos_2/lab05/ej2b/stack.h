@@ -29,7 +29,7 @@ stack stack_empty();
 * @param e An element to push into the stack
 * @return The new stack with 'e' at the top
 */
-stack stack_push(stack *s, stack_elem e);
+stack stack_push(stack s, stack_elem e);
 
 /**
 * @brief Removes the element at the top of the stack
@@ -37,7 +37,7 @@ stack stack_push(stack *s, stack_elem e);
 * @return The new stack with the top element removed
 * @note Only applies to non-empty stacks
 */
-stack stack_pop(stack *s);
+stack stack_pop(stack s);
 
 /**
 * @brief Returns the size of the stack
@@ -75,7 +75,7 @@ stack_elem *stack_to_array(stack s);
 * @param s A stack
 * @note All memory resources are freed
 */
-stack stack_destroy(stack *s);
+stack stack_destroy(stack s);
 
 
 #endif

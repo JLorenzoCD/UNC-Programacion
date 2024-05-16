@@ -9,7 +9,8 @@ void array_dump(int a[], unsigned int length) {
         fprintf(stdout, "%d", a[i]);
         if (i < length - 1) {
             fprintf(stdout, ", ");
-        } else {
+        }
+        else {
             fprintf(stdout, "]\n");
         }
     }
@@ -36,12 +37,12 @@ unsigned int array_from_file(int array[], unsigned int max_size, const char *fil
         exit(EXIT_FAILURE);
     }
     while (i < size) {
-        res = fscanf(file," %d ", &(array[i]));
+        res = fscanf(file, " %d ", &(array[i]));
         if (res != 1) {
             fprintf(stderr, "Invalid array.\n");
             exit(EXIT_FAILURE);
         }
-       ++i;
+        ++i;
     }
     fclose(file);
     return (size);

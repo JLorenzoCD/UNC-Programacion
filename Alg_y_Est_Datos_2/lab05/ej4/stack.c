@@ -13,11 +13,9 @@ struct _s_stack {
 //* Para crear la pila con el arreglo, voy a utilizar el comienzo de la pila o top, como el ultimo elemento del array. Ya que es mas simple de implementar que colocar el comienzo de la pila en el principio del arreglo.
 
 
-// static bool invrep(stack s) {
-//     bool inv = true;
-
-//     return inv;
-// }
+static bool invrep(stack s) {
+    return s != NULL;
+}
 
 // Constructors
 stack stack_empty() {
@@ -36,53 +34,63 @@ stack stack_empty() {
     return new_stack;
 }
 
-stack stack_push(stack *s, stack_elem e) {
-    if (*s == NULL) {
-        *s = stack_empty();
+stack stack_push(stack s, stack_elem e) {
+    assert(invrep(s));
+
+    if (s->capacity <= s->size) {
+        size_t len = s->size == 0u ? 1u : s->size;
+
+        s->elems = (stack_elem*)realloc(s->elems, sizeof(stack_elem) * (len * 2));
+        if (s->elems == NULL) {
+            perror("Not enough memory.\n");
+            exit(EXIT_FAILURE);
+        }
+
+
+        s->capacity = len * 2;
     }
 
-    if ((*s)->capacity <= (*s)->size) {
-        size_t len = (*s)->size == 0u ? 1u : (*s)->size;
+    s->elems[s->size] = e;
+    s->size++;
 
-        (*s)->elems = (stack_elem*)realloc((*s)->elems, sizeof(stack_elem) * (len * 2));
+    assert(invrep(s));
 
-        (*s)->capacity = len * 2;
-    }
-
-    (*s)->elems[(*s)->size] = e;
-
-    (*s)->size++;
-
-    return *s;
+    return s;
 }
 
 
 
 
 // Operations
-stack stack_pop(stack *s) {
-    assert(!stack_is_empty(*s));
+stack stack_pop(stack s) {
+    assert(invrep(s) && !stack_is_empty(s));
 
-    (*s)->size--;
+    s->size--;
 
-    return *s;
+    assert(invrep(s));
+
+    return s;
 }
 
 unsigned int stack_size(stack s) {
-    return s == NULL ? 0u : s->size;
+    return s->size;
 }
 
 stack_elem stack_top(stack s) {
-    assert(!stack_is_empty(s));
+    assert(invrep(s) && !stack_is_empty(s));
 
     return s->elems[s->size - 1u];
 }
 
 bool stack_is_empty(stack s) {
-    return s == NULL || s->size == 0u;
+    assert(invrep(s));
+
+    return s->size == 0u;
 }
 
 stack_elem *stack_to_array(stack s) {
+    assert(invrep(s));
+
     unsigned int len = stack_size(s);
 
     stack_elem *array = NULL;
@@ -99,6 +107,8 @@ stack_elem *stack_to_array(stack s) {
         }
     }
 
+    assert(invrep(s));
+
     return array;
 }
 
@@ -106,13 +116,14 @@ stack_elem *stack_to_array(stack s) {
 
 
 // Destroy
-stack stack_destroy(stack *s) {
-    if (*s != NULL) {
-        free((*s)->elems);
-        free(*s);
-
-        *s = NULL;
+stack stack_destroy(stack s) {
+    if (s->elems != NULL) {
+        free(s->elems);
+        s->elems = NULL;
     }
 
-    return *s;
+    free(s);
+    s = NULL;
+
+    return s;
 }
