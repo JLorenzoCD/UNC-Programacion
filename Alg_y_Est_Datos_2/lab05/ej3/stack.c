@@ -83,7 +83,7 @@ bool stack_is_empty(stack s) {
 }
 
 stack_elem *stack_to_array(stack s) {
-    unsigned int len = s->size;
+    unsigned int len = stack_size(s);
 
     stack_elem *array = NULL;
 
