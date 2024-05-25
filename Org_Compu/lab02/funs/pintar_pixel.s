@@ -1,7 +1,6 @@
 // "CONSTANTES"
 .equ SCREEN_WIDTH,   640
 .equ SCREEN_HEIGH,   480
-.equ BITS_PER_PIXEL, 32
 
 /*
 Fun: pintar_pixel
@@ -29,12 +28,12 @@ pintar_pixel:
     CMP X2, SCREEN_HEIGH
     B.GE skip_pintar_pixel						// 480 <= X2 entonces skip
 
-    MOV x3, X1                          // x3 -> Pixel X
-    MOV x4, X2                          // x4 -> Pixel Y
 
-    BL calcular_pixel 					// Calculamos la dirección del pixel a pintar
+    // Calculamos la dirección del pixel a pintar, la cual se guarda en X0
+    BL calcular_pixel
 
-    STUR w10, [x0]                      // Pintamos el Pixel
+    // Pintamos el Pixel
+    STUR W3, [X0, #0]
 
     skip_pintar_pixel:
 
