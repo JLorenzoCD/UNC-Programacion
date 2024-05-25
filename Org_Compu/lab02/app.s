@@ -11,9 +11,25 @@
 	.globl main
 
 /*
-Registros a utilñizar:
-	X9 - X15 	: Temporales
+Convension de los registros en LEGv8:
+	X0 - X7 	: 		Argumentos y Resultados
+	X8		 	: 		No se para que
+	X9 - X15 	: 		Temporales
+	X16 - X17 	: 		No se x2
+	X18		 	: 		No se x3
+	X19 - X27 	: 		Constantes del programa
+	X28(SP) 	: 		Stack pointer
+	X29(FP) 	: 		Frame pointer
+	X30(LR) 	: 		Direccion de retorno
+	X31(ZXR) 	: 		Constante con valor en cero
+
+
+
+
+Uso de los registros en el proyecto:
 	X20 		: Dreccion base del framebuffer
+
+
 */
 
 // Configuracion inicial
