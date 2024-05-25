@@ -1,6 +1,12 @@
 	.equ SCREEN_WIDTH,   640
 	.equ SCREEN_HEIGH,   480
 
+/*
+Fun: reset_bg
+Hace: Pinta toda la pantalla de negro
+
+*/
+
 reset_bg:
 	// Reserva espacio en el stack y guarda la dir de retorno en el stack
     SUB SP, SP, #8
@@ -10,37 +16,34 @@ reset_bg:
 
 
 
-	// Se coloca la base del framebuffer en el X0
-    MOV X0, X20
+	// Se copia la base del framebuffer en el X9
+    MOV X9, X20
 
-	// Color negro 0x000000
+	// Guardo el color negro (0x000000) en X9
 	MOVZ X10, 0x00, LSL 16
 	MOVK X10, 0x0000, LSL 00
 
-	// Y Size
-	MOV X2, SCREEN_HEIGH
+	LDR X11, =SCREEN_WIDTH
+	LDR X12, =SCREEN_HEIGH
 
-	loop1_reset_bg:
+	// X13 el al dirección final del framebuffer ( X11 = &A[0][0] + (680*480*8) )
+	MUL X13, X11, X12
+	LSL X13, X13, #3
+	ADD X13, X13, X0
 
-		// X Size
-		MOV X1, SCREEN_WIDTH
+	loop_reset_bg:
+		CMP X9,X13
+		B.EQ end_reset_bg
 
-		loop0_reset_bg:
-			STUR W10, [X0]  // Colorear el pixel N
-			ADD X0, X0, #4    // Siguiente pixel
+		STUR W10, [X9, #0]  // Colorear el pixel N
+		ADD X9, X9, #4    // Siguiente pixel
 
-			// Decrementar contador X, si no terminó la fila, salto
-			SUB X1, X1, #1
-			CBNZ X1, loop0_reset_bg
-
-		// Decrementar contador Y, si no es la última fila, salto
-		SUB X2, X2, #1
-		CBNZ X2, loop1_reset_bg
+		B loop_reset_bg
+	end_reset_bg:
 
 
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 	// Carga la direccion de retorno y libera la memoria del stack
     LDUR LR, [SP, #0]
     ADD SP, SP, #8

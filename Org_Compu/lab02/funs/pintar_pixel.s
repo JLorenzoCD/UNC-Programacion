@@ -3,14 +3,13 @@
 .equ SCREEN_HEIGH,   480
 .equ BITS_PER_PIXEL, 32
 
-.equ GPIO_BASE,    0x3f200000
-.equ GPIO_GPFSEL0, 0x00
-.equ GPIO_GPLEV0,  0x34
-
 /*
+Fun: pintar_pixel
+Hace: Dado una coordenada (x, y) de una matriz de pixeles y color, pinta dicho pixel
+
 Parámetros:
-    X1 -> Posicion del pixel X
-    X2 -> Posicion del pixel Y
+    X1 -> Posición del pixel X
+    X2 -> Posición del pixel Y
     X3 -> Color
 */
 
@@ -23,19 +22,19 @@ pintar_pixel:
 
 
 
-    // Chequeamos que las coordenadas esten dentro de la pantalla, si no lo estan, no pintamos
+    // Chequeamos que las coordenadas estén dentro de la pantalla, si no lo están, no pintamos
     CMP X1, SCREEN_WIDTH
-    b.ge skip_pintar_pixel					 	// 640 <= X1 => skip
+    B.GE skip_pintar_pixel					 	// 640 <= X1 entonces skip
 
     CMP X2, SCREEN_HEIGH
-    b.ge skip_pintar_pixel						// 480 <= X2 => skip
+    B.GE skip_pintar_pixel						// 480 <= X2 entonces skip
 
-    mov x3, X1                          // x3 -> Pixel X
-    mov x4, X2                          // x4 -> Pixel Y
+    MOV x3, X1                          // x3 -> Pixel X
+    MOV x4, X2                          // x4 -> Pixel Y
 
-    BL calcular_pixel 					// Calculamos la direccion del pixel a pintar
+    BL calcular_pixel 					// Calculamos la dirección del pixel a pintar
 
-    stur w10, [x0]                      // Pintamos el Pixel
+    STUR w10, [x0]                      // Pintamos el Pixel
 
     skip_pintar_pixel:
 

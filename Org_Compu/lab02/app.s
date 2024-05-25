@@ -11,7 +11,7 @@
 	.globl main
 
 /*
-Convension de los registros en LEGv8:
+Convención de los registros en LEGv8:
 	X0 - X7 	: 		Argumentos y Resultados
 	X8		 	: 		No se para que
 	X9 - X15 	: 		Temporales
@@ -20,29 +20,35 @@ Convension de los registros en LEGv8:
 	X19 - X27 	: 		Constantes del programa
 	X28(SP) 	: 		Stack pointer
 	X29(FP) 	: 		Frame pointer
-	X30(LR) 	: 		Direccion de retorno
+	X30(LR) 	: 		Dirección de retorno
 	X31(ZXR) 	: 		Constante con valor en cero
 
 
 
 
 Uso de los registros en el proyecto:
-	X20 		: Dreccion base del framebuffer
+	X20 		: Dirección base del framebuffer
 
 
 */
 
-// Configuracion inicial
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-MOV X20, X0 // La direccion base del framebuffer comienza en X0
-
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // Nuestro programa
 main:
+	// Configuración inicial
+	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	MOV X20, X0 // La dirección base del framebuffer comienza en X0
+
+	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 	BL reset_bg
+
+
+
+
+
+
 
 
 	// Ejemplo de uso de gpios

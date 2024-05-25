@@ -23,6 +23,9 @@
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 /*
+Fun: fun_name
+Hace: La función ....
+
 Parámetros:
     Xa -> Sirve para ...
     Xb -> Sirve para ...
@@ -86,6 +89,9 @@ Ejemplo:
 */
 
 /*
+Fun: fun_name
+Hace: La función ....
+
 Parámetros:
     Xa -> Sirve para ...
     Xb -> Sirve para ...
