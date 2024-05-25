@@ -6,11 +6,11 @@ Fun: calcular_pixel
 Hace: Dado una coordenada (x, y) de una matriz de pixeles, calcula la posición de esta en un arreglo de una dimension
 
 Parámetros:
-    X1 -> pixel x
-    X2 -> pixel y
+    X1 -> Posición del pixel x
+    X2 -> Posición del pixel y
 
 Asignación:
-    X0 -> posición pixel en memoria(&A[y][x])
+    X0 -> posición pixel en memoria (&A[y][x])
 */
 
 calcular_pixel:
@@ -22,7 +22,7 @@ calcular_pixel:
 
 
 
-    // (Se calcula la fila)     ==      640 * y                         == &A[y]
+    // (Se calcula la fila)     ==      640 * y                         ==      &A[y]
     MOV X0, SCREEN_WIDTH
     MULL X0, X0, x2
 

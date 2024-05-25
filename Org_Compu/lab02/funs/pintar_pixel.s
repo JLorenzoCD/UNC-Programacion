@@ -7,8 +7,8 @@ Fun: pintar_pixel
 Hace: Dado una coordenada (x, y) de una matriz de pixeles y color, pinta dicho pixel
 
 Parámetros:
-    X1 -> Posición del pixel X
-    X2 -> Posición del pixel Y
+    X1 -> Posición del pixel x
+    X2 -> Posición del pixel y
     X3 -> Color
 */
 
