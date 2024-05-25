@@ -1,7 +1,16 @@
+*.tar.xz
+
 *.exe
 *.out
 *.app
 
 *.o
+*.img
+*.elf
+*.hex
+*.list
 
 build/
+
+.gdb_history
+memory_map.txt

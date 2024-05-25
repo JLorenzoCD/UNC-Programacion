@@ -1,0 +1,3 @@
+echo "ADD X29, X30, #37" | aarch64-linux-gnu-as - ; aarch64-linux-gnu-objdump -d
+
+el echo "---" se puede reemplazar por cualquier instruccion assembler
