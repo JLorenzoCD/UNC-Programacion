@@ -23,10 +23,10 @@ pintar_pixel:
 
     // Chequeamos que las coordenadas estén dentro de la pantalla, si no lo están, no pintamos
     CMP X1, SCREEN_WIDTH
-    B.GE skip_pintar_pixel					 	// 640 <= X1 entonces skip
+    B.HS skip_pintar_pixel					 	// 640 <= X1 entonces skip
 
     CMP X2, SCREEN_HEIGH
-    B.GE skip_pintar_pixel						// 480 <= X2 entonces skip
+    B.HS skip_pintar_pixel						// 480 <= X2 entonces skip
 
 
     // Calculamos la dirección del pixel a pintar, la cual se guarda en X0
