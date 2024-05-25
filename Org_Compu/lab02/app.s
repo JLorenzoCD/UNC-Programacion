@@ -7,6 +7,8 @@
 	.equ GPIO_GPLEV0,  0x34
 
 	.include "funs/reset_bg.s"
+	.include "funs/pintar_pixel.s"
+	.include "funs/dib_linea_h.s"
 
 	.globl main
 
@@ -45,7 +47,17 @@ main:
 	BL reset_bg
 
 
+	// x11=x_0, x12=y, x13=c, x14=color, x15=pintar_pixel, reset_bg=16
 
+
+	MOV X11, #5				// x
+	MOV X12, #5				// y
+	MOV X13, #100			// distancia de x0 y x1
+
+	MOVZ X14, 0xFF, LSL #16
+	MOVK X14, 0xFFFF, LSL #0
+
+	BL dib_linea_h
 
 
 
