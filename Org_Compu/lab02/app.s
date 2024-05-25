@@ -13,7 +13,7 @@
 /*
 Convención de los registros en LEGv8:
 	X0 - X7 	: 		Argumentos y Resultados
-	X8		 	: 		No se para que
+	X8		 	: 		No se
 	X9 - X15 	: 		Temporales
 	X16 - X17 	: 		No se x2
 	X18		 	: 		No se x3

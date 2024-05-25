@@ -104,7 +104,7 @@ fun_name:
 	// Reserva espacio en el stack, guarda las variables que queremos conservar y la dir de retorno en el stack
 	SUB SP, SP, #(N * 8) // N son la cantidad de valores que deseamos guardar
 	STUR LR, [SP, #(N * 8)]
-	STUR Xa, [SP, #((N * 8) - 1)]
+	STUR Xa, [SP, #((N - 1) * 8)]
 	// ..................
 	STUR Xn, [SP, #0]
 
@@ -123,7 +123,7 @@ fun_name:
 	// Carga la dirección de retorno, devuelve los valores previos de las variables usadas y libera la memoria del stack
 	LDR Xn, [SP, #0]
 	// ..................
-	LDR Xa, [SP, #((N * 8) - 1)]
+	LDR Xa, [SP,  #((N - 1) * 8)]
 	LDR LR, [SP, #(N * 8)]
 	ADD SP, SP,  #(N * 8) // N son la cantidad de valores que deseamos guardar
 ret
