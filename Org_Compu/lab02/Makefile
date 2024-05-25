@@ -4,7 +4,7 @@ AOPS = -g --warn --fatal-warnings
 ASM_SRCS = $(wildcard *.s)
 ASM_OBJS = $(ASM_SRCS:%.s=%.o)
 
-.PHONY: clean
+.PHONY: clean dev
 
 all: kernel8.img
 
@@ -13,6 +13,10 @@ all: kernel8.img
 
 clean:
 	rm -f *.o memory_map.txt kernel8.list kernel8.img kernel8.elf
+
+dev:
+	make clean
+	make runQEMU
 
 kernel8.img: memmap $(ASM_OBJS)
 	$(ARMGNU)-ld $(ASM_OBJS) -T memmap -o kernel8.elf -M > memory_map.txt

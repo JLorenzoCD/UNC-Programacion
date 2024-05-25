@@ -1,8 +1,7 @@
-// "CONSTANTES"
-.equ SCREEN_WIDTH,   640
-.equ SCREEN_HEIGH,   480
+.ifndef rectangulo
+.equ rectangulo, 0
 
-
+.include "data.s"
 
 /*
 Fun: rectangulo
@@ -16,6 +15,7 @@ Parámetros:
     X5 -> Color
 */
 
+.globl rectangulo
 rectangulo:
 	// Reserva espacio en el stack y guarda la dir de retorno en el stack
 	SUB SP, SP, #8
@@ -43,20 +43,12 @@ rectangulo:
 		CMP X10, X12
 		B.HI rectangulo_end
 
-		/*
-		Parámetros de linea_recta_horizontal
-		X1 = coordenada x1		=>		x1
-		X2 = coordenada y1		=>		y1
-		X3 = coordenada x2		=>		x2
-		X4 = coordenada y2		=>		y1
-		X5 = color
-		*/
 		MOV X1, X9
 		MOV X2, X10
 		MOV X3, X11
 		MOV X4, X10
 
-		BL linea_recta_horizontal
+		BL linea_recta_h
 
 		// Muevo el y1 para la linea recta en la siguiente fila de la matriz de pixeles
 		ADD X10, X10, #4
@@ -72,3 +64,5 @@ rectangulo:
 	LDUR LR, [SP, #0]
 	ADD SP, SP, #8
 ret
+
+.endif

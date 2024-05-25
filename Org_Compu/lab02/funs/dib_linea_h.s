@@ -1,3 +1,7 @@
+.ifndef dib_linea_h
+.equ dib_linea_h, 0
+
+.include "data.s"
 .include "funs/pintar_pixel.s"
 
 /* 	-- Dibujar Linea Horizontal --
@@ -15,8 +19,8 @@ coordenada (X11, X12) == (x0, y0)
 Fun: dib_linea_h
 Hace: Dibujar Linea Horizontal
 */
-.globl dib_linea_h
 
+.globl dib_linea_h
 dib_linea_h:
     SUB SP, SP, #48           // reservar espacio en la pila para guardar registros
     STUR X12, [sp, #40]        // guardar y en la pila
@@ -50,3 +54,5 @@ fin_dib_linea_h:
     LDR X16, [sp, #40]        // restaurar
     ADD SP, SP, #48           // liberar el espacio reservado en la pila
 ret
+
+.endif

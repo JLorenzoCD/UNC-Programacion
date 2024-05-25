@@ -1,5 +1,8 @@
-.equ SCREEN_WIDTH, 	640
-.equ SCREEN_HEIGH, 	480
+.ifndef calcular_pixel
+.equ calcular_pixel, 0
+
+.include "data.s"
+
 
 /*
 Fun: calcular_pixel
@@ -13,6 +16,7 @@ Asignación:
     X0 -> posición pixel en memoria (&A[y][x])
 */
 
+.globl calcular_pixel
 calcular_pixel:
 	// Reserva espacio en el stack y guarda la dir de retorno en el stack
     SUB SP, SP, #8
@@ -41,3 +45,5 @@ calcular_pixel:
     LDUR LR, [SP, #0]
     ADD SP, SP, #8
 ret
+
+.endif

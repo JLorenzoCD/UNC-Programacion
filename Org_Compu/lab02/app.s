@@ -1,14 +1,6 @@
-	.equ SCREEN_WIDTH,   640
-	.equ SCREEN_HEIGH,   480
-	.equ BITS_PER_PIXEL, 32
-
-	.equ GPIO_BASE,    0x3f200000
-	.equ GPIO_GPFSEL0, 0x00
-	.equ GPIO_GPLEV0,  0x34
-
+	.include "data.s"
 	.include "funs/reset_bg.s"
-	.include "funs/pintar_pixel.s"
-	.include "funs/dib_linea_h.s"
+	.include "funs/linea_recta_h.s"
 
 	.globl main
 
@@ -50,14 +42,19 @@ main:
 	// x11=x_0, x12=y, x13=c, x14=color, x15=pintar_pixel, reset_bg=16
 
 
-	MOV X11, #5				// x
-	MOV X12, #5				// y
-	MOV X13, #100			// distancia de x0 y x1
+	MOV X1, #5				// x
+	MOV X2, #100			// y
+	MOV X3, #100			// distancia de x0 y x1
 
-	MOVZ X14, 0xFF, LSL #16
-	MOVK X14, 0xFFFF, LSL #0
+	MOVZ X4, 0xFF, LSL #16
+	MOVK X4, 0xFFFF, LSL #0
 
-	BL dib_linea_h
+	BL linea_recta_h
+
+	MOV X2, #101			// y
+	BL linea_recta_h
+	MOV X2, #102			// y
+	BL linea_recta_h
 
 
 

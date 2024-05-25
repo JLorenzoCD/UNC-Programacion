@@ -1,6 +1,9 @@
-// "CONSTANTES"
-.equ SCREEN_WIDTH,   640
-.equ SCREEN_HEIGH,   480
+.ifndef pintar_pixel
+.equ pintar_pixel, 0
+
+.include "data.s"
+.include "funs/calcular_pixel.s"
+
 
 /*
 Fun: pintar_pixel
@@ -12,6 +15,7 @@ Parámetros:
     X3 -> Color
 */
 
+.globl pintar_pixel
 pintar_pixel:
 	// Reserva espacio en el stack y guarda la dir de retorno en el stack
 	SUB SP, SP, #8
@@ -24,16 +28,13 @@ pintar_pixel:
     // Chequeamos que las coordenadas estén dentro de la pantalla, si no lo están, no pintamos
     CMP X1, SCREEN_WIDTH
     B.HS skip_pintar_pixel					 	// 640 <= X1 entonces skip
-
     CMP X2, SCREEN_HEIGH
     B.HS skip_pintar_pixel						// 480 <= X2 entonces skip
 
-
-    // Calculamos la dirección del pixel a pintar, la cual se guarda en X0
-    BL calcular_pixel
-
-    // Pintamos el Pixel
-    STUR W3, [X0, #0]
+        // Calculamos la dirección del pixel a pintar, la cual se guarda en X0
+        BL calcular_pixel
+        // Pintamos el Pixel
+        STUR W3, [X0, #0]
 
     skip_pintar_pixel:
 
@@ -45,3 +46,5 @@ pintar_pixel:
 	LDUR LR, [SP, #0]
 	ADD SP, SP, #8
 ret
+
+.endif

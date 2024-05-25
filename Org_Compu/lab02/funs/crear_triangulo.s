@@ -1,5 +1,7 @@
-.equ SCREEN_WIDTH,   640
-.equ SCREEN_HEIGH,   480
+.ifndef crear_triangulo
+.equ crear_triangulo, 0
+
+.include "data.s"
 
 /*
 fun: crear_triangulo
@@ -13,6 +15,7 @@ Parámetros:
     w10 -> Color
 */
 
+.globl crear_triangulo
 crear_triangulo:
 	SUB SP, SP, #32
 	STUR LR, [SP, #32]
@@ -29,3 +32,5 @@ crear_triangulo:
 	LDR LR, [SP, #32]
 	ADD SP, SP, #32
 ret
+
+.endif
