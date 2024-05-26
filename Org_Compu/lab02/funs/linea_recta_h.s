@@ -18,7 +18,7 @@
 
 .globl linea_recta_h
 linea_recta_h:
-	// Reserva espacio en el stack y guarda la dir de retorno en el stack
+	// Reserva espacio en el stack, guarda las variables que queremos conservar y la dir de retorno en el stack
 	SUB SP, SP, #32
 	STUR X1, [SP, #0]
 	STUR X3, [SP, #8]
@@ -45,7 +45,7 @@ linea_recta_h:
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-	// Carga la dirección de retorno y libera la memoria del stack
+	// Carga la dirección de retorno, devuelve los valores previos de las variables usadas y libera la memoria del stack
 	LDUR X1, [SP, #0]
 	LDUR X3, [SP, #8]
 	LDUR X4, [SP, #16]

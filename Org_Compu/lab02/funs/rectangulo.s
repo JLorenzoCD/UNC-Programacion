@@ -17,7 +17,7 @@ Parámetros:
 
 .globl rectangulo
 rectangulo:
-	// Reserva espacio en el stack y guarda la dir de retorno en el stack
+	// Reserva espacio en el stack, guarda las variables que queremos conservar y la dir de retorno en el stack
 	SUB SP, SP, #32
 	STUR X2, [SP, #0]
 	STUR X4, [SP, #8]
@@ -52,7 +52,7 @@ rectangulo:
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-	// Carga la dirección de retorno y libera la memoria del stack
+	// Carga la dirección de retorno, devuelve los valores previos de las variables usadas y libera la memoria del stack
 	LDUR X2, [SP, #0]
 	LDUR X4, [SP, #8]
 	LDUR X12, [SP, #16]

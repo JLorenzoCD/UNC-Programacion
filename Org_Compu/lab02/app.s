@@ -2,6 +2,7 @@
 	.include "funs/reset_bg.s"
 	.include "funs/linea_recta_h.s"
 	.include "funs/rectangulo.s"
+	.include "funs/cuadrado.s"
 
 	.globl main
 
@@ -40,23 +41,30 @@ main:
 	BL reset_bg
 
 
-	MOV X1, #50				// x1
-	MOV X2, #50				// y1
-	MOV X3, #100			// x2
-	MOV X4, #100			// y2
-
-	MOVZ X5, 0xFF, LSL #16
-	MOVK X5, 0xFFFF, LSL #0
-
-	BL rectangulo
-
 	/*
 	X1 -> Posición del pixel x1
     X2 -> Posición del pixel y1
-    X3 -> Posición del pixel x2
-    X4 -> Posición del pixel y2
-    X5 -> Color
+    X3 -> Distancia
+    X4 -> Color
 	*/
+
+	MOV X1, #50				// x1
+	MOV X2, #50				// y1
+	MOV X3, #200			// d
+
+	MOVZ X4, 0x00, LSL #16
+	MOVK X4, 0xFFFF, LSL #0
+
+	BL cuadrado
+
+	MOV X2, #100
+	MOV X3, 520
+	MOV X4, 120
+
+	MOVZ X5, 0xFF, LSL #16
+	MOVK X5, 0x00FF, LSL #0
+
+	BL rectangulo
 
 
 
