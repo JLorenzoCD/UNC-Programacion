@@ -17,9 +17,10 @@ Parámetros:
 
 .globl pintar_pixel
 pintar_pixel:
-	// Reserva espacio en el stack y guarda la dir de retorno en el stack
-	SUB SP, SP, #8
-	STUR LR, [SP, #0]
+	// Reserva espacio en el stack, guarda las variables que queremos conservar y la dir de retorno en el stack
+	SUB SP, SP, #16
+	STUR X0, [SP, #0]
+	STUR LR, [SP, #8]
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -42,9 +43,10 @@ pintar_pixel:
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-	// Carga la dirección de retorno y libera la memoria del stack
-	LDUR LR, [SP, #0]
-	ADD SP, SP, #8
+	// Carga la dirección de retorno, devuelve los valores previos de las variables usadas y libera la memoria del stack
+	LDUR X0, [SP, #0]
+	LDUR LR, [SP, #8]
+    ADD SP, SP, #16
 ret
 
 .endif
