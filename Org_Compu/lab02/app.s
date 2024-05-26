@@ -1,6 +1,7 @@
 	.include "data.s"
 	.include "funs/reset_bg.s"
 	.include "funs/linea_recta_h.s"
+	.include "funs/rectangulo.s"
 
 	.globl main
 
@@ -39,14 +40,23 @@ main:
 	BL reset_bg
 
 
-	MOV X1, #15				// x1
+	MOV X1, #50				// x1
 	MOV X2, #50				// y1
 	MOV X3, #100			// x2
+	MOV X4, #100			// y2
 
-	MOVZ X4, 0xFF, LSL #16
-	MOVK X4, 0xFFFF, LSL #0
+	MOVZ X5, 0xFF, LSL #16
+	MOVK X5, 0xFFFF, LSL #0
 
-	BL linea_recta_h
+	BL rectangulo
+
+	/*
+	X1 -> Posición del pixel x1
+    X2 -> Posición del pixel y1
+    X3 -> Posición del pixel x2
+    X4 -> Posición del pixel y2
+    X5 -> Color
+	*/
 
 
 

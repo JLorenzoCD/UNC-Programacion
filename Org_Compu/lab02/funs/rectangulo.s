@@ -18,8 +18,11 @@ Parámetros:
 .globl rectangulo
 rectangulo:
 	// Reserva espacio en el stack y guarda la dir de retorno en el stack
-	SUB SP, SP, #8
-	STUR LR, [SP, #0]
+	SUB SP, SP, #32
+	STUR X2, [SP, #0]
+	STUR X4, [SP, #8]
+	STUR X12, [SP, #16]
+	STUR LR, [SP, #24]
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -27,32 +30,21 @@ rectangulo:
 
 	/*
 	Variables auxiliares:
-	X9 = coordenada x1
-	X10 = coordenada y1
-	X11 = coordenada x2
 	X12 = coordenada y2
 
 	*/
-	MOV X9, X1
-	MOV X10, X2
-	MOV X11, X3
 	MOV X12, X4
+	MOV X4, X5
 
 	rectangulo_loop:
 		// Si y1 <= y2 entonces continuo, si y2 < y1 corto el bucle
-		CMP X10, X12
+		CMP X2, X12
 		B.HI rectangulo_end
-
-		MOV X1, X9
-		MOV X2, X10
-		MOV X3, X11
-		MOV X4, X10
 
 		BL linea_recta_h
 
 		// Muevo el y1 para la linea recta en la siguiente fila de la matriz de pixeles
-		ADD X10, X10, #4
-
+		ADD X2, X2, #1
 		B rectangulo_loop
 	rectangulo_end:
 
@@ -61,8 +53,11 @@ rectangulo:
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 	// Carga la dirección de retorno y libera la memoria del stack
-	LDUR LR, [SP, #0]
-	ADD SP, SP, #8
+	LDUR X2, [SP, #0]
+	LDUR X4, [SP, #8]
+	LDUR X12, [SP, #16]
+	LDUR LR, [SP, #24]
+	ADD SP, SP, #32
 ret
 
 .endif
