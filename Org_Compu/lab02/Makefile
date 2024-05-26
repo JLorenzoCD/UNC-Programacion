@@ -14,8 +14,7 @@ all: kernel8.img
 clean:
 	rm -f *.o memory_map.txt kernel8.list kernel8.img kernel8.elf
 
-dev:
-	make clean
+dev: clean
 	make runQEMU
 
 kernel8.img: memmap $(ASM_OBJS)
