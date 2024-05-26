@@ -19,10 +19,11 @@
 .globl linea_recta_h
 linea_recta_h:
 	// Reserva espacio en el stack y guarda la dir de retorno en el stack
-	SUB SP, SP, #24
+	SUB SP, SP, #32
 	STUR X1, [SP, #0]
 	STUR X3, [SP, #8]
-	STUR LR, [SP, #16]
+	STUR X4, [SP, #16]
+	STUR LR, [SP, #24]
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -47,8 +48,9 @@ linea_recta_h:
 	// Carga la dirección de retorno y libera la memoria del stack
 	LDUR X1, [SP, #0]
 	LDUR X3, [SP, #8]
-	LDUR LR, [SP, #16]
-	ADD SP, SP, #24
+	LDUR X4, [SP, #16]
+	LDUR LR, [SP, #24]
+	ADD SP, SP, #32
 ret
 
 

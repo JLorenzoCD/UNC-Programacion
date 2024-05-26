@@ -39,23 +39,14 @@ main:
 	BL reset_bg
 
 
-	// x11=x_0, x12=y, x13=c, x14=color, x15=pintar_pixel, reset_bg=16
-
-
-	MOV X1, #5				// x
-	MOV X2, #100			// y
-	MOV X3, #100			// distancia de x0 y x1
+	MOV X1, #15				// x1
+	MOV X2, #50				// y1
+	MOV X3, #100			// x2
 
 	MOVZ X4, 0xFF, LSL #16
 	MOVK X4, 0xFFFF, LSL #0
 
 	BL linea_recta_h
-
-	MOV X2, #101			// y
-	BL linea_recta_h
-	MOV X2, #102			// y
-	BL linea_recta_h
-
 
 
 
