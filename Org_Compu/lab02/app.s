@@ -17,7 +17,7 @@ Convención de los registros en LEGv8:
 	X28(SP) 	: 		Stack pointer
 	X29(FP) 	: 		Frame pointer
 	X30(LR) 	: 		Dirección de retorno
-	X31(ZXR) 	: 		Constante con valor en cero
+	X31(XZR) 	: 		Constante con valor en cero
 
 
 
