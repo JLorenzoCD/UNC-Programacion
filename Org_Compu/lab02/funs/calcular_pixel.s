@@ -28,14 +28,14 @@ calcular_pixel:
 
     // (Se calcula la fila)     ==      640 * y                         ==      &A[y]
     MOV X0, SCREEN_WIDTH
-    MUL X0, X0, x2
+    MUL X0, X0, X2
 
     // (Se calcula la posición del pixel)   ==  ((640 * y) + x) * 4     ==      &A[y][x]
     ADD X0, X0, x1
     LSL X0, X0, #2
 
     // (Se coloca la dirección de memoria del pixel en X0)              ==      X0 = &A[y][x]
-    MOV X0, x20
+    ADD X0, X0, X20
 
 
 
