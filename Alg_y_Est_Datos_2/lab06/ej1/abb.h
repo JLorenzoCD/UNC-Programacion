@@ -7,7 +7,7 @@ typedef struct _s_abb * abb;
 
 typedef int abb_elem;
 
-typedef enum {ABB_IN_ORDER, ABB_PRE_ORDER, ABB_POST_ORDER} abb_ordtype;
+typedef enum { ABB_IN_ORDER, ABB_PRE_ORDER, ABB_POST_ORDER } abb_ordtype;
 
 abb abb_empty(void);
 /* DESC: Creates an empty tree
