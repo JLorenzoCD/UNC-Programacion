@@ -1,2 +1,10 @@
 {
+    "cSpell.enableFiletypes": [
+        "arm"
+    ],
+    "files.associations": {
+        "stdio.h": "c",
+        "stdlib.h": "c",
+        "algorithm": "c"
+    }
 }
