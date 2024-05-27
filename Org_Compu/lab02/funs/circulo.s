@@ -20,14 +20,14 @@
 circulo:
 	// Reserva espacio en el stack, guarda las variables que queremos conservar y la dir de retorno en el stack
 	SUB SP, SP, #72
-	STUR X3, [SP, #0]
-	STUR X4, [SP, #8]
-	STUR X9, [SP, #16]
-	STUR X10, [SP, #24]
-	STUR X11, [SP, #32]
-	STUR X12, [SP, #40]
-	STUR X13, [SP, #48]
-	STUR X14, [SP, #56]
+	STUR X9, [SP, #0]
+	STUR X10, [SP, #8]
+	STUR X11, [SP, #16]
+	STUR X12, [SP, #24]
+	STUR X13, [SP, #32]
+	STUR X14, [SP, #40]
+	STUR X15, [SP, #48]
+	STUR X16, [SP, #56]
 	STUR LR, [SP, #64]
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -37,14 +37,14 @@ circulo:
     MOV X12, X4     // color
 
     // Parte de arriba del circulo
-    SUB X13, X9, X11 // xi
+    ADD X13, X9, X11 // xi
     MOV X14, X10     // yi
     MOV X15, X11     // ri
 
-    SUB X16, X2, X3 // limite_izq
+    SUB X16, X2, X3 // limite_superior (y - r)
 
 
-    loop_czs_circulo:   // while (limite_izq <= yi)
+    loop_czs_circulo:   // while (limite_superior <= yi)
         CMP X16, X14
         B.HI end_czs_circulo
 
@@ -57,11 +57,11 @@ circulo:
         BL calc_nuevo_xi
         MOV X13, X3
 
-        SUB X15, X1, X13
+        SUB X15, X13, X1
 
-        MOV X1, X13
+        SUB X1, X9, X15
         MOV X2, X14
-        ADD X3, X9, X15
+        MOV X3, X13
         MOV X4, X12
         BL linea_recta_h
 
@@ -72,15 +72,13 @@ circulo:
 
 
     // Parte de abajo del circulo
-   // Parte de arriba del circulo
-    SUB X13, X9, X11     // xi
-    ADD X14, X10, #1     // yi
+    ADD X13, X9, X11     // xi
+    MOV X14, X10         // yi
     MOV X15, X11         // ri
 
-    SUB X16, X2, X3     // limite_der
+    ADD X16, X10, X11     // limite_inferior (y + r)
 
-
-    loop_czi_circulo:   // while (yi <= limite_der)
+    loop_czi_circulo:   // while (yi <= limite_inferior)
         CMP X14, X16
         B.HI end_czi_circulo
 
@@ -93,11 +91,11 @@ circulo:
         BL calc_nuevo_xi
         MOV X13, X3
 
-        SUB X15, X1, X13
+        SUB X15, X13, X1
 
-        MOV X1, X13
+        SUB X1, X9, X15
         MOV X2, X14
-        ADD X3, X9, X15
+        MOV X3, X13
         MOV X4, X12
         BL linea_recta_h
 
@@ -105,18 +103,19 @@ circulo:
         B loop_czi_circulo
     end_czi_circulo:
 
+
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Carga la dirección de retorno, devuelve los valores previos de las variables usadas y libera la memoria del stack
-	LDUR X3, [SP, #0]
-	LDUR X4, [SP, #8]
-	LDUR X9, [SP, #16]
-	LDUR X10, [SP, #24]
-	LDUR X11, [SP, #32]
-	LDUR X12, [SP, #40]
-	LDUR X13, [SP, #48]
-	LDUR X14, [SP, #56]
+	LDUR X9, [SP, #0]
+	LDUR X10, [SP, #8]
+	LDUR X11, [SP, #16]
+	LDUR X12, [SP, #24]
+	LDUR X13, [SP, #32]
+	LDUR X14, [SP, #40]
+	LDUR X15, [SP, #48]
+	LDUR X16, [SP, #56]
 	LDUR LR, [SP, #64]
-    ADD SP, SP, #72
+	ADD SP, SP, #72
 ret
 
 /*
@@ -148,7 +147,7 @@ calc_nuevo_xi:
         CMP X0, #1
         B.EQ end_calc_nuevo_xi
 
-        ADD X3, X3, #1
+        SUB X3, X3, #1
         B loop_calc_nuevo_xi
     end_calc_nuevo_xi:
 

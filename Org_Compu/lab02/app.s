@@ -41,14 +41,9 @@ main:
 	BL reset_bg
 
 
-    /* Parámetros:
-        X1 -> Coordenada del pixel x
-        X2 -> Coordenada del pixel y
-        X3 -> Radio
-        X4 -> Color */
 
-	MOV X1, #150		    // x
-	MOV X2, #150			// y
+	MOV X1, #101		    // x
+	MOV X2, #101			// y
 	MOV X3, #100			// r
 
 	MOVZ X4, 0xFF, LSL #16
@@ -56,14 +51,21 @@ main:
 
 	BL circulo
 
-
-	MOV X1, 400
-	MOV X2, 400
+	MOV X1, 40
+	MOV X2, 40
 	MOV X3, 20
 	MOVZ X4, 0xFF, LSL #16
 	MOVK X4, 0xFFFF, LSL #0
 
 	BL cuadrado
+
+	MOV X1, #400
+	MOV X2, #400
+	MOV X5, X4
+	MOV X3, #450
+	MOV X4, #475
+
+	BL rectangulo
 
 
 

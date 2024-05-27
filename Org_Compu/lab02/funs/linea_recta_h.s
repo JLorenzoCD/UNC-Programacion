@@ -7,12 +7,12 @@
 
 /*
     Fun: linea_recta_h
-    Hace: Dadas una par de coordenadas (x1, y1) y un punto x2, dibuja una linea horizontal hasta X2
+    Hace: Dadas una par de coordenadas (x, y) y un punto xn, dibuja una linea horizontal hasta x2
 
     Parámetros:
-        X1 -> coordenada x1		=>		x1
-        X2 -> coordenada y1		=>		y1
-        X3 -> coordenada x2		=>		x2
+        X1 -> coordenada x		=>		x
+        X2 -> coordenada y		=>		y
+        X3 -> coordenada xn		=>		xn
         X4 -> color
 */
 
@@ -28,17 +28,18 @@ linea_recta_h:
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     // swap(X3, X4)
-    MOV X3, X4              // X3 = color
-    LDUR X4, [SP, #8]       // X4 = coordenada x2
+    MOV X1, X3              // xn
+    MOV X3, X4              // color
+    LDUR X4, [SP, #0]       // x
 
     loop_linea_recta_h:
-        // Si coordenada x1 <= x2 continua el loop
-        CMP X1, X4
+        // Si coordenada x <= xn continua el loop
+        CMP X4, X1
         B.HI end_linea_recta_h
 
         BL pintar_pixel
 
-        ADD X1, X1, #1
+        SUB X1, X1, #1
         B loop_linea_recta_h
     end_linea_recta_h:
 
