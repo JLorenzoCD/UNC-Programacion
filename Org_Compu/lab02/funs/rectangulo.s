@@ -2,6 +2,7 @@
 .equ rectangulo, 0
 
 .include "data.s"
+.include "funs/linea_recta_h.s"
 
 /*
 Fun: rectangulo

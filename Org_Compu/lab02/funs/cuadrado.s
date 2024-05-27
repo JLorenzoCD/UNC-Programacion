@@ -2,6 +2,7 @@
 .equ cuadrado, 0
 
 .include "data.s"
+.include "funs/rectangulo.s"
 
 /*
 Fun: cuadrado
