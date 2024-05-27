@@ -4,7 +4,7 @@ SOURCES = abb.c main.c
 OBJECTS = $(SOURCES:.c=.o)
 TARGET = readtree
 
-.PHONY: clean
+.PHONY: clean run_easy
 
 all: $(TARGET)
 
@@ -16,3 +16,6 @@ $(TARGET): $(OBJECTS)
 
 clean:
 	$(RM) $(OBJECTS) $(TARGET)
+
+run_easy: $(TARGET)
+	./$(TARGET) input/abb_example.in
