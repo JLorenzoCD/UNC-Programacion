@@ -1,8 +1,8 @@
 	.include "data.s"
 	.include "funs/reset_bg.s"
-	.include "funs/linea_recta_h.s"
-	.include "funs/rectangulo.s"
 	.include "funs/cuadrado.s"
+	.include "funs/circulo.s"
+	.include "funs/circulo_h.s"
 
 	.globl main
 
@@ -41,31 +41,29 @@ main:
 	BL reset_bg
 
 
-	/*
-	X1 -> Posición del pixel x1
-    X2 -> Posición del pixel y1
-    X3 -> Distancia
-    X4 -> Color
-	*/
+    /* Parámetros:
+        X1 -> Coordenada del pixel x
+        X2 -> Coordenada del pixel y
+        X3 -> Radio
+        X4 -> Color */
 
-	MOV X1, #50				// x1
-	MOV X2, #50				// y1
-	MOV X3, #200			// d
+	MOV X1, #150		    // x
+	MOV X2, #150			// y
+	MOV X3, #100			// r
 
-	MOVZ X4, 0x00, LSL #16
+	MOVZ X4, 0xFF, LSL #16
+	MOVK X4, 0x00FF, LSL #0
+
+	BL circulo
+
+
+	MOV X1, 400
+	MOV X2, 400
+	MOV X3, 20
+	MOVZ X4, 0xFF, LSL #16
 	MOVK X4, 0xFFFF, LSL #0
 
 	BL cuadrado
-
-	MOV X2, #100
-	MOV X3, 520
-	MOV X4, 120
-
-	MOVZ X5, 0xFF, LSL #16
-	MOVK X5, 0x00FF, LSL #0
-
-	BL rectangulo
-
 
 
 
