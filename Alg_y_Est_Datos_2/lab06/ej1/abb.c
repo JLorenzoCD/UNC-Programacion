@@ -20,12 +20,12 @@ static bool elem_less(abb_elem a, abb_elem b) {
 }
 
 static bool invrep(abb tree) {
-    if (!abb_is_empty(tree)) {
-        if (!abb_is_empty(tree->left) && !elem_less(tree->left->elem, tree->elem)) {
+    if (tree != NULL) {
+        if (tree->left != NULL && !elem_less(tree->left->elem, tree->elem)) {
             return false;
         }
 
-        if (!abb_is_empty(tree->left) && !elem_less(tree->elem, tree->right->elem)) {
+        if (tree->left != NULL && !elem_less(tree->elem, tree->right->elem)) {
             return false;
         }
 
@@ -77,10 +77,10 @@ abb abb_add(abb tree, abb_elem e) {
     }
     else {
         if (elem_less(e, tree->elem)) {
-            abb_add(tree->left, e);
+            tree = abb_add(tree->left, e);
         }
         else {
-            abb_add(tree->right, e);
+            tree = abb_add(tree->right, e);
         }
     }
 
@@ -242,6 +242,7 @@ abb abb_destroy(abb tree) {
         abb_destroy(tree->right);
 
         free(tree);
+        tree = NULL;
     }
 
     assert(tree == NULL);
