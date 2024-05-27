@@ -42,7 +42,7 @@ void pintar_pixel(uint x, uint y, char color) {
 
 // ······················· Linea recta ·······················
 void pintar_linea_recta_hor(uint x, uint y, uint xn, char color) {
-    for (uint xi = x; xi <= xn; xi++) {
+    for (uint xi = xn; x <= xi; xi--) {
         pintar_pixel(xi, y, color);
     }
 }
@@ -73,7 +73,7 @@ void calcular_nuevo_xi(uint x, uint y, uint *xi, uint yi, uint r) {
     uint nuevo_xi = *xi;
 
     while (!cumple_ecuacion(x, y, nuevo_xi, yi, r)) {
-        nuevo_xi++;
+        nuevo_xi--;
     }
 
     *xi = nuevo_xi;
@@ -81,31 +81,31 @@ void calcular_nuevo_xi(uint x, uint y, uint *xi, uint yi, uint r) {
 
 void pintar_circulo(uint x, uint y, uint r, char color) {
     // Parte de arriba
-    uint xi = x - r;
+    uint xi = x + r;
     uint yi = y;
     uint ri = r;
 
-    uint limite_izq = y - r;
+    uint limite_superior = y - r;
 
-    while (limite_izq <= yi) {
+    while (limite_superior <= yi) {
         calcular_nuevo_xi(x, y, &xi, yi, r);
-        ri = x - xi;
-        pintar_linea_recta_hor(xi, yi, x + ri, color);
+        ri = xi - x;
+        pintar_linea_recta_hor(x - ri, yi, xi, color);
 
         yi--;
     }
 
     // Parte de abajo
-    xi = x - r;
+    xi = x + r;
     yi = y + 1u;
     ri = r;
 
-    uint limite_der = y + r;
+    uint limite_inferior = y + r;
 
-    while (yi <= limite_der) {
+    while (yi <= limite_inferior) {
         calcular_nuevo_xi(x, y, &xi, yi, r);
-        ri = x - xi;
-        pintar_linea_recta_hor(xi, yi, x + ri, color);
+        ri = xi - x;
+        pintar_linea_recta_hor(x - ri, yi, xi, color);
 
         yi++;
     }
@@ -114,6 +114,8 @@ void pintar_circulo(uint x, uint y, uint r, char color) {
 int main(void) {
 
     screen_init();
+
+    pintar_linea_recta_hor(3, 2, 80, '-');
 
     pintar_rectangulo(5, 6, 15, 8, '#');
     pintar_cuadrado(20, 20, 10, '+');
