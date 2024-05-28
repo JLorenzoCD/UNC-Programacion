@@ -2,7 +2,6 @@
 	.include "funs/reset_bg.s"
 	.include "funs/cuadrado.s"
 	.include "funs/circulo.s"
-	.include "funs/circulo_h.s"
 
 	.globl main
 
@@ -42,8 +41,8 @@ main:
 
 
 
-	MOV X1, #101		    // x
-	MOV X2, #101			// y
+	MOV X1, #0		    	// x
+	MOV X2, #0				// y
 	MOV X3, #100			// r
 
 	MOVZ X4, 0xFF, LSL #16
