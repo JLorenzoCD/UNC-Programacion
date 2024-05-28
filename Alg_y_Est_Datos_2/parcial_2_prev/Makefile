@@ -6,7 +6,7 @@ OBJECTS = $(SOURCES:.c=.o)
 
 TARGET = dispatch_patients
 
-.PHONY: clean
+.PHONY: clean run_all valgrind
 
 all: $(TARGET)
 
