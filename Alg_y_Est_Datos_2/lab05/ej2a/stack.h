@@ -62,6 +62,13 @@ stack_elem stack_top(stack s);
 bool stack_is_empty(stack s);
 
 /**
+* @brief Copy a stack
+* @param s A stack
+* @return A new stack that is a copy of s
+*/
+stack stack_copy(stack s);
+
+/**
 * @brief Creates an array with all the elements of the stack
 * @param s A stack
 * @return An array containing all the elements of the stack. The stack top element

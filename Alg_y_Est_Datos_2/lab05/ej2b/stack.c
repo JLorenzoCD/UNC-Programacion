@@ -115,12 +115,11 @@ stack_elem *stack_to_array(stack s) {
             exit(EXIT_FAILURE);
         }
 
-        node p = s->elems;
         unsigned int i = 0u;
-        while (p != NULL) {
-            array[i] = p->elem;
+        while (!stack_is_empty(s)) {
+            array[i] = stack_top(s);
+            s = stack_pop(s);
 
-            p = p->next;
             i++;
         }
     }

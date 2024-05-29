@@ -79,6 +79,25 @@ bool stack_is_empty(stack s) {
     return s == NULL;
 }
 
+stack stack_copy(stack s) {
+    stack s_cp = stack_empty();
+    stack s_aux = stack_empty();
+
+    stack p = s;
+    while (!stack_is_empty(p)) {
+        s_aux = stack_push(s_aux, p->elem);
+
+        p = p->next;
+    }
+
+    while (!stack_is_empty(s_aux)) {
+        s_cp = stack_push(s_cp, stack_top(s_aux));
+        s_aux = stack_pop(s_aux);
+    }
+
+    return s_cp;
+}
+
 stack_elem *stack_to_array(stack s) {
     unsigned int len = stack_size(s);
 
@@ -91,14 +110,15 @@ stack_elem *stack_to_array(stack s) {
             exit(EXIT_FAILURE);
         }
 
-        stack p = s;
+        stack s_cp = stack_copy(s);
         unsigned int i = 0u;
-        while (!stack_is_empty(p)) {
-            array[i] = p->elem;
-
-            p = p->next;
+        while (!stack_is_empty(s_cp)) {
+            array[i] = stack_top(s_cp);
+            s_cp = stack_pop(s_cp);
             i++;
         }
+
+        s_cp = stack_destroy(s_cp);
     }
 
     return array;
