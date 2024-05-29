@@ -76,21 +76,21 @@ pqueue pqueue_enqueue(pqueue q, pqueue_elem e, unsigned int priority) {
     assert(invrep(q));
     list new_node = create_node(e, priority);
 
-    if (q->front == NULL) {
-        q->front = new_node;
+    list curr = q->front;
+    list prev = NULL;
+
+    while (curr != NULL && curr->priority <= new_node->priority) {
+        prev = curr;
+        curr = prev->next;
+    }
+
+    new_node->next = curr;
+
+    if (prev != NULL) {
+        prev->next = new_node;
     }
     else {
-        list temp = q->front;
-
-        while (temp->priority <= new_node->priority && temp->next != NULL) {
-            temp = temp->next;
-        }
-
-        if (temp->next != NULL) {
-            new_node->next = temp->next;
-        }
-
-        temp->next = new_node;
+        q->front = new_node;
     }
 
     q->size++;
