@@ -6,12 +6,12 @@
 
 /*
 Fun: cuadrado
-Hace: Dada una coordenada (x, y) y una distancia d, pinta un cuadrado que comienza en la coordenada (x, y) y finaliza en (x + d, y + d)
+Hace: Dada una coordenada (x, y) y un largo d, pinta un cuadrado que comienza en la coordenada (x, y) y finaliza en (x + d, y + d)
 
 Parámetros:
     X1 -> Posición del pixel x1
     X2 -> Posición del pixel y1
-    X3 -> Distancia
+    X3 -> largo
     X4 -> Color
 */
 

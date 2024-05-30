@@ -6,13 +6,13 @@
 
 /*
 Fun: rectangulo
-Hace: Dada dos coordenada (x1, y1) y (x2, y2), pinta un rectángulo que comienza en la coordenada (x1, y1) y finaliza en (x2, y2)
+Hace: Dada una coordenada (x, y) y  pinta un rectángulo que comienza en la coordenada (x, y) y finaliza en (x + ancho, y + alto)
 
 Parámetros:
-    X1 -> Posición del pixel x1
-    X2 -> Posición del pixel y1
-    X3 -> Posición del pixel x2
-    X4 -> Posición del pixel y2
+    X1 -> Posición del pixel x
+    X2 -> Posición del pixel y
+    X3 -> Ancho
+    X4 -> Alto
     X5 -> Color
 */
 
@@ -20,6 +20,7 @@ Parámetros:
 rectangulo:
 	// Reserva espacio en el stack, guarda las variables que queremos conservar y la dir de retorno en el stack
 	SUB SP, SP, #32
+	STUR X2, [SP, #0]
 	STUR X2, [SP, #0]
 	STUR X4, [SP, #8]
 	STUR X12, [SP, #16]
@@ -31,16 +32,16 @@ rectangulo:
 
 	/*
 	Variables auxiliares:
-	X12 = coordenada y2
+	X12 = alto
 
 	*/
-	MOV X12, X4
+	ADD X12, X2, X4
 	MOV X4, X5
 
 	rectangulo_loop:
-		// Si y1 <= y2 entonces continuo, si y2 < y1 corto el bucle
+		// Si y1 != y2 entonces continuo, si y2 == y1 corto el bucle
 		CMP X2, X12
-		B.HI rectangulo_end
+		B.EQ rectangulo_end
 
 		BL linea_recta_h
 
