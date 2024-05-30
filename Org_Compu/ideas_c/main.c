@@ -1,6 +1,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 typedef unsigned int uint;
 
@@ -44,7 +45,7 @@ void pintar_pixel(uint x, uint y, char color) {
 void pintar_linea_recta_hor(uint x, uint y, uint largo, char color) {
     uint xn = x + largo;
 
-    for (uint xi = x; xi < xn; xi++) {
+    for (uint xi = x; xi != xn; xi++) {
         pintar_pixel(xi, y, color);
     }
 }
@@ -53,7 +54,7 @@ void pintar_linea_recta_hor(uint x, uint y, uint largo, char color) {
 void pintar_rectangulo(uint x, uint y, uint ancho, uint alto, char color) {
     uint yn = y + alto;
 
-    for (uint yi = y; yi < yn; yi++) {
+    for (uint yi = y; yi != yn; yi++) {
         pintar_linea_recta_hor(x, yi, ancho, color);
     }
 }
@@ -98,12 +99,12 @@ int main(void) {
 
     screen_init();
 
-    // pintar_linea_recta_hor(3, 2, 80, '-');
+    // pintar_linea_recta_hor(0, 2, 80, '-');
 
-    // pintar_rectangulo(5, 6, 15, 8, '#');
+    // pintar_rectangulo(-2, 6, 15, 8, '#');
     // pintar_cuadrado(20, 20, 10, '+');
 
-    pintar_circulo(50, 30, 4, '@');
+    pintar_circulo(4, 4, 4, '@');
 
     screen_dump();
 
