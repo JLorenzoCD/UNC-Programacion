@@ -65,34 +65,33 @@ void pintar_cuadrado(uint x, uint y, uint largo, char color) {
 }
 
 // ······················· Circulo ·······················
-bool cumple_ecuacion(uint x, uint  y, uint xi, uint yi, uint r) {
-    uint temp1 = (x - xi) * (x - xi);
-    uint temp2 = (y - yi) * (y - yi);
+bool cumple_ecuacion(uint x, uint y, uint radio) {
+    uint temp1 = x * x;
+    uint temp2 = y * y;
 
-    return ((temp1 + temp2) <= r * r);
+    return (temp1 + temp2) <= radio * radio;
 }
 
-void calcular_nuevo_xi(uint x, uint y, uint *xi, uint yi, uint r) {
-    uint nuevo_xi = *xi;
+void calcular_nuevo_di(uint *distancia_i, uint yi, uint radio) {
+    uint di = *distancia_i;
 
-    while (!cumple_ecuacion(x, y, nuevo_xi, yi, r)) {
-        nuevo_xi--;
+    while (!cumple_ecuacion(di, yi, radio)) {
+        di--;
     }
 
-    *xi = nuevo_xi;
+    *distancia_i = di;
 }
 
-void pintar_circulo(uint x, uint y, uint r, char color) {
-    uint xi = x + r;
-    uint ri = r;
+void pintar_circulo(uint x, uint y, uint radio, char color) {
+    uint di = radio;
 
-    for (uint k = 0u; k < r; k++) {
-        calcular_nuevo_xi(x, y, &xi, y + k, r);
-        ri = xi - x;
-        pintar_linea_recta_hor(x - ri, y + k, ri * 2, color); // Zona superior
-        pintar_linea_recta_hor(x - ri, y - k, ri * 2, color); // Zona inferior
+    for (uint k = 0; k != radio; k++) {
+        // calc di
+        calcular_nuevo_di(&di, k, radio);
+
+        pintar_linea_recta_hor(x - di, y + k, di * 2, color);
+        pintar_linea_recta_hor(x - di, y - k, di * 2, color);
     }
-
 }
 
 int main(void) {
@@ -104,7 +103,7 @@ int main(void) {
     // pintar_rectangulo(-2, 6, 15, 8, '#');
     // pintar_cuadrado(20, 20, 10, '+');
 
-    pintar_circulo(4, 4, 4, '@');
+    pintar_circulo(1, 1, 20, '@');
 
     screen_dump();
 
