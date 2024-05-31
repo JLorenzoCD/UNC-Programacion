@@ -29,14 +29,8 @@ rectangulo:
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-
-	/*
-	Variables auxiliares:
-	X12 = alto
-
-	*/
-	ADD X12, X2, X4
-	MOV X4, X5
+	ADD X12, X2, X4	// yn = y + alto
+	MOV X4, X5		// color
 
 	rectangulo_loop:
 		// Si y1 != y2 entonces continuo, si y2 == y1 corto el bucle

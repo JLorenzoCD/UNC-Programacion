@@ -32,8 +32,8 @@ cuadrado:
     MOV X5, X4
 
     // Coordenada (x + d, y + d) == (x2, y2)
-	ADD X3, X1, X9
-	ADD X4, X2, X9
+	MOV X3, X9
+	MOV X4, X9
 
 	BL rectangulo
 

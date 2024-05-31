@@ -19,90 +19,62 @@
 
 circulo:
 	// Reserva espacio en el stack, guarda las variables que queremos conservar y la dir de retorno en el stack
-	SUB SP, SP, #72
+	SUB SP, SP, #56
 	STUR X9, [SP, #0]
 	STUR X10, [SP, #8]
 	STUR X11, [SP, #16]
 	STUR X12, [SP, #24]
 	STUR X13, [SP, #32]
 	STUR X14, [SP, #40]
-	STUR X15, [SP, #48]
-	STUR X16, [SP, #56]
-	STUR LR, [SP, #64]
+	STUR LR, [SP, #48]
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     MOV X9 , X1     // x
     MOV X10 , X2    // y
-    MOV X11, X3     // r
+    MOV X11, X3     // radio
     MOV X12, X4     // color
 
-    // Parte de arriba del circulo
-    ADD X13, X9, X11 // xi
-    MOV X14, X10     // yi
-    MOV X15, X11     // ri
-
-    SUB X16, X2, X3 // limite_superior (y - r)
+    MOV X13, X11     // di = radio
+    MOV X14, XZR    // k
 
 
-    loop_czs_circulo:   // while (limite_superior <= yi)
-        CMP X16, X14
-        B.HI end_czs_circulo
+    loop_czs_circulo:   //     for (uint k = 0; k != radio; k++)
+        CMP X14, X11
+        B.EQ end_czs_circulo
 
-        // void calc_nuevo_xi(x, y, &xi, yi, r)     => Modifica xi
-        MOV X1, X9
-        MOV X2, X10
-        MOV X3, X13
-        MOV X4, X14
-        MOV X5, X11
-        BL calc_nuevo_xi
-        MOV X13, X3
+        // calcular_nuevo_di(uint *di, uint yi, uint radio)
+        MOV X1, X13
+        MOV X2, X14     // yi = k
+        MOV X3, X11
+        BL calc_nueva_distancia_i
+        MOV X13, X1    // Guarda di
 
-        SUB X15, X13, X1
-
-        SUB X1, X9, X15
-        MOV X2, X14
-        MOV X3, X13
+        // Zona superior
+        // pintar_linea_recta_hor(x - di, y + k, di * 2, color)
+        SUB X1, X9, X13     // x - di
+        ADD X2, X10, X14    // y + k
+        LSL X3, X13, #1     // di * 2
         MOV X4, X12
         BL linea_recta_h
 
-        SUB X14, X14, #1
-        B loop_czs_circulo
-    end_czs_circulo:
-
-
-
-    // Parte de abajo del circulo
-    ADD X13, X9, X11     // xi
-    MOV X14, X10         // yi
-    MOV X15, X11         // ri
-
-    ADD X16, X10, X11     // limite_inferior (y + r)
-
-    loop_czi_circulo:   // while (yi <= limite_inferior)
-        CMP X14, X16
-        B.HI end_czi_circulo
-
-        // void calc_nuevo_xi(x, y, &xi, yi, r)     => Modifica xi
-        MOV X1, X9
-        MOV X2, X10
-        MOV X3, X13
-        MOV X4, X14
-        MOV X5, X11
-        BL calc_nuevo_xi
-        MOV X13, X3
-
-        SUB X15, X13, X1
-
-        SUB X1, X9, X15
-        MOV X2, X14
-        MOV X3, X13
+        // Zona inferior
+        // pintar_linea_recta_hor(x - di, y - k, di * 2, color)
+        SUB X1, X9, X13     // x - di
+        SUB X2, X10, X14    // y - k
+        LSL X3, X13, #1     // di * 2
         MOV X4, X12
         BL linea_recta_h
 
         ADD X14, X14, #1
-        B loop_czi_circulo
-    end_czi_circulo:
+        B loop_czs_circulo
+    end_czs_circulo:
 
+
+    // Reseteando parametros de la funcion
+    MOV X1, X9
+    MOV X2, X10
+    MOV X3, X11
+    MOV X4, X12
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Carga la dirección de retorno, devuelve los valores previos de las variables usadas y libera la memoria del stack
@@ -112,28 +84,24 @@ circulo:
 	LDUR X12, [SP, #24]
 	LDUR X13, [SP, #32]
 	LDUR X14, [SP, #40]
-	LDUR X15, [SP, #48]
-	LDUR X16, [SP, #56]
-	LDUR LR, [SP, #64]
-	ADD SP, SP, #72
+	LDUR LR, [SP, #48]
+    ADD SP, SP, #56
 ret
 
 /*
-    Fun: calc_nuevo_xi
-    Hace: Dados dos coordenadas (x, y) y (xi, yi) y un radio, obtiene el siguiente punto xi que se encuentra en el circulo formado por la primer coordenada y el radio r
+    Fun: calc_nueva_distancia_i
+    Hace: Dados una coordenada (xi, y) y r, obtiene el siguiente punto xi que se encuentra en el circulo formado por el centro en cero y el radio r
 
     Parámetros:
-        X1 -> Coordenada del pixel x
+        X1 -> Coordenada del pixel xi
         X2 -> Coordenada del pixel y
-        X3 -> Coordenada del pixel xi
-        X4 -> Coordenada del pixel yi
-        X5 -> Radio
+        X3 -> Radio
 
     Argumentos:
         X3 -> Nueva coordenada del pixel xi dentro del circulo
 */
 
-calc_nuevo_xi:
+calc_nueva_distancia_i:
 	// Reserva espacio en el stack, guarda las variables que queremos conservar y la dir de retorno en el stack
 	SUB SP, SP, #16
 	STUR X0, [SP, #0]
@@ -141,77 +109,73 @@ calc_nuevo_xi:
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    loop_calc_nuevo_xi:
-        BL validar_ecuacion_con_xi
+    loop_calc_nueva_distancia_i:
+        BL validar_ecuacion_con_di
 
         CMP X0, #1
-        B.EQ end_calc_nuevo_xi
+        B.EQ end_calc_nueva_distancia_i
 
-        SUB X3, X3, #1
-        B loop_calc_nuevo_xi
-    end_calc_nuevo_xi:
+        SUB X1, X1, #1
+        B loop_calc_nueva_distancia_i
+    end_calc_nueva_distancia_i:
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Carga la dirección de retorno, devuelve los valores previos de las variables usadas y libera la memoria del stack
 	LDUR X0, [SP, #0]
 	LDUR LR, [SP, #8]
-    ADD SP, SP, #16
+	ADD SP, SP, #16
 ret
 
 /*
-    Fun: validar_ecuacion_con_xi
-    Hace: Dados dos coordenadas (x, y), (xi, yi) y un r, verifica que (xi, yi) se encuentra en el circulo formado por la primera condenada de radio r, es decir que se cumpla que (x - xi)² + (y - yi)² <= r²
+    Fun: validar_ecuacion_con_di
+    Hace: Dados una coordenada (x, y) y un r, verifica que dicha coordenada se encuentra dentro de un circulo de radio r y centro cero, es decir que se cumpla que (x)² + (y)² <= r²
 
     Parámetros:
         X1 -> Coordenada del pixel x
         X2 -> Coordenada del pixel y
-        X3 -> Coordenada del pixel xi
-        X4 -> Coordenada del pixel yi
-        X5 -> Radio
+        X3 -> Radio
 
     Argumentos:
         X0 -> Bool (0 == False, otro valor == True)
 */
 
-validar_ecuacion_con_xi:
+validar_ecuacion_con_di:
 	// Reserva espacio en el stack, guarda las variables que queremos conservar y la dir de retorno en el stack
 	SUB SP, SP, #32
 	STUR X1, [SP, #0]
 	STUR X2, [SP, #8]
-	STUR X5, [SP, #16]
+	STUR X3, [SP, #16]
 	STUR LR, [SP, #24]
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     MOV X0, #1
 
-    // (x - xi)²
-    SUB X1, X1, X3
+    // (x)²
     MUL X1, X1, X1
 
-    // (y - yi)²
-    SUB X2, X2, X4
+    // (y)²
     MUL X2, X2, X2
 
-    // (x - xi)² + (y - yi)²
+    // (x)² + (y)²
     ADD X1, X1, X2
 
     // r²
-    MUL X5, X5, X5
+    MUL X3, X3, X3
 
-    // (x - xi)² + (y - yi)² <= r²
-    CMP X1, X5
-    B.LS true_validar_ecuacion_con_xi
+    // (x)² + (y)² <= r²
+    CMP X1, X3
+    B.LS true_validar_ecuacion_con_di
 
     MOV X0, XZR
 
-    true_validar_ecuacion_con_xi:
+    true_validar_ecuacion_con_di:
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Carga la dirección de retorno, devuelve los valores previos de las variables usadas y libera la memoria del stack
 	LDUR X1, [SP, #0]
 	LDUR X2, [SP, #8]
-	LDUR X5, [SP, #16]
+	LDUR X3, [SP, #16]
 	LDUR LR, [SP, #24]
     ADD SP, SP, #32
 ret

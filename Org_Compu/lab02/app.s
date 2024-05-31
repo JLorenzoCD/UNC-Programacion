@@ -2,6 +2,7 @@
 	.include "funs/reset_bg.s"
 	.include "funs/cuadrado.s"
 	.include "funs/circulo.s"
+	.include "funs/isla.s"
 
 	.globl main
 
@@ -40,32 +41,33 @@ main:
 	BL reset_bg
 
 
+	// BL draw_island
 
-	MOV X1, #0		    	// x
-	MOV X2, #0				// y
-	MOV X3, #100			// r
-
-	MOVZ X4, 0xFF, LSL #16
-	MOVK X4, 0x00FF, LSL #0
-
-	BL circulo
-
-	MOV X1, 40
+	MOV X1, -30
 	MOV X2, 40
-	MOV X3, 20
+	MOV X3, 70
 	MOVZ X4, 0xFF, LSL #16
 	MOVK X4, 0xFFFF, LSL #0
 
 	BL cuadrado
 
-	MOV X1, #400
-	MOV X2, #400
+	MOV X1, #20
+	MOV X2, #50
 	MOV X5, X4
-	MOV X3, #450
-	MOV X4, #475
+	MOVK X5, 0x00, LSL #0
+	MOV X3, #50
+	MOV X4, #200
 
 	BL rectangulo
 
+	MOV X1, #450		// x
+	MOV X2, #200		// y
+	MOV X3, #100		// r
+
+	MOVZ X4, 0xFF, LSL #16
+	MOVK X4, 0x00FF, LSL #0
+
+	BL circulo
 
 
 	// Ejemplo de uso de gpios

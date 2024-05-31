@@ -27,10 +27,9 @@ linea_recta_h:
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    // swap(X3, X4)
-    MOV X1, X3              // xn
     MOV X3, X4              // color
-    LDUR X4, [SP, #0]       // x
+    LDUR X4, [SP, #8]       // largo
+    ADD X4, X1, X4
 
     loop_linea_recta_h:
         // Si coordenada x != xn continua el loop
@@ -39,7 +38,7 @@ linea_recta_h:
 
         BL pintar_pixel
 
-        SUB X1, X1, #1
+        ADD X1, X1, #1
         B loop_linea_recta_h
     end_linea_recta_h:
 
