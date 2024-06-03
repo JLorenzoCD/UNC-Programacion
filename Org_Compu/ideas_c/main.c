@@ -50,6 +50,14 @@ void pintar_linea_recta_hor(uint x, uint y, uint largo, char color) {
     }
 }
 
+void pintar_linea_recta_ver(uint x, uint y, uint alto, char color) {
+    uint yn = y + alto;
+
+    for (uint yi = y; yi != yn; yi++) {
+        pintar_pixel(x, yi, color);
+    }
+}
+
 // ······················· Rectángulo ·······················
 void pintar_rectangulo(uint x, uint y, uint ancho, uint alto, char color) {
     uint yn = y + alto;
@@ -58,6 +66,24 @@ void pintar_rectangulo(uint x, uint y, uint ancho, uint alto, char color) {
         pintar_linea_recta_hor(x, yi, ancho, color);
     }
 }
+
+void pintar_borde_rectangulo(uint x, uint y, uint ancho, uint alto, char color) {
+    pintar_linea_recta_hor(x, y, ancho, color);
+    pintar_linea_recta_ver(x, y, alto, color);
+
+    pintar_linea_recta_hor(x, y + alto - 1, ancho, color);
+    pintar_linea_recta_ver(x + ancho - 1, y, alto, color);
+}
+
+void pintar_borde_grosor_rectangulo(uint x, uint y, uint ancho, uint alto, uint grosor, char color) {
+    pintar_rectangulo(x, y, ancho, grosor, color);  // Rectángulo superior
+    pintar_rectangulo(x, y + alto - grosor, ancho, grosor, color);  // Rectángulo Inferior
+
+
+    pintar_rectangulo(x, y, grosor, alto, color);   // Rectángulo Derecho
+    pintar_rectangulo(x + ancho - grosor, y, grosor, alto, color);  // Rectángulo Izquierdo
+}
+
 
 // ······················· Cuadrado ·······················
 void pintar_cuadrado(uint x, uint y, uint largo, char color) {
@@ -94,16 +120,50 @@ void pintar_circulo(uint x, uint y, uint radio, char color) {
     }
 }
 
+void pintar_borde_circulo(uint x, uint y, uint radio, char color) {
+    uint di = radio;
+
+    for (uint k = 0; k != radio; k++) {
+        // calc di
+        calcular_nuevo_di(&di, k, radio);
+
+        pintar_pixel(x - di, y - k, color);
+        pintar_pixel(x + di, y - k, color);
+
+        pintar_pixel(x - di, y + k, color);
+        pintar_pixel(x + di, y + k, color);
+
+
+        pintar_pixel(x - k, y - di, color);
+        pintar_pixel(x - k, y + di, color);
+
+        pintar_pixel(x + k, y - di, color);
+        pintar_pixel(x + k, y + di, color);
+    }
+}
+
+void pintar_borde_grosor_circulo(uint x, uint y, uint radio, uint grosor, char color) {
+    for (uint i = 0; i != grosor; i++) {
+        pintar_borde_circulo(x, y, radio - i, color);
+    }
+}
+
 int main(void) {
 
     screen_init();
 
-    // pintar_linea_recta_hor(0, 2, 80, '-');
+    // pintar_linea_recta_hor(30, 2, 80, '-');
+    // pintar_linea_recta_ver(30, 2, 80, '-');
 
     // pintar_rectangulo(-2, 6, 15, 8, '#');
     // pintar_cuadrado(20, 20, 10, '+');
 
-    pintar_circulo(1, 1, 20, '@');
+    // pintar_circulo(50, 50, 15, '@');
+    // pintar_borde_circulo(20, 20, 20, '@');
+    // pintar_borde_grosor_circulo(20, 20, 20, 5, '@');
+
+    // pintar_borde_rectangulo(30, 20, 5, 5, '$');
+    pintar_borde_grosor_rectangulo(30, 20, 5, 5, 2, '$');
 
     screen_dump();
 
