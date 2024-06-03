@@ -2,7 +2,7 @@
 .equ pintar_pixel, 0
 
 .include "data.s"
-.include "funs/calcular_pixel.s"
+.include "core/calcular_pixel.s"
 
 
 /*

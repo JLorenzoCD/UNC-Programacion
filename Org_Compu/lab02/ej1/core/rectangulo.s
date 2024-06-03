@@ -2,7 +2,7 @@
 .equ rectangulo, 0
 
 .include "data.s"
-.include "funs/linea_recta_h.s"
+.include "core/linea_recta_h.s"
 
 /*
 Fun: rectangulo
@@ -20,7 +20,6 @@ Parámetros:
 rectangulo:
 	// Reserva espacio en el stack, guarda las variables que queremos conservar y la dir de retorno en el stack
 	SUB SP, SP, #32
-	STUR X2, [SP, #0]
 	STUR X2, [SP, #0]
 	STUR X4, [SP, #8]
 	STUR X12, [SP, #16]
@@ -47,7 +46,6 @@ rectangulo:
 
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 	// Carga la dirección de retorno, devuelve los valores previos de las variables usadas y libera la memoria del stack
 	LDUR X2, [SP, #0]
 	LDUR X4, [SP, #8]

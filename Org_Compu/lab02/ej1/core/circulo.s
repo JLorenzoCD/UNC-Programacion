@@ -2,7 +2,7 @@
 .equ circulo, 0
 
 .include "data.s"
-.include "funs/linea_recta_h.s"
+.include "core/linea_recta_h.s"
 
 .globl circulo
 

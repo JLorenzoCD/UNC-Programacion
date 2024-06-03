@@ -2,8 +2,8 @@
 SECTIONS
 {
     . = 0x80000;
-    .text : { KEEP(*(.text.boot)) *(.text*) } 
-    .bss : { *(.bss*) } 
+    .text : { KEEP(*(.text.boot)) *(.text*) }
+    .bss : { *(.bss*) }
     .bss (NOLOAD) : {
         . = ALIGN(16);
         __bss_start = .;

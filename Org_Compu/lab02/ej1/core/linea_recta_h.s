@@ -2,7 +2,7 @@
 .equ linea_recta_h, 0
 
 .include "data.s"
-.include "funs/pintar_pixel.s"
+.include "core/pintar_pixel.s"
 
 
 /*

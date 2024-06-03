@@ -1,8 +1,18 @@
 	.include "data.s"
-	.include "funs/reset_bg.s"
-	.include "funs/cuadrado.s"
-	.include "funs/circulo.s"
-	.include "funs/isla.s"
+
+	.include "core/guardando_cancha.s"
+
+	.include "funs/bandera_arg.s"
+	.include "funs/bandera_fra.s"
+	.include "funs/cancha.s"
+	.include "funs/pelota.s"
+
+	.include "funs/jugador/posicion_inicial.s"
+
+	.include "animacion/animacion_pelota.s"
+	.include "animacion/animacion_pelota_efec.s"
+	.include "animacion/players.s"
+	.include "animacion/jugador_caminando_penal.s"
 
 	.globl main
 
@@ -24,8 +34,7 @@ Convención de los registros en LEGv8:
 
 Uso de los registros en el proyecto:
 	X20 		: Dirección base del framebuffer
-
-
+	X21 		: Dirección base de la copia del frambuffer
 */
 
 
@@ -34,42 +43,43 @@ main:
 	// Configuración inicial
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	MOV X20, X0 // La dirección base del framebuffer comienza en X0
+	LDR X21, =FRAMEBUFFER_COPY	// Memoria para la copia del framebuffer
 
 	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-	BL reset_bg
+	BL cancha
+
+	BL bandera_arg
+	BL bandera_fra
 
 
-	// BL draw_island
-
-	MOV X1, -30
-	MOV X2, 40
-	MOV X3, 70
-	MOVZ X4, 0xFF, LSL #16
-	MOVK X4, 0xFFFF, LSL #0
-
-	BL cuadrado
-
-	MOV X1, #20
-	MOV X2, #50
-	MOV X5, X4
-	MOVK X5, 0x00, LSL #0
-	MOV X3, #50
-	MOV X4, #200
-
-	BL rectangulo
-
-	MOV X1, #450		// x
-	MOV X2, #200		// y
-	MOV X3, #100		// r
-
-	MOVZ X4, 0xFF, LSL #16
-	MOVK X4, 0x00FF, LSL #0
-
-	BL circulo
+	MOV X1, #70     // x centro de la pantalla (por ejemplo)
+	MOV X2, #240     // y centro de la pantalla (por ejemplo)
+	MOV X3, #10      // radio de la pelota
+	BL pelota        // llama a la función pelota con los parámetros especificados
 
 
+	BL jugador_posicion_inicial
+
+	BL guardando_cancha
+
+
+	MOV X1, #1
+	BL animacion_jugador_caminando_penal
+
+/* 	MOV X0, #1
+	BL animacion_pelota
+
+	MOV X0, #1
+	BL animacion_pelota_efec */
+
+
+
+
+
+
+	// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	// Ejemplo de uso de gpios
 	MOV X9, GPIO_BASE
 
@@ -92,8 +102,6 @@ main:
 	// si w11 es 0 entonces el GPIO 1 estaba liberado
 	// de lo contrario será distinto de 0, (en este caso particular 2)
 	// significando que el GPIO 1 fue presionado
-
-
 
 
 

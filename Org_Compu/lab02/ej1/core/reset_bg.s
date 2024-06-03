@@ -22,9 +22,8 @@ reset_bg:
 	// Se copia la base del framebuffer en el X9
     MOV X9, X20
 
-	// Guardo el color negro (0x000000) en X9
-	MOVZ X10, 0x00, LSL 16
-	MOVK X10, 0x0000, LSL 00
+	//Color del fondo
+	LDR X10, =COLOR_CESPED_CLARO
 
 	LDR X11, =SCREEN_WIDTH
 	LDR X12, =SCREEN_HEIGH
@@ -32,7 +31,7 @@ reset_bg:
 	// X13 el al dirección final del framebuffer ( X11 = &A[0][0] + (680*480*8) )
 	MUL X13, X11, X12
 	LSL X13, X13, #3
-	ADD X13, X13, X0
+	ADD X13, X13, X9
 
 	loop_reset_bg:
 		CMP X9,X13
