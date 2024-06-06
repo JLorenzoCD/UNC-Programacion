@@ -25,7 +25,7 @@ static bool invrep(abb tree) {
             return false;
         }
 
-        if (tree->left != NULL && !elem_less(tree->elem, tree->right->elem)) {
+        if (tree->right != NULL && !elem_less(tree->elem, tree->right->elem)) {
             return false;
         }
 
@@ -77,10 +77,14 @@ abb abb_add(abb tree, abb_elem e) {
     }
     else {
         if (elem_less(e, tree->elem)) {
-            tree = abb_add(tree->left, e);
+            tree->left = abb_add(tree->left, e);
+        }
+        else if (elem_less(tree->elem, e)) {
+            tree->right = abb_add(tree->right, e);
         }
         else {
-            tree = abb_add(tree->right, e);
+            // elem_eq(tree->elem, e);
+            // skip
         }
     }
 
@@ -212,7 +216,7 @@ abb_elem abb_min(abb tree) {
         min_e = tree->elem;
     }
     else {
-        min_e = abb_max(tree->left);
+        min_e = abb_min(tree->left);
     }
 
     assert(invrep(tree) && abb_exists(tree, min_e));

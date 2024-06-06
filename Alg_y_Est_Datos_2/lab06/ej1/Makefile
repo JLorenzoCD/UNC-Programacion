@@ -2,9 +2,12 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pedantic -std=c99 -g
 SOURCES = abb.c main.c
 OBJECTS = $(SOURCES:.c=.o)
+
 TARGET = readtree
 
-.PHONY: clean run_easy
+TESTFILES = $(shell ls ./input)
+
+.PHONY: clean test
 
 all: $(TARGET)
 
@@ -17,5 +20,9 @@ $(TARGET): $(OBJECTS)
 clean:
 	$(RM) $(OBJECTS) $(TARGET)
 
-run_easy: $(TARGET)
-	./$(TARGET) input/abb_example.in
+
+test: $(TARGET) $(TESTFILES)
+
+%.in:
+	./$(TARGET) ./input/$*.in
+#	valgrind ./$(TARGET) ./input/$*.in
