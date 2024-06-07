@@ -26,3 +26,6 @@ test: $(TARGET) $(TESTFILES)
 %.in:
 	./$(TARGET) ./input/$*.in
 #	valgrind ./$(TARGET) ./input/$*.in
+
+dev : $(TARGET)
+	./$(TARGET) input/abb_example.in

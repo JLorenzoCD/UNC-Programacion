@@ -43,10 +43,10 @@ static abb abb_merge(abb tree_dest, abb tree) {
         // skip
     }
     else {
-        abb_add(tree_dest, tree->elem);
+        tree_dest = abb_add(tree_dest, tree->elem);
 
-        abb_merge(tree_dest, tree->left);
-        abb_merge(tree_dest, tree->right);
+        tree_dest = abb_merge(tree_dest, tree->left);
+        tree_dest = abb_merge(tree_dest, tree->right);
 
         free(tree);
         tree = NULL;
@@ -182,7 +182,6 @@ abb abb_remove(abb tree, abb_elem e) {
     return tree;
 }
 
-
 abb_elem abb_root(abb tree) {
     abb_elem root;
     assert(invrep(tree) && !abb_is_empty(tree));
@@ -242,8 +241,8 @@ abb abb_destroy(abb tree) {
     assert(invrep(tree));
 
     if (!abb_is_empty(tree)) {
-        abb_destroy(tree->left);
-        abb_destroy(tree->right);
+        tree->left = abb_destroy(tree->left);
+        tree->right = abb_destroy(tree->right);
 
         free(tree);
         tree = NULL;
