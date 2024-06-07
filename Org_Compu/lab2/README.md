@@ -1,3 +1,23 @@
+# Integrantes del grupo:
+* Canovas, Jose Lorenzo.
+* Pastore, Ezequiel David.
+* Santillan, Kevin.
+
+
+# Comandos de ejecución del programa:
+* Primero aclaráramos que tenemos los ejercicios 1 y 2 en las carpetas ej1 y ej2 respectivamente. Cada carpeta posee un Makefile para compilar y ejecutar cada uno de los programas. Con el comando make se compila y luego con make runQEMU se ejecuta la animación de los ejercicios.
+
+
+# Explicación del ejercicio 1:
+* La imagen diseñada refleja la cancha en la que se disputo la final del mundial 2022 de futbol y las banderas que hacen referencia a los países que jugaron este partido.
+
+
+# Historia del ejercicio 2:
+* Estamos en la final del mundo de 2022 de futbol, en la que después de 120 tensos y largos minutos, que resultaron en empate (3-3), se llega a los penales, en los cuales Argentina se impone 4 a 2 sobre Francia, consiguiendo asi la 3er copa del mundo y un momento inolvidable para todo su publico allí presente.
+
+
+#    ----------------------------------------------------------------------------------------------------------------------------------------------------------
+
 # Lab Org. y Arq. de Computadoras
 
 * Configuración de pantalla: `640x480` pixels, formato `ARGB` 32 bits.

@@ -1,51 +1,62 @@
 .ifndef animacion_globo
 .equ animacion_globo, 0
 
-.include "funs/globo.s"
+.include "data.s"
+
 .include "core/delay.s"
+.include "core/repintar/repintar.s"
+
+.include "funs/globo.s"
+.include "funs/estadio.s"
+
+.include "animacion/delay_loop.s"
 
 .globl animacion_globo
 
 /*
-Fun: animacion_globo
-Hace: simula la caida de un globo, desplazandoce a der.
-Parametros: -
+    Fun: animacion_globo
+    Hace: simula la caida de un globo, de fondo la imagen de un estadio
+    Parametros: (xi, xi)  [pos. Inicial del globo]
 */
 
 animacion_globo:
+    // PUSH
     SUB SP, SP, #32
-    STUR X1, [SP, #0]   
-    STUR X2, [SP, #8]   
-    STUR X3, [SP, #16]  
-    STUR X5, [SP, #24]  
+    STUR X1, [SP, #0]
+    STUR X2, [SP, #8]
+    STUR X3, [SP, #16]
+    STUR LR, [SP, #24]
 
-    MOV X5, #0
+    // GLOBO [posicion (xi,yi)]
+    MOV X1, #111
+    MOV X2, #420
 
-loop_globo:
+    MOV X3, XZR
 
-    // GLOBO <-- [pos. actual]
-    BL estadio
-    BL globo
+    // ANIMACION
+    loop_caida:
+        CMP X2, X3
+        B.EQ fin_animacion
 
-    // VISUALIZACION
-    BL delay
+        BL repintar_pantalla_completa
+        BL globo
+        BL delay_loop
 
-    // ACTUALIZAR <-- [coordenadas del globo]
-    ADD X1, X1, #1
-    SUB X2, X2, #1
+        // CAIDA [simula un efecto desplazamiento para la der.]
+        SUB X2, X2, #4
+        ADD X1, X1, #5
+        B loop_caida
 
-    // VERIFICACION; [si el globo ha llegado al límite inf. de la pantalla]
-    CMP X2, #0
-    B.GT loop_globo 
+    fin_animacion:
 
-end_loop_globo:
-    // Restaurar registros
-    LDUR X1, [SP, #0]   
-    LDUR X2, [SP, #8]  
-    LDUR X3, [SP, #16]  
-    LDUR X5, [SP, #24]
+    BL repintar_pantalla_completa
+
+    // POP
+    LDUR X1, [SP, #0]
+    LDUR X2, [SP, #8]
+    LDUR X3, [SP, #16]
+    LDUR LR, [SP, #24]
     ADD SP, SP, #32
-
 ret
 
 .endif

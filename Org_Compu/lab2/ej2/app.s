@@ -14,6 +14,13 @@
 	.include "funs/puntos/tablero_penales.s"
 
 	.include "animacion/penales.s"
+	.include "animacion/transicion.s"
+
+	.include "core/reset_celeste.s"
+	.include "funs/estadio.s"
+	.include "funs/publico.s"
+	.include "funs/globo.s"
+	.include "animacion/animacion_globo.s"
 
 /*
 Convención de los registros en LEGv8:
@@ -104,6 +111,12 @@ main:
 	BL animacion_penales
 	// -------------------------------------------------------------------------------------------------------
 
+	BL transicion
+	BL estadio
+
+	BL guardar_pantalla_completa
+
+	BL animacion_globo
 
 
 

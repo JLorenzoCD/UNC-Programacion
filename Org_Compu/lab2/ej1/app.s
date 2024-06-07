@@ -50,40 +50,6 @@ main:
 	BL bandera_arg
 	BL bandera_fra
 
-	BL jugador_posicion_inicial
-
-	MOV X1, #265
-	MOV X2, #205
-	BL jugador_arg
-
-	MOV X1, #265
-	MOV X2, #340
-	BL jugador_fra
-
-
-
-	MOV X1, #70
-	MOV X2, #240
-	BL pelota
-
-
-	// Puntos por goles
-	MOV X1, #270
-	MOV X2, #20
-	MOV X3, #3			// Puntos ARG
-	MOV X4, #3			// Puntos FRA
-	BL puntos_tablero
-
-
-
-
-
-	MOV X1, #270
-	MOV X2, #420
-	MOV X3, #4			// Puntos ARG
-	MOV X4, #2			// Puntos FRA
-	BL puntos_tablero_penales
-
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // Infinite Loop

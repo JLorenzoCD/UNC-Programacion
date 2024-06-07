@@ -96,6 +96,7 @@ cancha:
 	MOV X3, #4
 	MOVZ X4, 0xFF, LSL #16
 	MOVK X4, 0xFFFF, LSL #0
+	BL circulo
 
 	MOV X1, #321
 	MOV X2, #240
