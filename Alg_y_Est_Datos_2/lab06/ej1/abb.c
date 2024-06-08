@@ -69,7 +69,7 @@ abb abb_add(abb tree, abb_elem e) {
 
     if (abb_is_empty(tree)) {
         tree = (abb)malloc(sizeof(struct _s_abb));
-        assert(!abb_is_empty(tree));
+        assert(tree != NULL);
 
         tree->left = NULL;
         tree->elem = e;
@@ -171,10 +171,10 @@ abb abb_remove(abb tree, abb_elem e) {
             }
         }
         else if (elem_less(e, tree->elem)) {
-            tree = abb_remove(tree->left, e);
+            tree->left = abb_remove(tree->left, e);
         }
         else {
-            tree = abb_remove(tree->right, e);
+            tree->right = abb_remove(tree->right, e);
         }
     }
 
