@@ -78,6 +78,10 @@ int main(int argc, char *argv[]) {
 
     /*dumping the tree*/
 /*     abb_dump(tree, ABB_IN_ORDER);
+    printf("\n");
+    abb_dump(tree, ABB_POST_ORDER);
+    printf("\n");
+    abb_dump(tree, ABB_PRE_ORDER); */
 
     if (!abb_is_empty(tree)) {
         printf("\n");
@@ -90,10 +94,10 @@ int main(int argc, char *argv[]) {
     }
     else {
         printf("\nÁrbol vacío\n");
-    } */
+    }
 
     // Iniciando el programa de interfaz gráfica para que el usuario realice ciertas acciones con los arboles binarios.
-    tree = interfaz(tree);
+    // tree = interfaz(tree);
 
     tree = abb_destroy(tree);
 

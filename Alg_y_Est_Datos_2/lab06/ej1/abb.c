@@ -224,16 +224,27 @@ abb_elem abb_min(abb tree) {
 
 void abb_dump(abb tree, abb_ordtype ord) {
     assert(invrep(tree) && (ord == ABB_IN_ORDER || ord == ABB_PRE_ORDER || ord == ABB_POST_ORDER));
-    /*
-     * c) Needs implementation: use the dump order indicated by `ord`
-     *
-     */
 
-     // Implementing in-order as default
-    if (tree != NULL) {
-        abb_dump(tree->left, ord);
-        printf("%d ", tree->elem);
-        abb_dump(tree->right, ord);
+    if (!abb_is_empty(tree)) {
+        switch (ord) {
+        case ABB_IN_ORDER:
+            abb_dump(tree->left, ord);
+            printf("%d ", tree->elem);
+            abb_dump(tree->right, ord);
+            break;
+
+        case ABB_PRE_ORDER:
+            printf("%d ", tree->elem);
+            abb_dump(tree->left, ord);
+            abb_dump(tree->right, ord);
+            break;
+
+        case ABB_POST_ORDER:
+            abb_dump(tree->left, ord);
+            abb_dump(tree->right, ord);
+            printf("%d ", tree->elem);
+            break;
+        }
     }
 }
 
