@@ -1,6 +1,8 @@
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "string.h"
 
 struct _s_string {
@@ -10,10 +12,15 @@ struct _s_string {
 
 string string_create(const char *word) {
     string str = NULL;
-    str = calloc(1, sizeof(struct _s_string));
-    str->length = /* needs implementation */;
-    str->content = calloc(/* needs implementation */, sizeof(char));
-    str->content = strncpy(str->content, word, str->length + 1);
+
+    str = calloc(1u, sizeof(struct _s_string));
+    assert(str != NULL);
+
+    str->length = strlen(word);
+    str->content = calloc(str->length + 1u, sizeof(char));
+
+    str->content = strncpy(str->content, word, str->length + 1u);
+
     return (str);
 }
 
@@ -22,8 +29,16 @@ unsigned int string_length(string str) {
 }
 
 bool string_less(const string str1, const string str2) {
-    /* needs implementation */
-    return false;
+    /*
+    "man strcmp"
+    Return:
+    • 0, if the s1 and s2 are equal;
+    • a negative value if s1 is less than s2;
+    • a positive value if s1 is greater than s2.
+     */
+
+    int cmp = strcmp(str1->content, str2->content);
+    return (cmp < 0);
 }
 
 bool string_eq(const string str1, const string str2) {
@@ -36,7 +51,12 @@ string string_clone(const string str) {
 }
 
 string string_destroy(string str) {
-    /* needs implementation */
+    free(str->content);
+    str->content = NULL;
+
+    free(str);
+    str = NULL;
+
     return str;
 }
 

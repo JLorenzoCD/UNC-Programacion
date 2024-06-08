@@ -30,7 +30,7 @@ string string_clone(string str);
 string string_destroy(string str);
 
 /* Returns a reference to the string, as a pointer to a constant sequence
- * of characters. 
+ * of characters.
 */
 const char* string_ref(string str);
 
