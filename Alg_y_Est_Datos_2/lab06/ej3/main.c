@@ -188,6 +188,7 @@ void on_search(dict_t current) {
         );
     }
     word = string_destroy(word);
+    definition = string_destroy(definition);
 }
 
 void on_size(dict_t current) {

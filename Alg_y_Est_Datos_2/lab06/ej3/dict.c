@@ -84,7 +84,8 @@ dict_t dict_add(dict_t dict, key_t word, value_t def) {
         }
         else {
             // key_eq(dict->key, word);
-            word = key_destroy(word);
+            dict->key = key_destroy(dict->key);
+            dict->key = word;
 
             dict->value = value_destroy(dict->value);
             dict->value = def;
@@ -100,7 +101,7 @@ value_t dict_search(dict_t dict, key_t word) {
 
     if (!dict_is_empty(dict)) {
         if (key_eq(dict->key, word)) {
-            def = dict->key;
+            def = dict->value;
         }
         else if (key_less(word, dict->key)) {
             def = dict_search(dict->left, word);
@@ -112,7 +113,7 @@ value_t dict_search(dict_t dict, key_t word) {
     }
 
     assert((def != NULL) == dict_exists(dict, word));
-    return NULL;
+    return def;
 }
 
 bool dict_exists(dict_t dict, key_t word) {
