@@ -16,13 +16,14 @@ char *readline(FILE * file) {
     unsigned int size = BUFFER_SIZE;
     size_t result_len = 0;
 
-    /* char *fgets(char *s, int size, FILE *stream);
-
-       fgets() reads in at most one less than size characters from stream and
-       stores them into the buffer pointed to by s. Reading stops after an EOF
-       or a newline. If a newline is read, it is stored into the buffer. A
-       terminating null byte ('\0') is stored after the last character in the
-       buffer. */
+    /*
+        char *fgets(char *s, int size, FILE *stream);
+        fgets() reads in at most one less than size characters from stream and
+        stores them into the buffer pointed to by s. Reading stops after an EOF
+        or a newline. If a newline is read, it is stored into the buffer. A
+        terminating null byte ('\0') is stored after the last character in the
+        buffer.
+    */
 
     while (!done) {
         /* need to use 2 pointers to avoid leaking resources from 'result' */
@@ -32,7 +33,8 @@ char *readline(FILE * file) {
             free(result);
             result = NULL;
             done = true;
-        } else {
+        }
+        else {
             /* point 'result' to the newly allocated memory */
             result = alloc_result;
 
@@ -45,13 +47,15 @@ char *readline(FILE * file) {
                 free(result);
                 result = NULL;
                 done = true;
-            } else {
+            }
+            else {
                 /* check if the user entered a newline */
                 result_len = strlen(result);
                 assert(result_len < size);
                 if (feof(file)) {
                     done = true;
-                } else if (result[result_len - 1] == '\n') {
+                }
+                else if (result[result_len - 1] == '\n') {
                     /* Remove trailing '\n' */
                     result[result_len - 1] = '\0';
                     assert(strlen(result) == result_len - 1);

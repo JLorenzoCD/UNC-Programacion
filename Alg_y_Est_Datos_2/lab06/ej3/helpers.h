@@ -2,6 +2,7 @@
 #define _HELPERS_H
 
 #include <stdio.h>
+
 #include "string.h"
 
 string readstring_from_stdin(void);
@@ -12,7 +13,7 @@ string readstring_from_stdin(void);
 char *readline_from_stdin(void);
 /*
  * Read the user input from standard input until a newline is detected,
- * and return the corresponding (dinamically allocated) string.
+ * and return the corresponding (dynamically allocated) string.
  *
  * The caller to this function is responsible for the allocated memory.
  *
@@ -23,7 +24,7 @@ char *readline_from_stdin(void);
 char *readline(FILE * file);
 /*
  * Read the user input from specified FILE * until a newline is detected,
- * and return the corresponding (dinamically allocated) string.
+ * and return the corresponding (dynamically allocated) string.
  *
  * The caller to this function is responsible for the allocated memory.
  *

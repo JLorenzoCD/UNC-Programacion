@@ -77,27 +77,29 @@ int main(int argc, char *argv[]) {
     abb tree = abb_from_file(filepath);
 
     /*dumping the tree*/
-/*     abb_dump(tree, ABB_IN_ORDER);
+    /*
+    abb_dump(tree, ABB_IN_ORDER);
     printf("\n");
     abb_dump(tree, ABB_POST_ORDER);
     printf("\n");
-    abb_dump(tree, ABB_PRE_ORDER); */
+    abb_dump(tree, ABB_PRE_ORDER);
+    */
 
-    if (!abb_is_empty(tree)) {
-        printf("\n");
-        printf(
-            "raíz: %d\n mínimo: %d\n máximo: %d\n",
-            abb_root(tree),
-            abb_min(tree),
-            abb_max(tree)
-        );
-    }
-    else {
-        printf("\nÁrbol vacío\n");
-    }
+    /*     if (!abb_is_empty(tree)) {
+            printf("\n");
+            printf(
+                "raíz: %d\n mínimo: %d\n máximo: %d\n",
+                abb_root(tree),
+                abb_min(tree),
+                abb_max(tree)
+            );
+        }
+        else {
+            printf("\nÁrbol vacío\n");
+        } */
 
-    // Iniciando el programa de interfaz gráfica para que el usuario realice ciertas acciones con los arboles binarios.
-    // tree = interfaz(tree);
+        // Iniciando el programa de interfaz gráfica para que el usuario realice ciertas acciones con los arboles binarios.
+    tree = interfaz(tree);
 
     tree = abb_destroy(tree);
 

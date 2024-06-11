@@ -13,6 +13,7 @@ dict_t dict_from_file(string filename) {
     dict_t result = NULL;
     FILE *fd = NULL;
     char *line = NULL;
+
     fd = fopen(string_ref(filename), "r");
     if (fd != NULL) {
         /* filename is a existing file, so create the empty dict */
@@ -23,6 +24,7 @@ dict_t dict_from_file(string filename) {
                 /* this is the case of the last (empty) line */
                 continue;
             }
+
             word = strtok(line, ":");
             if (word != NULL) {
                 def = strtok(NULL, "\n");
@@ -31,8 +33,10 @@ dict_t dict_from_file(string filename) {
                     while (def[0] == ' ') {
                         def = def + 1;
                     }
+
                     string str_word = string_create(word);
                     string str_def = string_create(def);
+
                     result = dict_add(result, str_word, str_def);
                 }
             }
@@ -46,12 +50,14 @@ dict_t dict_from_file(string filename) {
 
 void dict_to_file(dict_t dict, string filename) {
     FILE *fd = NULL;
+
     fd = fopen(string_ref(filename), "w");
     if (fd != NULL) {
         printf("Dumping dict to filename %s.\n", string_ref(filename));
         dict_dump(dict, fd);
         fclose(fd);
-    } else {
+    }
+    else {
         printf("Can not dump dict to filename %s.\n", string_ref(filename));
     }
 }
