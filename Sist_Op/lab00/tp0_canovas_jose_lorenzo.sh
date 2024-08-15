@@ -27,3 +27,9 @@ cat weather_cordoba.in | sort -k 6 -n | head -n 1 | awk  '{printf "Temp minima: 
 # EJ 5
 # Se ordena de forma ascendente
 cat atpplayers.in | sort -k 3 -n
+
+
+
+
+# EJ 6
+cat superliga.in | awk '{diff = $7 - $8; print $0" "diff}' | sort -k2nr -k9nr
