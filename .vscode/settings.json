@@ -1,6 +1,7 @@
 {
     "cSpell.enableFiletypes": [
-        "arm"
+        "arm",
+        "shellscript"
     ],
     "files.associations": {
         "stdio.h": "c",
