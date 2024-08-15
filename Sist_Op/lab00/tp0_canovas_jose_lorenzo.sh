@@ -19,7 +19,7 @@ curl -s https://raw.githubusercontent.com/dariomalchiodi/superhero-datascience/m
 
 
 # EJ 4
-cat weather_cordoba.in | sort -k 6 -n | head -n 1 | awk  '{printf "Temp minima: %d, Fecha: %02d/%02d/%02d.\n", $6, $3, $2, $1}' & cat weather_cordoba.in | sort -k 5 -n -r | head -n 1 | awk '{printf "Temp maxima: %d, Fecha: %02d/%02d/%02d.\n", $5, $3, $2, $1}'
+cat weather_cordoba.in | sort -k 6 -n | head -n 1 | awk  '{printf "Temp minima: %d, Fecha: %02d/%02d/%02d.\n", $6, $3, $2, $1}' && cat weather_cordoba.in | sort -k 5 -n -r | head -n 1 | awk '{printf "Temp maxima: %d, Fecha: %02d/%02d/%02d.\n", $5, $3, $2, $1}'
 
 
 
