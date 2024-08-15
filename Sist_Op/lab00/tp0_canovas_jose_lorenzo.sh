@@ -33,3 +33,11 @@ cat atpplayers.in | sort -k 3 -n
 
 # EJ 6
 cat superliga.in | awk '{diff = $7 - $8; print $0" "diff}' | sort -k2nr -k9nr
+
+
+
+
+
+
+# EJ 7
+ip addr show | grep link/ether | awk '{print $2}'
