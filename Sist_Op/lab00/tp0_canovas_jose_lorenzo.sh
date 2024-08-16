@@ -41,3 +41,18 @@ cat superliga.in | awk '{diff = $7 - $8; print $0" "diff}' | sort -k2nr -k9nr
 
 # EJ 7
 ip addr show | grep link/ether | awk '{print $2}'
+
+
+
+
+
+
+# EJ 8
+carpeta_serie="fma_serie"; nombre_archivo="fma_S01E" && mkdir $carpeta_serie && for i in {01..10}; do touch "${carpeta_serie}/${nombre_archivo}_${i}_es.srt"; done && cd $carpeta_serie && for archivo in *_es.srt; do mv "$archivo" "${archivo/_es/}"; done && cd ..
+
+
+# Creación de los archivos:
+# carpeta_serie="fma_serie"; nombre_archivo="fma_S01E" && mkdir $carpeta_serie && for i in {01..10}; do touch "${carpeta_serie}/${nombre_archivo}_${i}_es.srt"; done
+
+# Renombrado:
+# cd $carpeta_serie && for archivo in *_es.srt; do mv "$archivo" "${archivo/_es/}"; done && cd ..
