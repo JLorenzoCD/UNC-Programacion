@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pedantic -std=c99 -g
-SOURCES = dup2.c
+SOURCES = ej_dup2.c ej_fork.c
 OBJECTS = $(SOURCES:.c=.o)
 
 TARGET = prueba
@@ -8,8 +8,11 @@ ARCHIVOS_BASURA = lala.txt
 
 all: dup2
 
-dup2: $(OBJECTS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJECTS) $(LFLAGS) $(LIBS)
+dup2: ej_dup2.o
+	$(CC) $(CFLAGS) -o $(TARGET) ej_dup2.o $(LFLAGS) $(LIBS)
+
+fork: ej_fork.o
+	$(CC) $(CFLAGS) -o $(TARGET) ej_fork.o $(LFLAGS) $(LIBS)
 
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -20,4 +23,7 @@ clean:
 run_dup2: dup2
 	./$(TARGET)
 
-.PHONY: clean run_dup2
+run_fork: fork
+	./$(TARGET)
+
+.PHONY: clean run_dup2 run_fork
