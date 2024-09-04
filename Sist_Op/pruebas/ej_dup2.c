@@ -7,10 +7,8 @@
 
 /*
 *   Ejercicio
-*   Pensar en cómo utilizar las llamadas a
-*   sistema open, dup y close para poder
-*   redireccionar la salida estándar del
-*   proceso actual.
+*   Pensar en cómo utilizar las llamadas a sistema open, dup y close para poder
+*   redireccionar la salida estándar del proceso actual.
 */
 
 int main() {
