@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pedantic -std=c99 -g
-SOURCES = ej_dup2.c ej_fork.c ej_execvp.c
+SOURCES = ej_dup2.c ej_fork.c ej_execvp.c ej_wait.c
 OBJECTS = $(SOURCES:.c=.o)
 
 TARGET = prueba
@@ -17,6 +17,9 @@ fork: ej_fork.o
 execvp: ej_execvp.o
 	$(CC) $(CFLAGS) -o $(TARGET) ej_execvp.o $(LFLAGS) $(LIBS)
 
+wait: ej_wait.o
+	$(CC) $(CFLAGS) -o $(TARGET) ej_wait.o $(LFLAGS) $(LIBS)
+
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
 
@@ -30,6 +33,9 @@ run_fork: fork
 	./$(TARGET)
 
 run_execvp: execvp
+	./$(TARGET)
+
+run_wait: wait
 	./$(TARGET)
 
 .PHONY: clean run_dup2 run_fork run_execvp
