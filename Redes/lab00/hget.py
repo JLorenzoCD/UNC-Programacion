@@ -3,13 +3,13 @@
 """
 hget: un cliente HTTP simple
 
-Escrito con fines didacticos por la catedra de
+Escrito con fines didácticos por la cátedra de
 Redes y Sistemas Distribuidos,
 FaMAF-UNC
 
-El proposito de este codigo es mostrar con un ejemplo concreto las primitivas
-basicas de comunicacion por sockets; no es para uso en produccion (para eso
-esta el modulo urllib de la biblioteca estandar de python que contiene un
+El propósito de este código es mostrar con un ejemplo concreto las primitivas
+básicas de comunicación por sockets; no es para uso en producción (para eso
+esta el modulo urllib de la biblioteca estándar de python que contiene un
 cliente HTTP mucho mas completo y correcto.
 Revision 2019 (a Python 3): Pablo Ventura
 Revision 2011: Eduardo Sanchez
@@ -22,9 +22,9 @@ import socket
 import optparse
 
 PREFIX = "http://"
-HTTP_PORT = 80   # El puerto por convencion para HTTP,
+HTTP_PORT = 80   # El puerto por convención para HTTP,
 # según http://tools.ietf.org/html/rfc1700
-HTTP_OK = "200"  # El codigo esperado para respuesta exitosa.
+HTTP_OK = "200"  # El código esperado para respuesta exitosa.
 
 
 def parse_server(url):
@@ -35,7 +35,7 @@ def parse_server(url):
 
     El llamador es el dueño de la memoria devuelta
 
-    Precondicion: url es un str, comienza con PREFIX
+    Precondición: url es un str, comienza con PREFIX
     Postcondicion:
         resultado != NULL
         url comienza con PREFIX + resultado
@@ -48,7 +48,7 @@ def parse_server(url):
     >>> parse_server('http://google.com')
     'google.com'
 
-    >>> parse_server('google.com') # Falta el prefijo, deberia fallar
+    >>> parse_server('google.com') # Falta el prefijo, debería fallar
     Traceback (most recent call last):
        ...
     AssertionError
@@ -70,7 +70,7 @@ def connect_to_server(server_name):
     """
     Se conecta al servidor llamado server_name
 
-    Devuelve el socket conectado en caso de exito, o falla con una excepcion
+    Devuelve el socket conectado en caso de éxito, o falla con una excepción
     de socket.connect / socket.gethostbyname.
 
     >>> type(connect_to_server('www.famaf.unc.edu.ar')) # doctest: +ELLIPSIS
@@ -87,23 +87,23 @@ def connect_to_server(server_name):
     ConnectionRefusedError: [Errno 111] Connection refused
     """
 
-    # Buscar direccion ip
+    # Buscar dirección ip
     # COMPLETAR ABAJO DE ESTA LINEA
-    # Aqui deberian obtener la direccion ip del servidor y asignarla
+    # Aquí deberían obtener la dirección ip del servidor y asignarla
     # a ip_address
     # DEJAR LA LINEA SIGUIENTE TAL COMO ESTA
     sys.stderr.write("Contactando al servidor en %s...\n" % ip_address)
     # Crear socket
     # COMPLETAR ABAJO DE ESTA LINEA
-    # Aqui deben conectarse al puerto correcto del servidor
-    # NO MODIFICAR POR FUERA DE ESTA FUNCION
+    # Aquí deben conectarse al puerto correcto del servidor
+    # NO MODIFICAR POR FUERA DE ESTA FUNCIÓN
 
 
 def send_request(connection, url):
     """
-    Envia por 'connection' un pedido HTTP de la URL dada
+    Envía por 'connection' un pedido HTTP de la URL dada
 
-    Precondicion:
+    Precondición:
         connection es valido y esta conectado
         url.startswith(PREFIX)
     """
@@ -114,10 +114,10 @@ def send_request(connection, url):
 
 def read_line(connection):
     """
-    Devuelve una linea leida desde 'connection`; hasta el siguiente '\n'
+    Devuelve una linea leída desde 'connection`; hasta el siguiente '\n'
     (incluido), o hasta que se terminen los datos.
 
-    Si se produce un error, genera una excepcion.
+    Si se produce un error, genera una excepción.
     """
     result = b''
     error = False
@@ -126,14 +126,16 @@ def read_line(connection):
         data = connection.recv(1)
     except:
         error = True
+
     while not error and data != b'' and data != b'\n':
         result = result + data
         try:
             data = connection.recv(1)
         except:
             error = True
+
     if error:
-        raise Exception("Error leyendo de la conexion!")
+        raise Exception("Error leyendo de la conexión!")
     else:
         result += data  # Add last character
         return result
@@ -144,11 +146,11 @@ def check_http_response(header):
     Verifica que el encabezado de la respuesta este bien formado e indique
     éxito. Un encabezado de respuesta HTTP tiene la forma
 
-    HTTP/<version> <codigo> <mensaje>
+    HTTP/<version> <código> <mensaje>
 
-    Donde version tipicamente es 1.0 o 1.1, el codigo para exito es 200,
-    y el mensaje es opcional y libre pero suele ser una descripcion del
-    codigo.
+    Donde version típicamente es 1.0 o 1.1, el código para éxito es 200,
+    y el mensaje es opcional y libre pero suele ser una descripción del
+    código.
 
     >>> check_http_response(b"HTTP/1.1 200 Ok")
     True
@@ -210,7 +212,7 @@ def download(url, filename):
     try:
         connection = connect_to_server(server)
     except socket.gaierror:
-        sys.stderr.write("No se encontro la direccion '%s'\n" % server)
+        sys.stderr.write("No se encontró la dirección '%s'\n" % server)
         sys.exit(1)
     except socket.error:
         sys.stderr.write("No se pudo conectar al servidor HTTP en '%s:%d'\n"
@@ -247,7 +249,7 @@ def main():
     # Validar el argumento
     url = args[0]
     if not url.startswith(PREFIX):
-        sys.stderr.write("La direccion '%s' no comienza con '%s'\n" % (url,
+        sys.stderr.write("La dirección '%s' no comienza con '%s'\n" % (url,
                                                                        PREFIX))
         sys.exit(1)
 
