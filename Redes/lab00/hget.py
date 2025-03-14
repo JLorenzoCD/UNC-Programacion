@@ -95,7 +95,7 @@ def connect_to_server(server_name):
     sys.stderr.write("Contactando al servidor en %s...\n" % ip_address)
 
     # Crear socket
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM, -1, None)
 
     # Aquí deben conectarse al puerto correcto del servidor
     s.connect((ip_address, HTTP_PORT))
