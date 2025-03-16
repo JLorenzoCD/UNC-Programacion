@@ -79,17 +79,37 @@ morePolGeneralMap (x:xs) f = f x : morePolGeneralMap xs f
 --b) definir la función esPar:: [Int] -> [Bool] en términos de "morePolGeneralMap".
 --Donde la función "esPar" mapea cada elemento de la lista a un booleano que indica si el mismo es un numero par.
 --Por ejemplo, esPar [2,9,4,5] = [True, False, True,False].
---
---
---
---
---
+
+
+-- a
+duplica_GM :: [Int] -> [Int]
+duplica_GM xs = generalMap xs (\x -> x*2)
+
+duplica_PGM :: [Int] -> [Int]
+duplica_PGM xs = polGeneralMap xs (\x -> x*2)
+
+mas1_GM :: [Int] -> [Int]
+mas1_GM xs = generalMap xs (\x -> x+1)
+
+mas1_PGM :: [Int] -> [Int]
+mas1_PGM xs = polGeneralMap xs (\x -> x+1)
+
+-- b
+esPar :: [Int] -> [Bool]
+esPar xs = morePolGeneralMap xs (\x -> (mod x 2 == 0))
+
+-- Ejemplos:
+lista1 :: [Int]
+lista1 = [2,9,4,5]
+
+-- #####################################################
 
 --Funciones recursivas del tipo "FILTER":
 soloPares :: [Int] -> [Int]
 soloPares [] = []
-soloPares (x:xs) | mod x 2 == 0 = x : soloPares xs
-                 | mod x 2 /= 0 = soloPares xs
+soloPares (x:xs)
+                | mod x 2 == 0 = x : soloPares xs
+                | mod x 2 /= 0 = soloPares xs
 
 --Las funciones del tipo "FILTER" consisten en filtrar los elementos de una lista sujeto
 --al cumplimiento de una condición booleana, en este ejemplo, la condición sería "x es un
@@ -99,10 +119,23 @@ soloPares (x:xs) | mod x 2 == 0 = x : soloPares xs
 --a) generalizar la funciones de tipo "FILTER" sobre lista de enteros.
 --b) dar una versión polimorfica de la misma.
 --c) redefinir la función "soloPares" en términos de dicha generalización.
---
---
---
---
+
+--a
+generalFilter :: [Int] -> (Int -> Bool) ->  [Int]
+generalFilter [] f = []
+generalFilter (x:xs) f = if f x then x : (generalFilter xs f) else generalFilter xs f
+
+-- b
+polGeneralFilter :: [a] -> (a -> Bool) -> [a]
+polGeneralFilter [] f = []
+polGeneralFilter (x:xs) f = if f x then x : (polGeneralFilter xs f) else polGeneralFilter xs f
+
+-- c
+soloPares_PGF :: [Int] -> [Int]
+soloPares_PGF xs = polGeneralFilter xs (\x-> (mod x 2 == 0))
+
+
+-- #####################################################
 
 --Funciones recursivas del tipo "FOLD":
 sumatoria :: [Int] -> Int
@@ -116,11 +149,23 @@ sumatoria (x:xs) = x + sumatoria (xs)
 --a) generalizar la funciones de tipo "FOLD" sobre lista de enteros.
 --b) dar una versión polimorfica de la misma.
 --c) redefinir la función "sumatoria" en términos de dicha generalización.
---
---
---
---
 
+-- a
+generalFold :: [Int] -> (Int -> Int -> Int) -> Int -> Int
+generalFold [] fun base = base
+generalFold (x:xs) fun base = fun x (generalFold xs fun base)
+
+-- b
+polGeneralFold :: [a] -> (a -> b -> b) -> b -> b
+polGeneralFold [] fun base = base
+polGeneralFold (x:xs) fun base = fun x (polGeneralFold xs fun base)
+
+-- c
+sumatoria_PGF :: [Int] -> Int
+sumatoria_PGF xs = polGeneralFold xs (\x y -> x + y) 0
+
+
+-- #####################################################
 
 --Otro concepto interesante del paradigma funcional, es que, podemos definir
 --nuestros propios tipos:
@@ -147,11 +192,18 @@ perimetro (Rectangulo ancho alto) = 2 * ancho + 2 * alto
 perimetro (Punto) = error "no se puede calcular el perimetro del punto"
 
 --EJERCICIO 4: definir una función que devuelva la superficie de una "Figura"
---
---
---
---
 
+superficie :: Figura -> Float
+superficie (Circulo radio) = pi * radio * radio
+superficie (Cuadrado lado) = lado * lado
+superficie (Rectangulo ancho alto) = ancho * alto
+superficie (Punto) = 1
+
+-- Ejemplo
+lista2 :: [Figura]
+lista2 = [(Circulo 1), (Cuadrado 2), (Circulo 2), (Rectangulo 1 2)]
+
+-- #####################################################
 
 --EJERCICIO 5:
 
@@ -160,26 +212,42 @@ perimetro (Punto) = error "no se puede calcular el perimetro del punto"
 --con nuestros propios constructores: suma, producto, resta, division.
 --De esta manera, por ejemplo, la expresión "Resta (Producto (Suma 5 3) 2) 6" es una "Expr" válida.
 --Definir el tipo "Expr".
---
---
+
+data Expr =   Valor Int
+            | Suma Expr Expr
+            | Producto Expr Expr
+            | Resta Expr Expr
+            | Division Expr Expr
+              deriving (Eq, Show)
+
 
 --b)Luego, definir la semántica del tipo "Expr", i.e., definir una función que evalúa (en forma
 --natural) una expresión aritmética "Expr". Por ejemplo:
-
 --evaluar (Resta (Producto (Suma 5 3) 2) 6) = 10
---
 
+evaluar :: Expr -> Int
+evaluar (Valor x)             =  x
+evaluar (Suma exp1 exp2)      = (evaluar exp1) + (evaluar exp2)
+evaluar (Producto exp1 exp2)  = (evaluar exp1) * (evaluar exp2)
+evaluar (Resta exp1 exp2)     = (evaluar exp1) - (evaluar exp2)
+evaluar (Division exp1 exp2)
+                              | divisor == 0 = error "No se puede dividir por cero."
+                              | otherwise = div (evaluar exp1) divisor
+                            where divisor = evaluar exp2
+
+-- Ejemplo
+expr1 :: Expr
+expr1 = Resta (Producto (Suma (Valor 5) (Valor 3)) (Valor 2)) (Valor 6)
+
+-- #####################################################
 
 --EJERCICIO 6:
-
 --a) Definir un tipo "BinTree" que permita representar un árbol binario
 --polimorfico (i.e, en cuyos nodos se almacenen valores de tipo genérico "a").
-
 --b) Definir una función recursiva que devuelva la profundidad de un "BinTree".
-
 --c) Definir una función general de fold que opera sobre un "BinTree" y luego, redefinir la función
 --de profundidad del item b en términos de esta última.
-
 --d) Definir una función recursiva que devuelve una lista con los elementos del BinTree, y luego,
 -- redefinirla en términos de la función fold del item c.
 
+-- a
