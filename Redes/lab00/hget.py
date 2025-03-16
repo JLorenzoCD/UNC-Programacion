@@ -20,6 +20,7 @@ Original 2009-2010: Natalia Bidart, Daniel Moisset
 import sys
 import socket
 import optparse
+import idna
 
 PREFIX = "http://"
 HTTP_PORT = 80   # El puerto por convención para HTTP,
@@ -90,7 +91,8 @@ def connect_to_server(server_name):
     # --------------- Buscar dirección ip
     # Aquí deberían obtener la dirección ip del servidor y asignarla
     # a ip_address
-    ip_address = socket.gethostbyname(server_name)
+    punycode_server_name = idna.encode(server_name).decode()
+    ip_address = socket.gethostbyname(punycode_server_name)
 
     sys.stderr.write("Contactando al servidor en %s...\n" % ip_address)
 
