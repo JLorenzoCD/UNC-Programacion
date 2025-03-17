@@ -251,3 +251,28 @@ expr1 = Resta (Producto (Suma (Valor 5) (Valor 3)) (Valor 2)) (Valor 6)
 -- redefinirla en términos de la función fold del item c.
 
 -- a
+data BinTree a =  Empty
+                | Node (BinTree a) a (BinTree a)
+                deriving (Eq, Show)
+
+-- b
+profundidad :: BinTree a -> Int
+profundidad (Empty) = 0
+profundidad (Node bt1 _ bt2) = 1 + max (profundidad bt1) (profundidad bt2)
+
+-- c
+-- (BT -> (fun (acc, BT, acc) -> acc) -> acc) -> acc
+foldBT :: BinTree a -> (b -> a -> b -> b) -> b -> b
+foldBT (Empty) _ acc = acc
+foldBT (Node bt1 x bt2) fun acc = fun (foldBT bt1 fun acc) x (foldBT bt2 fun acc)
+
+profundidadFold :: BinTree a -> Int
+profundidadFold bt = foldBT bt (\ acc_lft _ acc_rgt -> 1 + max acc_lft acc_rgt) 0
+
+-- d
+listBT :: BinTree a -> [a]
+listBT Empty = []
+listBT (Node bt1 a bt2) = listBT bt1 ++ [a] ++ listBT bt2
+
+listBTFold :: BinTree a -> [a]
+listBTFold bt = foldBT bt (\ acc_xs a acc_ys -> acc_xs ++ [a] ++ acc_ys) []
