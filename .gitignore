@@ -16,3 +16,10 @@ build/
 memory_map.txt
 
 __pycache__
+*.pyc
+
+# Los entornos virtuales no se versionan
+.venv
+.env
+venv
+env
