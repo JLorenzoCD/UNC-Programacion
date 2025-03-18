@@ -22,6 +22,8 @@ El siguiente proceso se explica usando un navegador, ya que es un ejemplo conoci
 
 Este mecanismo permite que los usuarios usen dominios con caracteres de cualquier idioma, sin que los sistemas de red basados en ASCII necesiten cambios.
 
+> **Consideraciones:** Como se explica muy bien en los videos en referencias, no todos los TLD (ej: .com, .ts, .ia, .io, etc) permiten los mismos caracteres Unicode, ya que ciertos caracteres Unicode pueden ser muy similares visualmente a caracteres ASCII (en nuestro caso) o puede ser que cierto caracteres sean muy similares y esto da problemas de seguridad a los usuario (suplantación de pagina web). Ej: los .com no permite emojis en su nombre de dominio
+
 ---
 
 ## Ejemplos de ejecución del programa hget con dominio Unicode:
@@ -55,4 +57,5 @@ Esperando respuesta...
 
 - [Punycode converter (IDN converter), Punycode to Unicode 🧰](https://www.punycoder.com/)
 
-- [Unicode Domains Are An Absolute Hack](https://www.youtube.com/watch?v=zRekXAeJAsQ) (Es un video de YT en el cual el autor critica la forma en la cual se ha implementado Unicode en los dominios. Eso si, da una explicación bastante buena sobre DNS, Unicode, Punycode, IDN)
+- [Why You Can't Visit 💀🎺.com](https://www.youtube.com/watch?v=y4393bPetoU) (Video de YT muy bueno sobre el tema, aunque en ingles)
+- [Unicode Domains Are An Absolute Hack](https://www.youtube.com/watch?v=zRekXAeJAsQ) (Video de YT en español, en el cual el autor critica la forma en la cual se ha implementado Unicode en los dominios. Eso si, da una explicación bastante buena sobre DNS, Unicode, Punycode, IDN)
