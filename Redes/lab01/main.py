@@ -93,7 +93,7 @@ def eliminar_pelicula(id):
 
     if(pelicula_a_eliminar == None):
         abort(404)
-    
+
     try:
         peliculas.remove(pelicula_a_eliminar)
     except:
