@@ -15,7 +15,9 @@ build/
 .gdb_history
 memory_map.txt
 
-# Python
+*.http
+
+# ###################################### Python ######################################
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
