@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, abort
 
 app = Flask(__name__)
 peliculas = [
@@ -16,34 +16,89 @@ peliculas = [
     {'id': 12, 'titulo': 'Fight Club', 'genero': 'Drama'}
 ]
 
+def find(func, l):
+    """
+    find toma como argumento una función y una lista.
+
+    func es una función que recibe como argumento a un elemento
+    de la lista l y retorna un booleano
+    """
+    elem = None
+
+    for  e in l:
+        if(func(e)):
+            elem = e
+            break
+
+    return elem
+
+def revisar_req_pelicula():
+    titulo = request.json['titulo']
+    genero = request.json['genero'] #! No se si hay una lista de géneros permitidos
+
+    if(not titulo or not genero):
+        raise Exception("Request de película invalido")
+
+    return (titulo, genero)
+
 
 def obtener_peliculas():
     return jsonify(peliculas)
 
 
 def obtener_pelicula(id):
-    # Lógica para buscar la película por su ID y devolver sus detalles
+    pelicula_encontrada = find(lambda x : x['id'] == id, peliculas)
+
+    if(pelicula_encontrada == None):
+        abort(404)
+
     return jsonify(pelicula_encontrada)
 
 
 def agregar_pelicula():
+    try:
+        titulo, genero = revisar_req_pelicula()
+    except:
+        abort(400) # Datos inválidos
+
     nueva_pelicula = {
         'id': obtener_nuevo_id(),
-        'titulo': request.json['titulo'],
-        'genero': request.json['genero']
+        'titulo': titulo,
+        'genero': genero
     }
     peliculas.append(nueva_pelicula)
-    print(peliculas)
+
     return jsonify(nueva_pelicula), 201
 
 
 def actualizar_pelicula(id):
-    # Lógica para buscar la película por su ID y actualizar sus detalles
+    try:
+        titulo, genero = revisar_req_pelicula()
+    except:
+        abort(400) # Datos inválidos
+
+    pelicula_actualizada = find(lambda x : x['id'] == id, peliculas)
+
+    if(pelicula_actualizada == None):
+        abort(404)
+
+    pelicula_actualizada['titulo'] = titulo
+    pelicula_actualizada['genero'] = genero
+
     return jsonify(pelicula_actualizada)
 
 
 def eliminar_pelicula(id):
-    # Lógica para buscar la película por su ID y eliminarla
+    pelicula_a_eliminar = find(lambda x : x['id'] == id, peliculas)
+
+    if(pelicula_a_eliminar == None):
+        abort(404)
+    
+    try:
+        peliculas.remove(pelicula_a_eliminar)
+    except:
+        abort(500)
+
     return jsonify({'mensaje': 'Película eliminada correctamente'})
 
 
@@ -62,4 +117,4 @@ app.add_url_rule('/peliculas/<int:id>', 'actualizar_pelicula', actualizar_pelicu
 app.add_url_rule('/peliculas/<int:id>', 'eliminar_pelicula', eliminar_pelicula, methods=['DELETE'])
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=5000)
