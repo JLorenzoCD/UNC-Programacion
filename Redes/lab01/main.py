@@ -43,7 +43,7 @@ def revisar_req_pelicula():
 
 
 def obtener_peliculas():
-    return jsonify(peliculas)
+    return jsonify(peliculas), 200
 
 
 def obtener_pelicula(id):
@@ -52,7 +52,7 @@ def obtener_pelicula(id):
     if(pelicula_encontrada == None):
         abort(404)
 
-    return jsonify(pelicula_encontrada)
+    return jsonify(pelicula_encontrada), 200
 
 
 def agregar_pelicula():
@@ -85,7 +85,7 @@ def actualizar_pelicula(id):
     pelicula_actualizada['titulo'] = titulo
     pelicula_actualizada['genero'] = genero
 
-    return jsonify(pelicula_actualizada)
+    return jsonify(pelicula_actualizada), 200
 
 
 def eliminar_pelicula(id):
@@ -94,12 +94,9 @@ def eliminar_pelicula(id):
     if(pelicula_a_eliminar == None):
         abort(404)
 
-    try:
-        peliculas.remove(pelicula_a_eliminar)
-    except:
-        abort(500)
+    peliculas.remove(pelicula_a_eliminar)
 
-    return jsonify({'mensaje': 'Película eliminada correctamente'})
+    return jsonify({'mensaje': 'Película eliminada correctamente'}), 200
 
 
 def obtener_nuevo_id():
