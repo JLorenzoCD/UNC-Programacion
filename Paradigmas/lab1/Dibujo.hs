@@ -87,16 +87,25 @@ mapDib f (Encimar d1 d2) =         Encimar (mapDib f d1) (mapDib f d2)
 
 
 -- Funcion de fold para Dibujos a
-foldDib :: (a -> b) -> (b -> b) -> (b -> b) -> (b -> b) ->
-       (Float -> Float -> b -> b ->
-                                    b) ->
-       (Float -> Float -> b -> b ->
-                                    b) ->
+foldDib ::
+       (a -> b) ->
+       (b -> b) ->
+       (b -> b) ->
+       (b -> b) ->
+       (Float -> Float -> b -> b -> b) ->
+       (Float -> Float -> b -> b -> b) ->
        (b -> b -> b) ->
        Dibujo a ->
        b
-foldDib f1 fa fj d
-
-
-
+foldDib fBasica fRotar fRotar45 fEspejar fApilar fJuntar fEncimar dibujo =
+       case dibujo of
+              Basica a                                     = fBasica  a
+              Rotar (Dibujo d)                             = fRotar   (recursion d)
+              Rotar45 (Dibujo d)                           = fRotar45 (recursion d)
+              Espejar (Dibujo d)                           = fEspejar (recursion d)
+              Apilar Float Float (Dibujo d) (Dibujo d)     = fApilar  (recursion d)
+              Juntar Float Float (Dibujo d) (Dibujo d)     = fJuntar  (recursion d)
+              Encimar (Dibujo d) (Dibujo d)                = fEncimar (recursion d)
+       where
+              recursion = foldDib fBasica fRotar fRotar45 fEspejar fApilar fJuntar fEncimar
 
