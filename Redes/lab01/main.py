@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request, abort
+import re
 
 app = Flask(__name__)
 peliculas = [
@@ -15,14 +16,10 @@ peliculas = [
     {'id': 11, 'titulo': 'Pulp Fiction', 'genero': 'Crimen'},
     {'id': 12, 'titulo': 'Fight Club', 'genero': 'Drama'}
 ]
+generos = ["Acción", "Aventura", "Crimen", "Ciencia ficción", "Drama",
+            "Fantasía"]
 
 def find(func, l):
-    """
-    find toma como argumento una función y una lista.
-
-    func es una función que recibe como argumento a un elemento
-    de la lista l y retorna un booleano
-    """
     elem = None
 
     for  e in l:
@@ -32,21 +29,61 @@ def find(func, l):
 
     return elem
 
-def revisar_req_pelicula():
+def validar_req_pelicula() -> tuple[str, str]:
     titulo = request.json['titulo']
-    genero = request.json['genero'] #! No se si hay una lista de géneros permitidos
+    genero = request.json['genero']
 
     if(not titulo or not genero):
-        raise Exception("Request de película invalido")
+        raise Exception('Error: Los campos \'titulo\' y \'genero\'')
 
+    if(not genero in generos):
+        raise Exception(
+                f"""Error: El genero '{genero}' no es un genero valido. Revisar
+                los géneros validos en la documentación."""
+            )
     return (titulo, genero)
 
+def quitar_acentos(old : str) -> str:
+    new = old.lower()
+
+    new = re.sub(r'[àáâãäå]', 'a', new)
+    new = re.sub(r'[èéêë]', 'e', new)
+    new = re.sub(r'[ìíîï]', 'i', new)
+    new = re.sub(r'[òóôõö]', 'o', new)
+    new = re.sub(r'[ùúûü]', 'u', new)
+
+    return new
 
 def obtener_peliculas():
-    return jsonify(peliculas), 200
+    # Obtener el parámetro de búsqueda desde la URL (None si no se proporciona)
+    search = request.args.get("search", None)
+    genero = request.args.get("genero", None)
+
+    # Inicialmente, enviar todas las películas
+    peliculas_enviar = peliculas
+
+    # Filtrar películas por genero si se proporciona uno
+    if not (genero is None):
+        peliculas_enviar = list(
+            filter(
+                lambda x : quitar_acentos(genero.lower()) == quitar_acentos(x["genero"].lower()),
+                peliculas_enviar
+            )
+        )
+    # Filtrar películas si se proporciona un término de búsqueda
+    if not (search is None):
+        peliculas_enviar = list(
+            filter(
+                lambda x : search.lower() in x['titulo'].lower(),
+                peliculas_enviar
+                )
+            )
+
+    # Retornar la lista de películas en formato JSON
+    return jsonify(peliculas_enviar)
 
 
-def obtener_pelicula(id):
+def obtener_pelicula(id : int):
     pelicula_encontrada = find(lambda x : x['id'] == id, peliculas)
 
     if(pelicula_encontrada == None):
@@ -57,7 +94,7 @@ def obtener_pelicula(id):
 
 def agregar_pelicula():
     try:
-        titulo, genero = revisar_req_pelicula()
+        titulo, genero = validar_req_pelicula()
     except:
         abort(400) # Datos inválidos
 
@@ -71,9 +108,9 @@ def agregar_pelicula():
     return jsonify(nueva_pelicula), 201
 
 
-def actualizar_pelicula(id):
+def actualizar_pelicula(id : int):
     try:
-        titulo, genero = revisar_req_pelicula()
+        titulo, genero = validar_req_pelicula()
     except:
         abort(400) # Datos inválidos
 
@@ -88,7 +125,7 @@ def actualizar_pelicula(id):
     return jsonify(pelicula_actualizada), 200
 
 
-def eliminar_pelicula(id):
+def eliminar_pelicula(id : int):
     pelicula_a_eliminar = find(lambda x : x['id'] == id, peliculas)
 
     if(pelicula_a_eliminar == None):
@@ -99,7 +136,7 @@ def eliminar_pelicula(id):
     return jsonify({'mensaje': 'Película eliminada correctamente'}), 200
 
 
-def obtener_nuevo_id():
+def obtener_nuevo_id() -> int:
     if len(peliculas) > 0:
         ultimo_id = peliculas[-1]['id']
         return ultimo_id + 1
