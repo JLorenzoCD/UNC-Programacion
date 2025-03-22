@@ -1,5 +1,7 @@
-from flask import Flask, jsonify, request, abort
+import random
 import re
+
+from flask import Flask, jsonify, request, abort
 
 app = Flask(__name__)
 peliculas = [
@@ -91,6 +93,26 @@ def obtener_pelicula(id : int):
 
     return jsonify(pelicula_encontrada), 200
 
+def obtener_pelicula_random():
+        # Obtener el parámetro de búsqueda desde la URL (None si no se proporciona)
+    genero = request.args.get("genero", None)
+
+    # Inicialmente, todas las películas son elegibles
+    peliculas_a_elegir = peliculas
+
+    # Filtrar películas a elegir por genero si se proporciona uno
+    if not (genero is None):
+        peliculas_a_elegir = list(
+            filter(
+                lambda x : quitar_acentos(genero.lower()) == quitar_acentos(x["genero"].lower()),
+                peliculas_a_elegir
+            )
+        )
+
+    pelicula_elegida = random.choice(peliculas_a_elegir)
+
+    # Retornar la película en formato JSON
+    return jsonify(pelicula_elegida)
 
 def agregar_pelicula():
     try:
@@ -146,9 +168,10 @@ def obtener_nuevo_id() -> int:
 
 app.add_url_rule('/peliculas', 'obtener_peliculas', obtener_peliculas, methods=['GET'])
 app.add_url_rule('/peliculas/<int:id>', 'obtener_pelicula', obtener_pelicula, methods=['GET'])
+app.add_url_rule('/peliculas/random', 'obtener_pelicula_random', obtener_pelicula_random, methods=['GET'])
 app.add_url_rule('/peliculas', 'agregar_pelicula', agregar_pelicula, methods=['POST'])
 app.add_url_rule('/peliculas/<int:id>', 'actualizar_pelicula', actualizar_pelicula, methods=['PUT'])
 app.add_url_rule('/peliculas/<int:id>', 'eliminar_pelicula', eliminar_pelicula, methods=['DELETE'])
 
 if __name__ == '__main__':
-    app.run(port=5000)
+    app.run(port=5000, debug=True)
