@@ -3,13 +3,17 @@ import random
 from flask import jsonify, request, abort
 
 import peliculas.modelo as pelis_modelo
-from peliculas.helpers import validar_req_pelicula
+from peliculas.helpers import validar_req_pelicula, es_genero_valido
+from proximo_feriado import NextHoliday, ErrorTipoInvalido
 from utils import quitar_acentos
 
 def obtener_peliculas():
     # Obtener el parámetro de búsqueda desde la URL (None si no se proporciona)
     search = request.args.get("search", None)
     genero = request.args.get("genero", None)
+
+    if not (genero is None) and not es_genero_valido(genero):
+        abort(400, f"El genero '{genero}' es invalido.")
 
     # Inicialmente, enviar todas las películas
     peliculas_enviar = pelis_modelo.obtener_todas()
@@ -45,8 +49,11 @@ def obtener_pelicula(id : int):
 
 
 def obtener_pelicula_random():
-        # Obtener el parámetro de búsqueda desde la URL (None si no se proporciona)
+    # Obtener el parámetro de búsqueda desde la URL (None si no se proporciona)
     genero = request.args.get("genero", None)
+
+    if not (genero is None) and not es_genero_valido(genero):
+        abort(400, f"El genero '{genero}' es invalido.")
 
     # Inicialmente, todas las películas son elegibles
     peliculas_a_elegir = pelis_modelo.obtener_todas()
@@ -64,6 +71,50 @@ def obtener_pelicula_random():
 
     # Retornar la película en formato JSON
     return jsonify(pelicula_elegida)
+
+def obtener_pelicula_sugerida_feriado():
+    # Obtener el parámetro de búsqueda desde la URL (None si no se proporciona)
+    genero = request.args.get("genero", None)
+    tipo = request.args.get("tipo", None)
+
+    if genero is None:
+        abort(400, "No se envió el genero de la película.")
+    elif not es_genero_valido(genero):
+        abort(400, f"El genero '{genero}' es invalido.")
+
+    # Se busca el proximo feriado
+    next_holiday = NextHoliday()
+    try:
+        next_holiday.fetch_holidays(tipo)
+    except ErrorTipoInvalido:
+        abort(400, "El tipo no es valido.")
+    except Exception:
+        abort(500, "Error en el servidor, intente de nuevo.")
+
+    feriado = next_holiday.holiday
+    if feriado is None:
+        return jsonify({"feriado" : "No hay un proximo feriado.", "pelicula_recomendada" : None}), 200
+
+    # Inicialmente, todas las películas son elegibles
+    peliculas_a_elegir = pelis_modelo.obtener_todas()
+
+    # Filtrar películas a elegir por genero
+    peliculas_a_elegir = list(
+        filter(
+            lambda x : quitar_acentos(genero.lower()) == quitar_acentos(x["genero"].lower()),
+            peliculas_a_elegir
+        )
+    )
+
+    pelicula_elegida = random.choice(peliculas_a_elegir)
+
+    data = {
+        "feriado" : feriado,
+        "pelicula_recomendada" : pelicula_elegida
+    }
+
+    # Retornar la película en formato JSON
+    return jsonify(data)
 
 
 def agregar_pelicula():

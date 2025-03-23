@@ -13,6 +13,12 @@ app.add_url_rule('/peliculas/<int:id>', 'obtener_pelicula',
 app.add_url_rule('/peliculas/random', 'obtener_pelicula_random',
         pelis_controlador.obtener_pelicula_random, methods=['GET']
     )
+app.add_url_rule(
+        '/peliculas/sugerencia_feriado',
+        'obtener_pelicula_sugerida_feriado',
+        pelis_controlador.obtener_pelicula_sugerida_feriado,
+        methods=['GET']
+    )
 app.add_url_rule('/peliculas', 'agregar_pelicula',
         pelis_controlador.agregar_pelicula, methods=['POST']
     )
