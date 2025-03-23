@@ -14,8 +14,8 @@ peliculas = [
     {'id': 11, 'titulo': 'Pulp Fiction', 'genero': 'Crimen'},
     {'id': 12, 'titulo': 'Fight Club', 'genero': 'Drama'}
 ]
-generos = ["Acción", "Aventura", "Crimen", "Ciencia ficción", "Drama",
-            "Fantasía"]
+generos = ["acción", "accion", "aventura", "crimen", "ciencia ficción",
+           "ciencia ficcion", "drama", "fantasía", "fantasia"]
 
 def obtener_nuevo_id() -> int:
     if len(peliculas) > 0:
