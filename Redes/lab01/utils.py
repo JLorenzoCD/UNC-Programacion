@@ -1,6 +1,9 @@
 import re
+from typing import Callable, List, Optional, TypeVar
 
-def find(func, l):
+
+T = TypeVar('T')
+def find(func: Callable[[T], bool], l: List[T]) -> Optional[T]:
     elem = None
 
     for  e in l:
