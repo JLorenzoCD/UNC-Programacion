@@ -15,7 +15,9 @@ peliculas = [
     {'id': 12, 'titulo': 'Fight Club', 'genero': 'Drama'}
 ]
 generos = ["acción", "accion", "aventura", "crimen", "ciencia ficción",
-           "ciencia ficcion", "drama", "fantasía", "fantasia"]
+           "ciencia ficcion", "drama", "fantasía", "fantasia", "comedia",
+           "animación", "animacion", "terror", "suspenso", "romance",
+           "documental"]
 
 def obtener_nuevo_id() -> int:
     if len(peliculas) > 0:
