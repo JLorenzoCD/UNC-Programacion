@@ -1,3 +1,4 @@
+from typing import Literal, Optional
 import requests
 from datetime import date
 
@@ -6,6 +7,10 @@ def get_url(year):
 
 months = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
 days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
+tipos = ['inamovible', 'trasladable', 'nolaborable', 'puente']
+
+class ErrorTipoInvalido(Exception):
+    pass
 
 def day_of_week(day, month, year):
     return days[date(year, month, day).weekday()]
@@ -31,15 +36,26 @@ class NextHoliday:
         self.loading = False
         self.holiday = holiday
 
-    def fetch_holidays(self):
+    def fetch_holidays(self, tipo : Optional[Literal['inamovible', 'trasladable', 'nolaborable', 'puente']] = None):
+        if (not tipo is None) and (not tipo in tipos):
+            raise ErrorTipoInvalido("El tipo dado no es valido.")
+
         response = requests.get(get_url(self.year))
         data = response.json()
-        self.set_next(data)
+
+        if not tipo is None:
+            data = list(filter(lambda x : x["tipo"] == tipo, data))
+
+        if len(data) > 0:
+            self.set_next(data)
+        else:
+            self.loading = False
+            self.holiday = None
 
     def render(self):
         if self.loading:
             print("Buscando...")
-        else:
+        elif not self.holiday is None:
             print("Próximo feriado")
             print(self.holiday['motivo'])
             print("Fecha:")
@@ -48,7 +64,10 @@ class NextHoliday:
             print(months[self.holiday['mes'] - 1])
             print("Tipo:")
             print(self.holiday['tipo'])
+        else:
+            print("No se encontró un proximo feriado.")
 
-next_holiday = NextHoliday()
-next_holiday.fetch_holidays()
-next_holiday.render()
+if __name__ == '__main__':
+    next_holiday = NextHoliday()
+    next_holiday.fetch_holidays()
+    next_holiday.render()
