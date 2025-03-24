@@ -71,6 +71,7 @@ data Superfluo = RotacionSuperflua | FlipSuperfluo
 
 ---- Chequea si el dibujo tiene una rotacion superflua
 errorRotacion :: Dibujo a -> [Superfluo]
+errorRotacion d = if esRot360 d then [RotacionSuperflua] else []
 
 -- Chequea si el dibujo tiene un flip superfluo
 errorFlip :: Dibujo a -> [Superfluo]
