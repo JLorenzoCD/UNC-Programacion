@@ -5,7 +5,7 @@ import Dibujo
 type Pred a = a -> Bool
 
 --Para la definiciones de la funciones de este modulo, no pueden utilizar
---pattern-matching, sino alto orden a traves de la funcion foldDib, mapDib 
+--pattern-matching, sino alto orden a traves de la funcion foldDib, mapDib
 
 -- Dado un predicado sobre básicas, cambiar todas las que satisfacen
 -- el predicado por el resultado de llamar a la función indicada por el
@@ -80,5 +80,9 @@ errorFlip d = if esFlip2 d then [FlipSuperfluo] else []
 -- Aplica todos los chequeos y acumula todos los errores, y
 -- sólo devuelve la figura si no hubo ningún error.
 checkSuperfluo :: Dibujo a -> Either [Superfluo] (Dibujo a)
-
+checkSuperfluo d =
+        let err = (errorRotacion d) ++ (errorFlip d) in
+            case err of
+                [] -> Right d
+                xs -> Left xs
 
