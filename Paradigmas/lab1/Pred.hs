@@ -1,4 +1,4 @@
-module Dibujo where
+module Pred where
 
 import Dibujo
 
@@ -12,7 +12,7 @@ type Pred a = a -> Bool
 -- segundo argumento con dicha figura.
 -- Por ejemplo, `cambiar (== Triangulo) (\x -> Rotar (Basica x))` rota
 -- todos los triángulos.
-cambiar :: Pred a -> (a -> Dibujo a) -> Dibujo a
+cambiar :: Pred a -> (a -> Dibujo a) -> Dibujo a -> Dibujo a
 cambiar pred fun d = mapDib (\x -> if pred x then fun x else x) d
 
 -- Alguna básica satisface el predicado.
@@ -30,7 +30,7 @@ anyDib pred d =
 
 -- Todas las básicas satisfacen el predicado.
 allDib :: Pred a -> Dibujo a -> Bool
-anyDib pred d =
+allDib pred d =
         foldDib
             pred
             id
