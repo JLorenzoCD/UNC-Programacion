@@ -7,7 +7,7 @@ data Dibujo a = Basica a
               | Espejar (Dibujo a)
               | Apilar Float Float (Dibujo a) (Dibujo a)
               | Juntar Float Float (Dibujo a) (Dibujo a)
-              | Encimar (Dibujo a) (Dibujo a)           -- TODO: Preguntar si esta bien con dos dibujos
+              | Encimar (Dibujo a) (Dibujo a)
               deriving (Eq, Show)
 
 basica :: a -> Dibujo a
@@ -99,13 +99,13 @@ foldDib ::
        b
 foldDib fBasica fRotar fRotar45 fEspejar fApilar fJuntar fEncimar dibujo =
        case dibujo of
-              Basica a                                     = fBasica  a
-              Rotar (Dibujo d)                             = fRotar   (recursion d)
-              Rotar45 (Dibujo d)                           = fRotar45 (recursion d)
-              Espejar (Dibujo d)                           = fEspejar (recursion d)
-              Apilar Float Float (Dibujo d) (Dibujo d)     = fApilar  (recursion d)
-              Juntar Float Float (Dibujo d) (Dibujo d)     = fJuntar  (recursion d)
-              Encimar (Dibujo d) (Dibujo d)                = fEncimar (recursion d)
+              Basica b              = fBasica  b
+              Rotar d               = fRotar   (recursion d)
+              Rotar45 d             = fRotar45 (recursion d)
+              Espejar d             = fEspejar (recursion d)
+              Apilar f1 f2 d1 d2    = fApilar f1 f2 (recursion d1) (recursion d2)
+              Juntar f1 f2 d1 d2    = fJuntar f1 f2 (recursion d1) (recursion d2)
+              Encimar d1 d2         = fEncimar (recursion d1) (recursion d2)
        where
               recursion = foldDib fBasica fRotar fRotar45 fEspejar fApilar fJuntar fEncimar
 
