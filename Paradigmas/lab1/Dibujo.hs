@@ -82,7 +82,7 @@ mapDib f (Rotar d) =               Rotar (mapDib f d)
 mapDib f (Rotar45 d) =             Rotar45 (mapDib f d)
 mapDib f (Espejar d) =             Espejar (mapDib f d)
 mapDib f (Apilar f1 f2 d1 d2) =    Apilar f1 f2 (mapDib f d1) (mapDib f d2)
-mapDib f (Juntar f1 f2 d d2) =     Juntar f1 f2 (mapDib f d1) (mapDib f d2)
+mapDib f (Juntar f1 f2 d1 d2) =    Juntar f1 f2 (mapDib f d1) (mapDib f d2)
 mapDib f (Encimar d1 d2) =         Encimar (mapDib f d1) (mapDib f d2)
 
 
@@ -99,13 +99,13 @@ foldDib ::
        b
 foldDib fBasica fRotar fRotar45 fEspejar fApilar fJuntar fEncimar dibujo =
        case dibujo of
-              Basica b              = fBasica  b
-              Rotar d               = fRotar   (recursion d)
-              Rotar45 d             = fRotar45 (recursion d)
-              Espejar d             = fEspejar (recursion d)
-              Apilar f1 f2 d1 d2    = fApilar f1 f2 (recursion d1) (recursion d2)
-              Juntar f1 f2 d1 d2    = fJuntar f1 f2 (recursion d1) (recursion d2)
-              Encimar d1 d2         = fEncimar (recursion d1) (recursion d2)
+              (Basica b)           ->   fBasica b
+              (Rotar d)            ->   fRotar   (recursion d)
+              (Rotar45 d)          ->   fRotar45 (recursion d)
+              (Espejar d)          ->   fEspejar (recursion d)
+              (Apilar f1 f2 d1 d2) ->   fApilar f1 f2 (recursion d1) (recursion d2)
+              (Juntar f1 f2 d1 d2) ->   fJuntar f1 f2 (recursion d1) (recursion d2)
+              (Encimar d1 d2)      ->   fEncimar (recursion d1) (recursion d2)
        where
               recursion = foldDib fBasica fRotar fRotar45 fEspejar fApilar fJuntar fEncimar
 
