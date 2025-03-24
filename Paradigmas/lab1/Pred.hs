@@ -43,6 +43,16 @@ anyDib pred d =
 
 -- Hay 4 rotaciones seguidas.
 esRot360 :: Pred (Dibujo a)
+esRot360 d =
+        (foldDib
+            (\x -> 0)
+            (\x -> if x == 0 then 1 else x + 1)
+            (\x -> if x >= 4 then x else 0)
+            (\x -> if x >= 4 then x else 0)
+            (\_ _ x y -> if x >= 4 || y >= 4 then max x y else 0)
+            (\_ _ x y -> if x >= 4 || y >= 4 then max x y else 0)
+            (\x y -> if x >= 4 || y >= 4 then max x y else 0)
+            d) >= 4
 
 -- Hay 2 espejados seguidos.
 esFlip2 :: Pred (Dibujo a)
