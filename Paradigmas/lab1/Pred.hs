@@ -17,6 +17,16 @@ cambiar pred fun d = mapDib (\x -> if pred x then fun x else x) d
 
 -- Alguna básica satisface el predicado.
 anyDib :: Pred a -> Dibujo a -> Bool
+anyDib pred d =
+        foldDib
+            pred
+            id
+            id
+            id
+            (\_ _ x y -> x || y)
+            (\_ _ x y -> x || y)
+            (\x y -> x || y)
+            d
 
 -- Todas las básicas satisfacen el predicado.
 allDib :: Pred a -> Dibujo a -> Bool
