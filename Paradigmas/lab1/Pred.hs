@@ -56,6 +56,16 @@ esRot360 d =
 
 -- Hay 2 espejados seguidos.
 esFlip2 :: Pred (Dibujo a)
+esFlip2 d =
+        (foldDib
+            (\x -> 0)
+            (\x -> if x >= 2 then x else 0)
+            (\x -> if x >= 2 then x else 0)
+            (\x -> if x == 0 then 1 else x + 1)
+            (\_ _ x y -> if x >= 2 || y >= 2 then max x y else 0)
+            (\_ _ x y -> if x >= 2 || y >= 2 then max x y else 0)
+            (\x y -> if x >= 2 || y >= 2 then max x y else 0)
+            d) >= 2
 
 data Superfluo = RotacionSuperflua | FlipSuperfluo
 
