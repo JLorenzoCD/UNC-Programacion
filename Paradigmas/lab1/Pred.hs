@@ -30,7 +30,16 @@ anyDib pred d =
 
 -- Todas las básicas satisfacen el predicado.
 allDib :: Pred a -> Dibujo a -> Bool
-
+anyDib pred d =
+        foldDib
+            pred
+            id
+            id
+            id
+            (\_ _ x y -> x && y)
+            (\_ _ x y -> x && y)
+            (\x y -> x && y)
+            d
 
 -- Hay 4 rotaciones seguidas.
 esRot360 :: Pred (Dibujo a)
