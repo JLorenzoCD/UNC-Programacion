@@ -1,25 +1,27 @@
-import re
-from typing import Callable, List, Optional, TypeVar
+""" Archivo 'utils.py'
+El archivo contiene funciones utilizadas en la API que son muy generales
+"""
+
+from urllib.parse import unquote
+
+# Alvaro :D
 
 
-T = TypeVar('T')
-def find(func: Callable[[T], bool], l: List[T]) -> Optional[T]:
-    elem = None
+def normalizar_str(string: str) -> str:
+    """
+    Normaliza un string ingresado por el usuario, eliminando tildes,
+    convirtiendo a minúsculas y manejando caracteres especiales (como espacios
+    o caracteres URL).
 
-    for  e in l:
-        if(func(e)):
-            elem = e
-            break
+    :param str string: String ingresado por el usuario. Este puede incluir
+    caracteres especiales o acentos.
 
-    return elem
+    :returns str string_normalizado: El string normalizado en minúsculas sin
+    tildes.
+    """
+    # Mapa de caracteres con tilde a sin tilde
+    tildes = str.maketrans("áéíóúÁÉÍÓÚ", "aeiouAEIOU")
 
-def quitar_acentos(old : str) -> str:
-    new = old.lower()
+    string_normalizado = unquote(string).translate(tildes).lower()
 
-    new = re.sub(r'[àáâãäå]', 'a', new)
-    new = re.sub(r'[èéêë]', 'e', new)
-    new = re.sub(r'[ìíîï]', 'i', new)
-    new = re.sub(r'[òóôõö]', 'o', new)
-    new = re.sub(r'[ùúûü]', 'u', new)
-
-    return new
+    return string_normalizado

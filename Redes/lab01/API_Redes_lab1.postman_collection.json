@@ -7,6 +7,692 @@
 	},
 	"item": [
 		{
+			"name": "Test funcionalidad",
+			"item": [
+				{
+					"name": "Se inicia creando una peli",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"El status code es 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"El body contiene una pelicula\", function () {",
+									"    const pelicula = pm.response.json()",
+									"    ",
+									"    pm.expect(pelicula).to.have.property('id').that.is.a('number');",
+									"    pm.expect(pelicula).to.have.property('titulo').that.is.a('string');",
+									"    pm.expect(pelicula).to.have.property('genero').that.is.a('string');",
+									"",
+									"});",
+									"",
+									"pm.test(\"Las propiedades enviadas en la solicitud están presentes en la respuesta de la película\", function () {",
+									"    const datosEnviados = JSON.parse(pm.request.body.raw);",
+									"    const pelicula = pm.response.json();",
+									"",
+									"    pm.expect(pelicula.titulo).to.eql(datosEnviados.titulo);",
+									"    pm.expect(pelicula.genero).to.eql(datosEnviados.genero);",
+									"",
+									"    pm.collectionVariables.set(\"pelicula\", JSON.stringify(pelicula));",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"packages": {},
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"titulo\" : \"Spiderman\",\n    \"genero\" : \"Acción\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_API}}/peliculas",
+							"host": [
+								"{{URL_API}}"
+							],
+							"path": [
+								"peliculas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtiene todas las pelis, revisa que la peli creada este y se guarda una peli",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"El status code es 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"El body contiene un arreglo\", function () {",
+									"    const peliculas = pm.response.json()",
+									"    ",
+									"    pm.expect(peliculas).to.be.an('array')",
+									"});",
+									"",
+									"pm.test(\"El body contiene un arreglo y tiene al menos un elemento\", function () {",
+									"    const peliculas = pm.response.json()",
+									"",
+									"    pm.expect(peliculas).to.be.an('array').that.is.not.empty;",
+									"});",
+									"",
+									"pm.test(\"Los elemento del arreglo son peliculas validas\", function () {",
+									"    const peliculas = pm.response.json()",
+									"",
+									"    for(const pelicula of peliculas){",
+									"        pm.expect(pelicula).to.have.property('id').that.is.a('number');",
+									"        pm.expect(pelicula).to.have.property('titulo').that.is.a('string');",
+									"        pm.expect(pelicula).to.have.property('genero').that.is.a('string');",
+									"    }",
+									"",
+									"    pm.collectionVariables.set(\"pelicula\", JSON.stringify(peliculas[0]));",
+									"});",
+									"",
+									"pm.test(\"La pelicula creada al inicio se encuentra en el arreglo y se guarda alguna pelicula\", function () {",
+									"    const peliculas = pm.response.json()",
+									"    const pelicula = JSON.parse(pm.collectionVariables.get(\"pelicula\"));",
+									"",
+									"    const peliculaEncontrada = peliculas.find(peli => peli.id === pelicula.id);",
+									"    pm.expect(peliculaEncontrada).to.exist;",
+									"",
+									"    pm.expect(peliculaEncontrada.id).to.eql(pelicula.id);",
+									"    pm.expect(peliculaEncontrada.titulo).to.eql(pelicula.titulo);",
+									"    pm.expect(peliculaEncontrada.genero).to.eql(pelicula.genero);",
+									"    ",
+									"    pm.collectionVariables.set(\"pelicula\", JSON.stringify(peliculas[0]));",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL_API}}/peliculas",
+							"host": [
+								"{{URL_API}}"
+							],
+							"path": [
+								"peliculas"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "In",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detalles de la peli guardada",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const pelicula = JSON.parse(pm.collectionVariables.get(\"pelicula\"))",
+									"",
+									"pm.variables.set(\"idPelicula\", pelicula.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"El status code es 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"El body contiene una pelicula\", function () {",
+									"    const pelicula = pm.response.json()",
+									"    ",
+									"    pm.expect(pelicula).to.have.property('id').that.is.a('number');",
+									"    pm.expect(pelicula).to.have.property('titulo').that.is.a('string');",
+									"    pm.expect(pelicula).to.have.property('genero').that.is.a('string');",
+									"});",
+									"",
+									"pm.test(\"Los valores de la pelicula obtenida son iguales a los que se guardaron para seleccionar la pelicula a buscar por id\", function () {",
+									"    const pelicula = pm.response.json()",
+									"    const peliculaGuardada = JSON.parse(pm.collectionVariables.get(\"pelicula\"))",
+									"",
+									"    pm.expect(pelicula.id).to.eql(peliculaGuardada.id);",
+									"    pm.expect(pelicula.titulo).to.eql(peliculaGuardada.titulo);",
+									"    pm.expect(pelicula.genero).to.eql(peliculaGuardada.genero);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL_API}}/peliculas/{{idPelicula}}",
+							"host": [
+								"{{URL_API}}"
+							],
+							"path": [
+								"peliculas",
+								"{{idPelicula}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pelis del mismo genero que la pelicula guardada",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const pelicula = JSON.parse(pm.collectionVariables.get(\"pelicula\"))",
+									"",
+									"pm.variables.set(\"generoPelicula\", pelicula.genero);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"El status code es 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"El body contiene un arreglo\", function () {",
+									"    const peliculas = pm.response.json()",
+									"    ",
+									"    pm.expect(peliculas).to.be.an('array')",
+									"});",
+									"",
+									"pm.test(\"El body contiene un arreglo y tiene al menos un elemento\", function () {",
+									"    const peliculas = pm.response.json()",
+									"",
+									"    pm.expect(peliculas).to.be.an('array').that.is.not.empty;",
+									"});",
+									"",
+									"pm.test(\"El body contiene un array de peliculas\", function () {",
+									"    const peliculas = pm.response.json()",
+									"    ",
+									"    for(const pelicula of peliculas){",
+									"        pm.expect(pelicula).to.have.property('id').that.is.a('number');",
+									"        pm.expect(pelicula).to.have.property('titulo').that.is.a('string');",
+									"        pm.expect(pelicula).to.have.property('genero').that.is.a('string');",
+									"    }",
+									"});",
+									"",
+									"pm.test(\"Todas las peliculas del arreglo tienen el mismo genero que la pelicula guardada\", function () {",
+									"    const peliculas = pm.response.json()",
+									"    const peliculaGuardada = JSON.parse(pm.collectionVariables.get(\"pelicula\"))",
+									"    ",
+									"    for(const pelicula of peliculas){",
+									"        pm.expect(pelicula.genero).to.eql(peliculaGuardada.genero);",
+									"    }",
+									"});",
+									"",
+									"pm.test(\"La pelicula guardada se encuentra en el array de peliculas\", function () {",
+									"    const peliculas = pm.response.json()",
+									"    const peliculaGuardada = JSON.parse(pm.collectionVariables.get(\"pelicula\"))",
+									"",
+									"    const pelicula = peliculas.find(peli => peli.id === peliculaGuardada.id)",
+									"    pm.expect(pelicula).to.not.be.undefined;",
+									"",
+									"    pm.expect(pelicula.id).to.eql(peliculaGuardada.id);",
+									"    pm.expect(pelicula.titulo).to.eql(peliculaGuardada.titulo);",
+									"    pm.expect(pelicula.genero).to.eql(peliculaGuardada.genero);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL_API}}/peliculas/{{generoPelicula}}",
+							"host": [
+								"{{URL_API}}"
+							],
+							"path": [
+								"peliculas",
+								"{{generoPelicula}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Nueva pelicula",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"El status code es 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"El body contiene una pelicula\", function () {",
+									"    const pelicula = pm.response.json()",
+									"    ",
+									"    pm.expect(pelicula).to.have.property('id').that.is.a('number');",
+									"    pm.expect(pelicula).to.have.property('titulo').that.is.a('string');",
+									"    pm.expect(pelicula).to.have.property('genero').that.is.a('string');",
+									"",
+									"});",
+									"",
+									"pm.test(\"Las propiedades enviadas en la solicitud están presentes en la respuesta de la película\", function () {",
+									"    const datosEnviados = JSON.parse(pm.request.body.raw);",
+									"    const pelicula = pm.response.json();",
+									"",
+									"    pm.expect(pelicula.titulo).to.eql(datosEnviados.titulo);",
+									"    pm.expect(pelicula.genero).to.eql(datosEnviados.genero);",
+									"",
+									"    pm.collectionVariables.set(\"pelicula\", JSON.stringify(pelicula));",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"titulo\" : \"Narnia\",\n    \"genero\" : \"Fantasía\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_API}}/peliculas",
+							"host": [
+								"{{URL_API}}"
+							],
+							"path": [
+								"peliculas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Se actualiza la nueva pelicula",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const pelicula = JSON.parse(pm.collectionVariables.get(\"pelicula\"))",
+									"",
+									"pm.variables.set(\"idPelicula\", pelicula.id);",
+									"",
+									"pm.variables.set(\"body\", JSON.stringify({",
+									"    titulo : \"The Chronicles of Narnia\",",
+									"    genero : pelicula.genero",
+									"}));",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"El status code es 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"El body contiene una pelicula\", function () {",
+									"    const pelicula = pm.response.json()",
+									"    ",
+									"    pm.expect(pelicula).to.have.property('id').that.is.a('number');",
+									"    pm.expect(pelicula).to.have.property('titulo').that.is.a('string');",
+									"    pm.expect(pelicula).to.have.property('genero').that.is.a('string');",
+									"",
+									"});",
+									"",
+									"pm.test(\"Se modifico con exito la pelicula con los datos enviados en la request\", function () {",
+									"    const peliculaRecibida = pm.response.json();",
+									"    const peliculaGuardada = JSON.parse(pm.collectionVariables.get(\"pelicula\"));",
+									"",
+									"    pm.expect(peliculaRecibida.id).to.eq(peliculaGuardada.id)",
+									"    pm.expect(peliculaRecibida.genero).to.eql(peliculaGuardada.genero);",
+									"    pm.expect(peliculaRecibida.titulo).to.not.eql(peliculaGuardada.titulo);",
+									"",
+									"    ",
+									"    const datosEnviados = JSON.parse(pm.request.body.raw);",
+									"    pm.expect(peliculaRecibida.titulo).to.eql(datosEnviados.titulo);",
+									"",
+									"    pm.collectionVariables.set(\"pelicula\", JSON.stringify(peliculaRecibida));",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{body}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_API}}/peliculas/{{idPelicula}}",
+							"host": [
+								"{{URL_API}}"
+							],
+							"path": [
+								"peliculas",
+								"{{idPelicula}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtiene todas las pelis y se revisa que este la nueva",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"El status code es 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"El body contiene un arreglo\", function () {",
+									"    const peliculas = pm.response.json()",
+									"    ",
+									"    pm.expect(peliculas).to.be.an('array')",
+									"});",
+									"",
+									"pm.test(\"El body contiene un arreglo y tiene al menos un elemento\", function () {",
+									"    const peliculas = pm.response.json()",
+									"",
+									"    pm.expect(peliculas).to.be.an('array').that.is.not.empty;",
+									"});",
+									"",
+									"pm.test(\"Los elemento del arreglo son peliculas validas\", function () {",
+									"    const peliculas = pm.response.json()",
+									"",
+									"    for(const pelicula of peliculas){",
+									"        pm.expect(pelicula).to.have.property('id').that.is.a('number');",
+									"        pm.expect(pelicula).to.have.property('titulo').that.is.a('string');",
+									"        pm.expect(pelicula).to.have.property('genero').that.is.a('string');",
+									"    }",
+									"});",
+									"",
+									"",
+									"pm.test(\"La nueva pelicula esta en la lista de peliculas\", function () {",
+									"    const peliculas = pm.response.json();",
+									"    const peliculaGuardada = JSON.parse(pm.collectionVariables.get(\"pelicula\"));",
+									"",
+									"    const peliculaEncontrada = peliculas.find(pelicula => pelicula.id === peliculaGuardada.id);",
+									"    pm.expect(peliculaEncontrada).to.exist;",
+									"",
+									"    pm.expect(peliculaEncontrada.id).to.eql(peliculaGuardada.id);",
+									"    pm.expect(peliculaEncontrada.titulo).to.eql(peliculaGuardada.titulo);",
+									"    pm.expect(peliculaEncontrada.genero).to.eql(peliculaGuardada.genero);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL_API}}/peliculas",
+							"host": [
+								"{{URL_API}}"
+							],
+							"path": [
+								"peliculas"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "In",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar la nueva peli",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const pelicula = JSON.parse(pm.collectionVariables.get(\"pelicula\"))",
+									"",
+									"pm.variables.set(\"idPelicula\", pelicula.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"El status code es 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"El body contiene un objeto con la propiedad 'mensaje'\", function () {",
+									"    const res = pm.response.json()",
+									"    ",
+									"    pm.expect(res).to.have.property('mensaje').that.is.a('string');",
+									"});",
+									"",
+									"pm.test(\"El mensaje resivido es una cadena no vacía y contiene el mensaje 'Película eliminada correctamente'\", function () {",
+									"    const res = pm.response.json()",
+									"    ",
+									"    pm.expect(res).to.have.property('mensaje').that.is.a('string').and.to.not.empty",
+									"    pm.expect(res.mensaje).to.include(\"Película eliminada correctamente\")",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL_API}}/peliculas/{{idPelicula}}",
+							"host": [
+								"{{URL_API}}"
+							],
+							"path": [
+								"peliculas",
+								"{{idPelicula}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtiene todas las pelis y se revisa que no este la eliminada",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"El status code es 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"El body contiene un arreglo\", function () {",
+									"    const peliculas = pm.response.json()",
+									"    ",
+									"    pm.expect(peliculas).to.be.an('array')",
+									"});",
+									"",
+									"pm.test(\"El body contiene un arreglo y tiene al menos un elemento\", function () {",
+									"    const peliculas = pm.response.json()",
+									"",
+									"    pm.expect(peliculas).to.be.an('array').that.is.not.empty;",
+									"});",
+									"",
+									"pm.test(\"Los elemento del arreglo son peliculas validas\", function () {",
+									"    const peliculas = pm.response.json()",
+									"",
+									"    for(const pelicula of peliculas){",
+									"        pm.expect(pelicula).to.have.property('id').that.is.a('number');",
+									"        pm.expect(pelicula).to.have.property('titulo').that.is.a('string');",
+									"        pm.expect(pelicula).to.have.property('genero').that.is.a('string');",
+									"    }",
+									"});",
+									"",
+									"",
+									"pm.test(\"La nueva pelicula no esta en la lista de peliculas\", function () {",
+									"    const peliculas = pm.response.json();",
+									"    const peliculaGuardada = JSON.parse(pm.collectionVariables.get(\"pelicula\"));",
+									"",
+									"    const peliculaEncontrada = peliculas.find(pelicula => pelicula.id == peliculaGuardada.id);",
+									"    pm.expect(peliculaEncontrada).to.not.exist;",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL_API}}/peliculas",
+							"host": [
+								"{{URL_API}}"
+							],
+							"path": [
+								"peliculas"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "In",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Obtener peliculas",
 			"request": {
 				"auth": {
@@ -25,12 +711,7 @@
 					"query": [
 						{
 							"key": "search",
-							"value": "in",
-							"disabled": true
-						},
-						{
-							"key": "genero",
-							"value": "ciencia ficcion",
+							"value": "In",
 							"disabled": true
 						}
 					]
@@ -68,13 +749,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URL_API}}/peliculas/drama",
+					"raw": "{{URL_API}}/peliculas/Acción",
 					"host": [
 						"{{URL_API}}"
 					],
 					"path": [
 						"peliculas",
-						"drama"
+						"Acción"
 					]
 				}
 			},
@@ -89,18 +770,119 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URL_API}}/peliculas/random",
+					"raw": "{{URL_API}}/peliculas/sugerencia",
 					"host": [
 						"{{URL_API}}"
 					],
 					"path": [
 						"peliculas",
-						"random"
+						"sugerencia"
 					],
 					"query": [
 						{
 							"key": "genero",
-							"value": "accion",
+							"value": "Accion",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener pelicula random por genero",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/peliculas/random/accion",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"peliculas",
+						"random",
+						"accion"
+					],
+					"query": [
+						{
+							"key": "genero",
+							"value": "Accion",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener pelicula para feriado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Content-Type header is application/json\", function () {",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Validate the structure of 'feriado' object\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData.feriado).to.exist.and.to.be.an('object');",
+							"    pm.expect(responseData.feriado.dia).to.exist.and.to.be.a('number');",
+							"    pm.expect(responseData.feriado.id).to.exist.and.to.be.a('string');",
+							"    pm.expect(responseData.feriado.info).to.exist.and.to.be.a('string');",
+							"    pm.expect(responseData.feriado.mes).to.exist.and.to.be.a('number');",
+							"    pm.expect(responseData.feriado.motivo).to.exist.and.to.be.a('string');",
+							"    pm.expect(responseData.feriado.tipo).to.exist.and.to.be.a('string');",
+							"});",
+							"",
+							"",
+							"pm.test(\"Pelicula_recomendada object has the correct structure\", function () {",
+							"  const responseData = pm.response.json();",
+							"  ",
+							"  pm.expect(responseData.pelicula_recomendada).to.be.an('object');",
+							"  pm.expect(responseData.pelicula_recomendada.genero).to.exist.and.to.be.a('string');",
+							"  pm.expect(responseData.pelicula_recomendada.id).to.exist.and.to.be.a('number');",
+							"  pm.expect(responseData.pelicula_recomendada.titulo).to.exist.and.to.be.a('string');",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/peliculas/sugerencia_feriado?genero=Accion",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"peliculas",
+						"sugerencia_feriado"
+					],
+					"query": [
+						{
+							"key": "genero",
+							"value": "Accion"
+						},
+						{
+							"key": "tipo",
+							"value": "puente",
 							"disabled": true
 						}
 					]
@@ -216,6 +998,10 @@
 			"key": "URL_API",
 			"value": "http://127.0.0.1:5000",
 			"type": "string"
+		},
+		{
+			"key": "pelicula",
+			"value": ""
 		}
 	]
 }
