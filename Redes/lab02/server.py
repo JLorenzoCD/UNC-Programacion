@@ -9,6 +9,7 @@
 import optparse
 import socket
 import connection
+import sys
 from constants import *
 
 
