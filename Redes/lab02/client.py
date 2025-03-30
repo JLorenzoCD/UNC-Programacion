@@ -80,7 +80,7 @@ class Client(object):
         Espera datos hasta obtener una línea completa delimitada por el
         terminador del protocolo.
 
-        Devuelve la línea, eliminando el terminaodr y los espacios en blanco
+        Devuelve la línea, eliminando el terminador y los espacios en blanco
         al principio y al final.
         """
         while not EOL in self.buffer and self.connected:
@@ -212,7 +212,7 @@ def main():
     parser.add_option("-p", "--port",
                       help="Numero de puerto TCP donde escuchar", default=DEFAULT_PORT)
     parser.add_option("-v", "--verbose", dest="level", action="store",
-                      help="Determina cuanta informacion de depuracion a mostrar"
+                      help="Determina cuanta información de depuración a mostrar"
                       "(valores posibles son: ERROR, WARN, INFO, DEBUG)",
                       default="ERROR")
     options, args = parser.parse_args()
@@ -240,7 +240,7 @@ def main():
 
     print("* Bienvenido al cliente HFTP - "
           "the Home-made File Transfer Protocol *\n"
-          "* Estan disponibles los siguientes archivos:")
+          "* Están disponibles los siguientes archivos:")
 
     files = client.file_lookup()
 

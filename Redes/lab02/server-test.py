@@ -237,7 +237,7 @@ class TestHFTPHard(TestBase):
             os.system('sleep 1')  # Despaciiiiiiiiiiito
         status, message = c.read_response_line(TIMEOUT)
         self.assertEqual(status, constants.CODE_OK,
-                         "El servidor no entendio un quit enviado de a un caracter por vez")
+                         "El servidor no entendió un quit enviado de a un caracter por vez")
 
     def test_multiple_commands(self):
         c = self.new_client()
@@ -247,7 +247,7 @@ class TestHFTPHard(TestBase):
             'get_file_listing\r\nget_file_listing\r\n'.encode("ascii"))
         status, message = c.read_response_line(TIMEOUT)
         self.assertEqual(status, constants.CODE_OK,
-                         "El servidor no entendio muchos mensajes correctos "
+                         "El servidor no entendió muchos mensajes correctos "
                          "enviados juntos")
         c.connected = False
         c.s.close()
