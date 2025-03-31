@@ -6,10 +6,10 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect(("localhost",8080))
 
 # Send byte stream
-s.send(b"Hola\n\n")
+s.send(b"Hola\n")
 
 # Receive byte data
-data = s.recv(10000).decode("ascii")
+data = s.recv(1024).decode("ascii")
 print(data)
 
 s.close()

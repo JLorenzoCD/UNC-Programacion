@@ -7,12 +7,14 @@ s.bind(("localhost", 8080))
 s.listen(5)
 
 while True:
-    c,a = s.accept()
+    conn,a = s.accept()
 
-    print(c, a)
-
+    print(conn, a)
     print (f"Connection from {a[0]}\n")
 
+    peticion = conn.recv(1024)
+    print(peticion.decode("ascii"))
+
     res = f"Respondiendo a {a[0]}\n"
-    c.send(res.encode("ascii"))
-    c.close()
+    conn.send(res.encode("ascii"))
+    conn.close()
