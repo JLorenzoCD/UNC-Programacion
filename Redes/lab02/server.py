@@ -8,8 +8,8 @@
 
 import optparse
 import socket
-import connection
 import sys
+from connection import Connection
 from constants import *
 
 
@@ -22,8 +22,11 @@ class Server(object):
     def __init__(self, addr=DEFAULT_ADDR, port=DEFAULT_PORT,
                  directory=DEFAULT_DIR):
         print("Serving %s on %s:%s." % (directory, addr, port))
-        # FALTA: Crear socket del servidor, configurarlo, asignarlo
-        # a una dirección y puerto, etc.
+        self.directory = directory
+
+        self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.s.bind((addr, port))
+        self.s.listen(5)
 
     def serve(self):
         """
@@ -31,9 +34,23 @@ class Server(object):
         y se espera a que concluya antes de seguir.
         """
         while True:
-            pass
-            # FALTA: Aceptar una conexión al server, crear una
-            # Connection para la conexión y atenderla hasta que termine.
+            try:
+                conn_socket, addr_info = self.s.accept()
+            except KeyboardInterrupt:
+                self.s.close()
+                print('\nCerrando el servidor.')
+                sys.exit(0)
+            except Exception as e:
+                print('Error:', e)
+                sys.exit(1)
+
+            print(
+                '[NEW CLIENT] Se abre una nueva conexión con el'
+                f' cliente "{addr_info}".'
+            )
+
+            conn = Connection(conn_socket, self.directory, addr_info)
+            conn.handle()
 
 
 def main():

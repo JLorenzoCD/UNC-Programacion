@@ -53,3 +53,17 @@ for i in range(ord('a'), ord('z') + 1):
     VALID_CHARS.add(chr(i))
 for i in range(ord('0'), ord('9') + 1):
     VALID_CHARS.add(chr(i))
+
+
+COMMAND_QUIT = 'quit'
+COMMAND_GET_FILE_LISTING = 'get_file_listing'
+COMMAND_GET_METADATA = 'get_metadata'
+COMMAND_GET_SLICE = 'get_slice'
+
+
+VALID_COMMAND = [
+    COMMAND_QUIT,
+    COMMAND_GET_FILE_LISTING,
+    COMMAND_GET_METADATA,
+    COMMAND_GET_SLICE
+]
