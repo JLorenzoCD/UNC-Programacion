@@ -7,6 +7,7 @@
 # $Id: server.py 656 2013-03-18 23:49:11Z bc $
 
 import optparse
+import os
 import socket
 import sys
 from connection import Connection
@@ -22,7 +23,10 @@ class Server(object):
     def __init__(self, addr=DEFAULT_ADDR, port=DEFAULT_PORT,
                  directory=DEFAULT_DIR):
         print("Serving %s on %s:%s." % (directory, addr, port))
+
         self.directory = directory
+        if not os.path.exists(self.directory):
+            os.makedirs(directory)
 
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.bind((addr, port))
