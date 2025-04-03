@@ -6,6 +6,7 @@
 import socket
 from constants import *
 from base64 import b64encode
+import time
 
 from parser_commmand import ParserCommand
 from command import Command, CommandQuit, CommandGetFileListing,  CommandGetMetaData, CommandGetSlice
@@ -26,6 +27,7 @@ class Connection(object):
 
         # Propiedad para saber si se debe recibir mas datos/comandos del cliente
         self.connected = True
+        self.buffer = ''
 
     def handle(self):
         """
@@ -34,7 +36,11 @@ class Connection(object):
 
         while self.connected:
             try:
-                command = self.conn.recv(4096).decode('ascii')
+                command = self.get_line()
+                if not self.connected:
+                    # Se recibió un '', por lo que el cliente cerro la conexión
+                    break
+
                 cmd = ParserCommand.parser(command)
                 self.execute_commands(cmd)
 
@@ -62,6 +68,42 @@ class Connection(object):
 
         self.conn.close()
 
+    def _recv(self, timeout=None):
+        """
+        Recibe datos y acumula en el buffer interno.
+
+        Para uso privado del cliente.
+        """
+        self.conn.settimeout(timeout)
+        data = self.conn.recv(4096).decode("ascii")
+        self.buffer += data
+
+        if len(data) == 0:
+            self.connected = False
+
+    def get_line(self, timeout=None) -> str:
+        """
+        Espera datos hasta obtener una línea completa delimitada por el
+        terminador del protocolo.
+
+        Devuelve la línea, eliminando el terminador y los espacios en blanco
+        al principio y al final.
+        """
+        while not EOL in self.buffer and self.connected:
+            if timeout is not None:
+                t1 = time.monotonic()
+            self._recv(timeout)
+            if timeout is not None:
+                t2 = time.monotonic()
+                timeout -= t2 - t1
+                t1 = t2
+        if EOL in self.buffer:
+            response, self.buffer = self.buffer.split(EOL, 1)
+            return response.strip()
+        else:
+            self.connected = False
+            return ""
+
     def execute_commands(self, command: Command):
         """
         Recibe un comando valido y lo ejecuta
@@ -78,7 +120,7 @@ class Connection(object):
             elif isinstance(command, CommandGetMetaData):
                 self.run_command_get_metadata(command)
 
-            elif  isinstance(command, CommandGetSlice):
+            elif isinstance(command, CommandGetSlice):
                 self.run_command_get_slice(command)
             else:
                 #! Este caso nunca debería de suceder ya que antes se ejecuta el
@@ -89,7 +131,6 @@ class Connection(object):
         # Revisar! En este apartado deberían encontrarse todas las excepciones
         except CommandGetFileListing.DirectoryEmptyError as e:
             print(f"[WARNING] {e}")
-        
 
     def run_command_quit(self, command: CommandQuit):
         """
@@ -101,8 +142,6 @@ class Connection(object):
         self.conn.send(command.response_ok().encode('ascii'))
 
         self.connected = False
-
-
 
     def run_command_get_file_listing(self, command: CommandGetFileListing, directory: str):
         """
@@ -117,8 +156,6 @@ class Connection(object):
 
         self.conn.send(msg.encode('ascii'))
 
-
-
     def run_command_get_metadata(self, command: CommandGetMetaData):
         """
         Devuelve el tamaño de un archivo dado.
@@ -130,17 +167,15 @@ class Connection(object):
         size = command.get_size_file(self.directory)
 
         self.conn.send(command.response_format(size).encode('ascii'))
-        
-        
-        
+
     def run_command_get_slice(self, command: CommandGetSlice):
         """
         Devuelve la parte solicitada del archivo dado, codificada en base64.
-        
+
         :param CommandGetSlice command: Comando a ejecutar.
         """
         command.log(self.addr_info)
-        
+
         data = command.get_file_data()
-        
+
         self.conn.send(command.response_format(data).encode('ascii'))

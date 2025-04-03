@@ -22,13 +22,9 @@ class ParserCommand:
         :raises InvalidCommandError: El comando no existe.
         :raises InvalidArgsError: Argumento invalido en el comando.
         """
-
-        # Se verifica que tenga fin de linea EOL
-        cls.__has_end_of_line(command)
-
         # Se obtiene la primera parte del string luego de un espacio, el cual
         # es el comando
-        command: list[str] = command.split(EOL)[0].split(' ')
+        command: list[str] = command.split(' ')
 
         # Se verifica que la sintaxis del comando sea valida
         cls.__command_has_valid_syntax(command)
@@ -40,17 +36,6 @@ class ParserCommand:
 
         # Se cea una subclase que hereda ded Commands según el tipo de comando
         return cls.__create_command_class(cmd, command)
-
-    def __has_end_of_line(command: str):
-        """
-        Verifica si el comando tiene un fin de línea válido.
-
-        :param str command: Comando en formato string.
-        :raises BadEOLError: Si el comando no tiene fin de línea.
-        """
-
-        if not EOL in command:
-            raise BadEOLError('El comando no tiene fin de linea')
 
     def __command_has_valid_syntax(command: list[str]):
         """
