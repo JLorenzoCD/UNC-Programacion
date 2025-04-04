@@ -1,6 +1,10 @@
-from constants import CODE_OK, EOL, FILE_NOT_FOUND, INVALID_ARGUMENTS, INTERNAL_ERROR, error_messages
+from constants import CODE_OK, EOL, FILE_NOT_FOUND, INVALID_ARGUMENTS, INTERNAL_ERROR, error_messages, COMMAND_GET_METADATA
 import os
 from base64 import b64encode
+
+from exceptions import FileNotFoundError, InternalError, BadOffSetError
+
+
 class Command:
     """
     Clase base para manejar comandos.
@@ -51,6 +55,7 @@ class CommandQuit(Command):
     """
     Comando que representa la acción de cerrar la conexión.
     """
+
     def log(self, addr_info: tuple[str, int]):
         print(
             '[CLOSE CLIENT] Se cerro la conexión'
@@ -78,7 +83,7 @@ class CommandGetFileListing(Command):
 
         :returns str msg: Código OK + Lista de archivos que están disponibles.
         """
-        msg:str = ""
+        msg: str = ""
 
         # Genero la parte del código de error
         error_code = f"{CODE_OK} {error_messages[CODE_OK]}{EOL}"
@@ -88,7 +93,7 @@ class CommandGetFileListing(Command):
         # Agrego al final de cada elemento un \r\n
         for file in file_names:
             msg = f"{msg}{file}{EOL}"
-        
+
         # Sin esta línea el mensaje sólo tendría \r\n hasta el último en la lista
         msg = f"{msg}{EOL}"
 
@@ -106,23 +111,24 @@ class CommandGetFileListing(Command):
         :raises DirectoryEmptyError: Se lanza una excepción en caso de que el directorio
         no contenga archivos.
         """
-        file_names:list[str] = []
+        file_names: list[str] = []
 
-        #Lista de nombres del contenido del directorio
+        # Lista de nombres del contenido del directorio
         content_in_dir = os.listdir(dir)
 
         for file in content_in_dir:
             if CommandGetFileListing.is_file(dir, file):
                 file_names.append(file)
 
-        #Si la lista es vacía levanto una excepción
+        # Si la lista es vacía levanto una excepción
         if not file_names:
-            raise cls.DirectoryEmptyError("El directorio no contiene archivos.")
+            raise cls.DirectoryEmptyError(
+                "El directorio no contiene archivos.")
 
-        return file_names    
+        return file_names
 
     @classmethod
-    def is_file(cls, dir:str, file:str) -> bool:
+    def is_file(cls, dir: str, file: str) -> bool:
         """
         Decide si un archivo es un archivo o no.
 
@@ -135,11 +141,12 @@ class CommandGetFileListing(Command):
         file_path = os.path.join(dir, file)
         return os.path.isfile(file_path)
 
+
 class CommandGetMetaData(Command):
     """
     Comando para obtener el tamaño en bytes de un archivo específico.
     """
-    
+
     def __init__(self, cmd: str, file_name: str):
         """
         Inicializa el comando con el nombre del archivo.
@@ -151,7 +158,6 @@ class CommandGetMetaData(Command):
         super().__init__(cmd)
         self.file_name = file_name
 
-
     def response_format(self, file_size: int) -> str:
         """
         Da formato a la respuesta con el tamaño del archivo.
@@ -160,32 +166,32 @@ class CommandGetMetaData(Command):
         """
         msg = (f"{CODE_OK} {error_messages[CODE_OK]}{EOL}"
                f"{file_size}{EOL}")
-        
-        return msg
 
+        return msg
 
     def get_size_file(self, dir: str) -> str:
         """
         Obtiene el tamaño del archivo.
 
         :param str dir: Ruta del directorio.
-        
-        :returns size (int): Tamaño del archivo correspondiente.
-        
-        :raises Exception: Si el archivo solicitado no se encuentra en el directorio.
-        :raises Exception: Si ocurre un error accediendo al tamaño del archivo.
+
+        :returns size (str): Tamaño del archivo correspondiente.
+
+        :raises FileNotFoundError: Si el archivo solicitado no se encuentra en el directorio.
+        :raises InternalError: Si ocurre un error accediendo al tamaño del archivo.
         """
         archives = os.listdir(dir)
-        
+
         if not self.file_name in archives:
-            raise Exception("archivo no encontrado")                        
-        
+            raise FileNotFoundError("No se encontró el archivo.")
+
         try:
             ruta = f"{dir}/{self.file_name}"
             size = str(os.path.getsize(ruta))
-            return size 
-        except Exception as e:    
-            raise Exception("Hubo un problema interno intentando acceder al tamaño del archivo")
+            return size
+        except Exception:
+            raise InternalError(
+                "Ha ocurrido un error intentando acceder al tamaño del archivo.")
 
     def log(self, addr_info: tuple[str, int]):
         """
@@ -216,46 +222,46 @@ class CommandGetSlice(Command):
         self.file_name = file_name
         self.offset = offset
         self.size = size
-    
+
     def response_format(self, data: str) -> str:
         """
         Da formato a la respuesta con los datos del fragmento del archivo.
 
         :param str data: Datos del fragmento del archivo.
         :param str code: Nombre del código de error que hay que utilizar en el mensaje.
-        
+
         :returns msg (str): Respuesta según la solicitud dada. 
         """
         msg = (f"{CODE_OK} {error_messages[CODE_OK]}{EOL}"
                f"{data}{EOL}")
-        
-        return msg
-        
 
-    def get_file_data(self) -> str:
+        return msg
+
+    def get_file_data(self, dir) -> str:
         """
         Obtiene la porción o slice pedida del archivo.
-        
+
         :returns data (str): Slice del archivo codificado en base64.
-        
-        :raises Exception: Si la suma entre el offset y el tamaño del fragmento es mayor que el tamaño total del archivo.
-        :raises Exception: Si ocurrió un error leyendo el archivo.
+
+        :raises BadOffSetError: Si la suma entre el offset y el tamaño del fragmento es mayor que el tamaño total del archivo.
+        :raises InternalError: Si ocurrió un error leyendo el archivo.
         """
-        #tam = CommandGetMetaData.get_size_file()
-        
-        if (self.offset + self.size) > os.path.getsize(self.file_name):
-            raise Exception("La suma entre el offset y el tamaño del fragmento no puede ser mayor al tamaño total del archivo.")
-        
+        size_filename = CommandGetMetaData(
+            cmd=COMMAND_GET_METADATA, file_name=self.file_name).get_size_file(dir)
+
+        if (self.offset + self.size) > int(size_filename):
+            raise BadOffSetError(
+                "La suma entre el offset y el tamaño del fragmento es mayor al tamaño total del archivo.")
+
         try:
-            with open(self.file_name, 'rb') as file:
+            with open(f"{dir}/{self.file_name}", 'rb') as file:
                 file.seek(self.offset)
                 data = file.read(self.size)
-        except Exception as e:
-            print("Error: ", e)
-            raise Exception("Ocurrio un error leyendo el contenido del archivo.")    
-                
+        except Exception:
+            raise InternalError(
+                "Ocurrio un error leyendo el contenido del archivo.")
+
         return (b64encode(data))
-        
 
     def log(self, addr_info: tuple[str, int]):
         """

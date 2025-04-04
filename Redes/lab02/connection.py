@@ -2,11 +2,10 @@
 # Revisión 2019 (a Python 3 y base64): Pablo Ventura
 # Copyright 2014 Carlos Bederián
 # $Id: connection.py 455 2011-05-01 00:32:09Z carlos $
-
+import time
 import socket
 from constants import *
 from base64 import b64encode
-import time
 
 from parser_commmand import ParserCommand
 from command import Command, CommandQuit, CommandGetFileListing,  CommandGetMetaData, CommandGetSlice
@@ -24,10 +23,10 @@ class Connection(object):
         self.conn = socket
         self.directory = directory
         self.addr_info = addr_info
+        self.buffer = ""
 
         # Propiedad para saber si se debe recibir mas datos/comandos del cliente
         self.connected = True
-        self.buffer = ''
 
     def handle(self):
         """
@@ -36,9 +35,9 @@ class Connection(object):
 
         while self.connected:
             try:
-                command = self.get_line()
-                if not self.connected:
-                    # Se recibió un '', por lo que el cliente cerro la conexión
+                command = self.read_line(1500)
+
+                if not self.connected or command == "":
                     break
 
                 cmd = ParserCommand.parser(command)
@@ -67,42 +66,6 @@ class Connection(object):
                 self.connected = False
 
         self.conn.close()
-
-    def _recv(self, timeout=None):
-        """
-        Recibe datos y acumula en el buffer interno.
-
-        Para uso privado del cliente.
-        """
-        self.conn.settimeout(timeout)
-        data = self.conn.recv(4096).decode("ascii")
-        self.buffer += data
-
-        if len(data) == 0:
-            self.connected = False
-
-    def get_line(self, timeout=None) -> str:
-        """
-        Espera datos hasta obtener una línea completa delimitada por el
-        terminador del protocolo.
-
-        Devuelve la línea, eliminando el terminador y los espacios en blanco
-        al principio y al final.
-        """
-        while not EOL in self.buffer and self.connected:
-            if timeout is not None:
-                t1 = time.monotonic()
-            self._recv(timeout)
-            if timeout is not None:
-                t2 = time.monotonic()
-                timeout -= t2 - t1
-                t1 = t2
-        if EOL in self.buffer:
-            response, self.buffer = self.buffer.split(EOL, 1)
-            return response.strip()
-        else:
-            self.connected = False
-            return ""
 
     def execute_commands(self, command: Command):
         """
@@ -176,6 +139,47 @@ class Connection(object):
         """
         command.log(self.addr_info)
 
-        data = command.get_file_data()
+        data = command.get_file_data(self.directory)
 
         self.conn.send(command.response_format(data).encode('ascii'))
+
+    def _recv(self, timeout=None):
+        """
+        Recibe datos y acumula en el buffer interno.
+
+        Para uso privado del cliente.
+        """
+        self.conn.settimeout(timeout)
+        data = self.conn.recv(4096).decode("ascii")
+        self.buffer += data
+
+        if len(data) == 0:
+            self.connected = False
+
+    def read_line(self, timeout=None):
+        """
+        Espera datos hasta obtener una línea completa delimitada por el
+        terminador del protocolo.
+
+        Devuelve la línea, eliminando el terminaodr y los espacios en blanco
+        al principio y al final.
+
+        :raises BadRequestError: Se saturo el buffer
+        """
+        while not EOL in self.buffer and self.connected:
+            if len(self.buffer) >= MAX_BUFFER_SIZE:
+                raise BadRequestError("Buffer overflow")
+
+            if timeout is not None:
+                t1 = time.monotonic()
+            self._recv(timeout)
+            if timeout is not None:
+                t2 = time.monotonic()
+                timeout -= t2 - t1
+                t1 = t2
+        if EOL in self.buffer:
+            response, self.buffer = self.buffer.split(EOL, 1)
+            return response.strip()
+        else:
+            self.connected = False
+            return ""

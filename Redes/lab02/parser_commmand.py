@@ -1,3 +1,5 @@
+import re
+
 from constants import *
 from command import Command, CommandQuit, CommandGetFileListing, CommandGetMetaData, CommandGetSlice
 from exceptions import BadEOLError, BadRequestError, InternalError, InvalidCommandError, InvalidArgsError
@@ -22,6 +24,7 @@ class ParserCommand:
         :raises InvalidCommandError: El comando no existe.
         :raises InvalidArgsError: Argumento invalido en el comando.
         """
+
         # Se obtiene la primera parte del string luego de un espacio, el cual
         # es el comando
         command: list[str] = command.split(' ')
@@ -127,7 +130,8 @@ class ParserCommand:
         if len(command) != 0:
             raise InvalidArgsError('La cantidad de argumentos no corresponde')
 
-    def __check_has_one_args(command: list[str]):
+    @classmethod
+    def __check_has_one_args(cls, command: list[str]):
         """
         Verifica que el comando tenga un solo argumento.
 
@@ -140,7 +144,13 @@ class ParserCommand:
         if len(command) != 1:
             raise InvalidArgsError('La cantidad de argumentos no corresponde')
 
-    def __check_args_command_get_slice(command: list[str]) -> tuple[str, int, int]:
+        if not cls.__is_valid_filename(command[0]):
+            raise BadRequestError(
+                f"Se envió un archivo no valido: '{command[0]}'."
+            )
+
+    @classmethod
+    def __check_args_command_get_slice(cls, command: list[str]) -> tuple[str, int, int]:
         """
         Verifica y obtiene los argumentos del comando GET_SLICE.
 
@@ -156,6 +166,11 @@ class ParserCommand:
             raise InvalidArgsError('La cantidad de argumentos no corresponde')
         file_name, offset, size = command
 
+        if not cls.__is_valid_filename(file_name):
+            raise BadRequestError(
+                f"Se envió un archivo no valido: '{file_name}'."
+            )
+
         try:
             offset = int(offset)
             size = int(size)
@@ -170,3 +185,18 @@ class ParserCommand:
             )
 
         return file_name, offset, size
+
+    def __is_valid_filename(filename: str) -> bool:
+        """
+        Verifica si el nombre del archivo es válido:
+        - No contiene `/` ni `\\`
+        - No contiene `..`
+        - Puede tener múltiples extensiones (`archivo.config.json`, `backup.tar.gz`)
+        - Solo permite letras, números, guiones y guiones bajos
+
+        :param filename: Nombre del archivo recibido.
+        :return: True si es válido, False si no.
+        """
+        pattern = r"^(?!.*\.\.)[a-zA-Z0-9_\-]+(?:\.[a-zA-Z0-9]+)*$"
+
+        return bool(re.fullmatch(pattern, filename))
