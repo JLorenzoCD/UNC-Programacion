@@ -10,6 +10,8 @@ import optparse
 import os
 import socket
 import sys
+import threading
+
 from connection import Connection
 from constants import *
 
@@ -51,7 +53,8 @@ class Server(object):
                 )
 
                 conn = Connection(conn_socket, self.directory, addr_info)
-                conn.handle()
+                thread = threading.Thread(target=conn.handle)
+                thread.start()
 
             except KeyboardInterrupt:
                 print('\nCerrando el servidor.')
