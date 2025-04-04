@@ -120,11 +120,6 @@ class CommandGetFileListing(Command):
             if CommandGetFileListing.is_file(dir, file):
                 file_names.append(file)
 
-        # Si la lista es vacía levanto una excepción
-        if not file_names:
-            raise cls.DirectoryEmptyError(
-                "El directorio no contiene archivos.")
-
         return file_names
 
     @classmethod
