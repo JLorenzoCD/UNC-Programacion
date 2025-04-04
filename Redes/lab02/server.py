@@ -39,24 +39,30 @@ class Server(object):
         Loop principal del servidor. Se acepta una conexión a la vez
         y se espera a que concluya antes de seguir.
         """
+        exit = 0
+
         while True:
             try:
                 conn_socket, addr_info = self.s.accept()
+
+                print(
+                    '[NEW CLIENT] Se abre una nueva conexión con el'
+                    f' cliente "{addr_info}".'
+                )
+
+                conn = Connection(conn_socket, self.directory, addr_info)
+                conn.handle()
+
             except KeyboardInterrupt:
-                self.s.close()
                 print('\nCerrando el servidor.')
-                sys.exit(0)
+                break
             except Exception as e:
                 print('Error:', e)
-                sys.exit(1)
+                exit = 1
+                break
 
-            print(
-                '[NEW CLIENT] Se abre una nueva conexión con el'
-                f' cliente "{addr_info}".'
-            )
-
-            conn = Connection(conn_socket, self.directory, addr_info)
-            conn.handle()
+        self.s.close()
+        sys.exit(exit)
 
 
 def main():

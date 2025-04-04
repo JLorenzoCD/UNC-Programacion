@@ -73,27 +73,20 @@ class Connection(object):
 
         :params str command: Comando a ejecutar para el cliente
         """
-        try:
-            if isinstance(command, CommandQuit):
-                self.run_command_quit(command)
 
-            elif isinstance(command, CommandGetFileListing):
-                self.run_command_get_file_listing(command, self.directory)
+        if isinstance(command, CommandQuit):
+            self.run_command_quit(command)
 
-            elif isinstance(command, CommandGetMetaData):
-                self.run_command_get_metadata(command)
+        elif isinstance(command, CommandGetFileListing):
+            self.run_command_get_file_listing(command, self.directory)
 
-            elif isinstance(command, CommandGetSlice):
-                self.run_command_get_slice(command)
-            else:
-                #! Este caso nunca debería de suceder ya que antes se ejecuta el
-                #! método is_command_valid con el parser
-                #! Chequear yy luego quitar
-                print('Error desconocido.')
-                self.connected = False
-        # Revisar! En este apartado deberían encontrarse todas las excepciones
-        except CommandGetFileListing.DirectoryEmptyError as e:
-            print(f"[WARNING] {e}")
+        elif isinstance(command, CommandGetMetaData):
+            self.run_command_get_metadata(command)
+
+        elif isinstance(command, CommandGetSlice):
+            self.run_command_get_slice(command)
+        else:
+            raise InternalError('Error desconocido.')
 
     def run_command_quit(self, command: CommandQuit):
         """
