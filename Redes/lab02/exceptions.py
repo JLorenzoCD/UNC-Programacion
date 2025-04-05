@@ -17,7 +17,7 @@ class ServerExceptions(Exception):
 
     def log(self):
         header_err_print = "FATAL ERROR" if self.isFatal else "CLIENT ERROR"
-        print(f'[ {header_err_print} ]:', self.msg)
+        print(f'[{header_err_print}]:', self.msg)
 
 
 # 1xx: Errores fatales (no se pueden atender más pedidos)

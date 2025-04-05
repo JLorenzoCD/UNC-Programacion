@@ -54,8 +54,8 @@ class ParserCommand:
         for string in command:
             if '\n' in string:
                 raise BadEOLError(
-                    'Se encontró un carácter \n fuera de un'
-                    'terminador de pedido \r\n.'
+                    'Se encontró un carácter \\n fuera de un'
+                    'terminador de pedido \\r\\n.'
                 )
             elif ' ' in string:
                 # La consigna dice que el comando y los argumentos tienen solo
@@ -67,7 +67,6 @@ class ParserCommand:
             elif len(string) == 0:
                 raise BadRequestError('El comando o argumento esta vació.')
 
-    #! Este método debería ser estático y usarse en el Connection al obtener el comando
     def __command_exists(cmd: str):
         """
         Se revisa si el comando existe en la lista de comandos del servidor.

@@ -15,17 +15,17 @@ class Command:
     def __init__(self, cmd: str):
         self.cmd = cmd
 
-    def response_ok(self):
+    def response_ok(self) -> bytes:
         """
         Retorna un mensaje de respuesta de éxito.
 
         :returns: Mensaje formateado de éxito.
-        :rtype: str
+        :rtype: bytes
         """
 
-        return f'{CODE_OK} {error_messages[CODE_OK]}{EOL}'
+        return f'{CODE_OK} {error_messages[CODE_OK]}{EOL}'.encode('ascii')
 
-    def response_format(self, *args, **kwargs) -> str:
+    def response_format(self, *args, **kwargs) -> bytes:
         """
         Método que debe ser sobrescrito en comandos específicos.
 
@@ -34,6 +34,18 @@ class Command:
 
         raise NotImplementedError(
             'No se debe utilizar el método "response_format" en '
+            f'la clase "{type(self).__name__}"'
+        )
+
+    def execute(self, **kwargs) -> tuple[bytes, bool]:
+        """
+        Método que debe ser sobrescrito en comandos específicos.
+
+        :raises NotImplementedError: Si no es sobrescrito en una subclase.
+        """
+
+        raise NotImplementedError(
+            'No se debe utilizar el método "execute" en '
             f'la clase "{type(self).__name__}"'
         )
 
@@ -46,7 +58,7 @@ class Command:
         """
 
         print(
-            f'[CLIENT ACTION]: El cliente {addr_info} utilizo el comando'
+            f'[CLIENT ACTION]: El cliente {addr_info} utilizó el comando '
             f'"{self.cmd}".'
         )
 
@@ -55,6 +67,16 @@ class CommandQuit(Command):
     """
     Comando que representa la acción de cerrar la conexión.
     """
+
+    def execute(self, **kwargs) -> tuple[bytes, bool]:
+        """
+        Cierra la conexión con el cliente.
+        """
+
+        res = self.response_ok()
+        connected = False
+
+        return res, connected
 
     def log(self, addr_info: tuple[str, int]):
         print(
@@ -68,48 +90,35 @@ class CommandGetFileListing(Command):
     Comando para obtener una lista de archivos.
     """
 
-    class DirectoryEmptyError(Exception):
-        """
-        Excepción lanzada cuando el directorio no contenga archivos.
-        """
-        pass
-
-    @classmethod
-    def response_format(self, file_names: list[str]) -> str:
+    def response_format(self, file_names: list[str]) -> bytes:
         """
         Da formato a la respuesta con los nombres de los archivos.
 
         :param list[str] file_names: Lista de nombres de archivos.
 
-        :returns str msg: Código OK + Lista de archivos que están disponibles.
+        :returns msg (bytes): Código OK + Lista de archivos que están disponibles.
         """
         msg: str = ""
 
-        # Genero la parte del código de error
-        error_code = f"{CODE_OK} {error_messages[CODE_OK]}{EOL}"
-
-        msg = f"{error_code}"
+        # Genero la parte del mensaje de OK
+        msg = self.response_ok()
 
         # Agrego al final de cada elemento un \r\n
         for file in file_names:
-            msg = f"{msg}{file}{EOL}"
+            msg += f"{file}{EOL}".encode('ascii')
 
         # Sin esta línea el mensaje sólo tendría \r\n hasta el último en la lista
-        msg = f"{msg}{EOL}"
+        msg += EOL.encode('ascii')
 
         return msg
 
-    @classmethod
-    def get_filenames(cls, dir: str) -> list[str]:
+    def get_filenames(self, dir: str) -> list[str]:
         """
         Obtiene los nombres de los archivos en un directorio.
 
         :param str dir: Ruta del directorio.
 
         :returns list[str] file_names: Lista de nombres de archivos.
-
-        :raises DirectoryEmptyError: Se lanza una excepción en caso de que el directorio
-        no contenga archivos.
         """
         file_names: list[str] = []
 
@@ -117,13 +126,12 @@ class CommandGetFileListing(Command):
         content_in_dir = os.listdir(dir)
 
         for file in content_in_dir:
-            if CommandGetFileListing.is_file(dir, file):
+            if self.__is_file(dir, file):
                 file_names.append(file)
 
         return file_names
 
-    @classmethod
-    def is_file(cls, dir: str, file: str) -> bool:
+    def __is_file(self, dir: str, file: str) -> bool:
         """
         Decide si un archivo es un archivo o no.
 
@@ -133,8 +141,28 @@ class CommandGetFileListing(Command):
 
         :returns bool: True si es un archivo, False si no lo es.
         """
+
         file_path = os.path.join(dir, file)
+
         return os.path.isfile(file_path)
+
+    def execute(self, **kwargs) -> tuple[bytes, bool]:
+        """
+        Busca obtener la lista de archivos que están actualmente
+        disponibles en el directorio.
+        """
+        dir = kwargs.get('dir')
+        if dir is None:
+            raise InternalError(
+                "No se paso el nombre del directorio al comando get_file_listing."
+            )
+
+        file_names: list[str] = self.get_filenames(dir)
+
+        res = self.response_format(file_names)
+        connected = True
+
+        return res, connected
 
 
 class CommandGetMetaData(Command):
@@ -159,8 +187,9 @@ class CommandGetMetaData(Command):
 
         :param int file_size: Tamaño del archivo en bytes.
         """
-        msg = (f"{CODE_OK} {error_messages[CODE_OK]}{EOL}"
-               f"{file_size}{EOL}")
+        msg = self.response_ok()
+
+        msg += f"{file_size}{EOL}".encode('ascii')
 
         return msg
 
@@ -196,6 +225,25 @@ class CommandGetMetaData(Command):
         """
         super().log(addr_info)
 
+    def execute(self, **kwargs) -> tuple[bytes, bool]:
+        """
+        Devuelve el tamaño de un archivo dado.
+
+        :param CommandGetMetaData command: Comando a ejecutar.
+        """
+        dir = kwargs.get('dir')
+        if dir is None:
+            raise InternalError(
+                "No se paso el nombre del directorio al comando get_file_listing."
+            )
+
+        size = self.get_size_file(dir)
+
+        res = self.response_format(size)
+        connected = True
+
+        return res, connected
+
 
 class CommandGetSlice(Command):
     """
@@ -225,10 +273,11 @@ class CommandGetSlice(Command):
         :param str data: Datos del fragmento del archivo.
         :param str code: Nombre del código de error que hay que utilizar en el mensaje.
 
-        :returns msg (str): Respuesta según la solicitud dada. 
+        :returns msg (str): Respuesta según la solicitud dada.
         """
-        msg = (f"{CODE_OK} {error_messages[CODE_OK]}{EOL}"
-               f"{data}{EOL}")
+        msg = self.response_ok()
+        msg += data
+        msg += EOL.encode('ascii')
 
         return msg
 
@@ -265,3 +314,22 @@ class CommandGetSlice(Command):
         :param tuple[str, int] addr_info: Dirección y puerto del cliente.
         """
         super().log(addr_info)
+
+    def execute(self, **kwargs) -> tuple[bytes, bool]:
+        """
+        Devuelve la parte solicitada del archivo dado, codificada en base64.
+
+        :param CommandGetSlice command: Comando a ejecutar.
+        """
+        dir = kwargs.get('dir')
+        if dir is None:
+            raise InternalError(
+                "No se paso el nombre del directorio al comando get_file_listing."
+            )
+
+        data = self.get_file_data(dir)
+
+        res = self.response_format(data)
+        connected = True
+
+        return res, connected

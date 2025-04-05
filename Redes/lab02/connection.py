@@ -23,10 +23,52 @@ class Connection(object):
         self.conn = socket
         self.directory = directory
         self.addr_info = addr_info
+
         self.buffer = ""
 
         # Propiedad para saber si se debe recibir mas datos/comandos del cliente
         self.connected = True
+
+    def _recv(self, timeout=None):
+        """
+        Recibe datos y acumula en el buffer interno.
+
+        Para uso privado del cliente.
+        """
+        self.conn.settimeout(timeout)
+        data = self.conn.recv(4096).decode("ascii")
+        self.buffer += data
+
+        if len(data) == 0:
+            self.connected = False
+
+    def read_line(self, timeout=None):
+        """
+        Espera datos hasta obtener una línea completa delimitada por el
+        terminador del protocolo.
+
+        Devuelve la línea, eliminando el terminador y los espacios en blanco
+        al principio y al final.
+
+        :raises BadRequestError: Se saturo el buffer
+        """
+        while not EOL in self.buffer and self.connected:
+            if len(self.buffer) >= MAX_BUFFER_SIZE:
+                raise BadRequestError("Buffer overflow")
+
+            if timeout is not None:
+                t1 = time.monotonic()
+            self._recv(timeout)
+            if timeout is not None:
+                t2 = time.monotonic()
+                timeout -= t2 - t1
+                t1 = t2
+        if EOL in self.buffer:
+            response, self.buffer = self.buffer.split(EOL, 1)
+            return response.strip()
+        else:
+            self.connected = False
+            return ""
 
     def handle(self):
         """
@@ -41,7 +83,11 @@ class Connection(object):
                     break
 
                 cmd = ParserCommand.parser(command)
-                self.execute_commands(cmd)
+                res, self.connected = cmd.execute(dir=self.directory)
+
+                cmd.log(self.addr_info)
+
+                self.conn.send(res)
 
             except (BadEOLError, BadRequestError, InternalError) as e:
                 # Es un error fatal, por lo que se corta la conexión con el
@@ -66,113 +112,3 @@ class Connection(object):
                 self.connected = False
 
         self.conn.close()
-
-    def execute_commands(self, command: Command):
-        """
-        Recibe un comando valido y lo ejecuta
-
-        :params str command: Comando a ejecutar para el cliente
-        """
-
-        if isinstance(command, CommandQuit):
-            self.run_command_quit(command)
-
-        elif isinstance(command, CommandGetFileListing):
-            self.run_command_get_file_listing(command, self.directory)
-
-        elif isinstance(command, CommandGetMetaData):
-            self.run_command_get_metadata(command)
-
-        elif isinstance(command, CommandGetSlice):
-            self.run_command_get_slice(command)
-        else:
-            raise InternalError('Error desconocido.')
-
-    def run_command_quit(self, command: CommandQuit):
-        """
-        Cierra la conexión con el cliente.
-        """
-
-        command.log(self.addr_info)
-
-        self.conn.send(command.response_ok().encode('ascii'))
-
-        self.connected = False
-
-    def run_command_get_file_listing(self, command: CommandGetFileListing, directory: str):
-        """
-        Busca obtener la lista de archivos que están actualmente
-        disponibles en el directorio.
-        """
-        command.log(self.addr_info)
-
-        file_names: list[str] = command.get_filenames(directory)
-
-        msg = command.response_format(file_names)
-
-        self.conn.send(msg.encode('ascii'))
-
-    def run_command_get_metadata(self, command: CommandGetMetaData):
-        """
-        Devuelve el tamaño de un archivo dado.
-
-        :param CommandGetMetaData command: Comando a ejecutar.
-        """
-        command.log(self.addr_info)
-
-        size = command.get_size_file(self.directory)
-
-        self.conn.send(command.response_format(size).encode('ascii'))
-
-    def run_command_get_slice(self, command: CommandGetSlice):
-        """
-        Devuelve la parte solicitada del archivo dado, codificada en base64.
-
-        :param CommandGetSlice command: Comando a ejecutar.
-        """
-        command.log(self.addr_info)
-
-        data = command.get_file_data(self.directory)
-
-        self.conn.send(command.response_format(data).encode('ascii'))
-
-    def _recv(self, timeout=None):
-        """
-        Recibe datos y acumula en el buffer interno.
-
-        Para uso privado del cliente.
-        """
-        self.conn.settimeout(timeout)
-        data = self.conn.recv(4096).decode("ascii")
-        self.buffer += data
-
-        if len(data) == 0:
-            self.connected = False
-
-    def read_line(self, timeout=None):
-        """
-        Espera datos hasta obtener una línea completa delimitada por el
-        terminador del protocolo.
-
-        Devuelve la línea, eliminando el terminaodr y los espacios en blanco
-        al principio y al final.
-
-        :raises BadRequestError: Se saturo el buffer
-        """
-        while not EOL in self.buffer and self.connected:
-            if len(self.buffer) >= MAX_BUFFER_SIZE:
-                raise BadRequestError("Buffer overflow")
-
-            if timeout is not None:
-                t1 = time.monotonic()
-            self._recv(timeout)
-            if timeout is not None:
-                t2 = time.monotonic()
-                timeout -= t2 - t1
-                t1 = t2
-        if EOL in self.buffer:
-            response, self.buffer = self.buffer.split(EOL, 1)
-            return response.strip()
-        else:
-            self.connected = False
-            return ""
