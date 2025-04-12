@@ -5,7 +5,7 @@ import Dibujo
 type Pred a = a -> Bool
 
 --Para la definiciones de la funciones de este modulo, no pueden utilizar
---pattern-matching, sino alto orden a traves de la funcion foldDib, mapDib
+--pattern-matching, sino alto orden a traves de la función foldDib, mapDib
 
 -- Dado un predicado sobre básicas, cambiar todas las que satisfacen
 -- el predicado por el resultado de llamar a la función indicada por el
@@ -13,33 +13,42 @@ type Pred a = a -> Bool
 -- Por ejemplo, `cambiar (== Triangulo) (\x -> Rotar (Basica x))` rota
 -- todos los triángulos.
 cambiar :: Pred a -> (a -> Dibujo a) -> Dibujo a -> Dibujo a
-cambiar pred fun d = mapDib (\x -> if pred x then fun x else x) d
+cambiar pred fun d = 
+                foldDib 
+                    (\x -> if pred x then fun x else pureDib x)
+                    rotar
+                    rotar45
+                    espejar
+                    apilar
+                    juntar
+                    encimar
+                    d
 
 -- Alguna básica satisface el predicado.
 anyDib :: Pred a -> Dibujo a -> Bool
 anyDib pred d =
-        foldDib
-            pred
-            id
-            id
-            id
-            (\_ _ x y -> x || y)
-            (\_ _ x y -> x || y)
-            (\x y -> x || y)
-            d
+            foldDib
+                pred
+                id
+                id
+                id
+                (\_ _ x y -> x || y)
+                (\_ _ x y -> x || y)
+                (\x y -> x || y)
+                d
 
 -- Todas las básicas satisfacen el predicado.
 allDib :: Pred a -> Dibujo a -> Bool
 allDib pred d =
-        foldDib
-            pred
-            id
-            id
-            id
-            (\_ _ x y -> x && y)
-            (\_ _ x y -> x && y)
-            (\x y -> x && y)
-            d
+            foldDib
+                pred
+                id
+                id
+                id
+                (\_ _ x y -> x && y)
+                (\_ _ x y -> x && y)
+                (\x y -> x && y)
+                d
 
 -- Hay 4 rotaciones seguidas.
 esRot360 :: Pred (Dibujo a)
@@ -69,7 +78,7 @@ esFlip2 d =
 
 data Superfluo = RotacionSuperflua | FlipSuperfluo
 
----- Chequea si el dibujo tiene una rotacion superflua
+---- Chequea si el dibujo tiene una rotación superflua
 errorRotacion :: Dibujo a -> [Superfluo]
 errorRotacion d = if esRot360 d then [RotacionSuperflua] else []
 

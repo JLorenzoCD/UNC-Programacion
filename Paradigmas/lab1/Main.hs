@@ -5,11 +5,12 @@ import Graphics.UI.GLUT.Begin
 import Dibujo
 import Interp
 import qualified Basica.Ejemplo as E
+import qualified Basica.Escher as Es
 import qualified Graphics.Gloss.Data.Point.Arithmetic as V
 
 --Funciones para rellenar el fondo de la imagen inicial
 
--- comprender esta función es un buen ejericio.
+-- comprender esta función es un buen ejercicio.
 lineasH :: Vector -> Float -> Float -> [Picture]
 lineasH origen@(x, y) longitud separacion = map (lineaH . (*separacion)) [0..]
   where lineaH h = line [(x, y + h), (x + longitud, y + h)]
@@ -32,8 +33,8 @@ data Conf a = Conf {
   }
 
 ej ancho alto = Conf {
-                basic = E.interpBas
-              , fig = E.ejemplo
+                basic = Es.interpBas
+              , fig = Es.figura4
               , width = ancho
               , height = alto
               , r = id
@@ -43,8 +44,8 @@ moverCentro :: Float -> Float -> Picture -> Picture
 moverCentro ancho alto p = translate (-ancho / 2) (-alto / 2) p
 
 ejCentro ancho alto = Conf {
-                basic = E.interpBas
-              , fig = E.ejemplo
+                basic = Es.interpBas
+              , fig = Es.figura4
               , width = ancho
               , height = alto
               , r = moverCentro ancho alto
@@ -54,14 +55,15 @@ ejCentro ancho alto = Conf {
 -- pantalla la figura de la misma de acuerdo a la interpretación para
 -- las figuras básicas. Permitimos una computación para poder leer
 -- archivos, tomar argumentos, etc.
-inicial :: IO (Conf E.Basica) -> IO ()
+inicial :: IO (Conf Es.Escher) -> IO ()
 inicial cf = cf >>= \cfg ->
     let ancho  = (width cfg, 0)
         alto  = (0, height cfg)
         imagen = interp (basic cfg) (fig cfg) (0, 0) ancho alto
     in display win white . withGrid $ imagen
   where grillaGris = color grey $ grilla 10 (0, 0) 100 10
-        withGrid p = pictures [p, grillaGris]
+        withGrid p = pictures [p, grillaGris, texto]
+        texto = translate (-30) (-15) $ scale 0.07 0.07 $ color black $ Text "Lab 1 Paradigmas - G12 - NaN"
         grey = makeColorI 120 120 120 120
 
 win = InWindow "Paradigmas 2025 - Lab1" (500, 500) (0, 0)

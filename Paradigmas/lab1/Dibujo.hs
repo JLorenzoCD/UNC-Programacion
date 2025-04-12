@@ -56,6 +56,7 @@ r270 d = comp rotar 3 d
 (^^^) :: Dibujo a -> Dibujo a -> Dibujo a
 (^^^) d1 d2 = encimar d1 d2
 
+
 -- Dadas cuatro dibujos las ubica en los cuatro cuadrantes.
 cuarteto :: Dibujo a -> Dibujo a -> Dibujo a -> Dibujo a -> Dibujo a
 cuarteto d1 d2 d3 d4 = (d1 /// d2) .-. (d3 /// d4)
@@ -64,19 +65,18 @@ cuarteto d1 d2 d3 d4 = (d1 /// d2) .-. (d3 /// d4)
 encimar4 :: Dibujo a -> Dibujo a
 encimar4 d = d ^^^ (rotar d) ^^^ (r180 d) ^^^ (r270 d)
 
-
 -- Cuadrado con la misma figura rotada i * 90, para i ∈ {0, ..., 3}.
 -- No confundir con encimar4!
 ciclar :: Dibujo a -> Dibujo a
 ciclar d = cuarteto d (rotar d) (r180 d) (r270 d)
 
 
--- Transfomar un valor de tipo a como una Basica.
+-- Transformar un valor de tipo a como una Basica.
 pureDib :: a -> Dibujo a
 pureDib b = basica b
 
 -- map para nuestro lenguaje.
-mapDib :: (a -> b) -> Dibujo a -> Dibujo b
+mapDib :: (a -> b) -> Dibujo a -> Dibujo b     
 mapDib f (Basica b) =              Basica (f b)
 mapDib f (Rotar d) =               Rotar (mapDib f d)
 mapDib f (Rotar45 d) =             Rotar45 (mapDib f d)
@@ -85,8 +85,7 @@ mapDib f (Apilar f1 f2 d1 d2) =    Apilar f1 f2 (mapDib f d1) (mapDib f d2)
 mapDib f (Juntar f1 f2 d1 d2) =    Juntar f1 f2 (mapDib f d1) (mapDib f d2)
 mapDib f (Encimar d1 d2) =         Encimar (mapDib f d1) (mapDib f d2)
 
-
--- Funcion de fold para Dibujos a
+-- Función de fold para Dibujos a
 foldDib ::
        (a -> b) ->
        (b -> b) ->
@@ -108,4 +107,3 @@ foldDib fBasica fRotar fRotar45 fEspejar fApilar fJuntar fEncimar dibujo =
               (Encimar d1 d2)      ->   fEncimar (recursion d1) (recursion d2)
        where
               recursion = foldDib fBasica fRotar fRotar45 fEspejar fApilar fJuntar fEncimar
-

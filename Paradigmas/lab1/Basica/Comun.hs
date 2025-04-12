@@ -20,7 +20,7 @@ triangulo a b c = line $ map (a V.+) [vCero, mitad b V.+ c , b , vCero]
 trianguloVioleta :: ImagenFlotante
 trianguloVioleta a b c = color violet $ triangulo a b c
 
--- Poligono de color solido que une una lista de coordenadas
+-- Polígono de color solido que une una lista de coordenadas
 trianguloRecto :: ImagenFlotante
 trianguloRecto origen ancho alto =
     color violet $ polygon $ map (origen V.+) [vCero, ancho, alto, vCero]

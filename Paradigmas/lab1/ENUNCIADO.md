@@ -18,7 +18,7 @@ Para definir un lenguaje necesitamos dos cosas: su _sintaxis_ ---cómo
 lo vamos a escribir---, y su _semántica_ ---cómo lo vamos a
 interpretar. Por ejemplo, en el lenguaje que vamos a ver vamos a poder
 escribir un operador de rotación, que lo interpretaremos como la
-rotación de una imágen. Esta interpretación estará dada en nuestro
+rotación de una imagen. Esta interpretación estará dada en nuestro
 caso por una función que transforma los programas del DSL en otras
 cosas; estas cosas pueden ser elementos de otros tipos o también
 _efectos_, como mostrar algo por la pantalla, escribir algo en un
@@ -209,7 +209,7 @@ Se recomienda fuertemente realizar dibujitos para comprender las operaciones.
 #### Usos ####
 
 La primer tarea es reconstruir el gráfico de Escher (con triángulos). Para eso
-se debe crear un directorio `/Basica` donde definen un sínonimo de tipos adecuado e
+se debe crear un directorio `/Basica` donde definen un sinónimo de tipos adecuado e
 implementan los siguientes combinadores, en función de la siguiente descripción
 de los dos primeros niveles:
 
@@ -323,7 +323,7 @@ Interp.hs        # Interpretación geométrica de las figuras, está bien
 Basica/Comun.hs  # Interpretaciones posibles de figuras básicas para utilizarlas
                  # como ejemplos.
 Basica/Escher.hs # Definición de combinadores, elección de tipo para
-                 # instanciar Dibujo, definción de la interpretación de
+                 # instanciar Dibujo, definición de la interpretación de
                  # todas las figuras básicas.
 Basica/Extra.hs  # Si se copan y hacen otros diseños, que estén en el
                  # directorio Basica.
@@ -388,7 +388,7 @@ Prelude Graphics.Gloss> display win white $ circle 100
 Si tuviste un fallo al intentar importar `Graphics.Gloss` entonces pedí ayuda.
 
 Si tenés otro sistema operativo, es probable que o bien vos sepás mejor que
-nosotres qué hacer o que lo más fácil sea bajar e instalar [Haskell
+nosotros qué hacer o que lo más fácil sea bajar e instalar [Haskell
 Platform](https://www.haskell.org/platform/).
 
 
