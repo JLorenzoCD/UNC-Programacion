@@ -5,10 +5,8 @@
 import time
 import socket
 from constants import *
-from base64 import b64encode
 
 from parser_commmand import ParserCommand
-from command import Command, CommandQuit, CommandGetFileListing,  CommandGetMetaData, CommandGetSlice
 from exceptions import BadEOLError, BadRequestError, InternalError, InvalidCommandError, InvalidArgsError, FileNotFoundError, BadOffSetError
 
 
@@ -23,13 +21,12 @@ class Connection(object):
         self.conn = socket
         self.directory = directory
         self.addr_info = addr_info
-
         self.buffer = ""
 
         # Propiedad para saber si se debe recibir mas datos/comandos del cliente
         self.connected = True
 
-    def _recv(self, timeout=None):
+    def __recv(self, timeout=None):
         """
         Recibe datos y acumula en el buffer interno.
 
@@ -58,7 +55,7 @@ class Connection(object):
 
             if timeout is not None:
                 t1 = time.monotonic()
-            self._recv(timeout)
+            self.__recv(timeout)
             if timeout is not None:
                 t2 = time.monotonic()
                 timeout -= t2 - t1
@@ -77,32 +74,56 @@ class Connection(object):
 
         while self.connected:
             try:
-                command = self.read_line(1500)
+                # Se recibe datos hasta un cierto limite o hasta un EOL
+                command = self.read_line(TIMEOUT_RECEIVE_CLIENT_DATA)
 
+                # Se revisa si hay error al obtener datos o si el cliente cerro
+                # la conexión
                 if not self.connected or command == "":
                     break
 
+                # Se valida que la linea obtenida sea un comando valido
                 cmd = ParserCommand.parser(command)
+
+                # Se ejecuta el comando actual, retornando la respuesta en bytes
+                # y si todavía hay conexión con el cliente
                 res, self.connected = cmd.execute(dir=self.directory)
 
                 cmd.log(self.addr_info)
 
+                # Se envía la respuesta del comando
                 self.conn.send(res)
 
             except (BadEOLError, BadRequestError, InternalError) as e:
                 # Es un error fatal, por lo que se corta la conexión con el
                 # cliente
                 e.log()
+
+                # Se envía al cliente el mensaje de error
                 self.conn.send(e.get_res_error().encode('ascii'))
 
                 self.connected = False
 
-            except (InvalidCommandError, InvalidArgsError, FileNotFoundError, BadOffSetError) as e:
+            except (
+                InvalidCommandError, InvalidArgsError,
+                FileNotFoundError, BadOffSetError
+            ) as e:
                 # No es un error fatal, por lo que se sigue recibiendo comandos
                 # del cliente
 
                 e.log()
+
+                # Se envía al cliente el mensaje de error
                 self.conn.send(e.get_res_error().encode('ascii'))
+
+            except TimeoutError:
+                # El cliente gasto el timeout, por lo que se cierra la conexión.
+                print(
+                    "[CLIENT TIMEOUT] El cliente tardo mas de"
+                    f"{TIMEOUT_RECEIVE_CLIENT_DATA} segundos en enviar datos."
+                )
+
+                self.connected = False
 
             except Exception as e:
                 # Algo desconocido sucedió, por lo que se corta la conexión

@@ -37,6 +37,8 @@ class ParserCommand:
         # Se verifica que el primer elemento del comando sea un comando valido
         cls.__command_exists(cmd)
 
+        del command[0]
+
         # Se cea una subclase que hereda ded Commands según el tipo de comando
         return cls.__create_command_class(cmd, command)
 
@@ -124,8 +126,6 @@ class ParserCommand:
         :raises InvalidArgsError: Si el comando tiene argumentos.
         """
 
-        del command[0]
-
         if len(command) != 0:
             raise InvalidArgsError('La cantidad de argumentos no corresponde')
 
@@ -137,8 +137,6 @@ class ParserCommand:
         :param list[str] command: Lista con los elementos del comando.
         :raises InvalidArgsError: Si el número de argumentos es incorrecto.
         """
-
-        del command[0]
 
         if len(command) != 1:
             raise InvalidArgsError('La cantidad de argumentos no corresponde')
@@ -158,8 +156,6 @@ class ParserCommand:
         :rtype: tuple[str, int, int]
         :raises InvalidArgsError: Si los argumentos no son válidos.
         """
-
-        del command[0]
 
         if len(command) != 3:
             raise InvalidArgsError('La cantidad de argumentos no corresponde')

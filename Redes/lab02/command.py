@@ -1,7 +1,7 @@
-from constants import CODE_OK, EOL, FILE_NOT_FOUND, INVALID_ARGUMENTS, INTERNAL_ERROR, error_messages, COMMAND_GET_METADATA
 import os
 from base64 import b64encode
 
+from constants import CODE_OK, EOL, error_messages, COMMAND_GET_METADATA
 from exceptions import FileNotFoundError, InternalError, BadOffSetError
 
 
@@ -27,13 +27,12 @@ class Command:
 
     def response_format(self, *args, **kwargs) -> bytes:
         """
-        Método que debe ser sobrescrito en comandos específicos.
+        Metodo que debe ser sobrescrito en comandos específicos.
 
-        :raises NotImplementedError: Si no es sobrescrito en una subclase.
+        :raises NotImplementedError: Si es sobrescrito en una subclase.
         """
-
         raise NotImplementedError(
-            'No se debe utilizar el método "response_format" en '
+            'No se debe utilizar el metodo "response_format" en '
             f'la clase "{type(self).__name__}"'
         )
 
@@ -95,19 +94,17 @@ class CommandGetFileListing(Command):
         Da formato a la respuesta con los nombres de los archivos.
 
         :param list[str] file_names: Lista de nombres de archivos.
-
-        :returns msg (bytes): Código OK + Lista de archivos que están disponibles.
+        :returns msg (bytes): Código OK + Lista de archivos que están
+            disponibles.
         """
-        msg: str = ""
-
-        # Genero la parte del mensaje de OK
         msg = self.response_ok()
 
         # Agrego al final de cada elemento un \r\n
         for file in file_names:
             msg += f"{file}{EOL}".encode('ascii')
 
-        # Sin esta línea el mensaje sólo tendría \r\n hasta el último en la lista
+        # Sin esta línea el mensaje sólo tendría \r\n hasta el último en la
+        # lista
         msg += EOL.encode('ascii')
 
         return msg
@@ -117,7 +114,6 @@ class CommandGetFileListing(Command):
         Obtiene los nombres de los archivos en un directorio.
 
         :param str dir: Ruta del directorio.
-
         :returns list[str] file_names: Lista de nombres de archivos.
         """
         file_names: list[str] = []
@@ -136,12 +132,9 @@ class CommandGetFileListing(Command):
         Decide si un archivo es un archivo o no.
 
         :param str dir: Ruta del archivo
-
         :param str file: Nombre del archivo
-
         :returns bool: True si es un archivo, False si no lo es.
         """
-
         file_path = os.path.join(dir, file)
 
         return os.path.isfile(file_path)
@@ -154,7 +147,8 @@ class CommandGetFileListing(Command):
         dir = kwargs.get('dir')
         if dir is None:
             raise InternalError(
-                "No se paso el nombre del directorio al comando get_file_listing."
+                "No se paso el nombre del directorio al "
+                "comando get_file_listing."
             )
 
         file_names: list[str] = self.get_filenames(dir)
@@ -198,11 +192,11 @@ class CommandGetMetaData(Command):
         Obtiene el tamaño del archivo.
 
         :param str dir: Ruta del directorio.
-
         :returns size (str): Tamaño del archivo correspondiente.
-
-        :raises FileNotFoundError: Si el archivo solicitado no se encuentra en el directorio.
-        :raises InternalError: Si ocurre un error accediendo al tamaño del archivo.
+        :raises FileNotFoundError: Si el archivo solicitado no se encuentra en
+            el directorio.
+        :raises InternalError: Si ocurre un error accediendo al tamaño del
+            archivo.
         """
         archives = os.listdir(dir)
 
@@ -215,15 +209,8 @@ class CommandGetMetaData(Command):
             return size
         except Exception:
             raise InternalError(
-                "Ha ocurrido un error intentando acceder al tamaño del archivo.")
-
-    def log(self, addr_info: tuple[str, int]):
-        """
-        Registra la acción del cliente al obtener metadatos.
-
-        :param tuple[str, int] addr_info: Dirección y puerto del cliente.
-        """
-        super().log(addr_info)
+                "Ha ocurrido un error intentando acceder al tamaño del archivo."
+            )
 
     def execute(self, **kwargs) -> tuple[bytes, bool]:
         """
@@ -234,7 +221,8 @@ class CommandGetMetaData(Command):
         dir = kwargs.get('dir')
         if dir is None:
             raise InternalError(
-                "No se paso el nombre del directorio al comando get_file_listing."
+                "No se paso el nombre del directorio al "
+                "comando get_file_listing."
             )
 
         size = self.get_size_file(dir)
@@ -271,8 +259,8 @@ class CommandGetSlice(Command):
         Da formato a la respuesta con los datos del fragmento del archivo.
 
         :param str data: Datos del fragmento del archivo.
-        :param str code: Nombre del código de error que hay que utilizar en el mensaje.
-
+        :param str code: Nombre del código de error que hay que utilizar en el
+            mensaje.
         :returns msg (str): Respuesta según la solicitud dada.
         """
         msg = self.response_ok()
@@ -286,16 +274,20 @@ class CommandGetSlice(Command):
         Obtiene la porción o slice pedida del archivo.
 
         :returns data (str): Slice del archivo codificado en base64.
-
-        :raises BadOffSetError: Si la suma entre el offset y el tamaño del fragmento es mayor que el tamaño total del archivo.
+        :raises BadOffSetError: Si la suma entre el offset y el tamaño del
+            fragmento es mayor que el tamaño total del archivo.
         :raises InternalError: Si ocurrió un error leyendo el archivo.
         """
         size_filename = CommandGetMetaData(
-            cmd=COMMAND_GET_METADATA, file_name=self.file_name).get_size_file(dir)
+            cmd=COMMAND_GET_METADATA,
+            file_name=self.file_name
+        ).get_size_file(dir)
 
         if (self.offset + self.size) > int(size_filename):
             raise BadOffSetError(
-                "La suma entre el offset y el tamaño del fragmento es mayor al tamaño total del archivo.")
+                "La suma entre el offset y el tamaño del fragmento es mayor "
+                "al tamaño total del archivo."
+            )
 
         try:
             with open(f"{dir}/{self.file_name}", 'rb') as file:
@@ -303,17 +295,10 @@ class CommandGetSlice(Command):
                 data = file.read(self.size)
         except Exception:
             raise InternalError(
-                "Ocurrio un error leyendo el contenido del archivo.")
+                "Ocurrió un error leyendo el contenido del archivo."
+            )
 
         return (b64encode(data))
-
-    def log(self, addr_info: tuple[str, int]):
-        """
-        Registra la acción del cliente al obtener un fragmento del archivo.
-
-        :param tuple[str, int] addr_info: Dirección y puerto del cliente.
-        """
-        super().log(addr_info)
 
     def execute(self, **kwargs) -> tuple[bytes, bool]:
         """
@@ -324,7 +309,8 @@ class CommandGetSlice(Command):
         dir = kwargs.get('dir')
         if dir is None:
             raise InternalError(
-                "No se paso el nombre del directorio al comando get_file_listing."
+                "No se paso el nombre del directorio al "
+                "comando get_file_listing."
             )
 
         data = self.get_file_data(dir)

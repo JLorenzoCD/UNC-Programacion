@@ -7,13 +7,12 @@
 # $Id: server.py 656 2013-03-18 23:49:11Z bc $
 
 import optparse
-import os
 import socket
 import sys
-import threading
-
 from connection import Connection
 from constants import *
+from pathlib import Path
+import threading
 
 
 class Server(object):
@@ -26,15 +25,17 @@ class Server(object):
                  directory=DEFAULT_DIR):
         print("Serving %s on %s:%s." % (directory, addr, port))
 
+        server_path = Path.cwd() / directory
+        server_path.mkdir(exist_ok=True)
+
         self.directory = directory
-        if not os.path.exists(self.directory):
-            os.makedirs(directory)
 
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-
         self.s.bind((addr, port))
         self.s.listen(5)
+
+        self.active_connections = []  # Conexiones activas para hilos
 
     def serve(self):
         """
@@ -46,19 +47,30 @@ class Server(object):
         while True:
             try:
                 conn_socket, addr_info = self.s.accept()
-
-                print(
-                    '[NEW CLIENT] Se abre una nueva conexión con el'
-                    f' cliente "{addr_info}".'
+                thread = threading.Thread(
+                    target=self.handle_client,
+                    args=(conn_socket, addr_info)
                 )
-
-                conn = Connection(conn_socket, self.directory, addr_info)
-                thread = threading.Thread(target=conn.handle)
+                thread.daemon = True
                 thread.start()
 
+                print(
+                    "[CONECTION CLIENT] Activas:",
+                    threading.active_count() - 1
+                )
+                print(
+                    '[NEW CLIENT] Se abre una nueva conexión con el cliente:',
+                    addr_info
+                )
             except KeyboardInterrupt:
-                print('\nCerrando el servidor.')
+                print('\n Cerrando el servidor.')
                 break
+            except (RuntimeError, OSError) as e:
+                print(
+                    "[ERROR] No se pudo crear un nuevo "
+                    f"hilo para {addr_info}: {e}"
+                )
+                conn_socket.close()
             except Exception as e:
                 print('Error:', e)
                 exit = 1
@@ -66,6 +78,18 @@ class Server(object):
 
         self.s.close()
         sys.exit(exit)
+
+    def handle_client(self, conn_socket, addr_info):
+        """
+        Maneja la conexión con el cliente.
+        :param conn_socket: socket de la conexión
+        :param addr_info: información de la dirección del cliente
+        """
+        conn = Connection(conn_socket, self.directory, addr_info)
+
+        self.active_connections.append(conn)
+        conn.handle()
+        self.active_connections.remove(conn)
 
 
 def main():
