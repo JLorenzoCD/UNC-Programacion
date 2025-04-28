@@ -2,22 +2,23 @@ package parser;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Arrays;
 
 import org.json.JSONTokener;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import subscription.SingleSubscription;
+import subscription.Subscription;
 /*
- * Esta clase implementa el parser del  archivo de suscripcion (json)
- * Leer https://www.w3docs.com/snippets/java/how-to-parse-json-in-java.html
- * */
+* Esta clase implementa el parser del  archivo de suscripción (json)
+* Leer https://www.w3docs.com/snippets/java/how-to-parse-json-in-java.html
+* */
 
-public class SubscriptionParser extends GeneralParser {
-    public SubscriptionParser() throws Exception {
-        // ! Ver que onda con esto
-        super(null, null, null, null);
-    }
+public class SubscriptionParser {
+    static private String[] validsUrlType = { "reddit", "rss" };
 
-    static public GeneralParser[] parser() throws Exception {
+    static public Subscription parser() throws Exception {
         FileReader reader;
         try {
             reader = new FileReader("config/subscriptions.json");
@@ -27,7 +28,7 @@ public class SubscriptionParser extends GeneralParser {
         }
         JSONArray subsArr = new JSONArray(new JSONTokener(reader));
 
-        GeneralParser[] subObjects = new GeneralParser[subsArr.length()];
+        Subscription subscription = new Subscription(null);
         for (int i = 0; i < subsArr.length(); i++) {
             JSONObject sub = subsArr.getJSONObject(i);
 
@@ -36,10 +37,12 @@ public class SubscriptionParser extends GeneralParser {
             String download = sub.getString("download");
             String[] urlParams = getUrlParams(sub.getJSONArray("urlParams"));
 
-            subObjects[i] = createParserObject(url, urlType, download, urlParams);
+            SingleSubscription singleSubscription = createParserObject(url, urlType, download, urlParams);
+
+            subscription.addSingleSubscription(singleSubscription);
         }
 
-        return subObjects;
+        return subscription;
     }
 
     static private String[] getUrlParams(JSONArray jsonUrlParams) {
@@ -51,15 +54,18 @@ public class SubscriptionParser extends GeneralParser {
         return urlParams;
     }
 
-    static private GeneralParser createParserObject(String url, String urlType, String download, String[] urlParams)
+    static private SingleSubscription createParserObject(String url, String urlType, String download,
+            String[] urlParams)
             throws Exception {
-        GeneralParser res;
-        if (urlType == "reddit") {
-            res = new RedditParser(url, urlType, download, urlParams);
-        } else {
-            res = new RssParser(url, urlType, download, urlParams);
-        }
 
-        return res;
+        if (!Arrays.asList(validsUrlType).contains(urlType)) {
+            throw new Exception("El valor del campo 'urlType' es invalido. Campo dado por el usuario: " + urlType);
+        }
+        // ! Se tiene que validar el resto de campos
+
+        SingleSubscription singleSubscription = new SingleSubscription(url, null, urlType);
+
+        return singleSubscription;
     }
+
 }

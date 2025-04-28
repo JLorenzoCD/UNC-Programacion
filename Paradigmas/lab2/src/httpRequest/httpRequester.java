@@ -1,14 +1,13 @@
 package httpRequest;
 
-
 /* Esta clase se encarga de realizar efectivamente el pedido de feed al servidor de noticias
  * Leer sobre como hacer una http request en java
  * https://www.baeldung.com/java-http-request
  * */
 
 public class httpRequester {
-	
-	public String getFeedRss(String urlFeed){
+
+	public String getFeedRss(String urlFeed) {
 		String feedRssXml = null;
 		return feedRssXml;
 	}
@@ -18,4 +17,17 @@ public class httpRequester {
 		return feedReeditJson;
 	}
 
+	public String getData(String urlType, String urlFeed) throws Exception {
+		String data;
+
+		if (urlType.equals("rss")) {
+			data = this.getFeedRss(urlFeed);
+		} else if (urlType.equals("reddit")) {
+			data = this.getFeedReedit(urlFeed);
+		} else {
+			throw new Exception();
+		}
+
+		return data;
+	}
 }
