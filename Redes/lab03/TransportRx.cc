@@ -1,5 +1,5 @@
-#ifndef QUEUE
-#define QUEUE
+#ifndef TRANSPORT_RX
+#define TRANSPORT_RX
 
 #include <string.h>
 #include <omnetpp.h>
@@ -90,4 +90,5 @@ void TransportRx::handleMessage(cMessage *msg) {
     }
 }
 
-#endif /* QUEUE */
+#endif /* TRANSPORT_RX */
+
