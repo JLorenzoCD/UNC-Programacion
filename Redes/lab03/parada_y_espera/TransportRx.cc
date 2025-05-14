@@ -91,4 +91,3 @@ void TransportRx::handleMessage(cMessage *msg) {
 }
 
 #endif /* TRANSPORT_RX */
-

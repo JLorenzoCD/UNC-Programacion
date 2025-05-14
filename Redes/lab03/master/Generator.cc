@@ -4,6 +4,8 @@
 #include <string.h>
 #include <omnetpp.h>
 
+#include "lab_constants.h"
+
 using namespace omnetpp;
 
 class Generator : public cSimpleModule {
@@ -11,6 +13,7 @@ private:
     cMessage *sendMsgEvent;
     cStdDev transmissionStats;
     int packetByteSize;
+    int packagesSent;
 public:
     Generator();
     virtual ~Generator();
@@ -31,6 +34,7 @@ Generator::~Generator() {
 }
 
 void Generator::initialize() {
+    packagesSent = 0;
     transmissionStats.setName("TotalTransmissions");
     // create the send packet
     sendMsgEvent = new cMessage("sendEvent");
@@ -47,8 +51,13 @@ void Generator::handleMessage(cMessage *msg) {
     cPacket* pkt = new cPacket("packet");
     pkt->setByteLength(par("packetByteSize"));
 
+    // Se establece el tipo del paquete para registrar los envíos del
+    // transmisor
+    pkt->setKind(PACKET_KIND_SEND);
+
     // send to the output
     send(pkt, "out");
+    packagesSent++;
 
     // compute the new departure time
     simtime_t departureTime = simTime() + par("generationInterval");
@@ -57,3 +66,4 @@ void Generator::handleMessage(cMessage *msg) {
 }
 
 #endif /* GENERATOR */
+

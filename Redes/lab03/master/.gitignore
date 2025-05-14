@@ -1,6 +1,8 @@
 # Omnet++ files
 .qtenvrc
-redes25lab3g03
+.cmdenv-log
+# redes25lab3g03
+# Makefile
 out/
 results/
 .settings/

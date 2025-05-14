@@ -1,5 +1,5 @@
 //
-// Generated file, do not edit! Created by opp_msgtool 6.0 from ./FeedbackPkt.msg.
+// Generated file, do not edit! Created by opp_msgtool 6.0 from FeedbackPkt.msg.
 //
 
 #ifndef __FEEDBACKPKT_M_H
@@ -18,7 +18,7 @@
 
 class feedbackPkt;
 /**
- * Class generated from <tt>./FeedbackPkt.msg:2</tt> by opp_msgtool.
+ * Class generated from <tt>FeedbackPkt.msg:2</tt> by opp_msgtool.
  * <pre>
  * packet feedbackPkt
  * {
