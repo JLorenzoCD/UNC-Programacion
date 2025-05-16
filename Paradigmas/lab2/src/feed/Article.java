@@ -25,6 +25,10 @@ public class Article {
 		this.link = link;
 	}
 
+	public List<NamedEntity> getNamedEntityList() {
+		return this.namedEntityList;
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -84,7 +88,7 @@ public class Article {
 			if (h.isEntity(s)) {
 				NamedEntity ne = this.getNamedEntity(s);
 				if (ne == null) {
-					this.namedEntityList.add(new NamedEntity(s, null, 1));
+					this.namedEntityList.add(new NamedEntity(s, h.getCategory(s), 1));
 				} else {
 					ne.incFrequency();
 				}

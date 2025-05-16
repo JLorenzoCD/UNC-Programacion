@@ -10,7 +10,7 @@ public class NamedEntity {
 	public NamedEntity(String name, String category, int frequency) {
 		super();
 		this.name = name;
-		this.category = category;
+		this.category = category == null ? "Other" : category;
 		this.frequency = frequency;
 	}
 
@@ -23,11 +23,11 @@ public class NamedEntity {
 	}
 
 	public String getCategory() {
-		return name;
+		return category;
 	}
 
-	public void setCategory(String name) {
-		this.name = name;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public int getFrequency() {
@@ -44,7 +44,8 @@ public class NamedEntity {
 
 	@Override
 	public String toString() {
-		return "ObjectNamedEntity [name=" + name + ", frequency=" + frequency + "]";
+		return "Object" + this.getClass().getSimpleName() + " [name=" + name + ", frequency=" + frequency
+				+ ", category=" + category + "]";
 	}
 
 	public void prettyPrint() {

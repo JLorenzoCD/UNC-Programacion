@@ -1,0 +1,80 @@
+{
+    // Use IntelliSense para saber los atributos posibles.
+    // Mantenga el puntero para ver las descripciones de los existentes atributos.
+    // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "FeedReaderMain",
+            "request": "launch",
+            "mainClass": "FeedReaderMain",
+            "projectName": "lab2_46dda7db",
+            "args": [
+                "-ne"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "Article",
+            "request": "launch",
+            "mainClass": "feed.Article",
+            "projectName": "lab2_46dda7db"
+        },
+        {
+            "type": "java",
+            "name": "Feed",
+            "request": "launch",
+            "mainClass": "feed.Feed",
+            "projectName": "lab2_46dda7db"
+        },
+        {
+            "type": "java",
+            "name": "httpRequester",
+            "request": "launch",
+            "mainClass": "httpRequest.httpRequester",
+            "projectName": "lab2_46dda7db"
+        },
+        {
+            "type": "java",
+            "name": "QuickHeuristic",
+            "request": "launch",
+            "mainClass": "namedEntity.heuristic.QuickHeuristic",
+            "projectName": "lab2_46dda7db"
+        },
+        {
+            "type": "java",
+            "name": "RandomHeuristic",
+            "request": "launch",
+            "mainClass": "namedEntity.heuristic.RandomHeuristic",
+            "projectName": "lab2_46dda7db"
+        },
+        {
+            "type": "java",
+            "name": "Counter",
+            "request": "launch",
+            "mainClass": "subscription.Counter",
+            "projectName": "lab2_46dda7db"
+        },
+        {
+            "type": "java",
+            "name": "SingleSubscription",
+            "request": "launch",
+            "mainClass": "subscription.SingleSubscription",
+            "projectName": "lab2_46dda7db"
+        },
+        {
+            "type": "java",
+            "name": "Subscription",
+            "request": "launch",
+            "mainClass": "subscription.Subscription",
+            "projectName": "lab2_46dda7db"
+        }
+    ]
+}

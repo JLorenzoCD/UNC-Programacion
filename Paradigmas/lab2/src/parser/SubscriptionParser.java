@@ -2,7 +2,6 @@ package parser;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Arrays;
 
 import org.json.JSONTokener;
 import org.json.JSONArray;
@@ -16,9 +15,12 @@ import subscription.Subscription;
 * */
 
 public class SubscriptionParser {
-    static private String[] validsUrlType = { "reddit", "rss" };
+    static public enum Parser {
+        RSS,
+        REDDIT
+    }
 
-    static public Subscription parser() throws Exception {
+    static public Subscription getSubscription() throws Exception {
         FileReader reader;
         try {
             reader = new FileReader("config/subscriptions.json");
@@ -37,7 +39,7 @@ public class SubscriptionParser {
             String download = sub.getString("download");
             String[] urlParams = getUrlParams(sub.getJSONArray("urlParams"));
 
-            SingleSubscription singleSubscription = createParserObject(url, urlType, download, urlParams);
+            SingleSubscription singleSubscription = createSingleSubscription(url, urlType, download, urlParams);
 
             subscription.addSingleSubscription(singleSubscription);
         }
@@ -54,18 +56,40 @@ public class SubscriptionParser {
         return urlParams;
     }
 
-    static private SingleSubscription createParserObject(String url, String urlType, String download,
+    static private SingleSubscription createSingleSubscription(
+            String url,
+            String urlType,
+            String download,
             String[] urlParams)
             throws Exception {
 
-        if (!Arrays.asList(validsUrlType).contains(urlType)) {
-            throw new Exception("El valor del campo 'urlType' es invalido. Campo dado por el usuario: " + urlType);
-        }
-        // ! Se tiene que validar el resto de campos
+        // Si no es del tipo RSS o REDIT tira el error IllegalArgumentException
+        Parser.valueOf(urlType.toUpperCase());
 
+        // ! Se tiene que validar el resto de campos
+        
         SingleSubscription singleSubscription = new SingleSubscription(url, null, urlType);
 
+        for (String urlParam : urlParams) {
+            singleSubscription.setUlrParams(urlParam);
+        }
+
         return singleSubscription;
+    }
+
+    static public GeneralParser getParser(String urlType) throws Exception {
+        GeneralParser parser;
+
+        // Si no es del tipo RSS o REDIT tira el error IllegalArgumentException
+        Parser parserType = Parser.valueOf(urlType.toUpperCase());
+
+        if (parserType.equals(Parser.RSS)) {
+            parser = new RssParser();
+        } else {
+            parser = new RedditParser();
+        }
+
+        return parser;
     }
 
 }

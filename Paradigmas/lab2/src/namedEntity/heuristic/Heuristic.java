@@ -8,11 +8,11 @@ public abstract class Heuristic {
 			"Microsoft", "Company",
 			"Apple", "Company",
 			"Google", "Company",
-			"Musk", "Person",
-			"Biden", "Person",
-			"Trump", "Person",
-			"Messi", "Person",
-			"Federer", "Person",
+			"Musk", "LastName",
+			"Biden", "LastName",
+			"Trump", "LastName",
+			"Messi", "LastName",
+			"Federer", "LastName",
 			"USA", "Country",
 			"Russia", "Country");
 
