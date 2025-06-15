@@ -15,7 +15,7 @@
             "name": "FeedReaderMain",
             "request": "launch",
             "mainClass": "FeedReaderMain",
-            "projectName": "lab2_46dda7db",
+            "projectName": "paradigmas25-g12-lab2_4740e609",
             "args": [
                 "-ne"
             ]
@@ -25,56 +25,56 @@
             "name": "Article",
             "request": "launch",
             "mainClass": "feed.Article",
-            "projectName": "lab2_46dda7db"
+            "projectName": "paradigmas25-g12-lab2_4740e609"
         },
         {
             "type": "java",
             "name": "Feed",
             "request": "launch",
             "mainClass": "feed.Feed",
-            "projectName": "lab2_46dda7db"
+            "projectName": "paradigmas25-g12-lab2_4740e609"
         },
         {
             "type": "java",
             "name": "httpRequester",
             "request": "launch",
             "mainClass": "httpRequest.httpRequester",
-            "projectName": "lab2_46dda7db"
+            "projectName": "paradigmas25-g12-lab2_4740e609"
         },
         {
             "type": "java",
             "name": "QuickHeuristic",
             "request": "launch",
             "mainClass": "namedEntity.heuristic.QuickHeuristic",
-            "projectName": "lab2_46dda7db"
+            "projectName": "paradigmas25-g12-lab2_4740e609"
         },
         {
             "type": "java",
             "name": "RandomHeuristic",
             "request": "launch",
             "mainClass": "namedEntity.heuristic.RandomHeuristic",
-            "projectName": "lab2_46dda7db"
+            "projectName": "paradigmas25-g12-lab2_4740e609"
         },
         {
             "type": "java",
             "name": "Counter",
             "request": "launch",
             "mainClass": "subscription.Counter",
-            "projectName": "lab2_46dda7db"
+            "projectName": "paradigmas25-g12-lab2_4740e609"
         },
         {
             "type": "java",
             "name": "SingleSubscription",
             "request": "launch",
             "mainClass": "subscription.SingleSubscription",
-            "projectName": "lab2_46dda7db"
+            "projectName": "paradigmas25-g12-lab2_4740e609"
         },
         {
             "type": "java",
             "name": "Subscription",
             "request": "launch",
             "mainClass": "subscription.Subscription",
-            "projectName": "lab2_46dda7db"
+            "projectName": "paradigmas25-g12-lab2_4740e609"
         }
     ]
 }

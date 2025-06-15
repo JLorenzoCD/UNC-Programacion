@@ -1,17 +1,26 @@
 package namedEntity;
 
-/*Esta clase modela la noción de entidad nombrada*/
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
+import topic.Topic;
+import topic.TopicFactory;
+
+/*Esta clase modela la noción de entidad nombrada*/
 public class NamedEntity {
 	String name;
 	String category;
 	int frequency;
+	Topic topic;
 
 	public NamedEntity(String name, String category, int frequency) {
 		super();
 		this.name = name;
 		this.category = category == null ? "Other" : category;
 		this.frequency = frequency;
+		this.topic = TopicFactory.create(TopicFactory.TopicType.Other);
 	}
 
 	public String getName() {
@@ -38,13 +47,46 @@ public class NamedEntity {
 		this.frequency = frequency;
 	}
 
+	public Topic getTopic() {
+		return topic;
+	}
+
+	public void setTopic(Topic topic) {
+		this.topic = topic;
+	}
+
+	protected Topic getRandomTopic() {
+		return TopicFactory.getRandomTopic();
+	}
+
 	public void incFrequency() {
 		this.frequency++;
 	}
 
+	protected String chooseRandomElem(List<String> list) {
+		int randomIndex = ThreadLocalRandom.current().nextInt(list.size());
+		String randomElement = list.get(randomIndex);
+
+		return randomElement;
+	}
+
+	protected static String canonicalizeString(String s) {
+		s = s.trim().toLowerCase();
+		return Character.toUpperCase(s.charAt(0)) + s.substring(1);
+	}
+
+	protected LocalDate generateRandomDate(int startYear, int endYear) {
+		Random random = new Random();
+		int randomYear = random.nextInt(endYear - startYear + 1) + startYear;
+		int randomMonth = random.nextInt(12) + 1;
+		int randomDay = random.nextInt(28) + 1;
+
+		return LocalDate.of(randomYear, randomMonth, randomDay);
+	}
+
 	@Override
 	public String toString() {
-		return "Object" + this.getClass().getSimpleName() + " [name=" + name + ", frequency=" + frequency
+		return this.getClass().getSimpleName() + " [name=" + name + ", frequency=" + frequency
 				+ ", category=" + category + "]";
 	}
 

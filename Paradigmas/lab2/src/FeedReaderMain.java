@@ -4,6 +4,8 @@ import parser.SubscriptionParser;
 import subscription.SingleSubscription;
 import subscription.Subscription;
 
+import topic.Topic;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +15,7 @@ import feed.Article;
 import feed.Feed;
 
 import httpRequest.httpRequester;
+
 import namedEntity.NamedEntity;
 import namedEntity.NamedEntityFactory;
 import namedEntity.heuristic.Heuristic;
@@ -76,18 +79,6 @@ public class FeedReaderMain {
 
 		} else if (args.length == 1) {
 			/*
-			 * CONSIGNA
-			 * Leer el archivo de suscription por defecto;
-			 * Llamar al httpRequester para obtenr el feed del servidor
-			 * Llamar al Parser especifico para extrar los datos necesarios por la
-			 * aplicacion
-			 * Llamar al constructor de Feed
-			 * Llamar a la heuristica para que compute las entidades nombradas de cada
-			 * articulos del feed
-			 * LLamar al prettyPrint de la tabla de entidades nombradas del feed.
-			 */
-
-			/*
 			 * Se obtiene las suscripciones del usuario, los artículos de las mismas,
 			 * las entidades nombradas de los artículos y por ultimo, se muestran en la
 			 * terminal en formato de tabla con sus ocurrencias.
@@ -107,6 +98,11 @@ public class FeedReaderMain {
 			Subscription sub = SubscriptionParser.getSubscription();
 			for (SingleSubscription singleSubscription : sub.getSubscriptionsList()) {
 
+				if (singleSubscription.getUrlType().equals("reddit")) {
+					// * No esta implementado para Reddit
+					continue;
+				}
+
 				for (int i = 0; i < singleSubscription.getUlrParamsSize(); i++) {
 					// Se obtiene la urlFeed dado el indice de un urlParam
 					String urlFeed = singleSubscription.getFeedToRequest(i);
@@ -125,7 +121,6 @@ public class FeedReaderMain {
 
 					// Mapa para guardar de entidades del Feed
 					Map<String, List<NamedEntity>> entityMap = new HashMap<>();
-					NamedEntityFactory nef = new NamedEntityFactory();
 
 					for (Article article : feed.getArticleList()) {
 						// Llamar a la heuristica para que compute las entidades nombradas de cada
@@ -137,14 +132,14 @@ public class FeedReaderMain {
 							String name = namedEntity.getName();
 							int frequency = namedEntity.getFrequency();
 
-							// Se crea la clase mediante un NamedEntityFactory
-							NamedEntity newNe = nef.create(namedEntity);
+							// Se crea un NamedEntityFactory para crear subclases según la categoría
+							NamedEntityFactory neFact = new NamedEntityFactory();
 
 							boolean isSaved = false;
 
 							if (entityMap.get(category) == null) {
 								entityMap.put(category, new ArrayList<NamedEntity>());
-								entityMap.get(category).add(newNe);
+								entityMap.get(category).add(neFact.create(namedEntity));
 								continue;
 							}
 
@@ -157,24 +152,37 @@ public class FeedReaderMain {
 							}
 
 							if (!isSaved) {
-								entityMap.get(category).add(newNe);
+								entityMap.get(category).add(neFact.create(namedEntity));
 							}
 						}
 
 					}
 
 					// LLamar al prettyPrint de la tabla de entidades nombradas del feed.
-					// TODO
-
-					// * Prueba
 					for (Map.Entry<String, List<NamedEntity>> entry : entityMap.entrySet()) {
 						for (NamedEntity ne : entry.getValue()) {
-							System.out.println(ne);
+							ne.prettyPrint();
 						}
 					}
 
+					System.out.println("#########################################");
+					System.out
+							.println("Para el feed anterior con url '" + urlFeed
+									+ "' se obtuvieron los siguientes datos:");
+					System.out.println("");
+
+					for (Map.Entry<String, List<NamedEntity>> entry : entityMap.entrySet()) {
+						String category = entry.getKey();
+						int count = entry.getValue().size();
+
+						System.out.println(
+								"Para la categoría '" + category + "' se encontraron " + count + " entidades.");
+					}
+
+					System.out.println("#########################################");
 				}
 
+				Topic.prettyPrintTopicCounts();
 			}
 
 		} else {

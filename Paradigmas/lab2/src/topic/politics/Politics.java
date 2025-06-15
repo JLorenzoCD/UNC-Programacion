@@ -2,6 +2,9 @@ package topic.politics;
 
 import topic.Topic;
 
-public abstract class Politics extends Topic {
+public class Politics extends Topic {
+    public Politics() {
+        super();
+    }
 
 }

@@ -2,11 +2,14 @@ package parser;
 
 import feed.Article;
 import feed.Feed;
+
 import java.io.ByteArrayInputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -79,4 +82,5 @@ public class RssParser extends GeneralParser {
     public Feed getFeed() {
         return feed;
     }
+
 }

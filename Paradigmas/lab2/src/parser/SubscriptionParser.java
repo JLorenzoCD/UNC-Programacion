@@ -67,7 +67,7 @@ public class SubscriptionParser {
         Parser.valueOf(urlType.toUpperCase());
 
         // ! Se tiene que validar el resto de campos
-        
+
         SingleSubscription singleSubscription = new SingleSubscription(url, null, urlType);
 
         for (String urlParam : urlParams) {

@@ -2,6 +2,9 @@ package topic.sports;
 
 import topic.Topic;
 
-public abstract class Sports extends Topic {
+public class Sports extends Topic {
+    public Sports() {
+        super();
+    }
 
 }
