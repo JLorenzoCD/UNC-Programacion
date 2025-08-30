@@ -1,0 +1,2 @@
+CREATE DATABASE world;
+USER world;
