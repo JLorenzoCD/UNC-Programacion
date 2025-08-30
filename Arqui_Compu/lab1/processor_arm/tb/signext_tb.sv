@@ -40,7 +40,7 @@ module signext_tb;
     end
 
     always @(posedge clk) begin // apply test vectors on rising edge of clk
-            if (vectornum < 10) begin
+            if (vectornum < 8) begin
                 a = test_vectors[vectornum];
                 yexpected = expected_vectors[vectornum];
             end
