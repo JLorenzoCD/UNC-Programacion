@@ -1,0 +1,27 @@
+`timescale 1ns / 1ps
+
+module regfile(
+    input logic clk,
+    input logic we3, // si esta en 1 hay que guardar el valor contenido en wd3 en nro de registro wa3
+    input logic [4:0] ra1, // nro de registro solicitado en rd1
+    input logic [4:0] ra2, // nro de registro solicitado en rd2
+    input logic [4:0] wa3, // registro donde se guardan los datos de wd3 si es que we3 esta activo
+    input logic [63:0] wd3, // datos sin guardar
+
+    output logic [63:0] rd1,
+    output logic [63:0] rd2
+    );
+    logic [63:0] registers [0:31] = {64'd0, 64'd1, 64'd2, 64'd3, 64'd4, 64'd5, 64'd6, 64'd7, 64'd8, 64'd9,
+    64'd10,64'd11, 64'd12, 64'd13, 64'd14, 64'd15, 64'd16, 64'd17, 64'd18, 64'd19,
+    64'd20, 64'd21, 64'd22, 64'd23, 64'd24, 64'd25, 64'd26, 64'd27, 64'd28, 64'd29,
+    64'd30, 64'd0};
+
+    // La lectura de los datos asíncrona
+    assign rd1 = registers[ra1];
+    assign rd2 = registers[ra2];
+
+    always_ff @(posedge clk) begin
+        if (we3 == 1'b1 && wa3 !== 5'd31) registers[wa3] <= wd3; // escritura síncrona
+    end
+
+endmodule
