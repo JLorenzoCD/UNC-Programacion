@@ -3,8 +3,7 @@
 module adder
     #(parameter N = 64)
     (
-    input [N-1:0] a,
-    input [N-1:0] b,
+    input [N-1:0] a, b,
 
     output [N-1:0] res
     );

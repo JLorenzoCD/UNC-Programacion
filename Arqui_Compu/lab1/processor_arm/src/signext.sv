@@ -1,8 +1,11 @@
 `timescale 1ns / 1ps
 
-module signext(
+module signext
+    #(parameter N = 64)
+    (
     input logic [31:0] a,
-    output logic [63:0] y
+
+    output logic [N-1:0] y
     );
 
     always_comb

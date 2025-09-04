@@ -4,6 +4,7 @@ module sl2
     #(parameter N = 64)
     (
     input [N-1:0] x,
+
     output [N-1:0] y
     );
 

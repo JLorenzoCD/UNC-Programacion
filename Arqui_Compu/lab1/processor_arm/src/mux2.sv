@@ -3,11 +3,11 @@
 module mux2
     #(parameter N = 64)
     (
-    input [N-1:0] d2_0,
-    input [N-1:0] d2_1,
-    input s2,
-    output [N-1:0] y2
+    input [N-1:0] d0, d1,
+    input s,
+
+    output [N-1:0] y
     );
 
-    assign y2 = s2 ? d2_1 : d2_0;
+    assign y = s ? d1 : d0;
 endmodule

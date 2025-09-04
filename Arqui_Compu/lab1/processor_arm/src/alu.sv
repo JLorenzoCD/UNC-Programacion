@@ -1,14 +1,16 @@
 `timescale 1ns / 1ps
 
-module alu(
-    input logic [63:0] a,
-    input logic [63:0] b,
+module alu
+    #(parameter N = 64)
+    (
+    input logic [N-1:0] a, b,
     input logic [3:0] ALUControl,
-    output logic [63:0] result,
+
+    output logic [N-1:0] result,
     output logic zero
     );
 
-    always_comb
+    always_comb begin
         casez(ALUControl)
             4'b0000: result = a & b;
             4'b0001: result = a | b;
@@ -17,6 +19,7 @@ module alu(
             4'b0111: result = b;
             default: result = '0;
         endcase
+    end
 
     assign zero = ~|result;
 
