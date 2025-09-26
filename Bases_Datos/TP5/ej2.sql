@@ -5,4 +5,13 @@ de las películas en las que participaron. Basados en esta información, inserte
 utilizando una subquery los valores correspondientes en la tabla `directors`.
 */
 
-
+INSERT INTO directors (director_id, first_name, last_name, number_of_films)
+SELECT actor_id as director_id, first_name, last_name,
+    (
+        SELECT COUNT(*)
+        FROM film_actor
+        WHERE film_actor.actor_id = actor.actor_id
+    ) as number_of_films
+FROM actor
+ORDER BY number_of_films DESC
+LIMIT 5;
