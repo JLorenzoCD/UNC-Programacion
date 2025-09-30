@@ -4,4 +4,6 @@ acuerdo a si el cliente es "premium" o no. Por defecto ningún cliente será
 premium.
 */
 
-
+ALTER TABLE customer
+ADD premium_customer
+    ENUM('T','F') NOT NULL DEFAULT 'F';
