@@ -4,4 +4,5 @@ número entero y representa la cantidad de copias de una misma película que tie
 determinada tienda. El número por defecto debería ser 5 copias.
 */
 
-
+ALTER TABLE inventory
+ADD stock INT UNSIGNED NOT NULL DEFAULT 5;
