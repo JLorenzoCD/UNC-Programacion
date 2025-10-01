@@ -6,4 +6,13 @@ directa sobre la tienda, sino sobre el cliente, que está asociado a una tienda
 en particular).
 */
 
-
+DELIMITER $$
+CREATE TRIGGER update_stock
+AFTER INSERT ON rental
+FOR EACH ROW
+BEGIN
+    UPDATE inventory
+    SET stock = stock - 1
+    WHERE inventory_id = NEW.inventory_id;
+END$$
+DELIMITER ;

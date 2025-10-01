@@ -3,4 +3,8 @@
 actualización a la tabla `rental`.
 */
 
+CREATE ROLE employee;
 
+GRANT INSERT, UPDATE, DELETE
+ON rental
+TO employee;

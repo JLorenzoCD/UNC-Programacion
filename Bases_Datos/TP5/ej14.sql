@@ -3,4 +3,12 @@
 que tenga todos los privilegios sobre la BD `sakila`.
 */
 
+REVOKE DELETE
+ON rental
+FROM employee;
 
+CREATE ROLE administrator;
+
+GRANT ALL PRIVILEGES
+ON sakila.*
+TO administrator;
