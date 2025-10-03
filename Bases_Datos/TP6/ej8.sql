@@ -6,4 +6,26 @@ stock (`quantityInStock`) y si es menor a 10 genere un pedido en la tabla
 "Product Refillment" por 10 nuevos productos.
 */
 
+DELIMITER $$
+CREATE TRIGGER RestockProduct
+AFTER INSERT
+ON orderdetails FOR EACH ROW
+BEGIN
+    DECLARE stockRestante INT;
 
+    SELECT (p.quantityInStock - NEW.quantityOrdered)
+    INTO stockRestante
+    FROM products p
+    WHERE p.productCode = NEW.productCode;
+
+    IF stockRestante < 10 THEN
+        INSERT INTO productrefillment (productCode, orderDate, quantity)
+        SELECT
+            NEW.productCode,
+            o.orderDate,
+            10
+        FROM orders o
+        WHERE o.orderNumber = NEW.orderNumber;
+    END IF;
+END $$
+DELIMITER ;

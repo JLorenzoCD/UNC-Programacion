@@ -3,4 +3,12 @@
 tablas y accesos de creación de vistas.
 */
 
+CREATE ROLE Empleado;
 
+GRANT SELECT
+ON classicmodels.*
+TO Empleado;
+
+GRANT CREATE VIEW
+ON classicmodels.*
+TO Empleado;
