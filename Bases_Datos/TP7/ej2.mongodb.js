@@ -7,7 +7,7 @@ valor de “imdb.rating” sea de tipo “double”).
 
 use("mflix")
 
-db.movies.find(
+const movies = db.movies.find(
     {
         year: { $gte: 1990, $lt: 2000 },
         "imdb.rating": { $type: "double" }
@@ -25,4 +25,6 @@ db.movies.find(
         "imdb.rating": -1,
         title: 1,
     }
-).limit(10)
+).limit(10).toArray()
+
+console.log("La película con mayor raiting tiene un valor de: " + movies[0].rating)
