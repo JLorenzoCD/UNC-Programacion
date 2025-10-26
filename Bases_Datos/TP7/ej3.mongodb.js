@@ -28,6 +28,8 @@ const comments = db.comments.find({
     date: 1,
 }).toArray()
 
+console.log("Hay " + comments.length + " comentarios.")
+
 db.comments.find({
     movie_id: ObjectId('573a1399f29313caabcee886'),
     date: {

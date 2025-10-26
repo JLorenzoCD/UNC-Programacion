@@ -4,3 +4,20 @@ recientes realizados por el usuario con email patricia_good@fakegmail.com.
 */
 
 use("mflix")
+
+db.comments.find(
+    {
+        email: "patricia_good@fakegmail.com",
+    },
+    {
+        _id: 0,
+        name: 1,
+        movie_id: 1,
+        text: 1,
+        date: 1,
+    }
+).sort(
+    {
+        date: -1
+    }
+).limit(3)
