@@ -8,3 +8,40 @@ ordenados por fecha de lanzamiento y número de votos.
 */
 
 use("mflix")
+
+db.movies.find(
+    {
+        genres: {
+            $all: ["Drama", "Action"],
+        },
+        $or: [
+            {
+                languages: {
+                    $type: "array",
+                    $size: 1,
+                },
+                "imdb.rating": {
+                    $gt: 9,
+                }
+            },
+            {
+                runtime: {
+                    $gte: 180
+                }
+            }
+        ]
+    },
+    {
+        _id: 0,
+        title: 1,
+        languages: 1,
+        genres: 1,
+        released: 1,
+        votes: "$imdb.votes",
+    }
+).sort(
+    {
+        released: -1,
+        "imdb.votes": 1,
+    }
+)
