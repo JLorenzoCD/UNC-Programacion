@@ -7,3 +7,24 @@ ciudad.
 */
 
 use("mflix")
+
+db.theaters.find(
+    {
+        "location.address.state": {
+            $in: ["CA", "NY", "TX"],
+        },
+        "location.address.city": /^F/,
+    },
+    {
+        _id: 1,
+        theaterId: 1,
+        state: "$location.address.state",
+        city: "$location.address.city",
+        coordinates: "$location.geo.coordinates",
+    }
+).sort(
+    {
+        "location.address.state": 1,
+        "location.address.city": 1,
+    }
+)
