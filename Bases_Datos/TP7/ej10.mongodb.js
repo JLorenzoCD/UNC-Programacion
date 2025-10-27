@@ -7,4 +7,27 @@ igual a 90.
 
 use("restaurantdb")
 
-db.restaurants.findOne()
+const year2014 = new Date("2014-01-01T00:00:00Z")
+const year2016 = new Date("2016-01-01T00:00:00Z")
+
+db.restaurants.find(
+    {
+        grades: {
+            $elemMatch: {
+                date: {
+                    $gte: year2014,
+                    $lt: year2016
+                },
+                score: {
+                    $gt: 70,
+                    $lte: 90,
+                },
+            },
+        },
+    },
+    {
+        _id: 0,
+        restaurant_id: 1,
+        grades: 1,
+    }
+)
