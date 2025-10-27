@@ -18,4 +18,26 @@ continuación se especifican las calificaciones a agregar en una sola consulta.
 
 use("restaurantdb")
 
-db.restaurants.findOne()
+db.restaurants.updateOne(
+    {
+        restaurant_id: "50018608"
+    },
+    {
+        $addToSet: {
+            grades: {
+                $each: [
+                    {
+                        date: new Date("2019-10-10T00:00:00Z"),
+                        grade: "A",
+                        score: 18
+                    },
+                    {
+                        date: new Date("2020-02-25T00:00:00Z"),
+                        grade: "A",
+                        score: 21
+                    }
+                ]
+            }
+        }
+    }
+)
