@@ -3,4 +3,25 @@
 puede responder sin pipeline de agregación, realizar ambas queries.
 */
 
+use("mflix")
 
+db.movies.find({
+    year: {
+        $gte: 1950,
+        $lt: 1960
+    }
+}).count()
+
+db.movies.aggregate([
+    {
+        $match: {
+            year: {
+                $gte: 1950,
+                $lt: 1960
+            }
+        }
+    },
+    {
+        $count: "movies_count_fiftis"
+    }
+])
