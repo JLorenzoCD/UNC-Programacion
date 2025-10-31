@@ -8,3 +8,5 @@ validación fueron correctamente aplicadas.
 */
 
 use("mflix")
+
+db.getCollectionInfos({ name: "users" })
