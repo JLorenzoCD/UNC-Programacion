@@ -40,7 +40,7 @@ db.runCommand({
 })
 
 
-const { invalidUsers, validUsers } = require("./utils.js")
+const { invalidUsers, validUsers } = require("./utils.mongodb.js")
 
 db.users.insertMany([
     ...invalidUsers,

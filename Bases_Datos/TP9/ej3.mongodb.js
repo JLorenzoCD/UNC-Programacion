@@ -18,64 +18,64 @@ actualización de documentos que no las cumplan sino que solamente deben adverti
 
 use("mflix")
 
-// db.runCommand({
-//     collMod: "theaters",
-//     validator: {
-//         $jsonSchema: {
-//             bsonType: "object",
-//             required: ["theaterId", "location"],
-//             properties: {
-//                 theaterId: {
-//                     bsonType: "int",
-//                 },
-//                 location: {
-//                     bsonType: "object",
-//                     required: ["address"],
-//                     properties: {
-//                         address: {
-//                             bsonType: "object",
-//                             required: ["street1", "city", "state", "zipcode"],
-//                             properties: {
-//                                 street1: {
-//                                     bsonType: "string",
-//                                 },
-//                                 city: {
-//                                     bsonType: "string",
-//                                 },
-//                                 state: {
-//                                     bsonType: "string",
-//                                 },
-//                                 zipcode: {
-//                                     bsonType: "string",
-//                                 },
-//                             }
-//                         },
-//                         geo: {
-//                             bsonType: "object",
-//                             properties: {
-//                                 type: {
-//                                     enum: ["Point", null]
-//                                 },
-//                                 coordinates: {
-//                                     bsonType: "array",
-//                                     items: { bsonType: "double"},
-//                                     maxItems: 2,
-//                                     minItems: 2,
-//                                 }
-//                             }
-//                         },
-//                     },
-//                 },
-//             }
-//         }
-//     },
+db.runCommand({
+    collMod: "theaters",
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["theaterId", "location"],
+            properties: {
+                theaterId: {
+                    bsonType: "int",
+                },
+                location: {
+                    bsonType: "object",
+                    required: ["address"],
+                    properties: {
+                        address: {
+                            bsonType: "object",
+                            required: ["street1", "city", "state", "zipcode"],
+                            properties: {
+                                street1: {
+                                    bsonType: "string",
+                                },
+                                city: {
+                                    bsonType: "string",
+                                },
+                                state: {
+                                    bsonType: "string",
+                                },
+                                zipcode: {
+                                    bsonType: "string",
+                                },
+                            }
+                        },
+                        geo: {
+                            bsonType: "object",
+                            properties: {
+                                type: {
+                                    enum: ["Point", null]
+                                },
+                                coordinates: {
+                                    bsonType: "array",
+                                    items: { bsonType: "double" },
+                                    maxItems: 2,
+                                    minItems: 2,
+                                }
+                            }
+                        },
+                    },
+                },
+            }
+        }
+    },
 
-//     // Parámetros para solo advertir, no prohibir:
-//     validationAction: "warn", // Solo advierte (loggea), no previene la inserción
-//     validationLevel: "moderate" // Aplica reglas a inserciones y actualizaciones de docs existentes
-// })
+    // Parámetros para solo advertir, no prohibir:
+    validationAction: "warn", // Solo advierte (loggea), no previene la inserción
+    validationLevel: "moderate" // Aplica reglas a inserciones y actualizaciones de docs existentes
+})
 
-const { invalidTheaters, validTheaters } = require("./utils.js")
+const { invalidTheaters, validTheaters } = require("./utils.mongodb.js")
 
 db.theaters.insertMany([
     ...invalidTheaters,

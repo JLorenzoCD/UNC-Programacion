@@ -21,6 +21,7 @@ const invalidUsers = [{
 }]
 
 const crypto = require("node:crypto")
+const { title } = require("node:process")
 const uuidToPassword = crypto.randomUUID() + "-" + crypto.randomUUID()
 
 const validUsers = [
@@ -143,4 +144,111 @@ const validTheaters = [
     }
 ]
 
-module.exports = { invalidUsers, validUsers, invalidTheaters, validTheaters }
+const invalidMovies = [
+    {},
+    {
+        title: null,
+    },
+    {
+        title: "Titulo cheto",
+        year: "2000"
+    },
+    {
+        title: null,
+        year: 2000,
+        cast: [
+            "Actor 1",
+            "Actor 1",
+            "Actor 1",
+        ]
+    },
+    {
+        title: null,
+        year: 2000,
+        cast: 5
+    },
+]
+
+const validMovies = [
+    {
+        title: "Pelicula 1",
+        year: 2025,
+        cast: [
+            "Actor 1", "Actor 2"
+        ],
+        directors: [
+            "Director 1"
+        ],
+        countries: [
+            "ARG"
+        ],
+        genres: [
+            "Documentary",
+            "Short"
+        ]
+    },
+    {
+        title: "Pelicula 2",
+        year: 2025,
+        countries: [
+            "ARG"
+        ],
+        genres: [
+            "Documentary",
+            "Short"
+        ]
+    },
+    {
+        title: "Pelicula 3",
+        year: 2025,
+        cast: [
+            "Actor 1", "Actor 2"
+        ],
+        directors: [
+            "Director 1"
+        ],
+        countries: [
+            "ARG"
+        ],
+    },
+    {
+        title: "Pelicula 4",
+        year: 2025,
+        cast: [
+            "Actor 1", "Actor 2"
+        ],
+        directors: [
+            "Director 1"
+        ],
+        countries: [
+            "ARG"
+        ],
+        genres: [
+            "Documentary",
+            "Short"
+        ]
+    },
+    {
+        title: "Pelicula 5",
+        year: 2025,
+        cast: [
+            "Actor 1", "Actor 2"
+        ],
+        directors: [
+            "Director 1"
+        ],
+        genres: [
+            "Documentary",
+            "Short"
+        ]
+    },
+]
+
+module.exports = {
+    invalidUsers,
+    validUsers,
+    invalidTheaters,
+    validTheaters,
+    invalidMovies,
+    validMovies
+}

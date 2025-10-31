@@ -14,3 +14,49 @@ arrays de strings sin duplicados.
 */
 
 use("mflix")
+
+db.movies.find().limit(5)
+
+db.runCommand({
+    collMod: "movies",
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["title", "year"],
+            properties: {
+                title: { bsonType: "string" },
+                year: {
+                    bsonType: "int",
+                    minimum: 1900,
+                    maximum: 3000,
+                },
+                cast: {
+                    bsonType: "array",
+                    items: { bsonType: "string" },
+                    uniqueItems: true,
+                },
+                directors: {
+                    bsonType: "array",
+                    items: { bsonType: "string" },
+                    uniqueItems: true,
+                },
+                countries: {
+                    bsonType: "array",
+                    items: { bsonType: "string" },
+                    uniqueItems: true,
+                },
+                genres: {
+                    bsonType: "array",
+                    items: { bsonType: "string" },
+                    uniqueItems: true,
+                },
+            }
+        }
+    }
+})
+
+
+const { invalidMovies, validMovies } = require("./utils.mongodb.js")
+
+// db.movies.insertMany(invalidMovies)
+db.movies.insertMany(validMovies)
