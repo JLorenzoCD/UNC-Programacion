@@ -11,3 +11,31 @@ strings sin duplicados.
 */
 
 use("mflix")
+
+db.createCollection("userProfiles", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["user_id", "language"],
+            properties: {
+                user_id: { bsonType: "objectId" },
+                language: {
+                    bsonType: "string",
+                    enum: ["English", "Spanish", "Portuguese"]
+                },
+                favorite_genres: {
+                    bsonType: "array",
+                    items: { bsonType: "string" },
+                    uniqueItems: true,
+                },
+            }
+        }
+    }
+})
+
+
+// TODO
+// const { invalidUsersProfiles, validUsersProfiles } = require("./utils.mongodb.js")
+
+// db.userProfiles.insertMany(invalidUsersProfiles)
+// db.userProfiles.insertMany(validUsersProfiles)

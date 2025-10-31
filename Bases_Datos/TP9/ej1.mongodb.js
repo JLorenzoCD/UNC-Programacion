@@ -42,7 +42,5 @@ db.runCommand({
 
 const { invalidUsers, validUsers } = require("./utils.mongodb.js")
 
-db.users.insertMany([
-    ...invalidUsers,
-    ...validUsers,
-])
+db.users.insertMany(invalidUsers)
+db.users.insertMany(validUsers)

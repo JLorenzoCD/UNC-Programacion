@@ -77,7 +77,5 @@ db.runCommand({
 
 const { invalidTheaters, validTheaters } = require("./utils.mongodb.js")
 
-db.theaters.insertMany([
-    ...invalidTheaters,
-    ...validTheaters,
-])
+db.theaters.insertMany(invalidTheaters)
+db.theaters.insertMany(validTheaters)
