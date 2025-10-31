@@ -11,3 +11,38 @@ campo name (requerido) debe ser un string con un máximo de 30 caracteres, email
 */
 
 use("mflix")
+
+db.runCommand({
+    collMod: "users",
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["name", "email", "password"],
+            properties: {
+                name: {
+                    bsonType: "string",
+                    maxLength: 30,
+                    description: "El nombre debe ser un string de como mucho 30 caracteres y es obligatorio.",
+                },
+                email: {
+                    bsonType: "string",
+                    pattern: "^(.*)@(.*)\\.(.{2,4})$",
+                    description: "El email debe ser valido y es obligatorio.",
+                },
+                password: {
+                    bsonType: "string",
+                    minLength: 50,
+                    description: "La contraseña debe ser un string de como mínimo 50 caracteres y es obligatorio.",
+                },
+            }
+        }
+    }
+})
+
+
+const { invalidUsers, validUsers } = require("./utils.js")
+
+db.users.insertMany([
+    ...invalidUsers,
+    ...validUsers,
+])
