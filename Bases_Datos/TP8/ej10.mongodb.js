@@ -11,4 +11,42 @@ y año) dirigidas por “Jules Bass” en las que trabajaron.
         correcta
 */
 
+use("mflix")
 
+db.movies.aggregate([
+    {
+        $match: {
+            directors: {
+                $elemMatch: { $eq: "Jules Bass" }
+            }
+        }
+    },
+    {
+        $unwind: "$cast"
+    },
+    {
+        $group: {
+            _id: "$cast",
+            movies: {
+                $addToSet: {
+                    title: "$title",
+                    year: "$year",
+                }
+            }
+        }
+    },
+    {
+        $match: {
+            "movies.1": {
+                $exists: true
+            }
+        }
+    },
+    {
+        $project: {
+            _id: 0,
+            actor: "$_id",
+            movies: 1,
+        }
+    }
+])
