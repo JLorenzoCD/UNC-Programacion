@@ -32,6 +32,26 @@ def punto_b(n: int):
     print(f"{est:.4f} \t | \t {v_real:.4f}")
 
 
+def punto_c(n: int):
+    def g(x: int):
+        return x / ((1 + (x**2))**2)
+
+    def h(u: int):
+        return g(1/u - 1) / (u**2)
+
+    # Se hace el 1 - random(), ya que random esta entre [0, 1) y no podemos
+    # dividir por 0 en h(x), por lo que al restar queda entre (0, 1]
+    puntos = [1 - random.random() for _ in range(n)]
+    integrales = [h(u) for u in puntos]
+
+    est = np.mean(integrales)
+
+    v_real = 1/2
+    print(f"Punto c - nro iteraciones ({n})")
+    print("Estimación \t|\t Valor real")
+    print(f"{est:.4f} \t | \t {v_real:.4f}")
+
+
 punto_a(1_000)
 punto_a(5_000)
 punto_a(10_000)
@@ -39,4 +59,8 @@ print("\n")
 punto_b(1_000)
 punto_b(5_000)
 punto_b(10_000)
+print("\n")
+punto_c(1_000)
+punto_c(5_000)
+punto_c(10_000)
 print("\n")
