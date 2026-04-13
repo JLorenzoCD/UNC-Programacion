@@ -89,6 +89,30 @@ def punto_e(n: int):
     print(f"{est:.4f} \t | \t {v_real:.4f}")
 
 
+def punto_f(n: int):
+    def g(x: int, y: int):
+        return np.exp(-(x + y))
+
+    def h(u1, u2):
+        x = 1 / u1 - 1
+        y = 1 / u2 - 1
+
+        if x < y:
+            return 0
+
+        return g(x, y) / ((u1**2) * (u2**2))
+
+    puntos = [(random.random(), random.random()) for _ in range(n)]
+    integrales = [h(u1, u2) for (u1, u2) in puntos]
+
+    est = np.mean(integrales)
+
+    v_real = 0.5
+    print(f"Punto f - nro iteraciones ({n})")
+    print("Estimación \t|\t Valor real")
+    print(f"{est:.4f} \t | \t {v_real:.4f}")
+
+
 punto_a(1_000)
 punto_a(5_000)
 punto_a(10_000)
@@ -112,3 +136,8 @@ print("\n")
 punto_e(1_000)
 punto_e(5_000)
 punto_e(10_000)
+print("\n")
+
+punto_f(1_000)
+punto_f(5_000)
+punto_f(10_000)
