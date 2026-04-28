@@ -1,12 +1,25 @@
-"""
-d) Método de la urna: utilizar un arreglo A de tamaño 100 donde cada valor i está en exactamente pi * 100 posiciones. El método debe devolver A[k] con probabilidad 0,01. ¿Por qué funciona?
-"""
 import time
 from typing import Callable
 
 import numpy as np
 
+# Probabilidades. P(X = i) = pi. Con i = indice de p
 p = [0.11, 0.14, 0.09, 0.08, 0.12, 0.1, 0.09, 0.07, 0.11, 0.09]
+
+# ? Asumo que esto puede estar afuera de la fun que genera la v.a. del PUNTO C
+# Creo y relleno el arreglo A con 100 elementos, donde el valor i aparece
+# (pi * 100) veces en A
+A = []
+p2 = np.array(p.copy())
+p2 *= 100
+p2 = p2.astype(int)
+
+for i, v in enumerate(p2):
+    k = i + 1
+
+    for _ in range(v):
+        A.append(k)
+# ? Asumo que esto puede estar afuera de la fun que genera la v.a. del PUNTO C
 
 
 def punto_a():
@@ -40,7 +53,8 @@ def punto_c():
 
 
 def punto_d():
-    pass
+    U = int(np.random.uniform(0, len(A)))
+    return A[U]
 
 
 def simulaciones(N_sim: int, met: str, generador: Callable[[], int]):
@@ -52,6 +66,7 @@ def simulaciones(N_sim: int, met: str, generador: Callable[[], int]):
     print(f"Generando 10.000 muestras con método {met}: {(end - start):.6f}")
 
 
-simulaciones(10_000, "A", punto_a)
-simulaciones(10_000, "B", punto_b)
-simulaciones(10_000, "C", punto_c)
+# simulaciones(10_000, "A", punto_a)
+# simulaciones(10_000, "B", punto_b)
+# simulaciones(10_000, "C", punto_c)
+# simulaciones(10_000, "D", punto_d)
