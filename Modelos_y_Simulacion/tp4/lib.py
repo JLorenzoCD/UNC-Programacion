@@ -105,6 +105,42 @@ def poisson(lam: float):
     return i
 
 
+def gen_poisson(lamda: float):
+    """ X ~ P(λ), λ > 0 ### Genera una fun optimizada para lamdas > 1
+    Generación de una v.a. discreta de Poisson.
+    """
+
+    _p = math.exp(-lamda)
+    _F = _p
+    for j in range(1, int(lamda) + 1):
+        _p *= lamda / j
+        _F += _p
+
+    def __poisson(_lamda: float):
+        F = _F
+        p = _p
+
+        U = random.random()
+        if U >= F:
+            j = int(lamda) + 1
+            while U >= F:
+                p *= lamda / j
+                F += p
+                j += 1
+
+            return j - 1
+        else:
+            j = int(lamda)
+            while U < F:
+                F -= p
+                p *= j / lamda
+                j -= 1
+
+            return j + 1
+
+    return __poisson
+
+
 def binomial(n: int, p: float):
     """ X ~ B(n, p)
     Generación de una v.a. discreta de Binomial.
