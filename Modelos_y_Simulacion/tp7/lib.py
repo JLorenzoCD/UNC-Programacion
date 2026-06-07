@@ -68,3 +68,27 @@ def estimar_p_valor_simulaciones_discreta(
 
     p_valor = p_valor / N_SIM
     print("p-valor: ", p_valor)
+
+
+def estimar_p_valor_simulaciones_continua(
+    n: int,
+    d_obs: float,
+    N_SIM: int = 10_000
+):
+    # Se utiliza el estadístico de Kolmogorov-Smirnov
+
+    p_valor = 0.0
+    for _ in range(N_SIM):
+        uniformes = np.random.uniform(0, 1, n)
+        uniformes.sort()
+        d_j = 0
+
+        for j in range(n):
+            u_j = uniformes[j]
+            d_j = max(d_j, (j + 1) / n-u_j, u_j - j / n)
+
+        if d_j >= d_obs:
+            p_valor += 1
+
+    p_valor = p_valor / N_SIM
+    return p_valor
