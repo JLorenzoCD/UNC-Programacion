@@ -70,12 +70,14 @@ def estimar_p_valor_simulaciones_discreta(
     print("p-valor: ", p_valor)
 
 
+# ------------------------------ Continuas ------------------------------
+
 def estimar_p_valor_simulaciones_continua(
     n: int,
     d_obs: float,
     N_SIM: int = 10_000
 ):
-    # Se utiliza el estadístico de Kolmogorov-Smirnov
+    # Se utiliza el estadístico de Kolmogorov-Smirnov, sin estimar parámetros
 
     p_valor = 0.0
     for _ in range(N_SIM):
