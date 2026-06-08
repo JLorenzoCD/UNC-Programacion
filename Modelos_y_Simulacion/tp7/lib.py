@@ -72,22 +72,29 @@ def estimar_p_valor_simulaciones_discreta(
 
 # ------------------------------ Continuas ------------------------------
 
+def est_D(probabilidades: list[float]):
+    n = len(probabilidades)
+    prob = sorted(probabilidades)
+
+    D_p = [((i + 1)/n - prob[i]) for i in range(n)]  # Fe(Y) - F(Y)
+    D_m = [(prob[i] - i/n) for i in range(n)]  # F(Y) - Fe(Y)
+
+    d = max(max(D_p), max(D_m))
+
+    return d
+
+
 def estimar_p_valor_simulaciones_continua(
-    n: int,
     d_obs: float,
+    gen_prob: Callable[[], list[float]],
     N_SIM: int = 10_000
 ):
-    # Se utiliza el estadístico de Kolmogorov-Smirnov, sin estimar parámetros
+    # Se utiliza el estadístico de Kolmogorov-Smirnov
 
     p_valor = 0.0
     for _ in range(N_SIM):
-        uniformes = np.random.uniform(0, 1, n)
-        uniformes.sort()
-        d_j = 0
-
-        for j in range(n):
-            u_j = uniformes[j]
-            d_j = max(d_j, (j + 1) / n-u_j, u_j - j / n)
+        probabilidades = gen_prob()
+        d_j = est_D(probabilidades)
 
         if d_j >= d_obs:
             p_valor += 1
