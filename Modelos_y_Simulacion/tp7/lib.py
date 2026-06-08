@@ -101,3 +101,20 @@ def estimar_p_valor_simulaciones_continua(
 
     p_valor = p_valor / N_SIM
     return p_valor
+
+
+def gen_prob():
+    # Template para generar lista de probabilidades para estimar el p_valor en
+    # caso de que la muestra sea continua
+    n = 0
+
+    # generar n muestras con la distribución F_H0
+    muestra_j = []  # generar n valores de la distribución F
+
+    # estimaciones de los parámetros
+    media_j = np.mean(muestra_j)
+    std_m_j = np.std(muestra_j, ddof=1)
+
+    # Calculando las prob utilizando la acumulada de F
+    prob = [0.1 for i in range(n)]
+    return prob
