@@ -1,14 +1,11 @@
 # Combo 1
 ### 1. Defina cuando un conjunto $S \subseteq \omega^n \times \Sigma^{*m}$ es llamado $\Sigma$-recursivo (no hace falta que defina "función $\Sigma$-recursiva")
-
 Es llamado $\Sigma$-recursivo sii su función de caracterización $\chi^{\omega^n \times \Sigma^{*m}}_S$ es $\Sigma$-recursivo.
 
 ###  2. Defina $⟨s_1 , s_2 , \cdots⟩$
-
 Se utiliza para denotar el numero $x = \prod_{i=1}^{\infty} pr(i)^{s_i}$.
 
 ###  3. Defina "f es una función $\Sigma$-mixta"
-
 Sea $\Sigma$ un alfabeto finito. Una función f es $\Sigma$-mixta si cumple:
 
 - $\exists n,m \in \omega$ tal que $D_f \subseteq \omega^n \times \Sigma^{*m}$
