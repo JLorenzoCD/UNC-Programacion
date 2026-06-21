@@ -1,8 +1,8 @@
 # Combo 8. Defina:
 ### (1) $M(P)$
-Sea $\Sigma$ un alfabeto finito y sea $P : D_P \subseteq \omega^n \times \Sigma^{*m} \longmapsto \omega$ un predicado. Dado $(\overrightarrow{x}, \overrightarrow{\alpha}) \in \omega^n \times \Sigma^{*m}$ , cuando exista al menos un $t \in \omega$ tal que $P(t, \omega^n \times \Sigma^{*m}) = 1$, usaremos $\min_t P(t, \omega^n \times \Sigma^{*m})$ para denotar al menor de tales $t's$. 
+Sea $\Sigma$ un alfabeto finito y sea $P : D_P \subseteq \omega \times \omega^n \times \Sigma^{*m} \longmapsto \omega$ un predicado. Dado $(\overrightarrow{x}, \overrightarrow{\alpha}) \in \omega^n \times \Sigma^{*m}$ , cuando exista al menos un $t \in \omega$ tal que $P(t, \overrightarrow{x}, \overrightarrow{\alpha}) = 1$, usaremos $\min_t P(t, \overrightarrow{x}, \overrightarrow{\alpha})$ para denotar al menor de tales $t's$.
 
-> Nótese que la expresión $\min_t P(t, \omega^n \times \Sigma^{*m})$ esta definida solo para aquellas $(n + m)$-uplas $(\omega^n \times \Sigma^{*m})$ para las cuales hay al menos un $t$ tal que se da $P(t, \omega^n \times \Sigma^{*m}) = 1$.
+> Nótese que la expresión $\min_t P(t, \overrightarrow{x}, \overrightarrow{\alpha})$ esta definida solo para aquellas $(n + m)$-uplas $(\overrightarrow{x}, \overrightarrow{\alpha})$ para las cuales hay al menos un $t$ tal que se da $P(t, \overrightarrow{x}, \overrightarrow{\alpha}) = 1$.
 
 $$ M(P) = \lambda \overrightarrow{x} \overrightarrow{\alpha} [\min_t \ P(t, \overrightarrow{x}, \overrightarrow{\alpha})] $$
 
