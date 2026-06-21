@@ -15,13 +15,15 @@ $$
 ### (2) "descripcion instantanea"
 Es una terna $(i, \overrightarrow{s}, \overrightarrow{\sigma})$ tal que $(\overrightarrow{s}, \overrightarrow{\sigma})$ es un estado e $i \in \omega$.
 
-### (3) $S_\mathcal{P}$
+### (3) $S_\mathcal{P}$ (dar la definición matemática)
 Dado un programa $\mathcal{P}$ definiremos a continuación una función
 $$
 S_\mathcal{P} : \omega \times \omega^{[\mathbb{N}]} \times \Sigma^{*[\mathbb{N}]} \longmapsto \omega \times \omega^{[\mathbb{N}]} \times \Sigma^{*[\mathbb{N}]}
 $$
 
 la cual le asignara a una descripción instantánea $(i, \overrightarrow{s}, \overrightarrow{\sigma})$ la descripción instantánea sucesora de $(i, \overrightarrow{s}, \overrightarrow{\sigma})$ con respecto a $\mathcal{P}$.
+
+> Faltan dar todos los casos de la definición
 
 ### (4) "estado obtenido luego de t pasos, partiendo del estado $(\overrightarrow{s}, \overrightarrow{\sigma})$"
 Dado un programa $\mathcal{P}$ y un estado $(\overrightarrow{s}, \overrightarrow{\sigma})$ a la infinitupla
