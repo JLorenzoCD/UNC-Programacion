@@ -76,13 +76,13 @@ Supongamos que $\Sigma \supseteq \Sigma^p$. Entonces
 $$ AutoHalt^\Sigma = \lambda \mathcal{P} [ (\exist t \in \omega) \quad Halt^{0, 1}(t, \mathcal{P}, \mathcal{P}) ] $$
 
 Notar que el dominio de $AutoHalt^\Sigma$ es $Pro^\Sigma$ y que para cada $\mathcal{P} \in Pro^\Sigma$ tenemos que
-$$ AutoHaltΣ (P) = 1 \text{ sii } \mathcal{P} \text{ se detiene partiendo del estado } ||\mathcal{P}|| $$
+$$ AutoHalt^\Sigma(\mathcal{P}) = 1 \text{ sii } \mathcal{P} \text{ se detiene partiendo del estado } ||\mathcal{P}|| $$
 
 > $AutoHalt^\Sigma$ no es $\Sigma$-R
 
 ### (9) Los conjuntos $A$ y $N$
 Supongamos que $\Sigma \supseteq \Sigma^p$. Entonces
-$$ A = \{ \mathcal{P} \in Pro^\Sigma: AutoHalt^\Sigma = 1 \} $$
+$$ A = \{ \mathcal{P} \in Pro^\Sigma: AutoHalt^\Sigma(\mathcal{P}) = 1 \} $$
 es $\Sigma$-RE. y no es $\Sigma$-R. Mas aun el conjunto
-$$ N = \{ \mathcal{P} \in Pro^\Sigma: AutoHalt^\Sigma = 0 \} $$
+$$ N = \{ \mathcal{P} \in Pro^\Sigma: AutoHalt^\Sigma(\mathcal{P}) = 0 \} $$
 no es $\Sigma$-RE
