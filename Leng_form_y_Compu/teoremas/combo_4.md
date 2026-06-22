@@ -1,0 +1,12 @@
+# Combo 4.
+### Proposición (Caracterización básica de conjuntos $\Sigma$-enumerables).
+Sea $S \subseteq \omega^n \times \Sigma^{∗m}$ un conjunto no vacı́o. Entonces son equivalentes:
+1. $S$ es $\Sigma$-enumerable
+2. Hay un programa $\mathcal{P} \in Pro^\Sigma$ tal que:
+    1. Para cada $x \in \omega$, tenemos que $\mathcal{P}$ se detiene partiendo desde el estado $||x||$ y llega a un estado de la forma $((x_1, \cdots, x_n, y_1, \cdots), (\alpha_1, \cdots, \alpha_m, \beta_1 , \cdots))$, donde $(x_1, \cdots, x_n , \alpha_1, \cdots, \alpha_m) \in S$.
+    2. Para cada $(x_1, \cdots, x_n , \alpha_1, \cdots, \alpha_m) \in S$ hay un $x \in \omega$ tal que $\mathcal{P}$ se detiene partiendo desde el estado $||x||$ y llega a un estado de la forma $((x_1, \cdots, x_n, y_1, \cdots), (\alpha_1, \cdots, \alpha_m, \beta_1 , \cdots))$
+> (Hacer el caso n = 2 y m = 1)
+
+
+### Lema (Lema de la sumatoria).
+Sea $\Sigma$ un alfabeto finito. Si $f : \omega \times S_1 \times \cdots \times S_n \times L_1 \times \cdots \times L_m \longmapsto \omega$ es $\Sigma$-PR, con $S_1 , \cdots, S_n \subseteq \omega$ y $L_1, \cdots, L_m \subseteq \Sigma^*$ no vacı́os, entonces la función $\lambda x y \overrightarrow{x} \overrightarrow{\alpha} [ \ \sum_{t=x}^{t=y} \quad f(t, \overrightarrow{x} \overrightarrow{\alpha}) \ ]$ es $\Sigma$-PR
