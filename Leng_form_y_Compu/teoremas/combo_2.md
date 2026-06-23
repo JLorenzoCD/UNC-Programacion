@@ -4,7 +4,8 @@ Supongamos $f_i : D_{f_i} \subseteq \omega^n \times \Sigma^{∗m} \longmapsto \S
 $i \neq j$. Entonces $f_1 \cup \cdots \cup f_k$ es $\Sigma$-PR
 > (Hacer el caso k = 2, n = 2 y m = 1)
 
-Proof <br>
+Proof
+
 Por suposición $f_i, i=1, 2$ son funciones $\Sigma$-PR, por lema tenemos que sus dominios también deben de ser $\Sigma$-PR. Como $D_{f_1}, D_{f_2}$ son $\Sigma$-PR, entonces (por lema) $D_{f_1} \cup D_{f_2}$ es $\Sigma$-PR
 
 Sean
@@ -22,6 +23,8 @@ Sea $S \subseteq \omega^n \times \Sigma^{∗m}$ un conjunto no vacı́o. Entonce
     1.  Para cada $x \in \omega$, tenemos que $\mathcal{P}$ se detiene partiendo desde el estado $||x||$ y llega a un estado de la forma $((x_1, \cdots, x_n, y_1, \cdots), (\alpha_1, \cdots, \alpha_m, \beta_1 , \cdots))$, donde $(x_1, \cdots, x_n , \alpha_1, \cdots, \alpha_m) \in S$.
     2. Para cada $(x_1, \cdots, x_n , \alpha_1, \cdots, \alpha_m) \in S$ hay un $x \in \omega$ tal que $\mathcal{P}$ se detiene partiendo desde el estado $||x||$ y llega a un estado de la forma $((x_1, \cdots, x_n, y_1, \cdots), (\alpha_1, \cdots, \alpha_m, \beta_1 , \cdots))$
 > (Hacer el caso n = 2 y m = 1)
+
+Proff
 
 $(1) \Longrightarrow (2)$ <br>
 Como S no es vació y por (1) sabemos que es $\Sigma$-E, entonces por definicion tenemos un $F: \omega \longrightarrow \omega^2 \times \Sigma^{*}$ tal que $I_F = S$ y $F_{(i)}$ es $\Sigma$-C, para cada $i = 1, 2, 3$. Y por primer manantial de macros, sabemos que existen las macros asociadas a cada una de las $F_{(i)}$. El siguiente programa claramente cumple con (2):

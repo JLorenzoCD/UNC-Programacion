@@ -2,7 +2,8 @@
 ### Proposición (Caracterización de conjuntos $\Sigma$-PR). Un conjunto $S$ es $\Sigma$-PR sii $S$ es el dominio de alguna función $\Sigma$-PR
 > (En la inducción de la prueba hacer solo el caso de la composición)
 
-Proof. <br>
+Proof.
+
 ($\implies$) Note que $S = D_{\chi_S^{\omega^n \times \Sigma^{*m}}}$ <br>
 ($\Longleftarrow$) **Solo el caso de composición.** (no casos $F = R(f, g)$, $F = R(f, \mathcal{G})$, para recursion con imagen contenida en $\omega$ y $\Sigma^*$) <br>
 
@@ -35,6 +36,8 @@ lo cual nos dice que $D_F$ es $\Sigma$-PR.
 
 ### Teorema (Neumann vence a Godel). Si $h$ es $\Sigma$-recursiva, entonces $h$ es $\Sigma$-computable
 > (En la inducción de la prueba hacer solo el caso $h = R(f, \mathcal{G})$, con $I_h \subseteq \omega$)
+
+Proff
 
 - Caso $h = R(f, \mathcal{G})$ ($I_h \subseteq \omega$), con:
 $$
