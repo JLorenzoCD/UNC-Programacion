@@ -9,7 +9,7 @@ Proof
 
 Probare por inducción en $k$ que $D_F$ es $\Sigma$-PR para cada $F \in PR^\Sigma_k$.
 
-El caso $k=0$ es facil, ya que las funciones en $PR^\Sigma_0$ son $\Sigma$-totales.
+El caso $k=0$ es fácil, ya que las funciones en $PR^\Sigma_0$ son $\Sigma$-totales.
 
 - Supongamos que el resultado vale para un k fijo.
 
