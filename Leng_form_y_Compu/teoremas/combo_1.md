@@ -7,11 +7,17 @@ Proof
 ($\implies$) Note que $S = D_{\chi_S^{\omega^n \times \Sigma^{*m}}}$ <br>
 ($\Longleftarrow$) **Solo el caso de composición.** (no casos $F = R(f, g)$, $F = R(f, \mathcal{G})$, para recursion con imagen contenida en $\omega$ y $\Sigma^*$) <br>
 
-Supongamos que $F = g \circ [g_1, \cdots, g_r ]$ con $g, g_1, \cdots, g_r \in PR^\Sigma_k$.
+Probare por inducción en $k$ que $D_F$ es $\Sigma$-PR para cada $F \in PR^\Sigma_k$.
+
+El caso $k=0$ es facil, ya que las funciones en $PR^\Sigma_0$ son $\Sigma$-totales.
+
+- Supongamos que el resultado vale para un k fijo.
+
+Supongamos que $F = g \circ [g_1, \cdots, g_r ]$ con $g, g_1, \cdots, g_r \in PR^\Sigma_k$ (notar que $F \in PR^\Sigma_{k+1}$).
 
 - Si $F = \emptyset$, entonces es claro que $D_F = \emptyset$ es $\Sigma$-PR.
 
-- Supongamos entonces que $F$ no es la funcion $\emptyset$.
+- Supongamos entonces que $F$ no es la función $\emptyset$.
 
 Tenemos entonces que $r$ es de la forma $n + m$ y
 $$
