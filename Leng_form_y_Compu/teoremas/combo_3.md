@@ -13,18 +13,19 @@ D_{\Phi_*^{n,m}} & = \left\{ (\vec{x},\vec{\alpha},\mathcal{P}) \in \omega^{n} \
 \end{aligned}
 $$
 Nótese que
-$$ \Phi_{\ast}^{n,m} = \lambda\vec{x}\vec{\alpha}\mathcal{P}\left[\Psi_{\mathcal{P}}^{n,m,\ast}(\vec{x},\vec{\alpha}) \right] $$
+$$ \Phi_{*}^{n,m} = \lambda\vec{x}\vec{\alpha}\mathcal{P}\left[\Psi_{\mathcal{P}}^{n,m,*}(\vec{x},\vec{\alpha}) \right] $$
 Por teorema, tenemos que $\Phi_*^{n,m}$ es $(\Sigma \cup \Sigma^p)$-R
 
-Proff
+Proof
 
 Sea $\mathcal{P}_0$ un programa que compute a $f$. Primero veremos que $f$ es $(\Sigma \cup \Sigma^p)$-R. Note que
-$$ f=\Phi_{\ast}^{n,m}\circ\left[p_{1}^{n,m},...,p_{n+m}^{n,m},C_{\mathcal{P}_{0}}^{n,m}\right] $$
+$$ f=\Phi_{*}^{n,m}\circ\left[p_{1}^{n,m},...,p_{n+m}^{n,m},C_{\mathcal{P}_{0}}^{n,m}\right] $$
 
 donde cabe destacar que $p_1^{n, m}, \cdots, p_{n + m}^{n, m}$ son proyecciones respecto al alfabeto $\Sigma \cup \Sigma^p$, es decir que tienen dominio $\omega^n \times (\Sigma \cup \Sigma^p)^{*m}$. Ya que $\Phi_*^{n,m}$ es $(\Sigma \cup \Sigma^p)$-R tenemos que f también lo es.
 
 Si se fija el $\mathcal{P}_0$, por independencia del alfabeto tendríamos que f es $\Sigma$-R.
 
+---
 ### Teorema (Caracterización de conjuntos $\Sigma$-efectivamente computables).
 Sea $S \subseteq \omega^n \times \Sigma^{∗m}$. Son equivalentes <br>
 (a) $S$ es $\Sigma$-efectivamente computable <br>
@@ -32,7 +33,7 @@ Sea $S \subseteq \omega^n \times \Sigma^{∗m}$. Son equivalentes <br>
 
 > (Haga solo (b) implica (a). La prueba de este resultado esta al final de la Guı́a 3)
 
-Proff
+Proof
 
 $(b) \Longrightarrow (a)$ <br>
 - Si $S = \emptyset$ ó $S = \omega^n \times \Sigma^{*m}$, seria evidente que cumple (a)

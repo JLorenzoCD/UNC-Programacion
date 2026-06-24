@@ -18,6 +18,7 @@ Se recibe como dato de entrada $(\vec{x}, \vec{\alpha}, \alpha)$, con $\vec{x} \
 
 Claramente el procedimiento anterior computa a $R(f, \mathcal{G})$, por lo que este ultimo es $\Sigma$-efectivamente computable.
 
+---
 ### Lema (Lema de cuantificación acotada).
 Sea $\Sigma$ un alfabeto finito. Sea $P : S \times S_1 \times \cdots\times S_n \times L_1 \times\cdots\times L_m \longmapsto \omega$ un predicado $\Sigma$-PR, con $S, S_1, \cdots, S_n \subseteq \omega$ y $L_1 , \cdots, L_m \subseteq \Sigma^∗$ no vacı́os. Supongamos $\overline{S} \subset S$ es $\Sigma$-PR. Entonces $ \lambda x \vec{x} \vec{\alpha} [ \ (\forall t \in \overline{S})_{t \le x} \quad  P(t, \vec{x} \vec{\alpha}) \ ] $ es $\Sigma$-PR
 

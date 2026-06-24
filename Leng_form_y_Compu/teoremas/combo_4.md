@@ -9,7 +9,7 @@ Sea $S \subseteq \omega^n \times \Sigma^{∗m}$ un conjunto no vacı́o. Entonce
     2. Para cada $(x_1, \cdots, x_n , \alpha_1, \cdots, \alpha_m) \in S$ hay un $x \in \omega$ tal que $\mathcal{P}$ se detiene partiendo desde el estado $||x||$ y llega a un estado de la forma $((x_1, \cdots, x_n, y_1, \cdots), (\alpha_1, \cdots, \alpha_m, \beta_1 , \cdots))$
 > (Hacer el caso n = 2 y m = 1)
 
-Proff
+Proof
 
 $(1) \Longrightarrow (2)$ <br>
 Como S no es vació y por (1) sabemos que es $\Sigma$-E, entonces por definicion tenemos un $F: \omega \longrightarrow \omega^2 \times \Sigma^{*}$ tal que $I_F = S$ y $F_{(i)}$ es $\Sigma$-C, para cada $i = 1, 2, 3$. Y por primer manantial de macros, sabemos que existen las macros asociadas a cada una de las $F_{(i)}$. El siguiente programa claramente cumple con (2):
@@ -72,6 +72,7 @@ $$
 
 los cuales son $\Sigma$-C y tendriamos a $F = \left[ F_{(1)}, F_{(2)}, F_{(3)} \right]$ donde $I_F = S$.
 
+---
 ### Lema (Lema de la sumatoria).
 Sea $\Sigma$ un alfabeto finito. Si $f : \omega \times S_1 \times \cdots \times S_n \times L_1 \times \cdots \times L_m \longmapsto \omega$ es $\Sigma$-PR, con $S_1 , \cdots, S_n \subseteq \omega$ y $L_1, \cdots, L_m \subseteq \Sigma^*$ no vacı́os, entonces la función $\lambda x y \vec{x} \vec{\alpha} \left[ \ \sum_{t=x}^{t=y} \quad f(t, \vec{x} \vec{\alpha}) \ \right]$ es $\Sigma$-PR
 
