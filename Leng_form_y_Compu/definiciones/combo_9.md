@@ -10,7 +10,7 @@ $$ I_1 I_2 \cdots I_n $$
 donde $n \ge 1, I_1 , \cdots, I_n \in Ins^\Sigma$ y ademas se cumple la siguiente propiedad, llamada la ley de los GOTO,
 > (G) Para cada $i \in \{1, \cdots, n \}$, si $GOTOL\overline{m}$ es un tramo final de $I_i$ , entonces existe $j \in \{1, \cdots, n \}$ tal que $I_j$ tiene label $L\overline{m}$
 
-Usaremos $Pro^\Sigma$ para denotar el conjunto de todos los programas de $\mathcal{S}^\Sigma$.  
+Usaremos $Pro^\Sigma$ para denotar el conjunto de todos los programas de $\mathcal{S}^\Sigma$.
 
 ### (3) y (4) $I_{i}^{\mathcal{P}}$; $n(\mathcal{P})$
 Lema: Sea $\Sigma$ un alfabeto finito. Se tiene que: <br>
@@ -21,10 +21,12 @@ b. Si $\mathcal{P} \in Pro^\Sigma$, entonces existe una única sucesión de inst
 
 ### (5) $Bas$
 $$
-Bas : Ins^\Sigma \longmapsto (\Sigma \cup \Sigma^p )^∗ \\ \\
+Bas : Ins^\Sigma \longmapsto (\Sigma \cup \Sigma^p )^∗
+$$
 
-Bas(I) = \left\{ \begin{array}{cl}
+$$
+Bas(I) = \left\{ \begin{aligned}
     & J, \quad \text{si I es de la forma } L\overline{k}J \text{ con } J \in Ins^\Sigma \text{ y } k \in \mathbb{N}\\
     & I, \quad \text{caso contrario}
-\end{array} \right.
+\end{aligned} \right.
 $$

@@ -4,7 +4,7 @@ Sean $n, m \ge 0$. Sea $P : D_P \subseteq \omega \times \omega^n \times \Sigma^{
 (a) $M(P)$ es $\Sigma$-recursiva. <br>
 (b) Si hay una función $\Sigma$-PR $f : \omega^n \times \Sigma^{∗m} \longmapsto \omega$ tal que
 $$
-M(P)(\overrightarrow{x},\overrightarrow{\alpha}) = \min_t P (t,\overrightarrow{x},\overrightarrow{\alpha}) \le f (\overrightarrow{x},\overrightarrow{\alpha}), \text{ para cada } (\overrightarrow{x},\overrightarrow{\alpha}) \in D_{M(P)},
+M(P)(\vec{x},\vec{\alpha}) = \min_t P (t,\vec{x},\vec{\alpha}) \le f (\vec{x},\vec{\alpha}), \text{ para cada } (\vec{x},\vec{\alpha}) \in D_{M(P)},
 $$
 entonces $M(P)$ es $\Sigma$-PR.
 

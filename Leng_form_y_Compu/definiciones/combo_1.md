@@ -28,10 +28,10 @@ Tenemos que:
 $$ R(f, \mathcal{G}) : S_1 \times \cdots \times S_n \times L_1 \times \cdots \times L_m \times \Sigma^* \longmapsto \omega $$
 
 $$
-\begin{array}{rcl}
-R(f, \mathcal{G})(\overrightarrow{x}, \overrightarrow{\alpha}, \epsilon) & = & f(\overrightarrow{x}, \overrightarrow{\alpha}) \\
-R(f, \mathcal{G})(\overrightarrow{x}, \overrightarrow{\alpha}, \alpha a) & = & \mathcal{G}_a(R(f, \mathcal{G})(\overrightarrow{x}, \overrightarrow{\alpha}, \alpha), \overrightarrow{x}, \overrightarrow{\alpha}, \alpha)
-\end{array}
+\begin{aligned}
+R(f, \mathcal{G})(\vec{x}, \vec{\alpha}, \epsilon) & = & f(\vec{x}, \vec{\alpha}) \\
+R(f, \mathcal{G})(\vec{x}, \vec{\alpha}, \alpha a) & = & \mathcal{G}_a(R(f, \mathcal{G})(\vec{x}, \vec{\alpha}, \alpha), \vec{x}, \vec{\alpha}, \alpha)
+\end{aligned}
 $$
 
 Diremos que $R(f, \mathcal{G})$ es obtenida por recursion primitiva a partir de $f$ y $\mathcal{G}$

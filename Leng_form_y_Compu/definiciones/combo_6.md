@@ -5,12 +5,12 @@ Supongamos que $k, l, n, m \in \omega$ y que $F : D_F \subseteq \omega^n \times 
 
 Notar que:
 $$
-\begin{array}{rcl}
+\begin{aligned}
 
-    F_{(i)} &:& D_F \subseteq \omega^n \times \Sigma^{*m} \longmapsto \omega, \quad \text{para cada} \ \ i = 1, \cdots, n \\
-    F_{(i)} &:& D_F \subseteq \omega^n \times \Sigma^{*m} \longmapsto \Sigma^{*}, \quad \text{para cada} \ \ i = n + 1, \cdots, n + m
+    F_{(i)} &: D_F \subseteq \omega^n \times \Sigma^{*m} \longmapsto \omega, \quad \text{para cada} \ \ i = 1, \cdots, n \\
+    F_{(i)} &: D_F \subseteq \omega^n \times \Sigma^{*m} \longmapsto \Sigma^{*}, \quad \text{para cada} \ \ i = n + 1, \cdots, n + m
 
-\end{array}
+\end{aligned}
 $$
 Por lo cual cada una de las funciones $F_{(i)}$ son $\Sigma$-mixtas.
 
@@ -21,4 +21,4 @@ El procedimiento efectivo **$\mathbb{P}$ enumera a $S$** si:
 2. $\mathbb{P}$ se detiene para cada $x \in \omega$.
 3. El conjunto de datos de salida de $\mathbb{P}$ es igual a $S$.
 
-(Es decir, siempre que $\mathbb{P}$ se detiene, da como salida un elemento de $S$, y para cada elemento $(\overrightarrow{x}, \overrightarrow{\alpha}) \in S$, hay un $x \in \omega$ tal que $\mathbb{P}$ da como salida a $(\overrightarrow{x}, \overrightarrow{\alpha})$ cuando lo corremos con $x$ como dato de entrada)
+(Es decir, siempre que $\mathbb{P}$ se detiene, da como salida un elemento de $S$, y para cada elemento $(\vec{x}, \vec{\alpha}) \in S$, hay un $x \in \omega$ tal que $\mathbb{P}$ da como salida a $(\vec{x}, \vec{\alpha})$ cuando lo corremos con $x$ como dato de entrada)

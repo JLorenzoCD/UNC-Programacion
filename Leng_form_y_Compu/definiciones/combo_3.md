@@ -8,10 +8,10 @@ Sea $\Sigma$ un alfabeto no vacio y supongamos $\le$ orden total sobre $\Sigma$.
 $$ s^\le : \Sigma^* \longmapsto \Sigma^* $$
 
 $$
-\begin{array}{rcl}
-s^\le((a_n)^m) & = & (a_1)^{m+1}, \quad m \in \omega \\
-s^\le(\alpha a_i (a_n)^m) & = & \alpha a_{i+1} (a_1)^m, \quad \alpha \in \Sigma^* \wedge 1 \le i \lt n \wedge m \in \omega
-\end{array}
+\begin{aligned}
+s^\le((a_n)^m) & = (a_1)^{m+1}, \quad m \in \omega \\
+s^\le(\alpha a_i (a_n)^m) & = \alpha a_{i+1} (a_1)^m, \quad \alpha \in \Sigma^* \wedge 1 \le i \lt n \wedge m \in \omega
+\end{aligned}
 $$
 
 ### (3) Defina $*^{\le}$
@@ -20,10 +20,10 @@ Sea $\Sigma$ un alfabeto no vacio y supongamos $\le$ orden total sobre $\Sigma$.
 $$ *^\le : \omega \longmapsto \Sigma^* $$
 
 $$
-\begin{array}{rcl}
-*^\le(0) & = & \epsilon \\
-*^\le(i + 1) & = & s^\le(*^\le(i))
-\end{array}
+\begin{aligned}
+*^\le(0) & = \epsilon \\
+*^\le(i + 1) & = s^\le(*^\le(i))
+\end{aligned}
 $$
 
 ### (4) Defina $\#^{\le}$
@@ -35,8 +35,8 @@ $$ \alpha = a_{i_k} \cdots a_{i_0} $$
 $$ \#^\le : \Sigma^* \longmapsto \omega $$
 
 $$
-\begin{array}{rcl}
-\#^\le(\epsilon) & = & 0 \\
-\#^\le(a_{i_k} \cdots a_{i_0}) & = & i_k n^k + \cdots + i_0 n^0 
-\end{array}
+\begin{aligned}
+\#^\le(\epsilon) & = 0 \\
+\#^\le(a_{i_k} \cdots a_{i_0}) & = i_k n^k + \cdots + i_0 n^0 
+\end{aligned}
 $$

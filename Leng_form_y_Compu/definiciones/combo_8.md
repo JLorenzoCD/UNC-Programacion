@@ -1,30 +1,30 @@
 # Combo 8. Defina:
 ### (1) $M(P)$
-Sea $\Sigma$ un alfabeto finito y sea $P : D_P \subseteq \omega \times \omega^n \times \Sigma^{*m} \longmapsto \omega$ un predicado. Dado $(\overrightarrow{x}, \overrightarrow{\alpha}) \in \omega^n \times \Sigma^{*m}$ , cuando exista al menos un $t \in \omega$ tal que $P(t, \overrightarrow{x}, \overrightarrow{\alpha}) = 1$, usaremos $\min_t P(t, \overrightarrow{x}, \overrightarrow{\alpha})$ para denotar al menor de tales $t's$.
+Sea $\Sigma$ un alfabeto finito y sea $P : D_P \subseteq \omega \times \omega^n \times \Sigma^{*m} \longmapsto \omega$ un predicado. Dado $(\vec{x}, \vec{\alpha}) \in \omega^n \times \Sigma^{*m}$ , cuando exista al menos un $t \in \omega$ tal que $P(t, \vec{x}, \vec{\alpha}) = 1$, usaremos $\min_t P(t, \vec{x}, \vec{\alpha})$ para denotar al menor de tales $t's$.
 
-> Nótese que la expresión $\min_t P(t, \overrightarrow{x}, \overrightarrow{\alpha})$ esta definida solo para aquellas $(n + m)$-uplas $(\overrightarrow{x}, \overrightarrow{\alpha})$ para las cuales hay al menos un $t$ tal que se da $P(t, \overrightarrow{x}, \overrightarrow{\alpha}) = 1$.
+> Nótese que la expresión $\min_t P(t, \vec{x}, \vec{\alpha})$ esta definida solo para aquellas $(n + m)$-uplas $(\vec{x}, \vec{\alpha})$ para las cuales hay al menos un $t$ tal que se da $P(t, \vec{x}, \vec{\alpha}) = 1$.
 
-$$ M(P) = \lambda \overrightarrow{x} \overrightarrow{\alpha} [\min_t \ P(t, \overrightarrow{x}, \overrightarrow{\alpha})] $$
+$$ M(P) = \lambda \vec{x} \vec{\alpha} [\min_t \ P(t, \vec{x}, \vec{\alpha})] $$
 
 Nótese que:
 $$
-D_{M(P)} = \{(\overrightarrow{x}, \overrightarrow{\alpha}) \in \omega^n \times \Sigma^{*m} : (\exist t \in \omega) \quad P(t, \overrightarrow{x}, \overrightarrow{\alpha}) = 1 \}
+D_{M(P)} = \{(\vec{x}, \vec{\alpha}) \in \omega^n \times \Sigma^{*m} : (\exist t \in \omega) \quad P(t, \vec{x}, \vec{\alpha}) = 1 \}
 
 \\ \\
 
-M(P)(\overrightarrow{x}, \overrightarrow{\alpha}) = \min_t \ P(t,\overrightarrow{x}, \overrightarrow{\alpha}),\quad \text{para cada} \ (\overrightarrow{x}, \overrightarrow{\alpha}) \in D_{M(P)}
+M(P)(\vec{x}, \vec{\alpha}) = \min_t \ P(t,\vec{x}, \vec{\alpha}),\quad \text{para cada} \ (\vec{x}, \vec{\alpha}) \in D_{M(P)}
 $$
 
 ### (2) $Lt$
 Definimos la función $Lt : \mathbb{N} \longmapsto \omega$ de la siguiente manera:
 
 $$
-Lt(x) = \left\{ \begin{array}{cl}
+Lt(x) = \left\{ \begin{aligned}
 
     & \max_i ((x)_i \neq 0), &\quad x \neq 1 \\
     & 0, & \quad x = 1
 
-\end{array} \right.
+\end{aligned} \right.
 $$
 
 ### (3) Conjunto rectangular

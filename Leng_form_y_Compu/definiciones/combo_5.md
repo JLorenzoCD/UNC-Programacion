@@ -4,17 +4,17 @@
 Sea $X$ un conjunto cualquiera y sea $S \subseteq X$. Usaremos $\chi^{X}_S$ para denotar la función
 
 $$
-\begin{array}{rcl}
+\begin{aligned}
 
-    \chi^{X}_S : & X & \longmapsto & \omega \\
+    \chi^{X}_S \ : \ \ \ & X & \longmapsto & \quad \omega \\
 
-    & x & \longmapsto & \left\{ \begin{array}{cl}
+    & x & \longmapsto & \left\{ \begin{aligned}
         1 & : \ x \in S \\
         0 & : \ x \notin S
 
-        \end{array} \right.
+        \end{aligned} \right.
 
-\end{array}
+\end{aligned}
 $$
 
 Un conjunto $S \subseteq \omega^n \times \Sigma^{*m}$ sera llamado $\Sigma$-efectivamente computable cuando la función $\chi^{\omega^n \times \Sigma^{*m}}_S$ sea $\Sigma$-efectivamente computable.
@@ -22,4 +22,4 @@ Un conjunto $S \subseteq \omega^n \times \Sigma^{*m}$ sera llamado $\Sigma$-efec
 Si $\mathbb{P}$ es un procedimiento efectivo el cual computa a $\chi^{\omega^n \times \Sigma^{*m}}_S$, diremos que $\mathbb{P}$ decide la pertenecia a $S$, con respecto al conjunto $\omega^n \times \Sigma^{*m}$,  es decir:
 
 - El conjunto de datos de entrada de $\mathbb{P}$ es $\omega^n \times \Sigma^{*m}$ , siempre termina y da como dato de salida un elemento de $\{0, 1 \}$.
-- Dado $(\overrightarrow{x}, \overrightarrow{\alpha}) \in \omega^n \times \Sigma^{*m}$, $\mathbb{P}$ da como salida al numero $1$ si $(\overrightarrow{x}, \overrightarrow{\alpha}) \in S$ y al numero $0$ si $(\overrightarrow{x}, \overrightarrow{\alpha}) \notin S$.
+- Dado $(\vec{x}, \vec{\alpha}) \in \omega^n \times \Sigma^{*m}$, $\mathbb{P}$ da como salida al numero $1$ si $(\vec{x}, \vec{\alpha}) \in S$ y al numero $0$ si $(\vec{x}, \vec{\alpha}) \notin S$.

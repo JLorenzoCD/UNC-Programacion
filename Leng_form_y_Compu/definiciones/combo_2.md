@@ -3,11 +3,11 @@
 Para $d, d' \in Des$ y $n \in \omega$, escribiremos $d \vdash^n d'$ si existen $d_1 , \cdots, d_{n+1} \in Des$ tales que
 
 $$
-\begin{array}{rcl}
-d & = & d_1 \\
-d' & = & d_{n+1} \\ \\
-d_i & \vdash & d_{n+1} , \quad i = 1, \cdots, n. \\
-\end{array}
+\begin{aligned}
+d & = d_1 \\
+d' & = d_{n+1} \\ \\
+d_i & \vdash d_{n+1} , \quad i = 1, \cdots, n. \\
+\end{aligned}
 $$
 
 Finalmente definamos
@@ -37,9 +37,9 @@ $$ x = ⟨ s_1, s_2, \cdots ⟩ = \prod_{i=1}^{\infty} pr(i)^{s_i} $$
 Dadas $x, i \in \mathbb{N}$:
 
 $$
-\begin{array}{rcl}
-(x)_i & = & \max_t(pr(i)^t \ \ \text{divide a x}) \\
-(x)_i & = & \text{exponente de pr(i) en la (única posible) factorización de x como producto de primos}  \\
-(x)_i & = & s_i = i-esimo elemento de la infinitupla (x) \\
-\end{array}
+\begin{aligned}
+(x)_i & = \max_t(pr(i)^t \ \ \text{divide a x}) \\
+(x)_i & = \text{exponente de pr(i) en la (única posible) factorización de x como producto de primos}  \\
+(x)_i & = s_i = i-esimo elemento de la infinitupla (x) \\
+\end{aligned}
 $$
