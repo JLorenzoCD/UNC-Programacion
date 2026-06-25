@@ -6,12 +6,12 @@
 
 Proof
 
-($\implies$) Note que $S = D_{\chi_S^{\omega^n \times \Sigma^{*m}}}$ <br>
+($\implies$) Note que $S = D_{Pred \circ \chi_S^{\omega^n \times \Sigma^{*m}}}$ <br>
 ($\Longleftarrow$) **Solo el caso de composición.** (no casos $F = R(f, g)$, $F = R(f, \mathcal{G})$, para recursion con imagen contenida en $\omega$ y $\Sigma^*$) <br>
 
 Probare por inducción en $k$ que $D_F$ es $\Sigma$-PR para cada $F \in PR^\Sigma_k$.
 
-El caso $k=0$ es fácil, ya que las funciones en $PR^\Sigma_0$ son $\Sigma$-totales.
+El caso $k=0$ es fácil, ya que las funciones en $PR^\Sigma_0$ tienen dominio contenido en $\omega^n \times \Sigma^{*m}$ y como $\omega$ y $\Sigma^*$ son conjuntos no vacíos $\Sigma$-PR, entonces el producto cruz de estos es un conjunto $\Sigma$-PR.
 
 - Supongamos que el resultado vale para un k fijo.
 
