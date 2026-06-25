@@ -1,3 +1,5 @@
+# Definiciones
+---
 # Combo 1
 ### 1. Defina cuando un conjunto $S \subseteq \omega^n \times \Sigma^{*m}$ es llamado $\Sigma$-recursivo (no hace falta que defina "función $\Sigma$-recursiva")
 Es llamado $\Sigma$-recursivo sii su función de caracterización $\chi^{\omega^n \times \Sigma^{*m}}_S$ es $\Sigma$-recursivo.
@@ -36,9 +38,9 @@ $$
 
 Diremos que $R(f, \mathcal{G})$ es obtenida por recursion primitiva a partir de $f$ y $\mathcal{G}$
 
----
----
 
+---
+---
 # Combo 2. Defina
 ### (1) $d \vdash^n d'$ y $d \vdash d'$ (no hace falta que defina $\vdash$)
 Para $d, d' \in Des$ y $n \in \omega$, escribiremos $d \vdash^n d'$ si existen $d_1 , \cdots, d_{n+1} \in Des$ tales que
@@ -85,6 +87,7 @@ $$
 \end{aligned}
 $$
 
+
 ---
 ---
 # Combo 3.
@@ -130,9 +133,9 @@ $$
 \end{aligned}
 $$
 
----
----
 
+---
+---
 # Combo 4.
 ### Defina cuando una función $f : D_f \subseteq \omega^n \times \Sigma^{*m} \longmapsto \omega$ es llamada $\Sigma$-efectivamente computable y defina ”el procedimiento $\mathbb{P}$ computa a la función $f$”
 
@@ -173,6 +176,7 @@ Si $\mathbb{P}$ es un procedimiento efectivo el cual computa a $\chi^{\omega^n \
 - El conjunto de datos de entrada de $\mathbb{P}$ es $\omega^n \times \Sigma^{*m}$ , siempre termina y da como dato de salida un elemento de $\{0, 1 \}$.
 - Dado $(\vec{x}, \vec{\alpha}) \in \omega^n \times \Sigma^{*m}$, $\mathbb{P}$ da como salida al numero $1$ si $(\vec{x}, \vec{\alpha}) \in S$ y al numero $0$ si $(\vec{x}, \vec{\alpha}) \notin S$.
 
+
 ---
 ---
 # Combo 6.
@@ -200,6 +204,7 @@ El procedimiento efectivo **$\mathbb{P}$ enumera a $S$** si:
 
 (Es decir, siempre que $\mathbb{P}$ se detiene, da como salida un elemento de $S$, y para cada elemento $(\vec{x}, \vec{\alpha}) \in S$, hay un $x \in \omega$ tal que $\mathbb{P}$ da como salida a $(\vec{x}, \vec{\alpha})$ cuando lo corremos con $x$ como dato de entrada)
 
+
 ---
 ---
 # Combo 7.
@@ -221,7 +226,8 @@ $$
 ⌊q_0B |^{x_1} B \cdots B |^{x_n} B \alpha_1 B \cdots B \alpha_m ⌋
 $$
 
-Cuando una maquina de Turing con unit $M$ cumpla los items (1) y (2) de la definición anterior, diremos que **$M$ computa a la función $f$ o que $f$ es computada por $M$**. 
+Cuando una maquina de Turing con unit $M$ cumpla los items (1) y (2) de la definición anterior, diremos que **$M$ computa a la función $f$ o que $f$ es computada por $M$**.
+
 
 ---
 ---
@@ -264,6 +270,7 @@ con $n, m \in \omega, S_i \subseteq \omega$ y cada $L_i$ es un conjunto de palab
 Dado un conjunto $\Sigma$-mixto $S$, si $n, m \in \omega$ son tales que $S \subseteq \omega^n \times \Sigma^{∗m}$ , entonces diremos que $S$ es un conjunto de tipo $(n, m)$.
 > Notar que si $S$ es vacio, entonces $S$ es de tipo $(n, m)$ cualquiera sea $n, m \in \omega$. Caso contrario, $n$ y $m$ son únicos para el conjunto $S$.
 
+
 ---
 ---
 # Combo 9. Defina:
@@ -298,6 +305,8 @@ Bas(I) = \left\{ \begin{aligned}
     & I, \quad \text{caso contrario}
 \end{aligned} \right.
 $$
+
+
 ---
 ---
 # Combo 10. Defina relativo al lenguaje $\mathcal{S}^\Sigma$:
@@ -351,7 +360,8 @@ Cuando la primer coordenada de
 $$
 \overbrace{S_\mathcal{P}(\cdots S_\mathcal{P}(S_\mathcal{P}}^{\text{t veces}}(1, \vec{s}, \vec{\sigma}) \cdots)
 $$
-sea igual a $n(\mathcal{P}) + 1$, diremos que $\mathcal{P}$ se detiene (luego de $t$ pasos), partiendo desde el estado $(\vec{s}, \vec{\sigma})$. 
+sea igual a $n(\mathcal{P}) + 1$, diremos que $\mathcal{P}$ se detiene (luego de $t$ pasos), partiendo desde el estado $(\vec{s}, \vec{\sigma})$.
+
 
 ---
 ---
@@ -391,6 +401,7 @@ D_{M^{\le}(P)} = \{(\vec{x}, \vec{\alpha}) \in \omega^n \times \Sigma^{*m} : (\e
 M^{\le}(P)(\vec{x}, \vec{\alpha}) = \min_{\alpha}^{\le} \ P(\vec{x}, \vec{\alpha}, \alpha),\quad \text{para cada} \ (\vec{x}, \vec{\alpha}) \in D_{M^{\le}(P)}
 $$
 
+
 ---
 ---
 # Combo 12.
@@ -405,6 +416,7 @@ Un conjunto $S \subseteq \omega^n \times \Sigma^{*m}$ **sera llamado $\Sigma$-en
 El programa $\mathcal{P}$ **enumera a S** si: <br>
 (a) Para cada $x \in \omega$, tenemos que $\mathcal{P}$ se detiene partiendo desde el estado $|| x ||$ y llega a un estado de la forma $((x_1 , \cdots, x_n, y_1 , \cdots), (\alpha_1 , \cdots, \alpha_m , \beta_1 , \cdots))$, donde $(x_1 , \cdots, x_n , \alpha_1 , \cdots, \alpha_m ) \in S$. <br>
 (b) Para cada $(x_1 , \cdots, x_n , \alpha_1 , \cdots, \alpha_m ) ∈ S$ hay un $x \in \omega$ tal que $\mathcal{P}$ se detiene partiendo desde el estado $|| x ||$ y llega a un estado de la forma $((x_1 , \cdots, x_n, y_1 , \cdots), (\alpha_1 , \cdots, \alpha_m , \beta_1 , \cdots))$
+
 
 ---
 ---
@@ -497,6 +509,7 @@ es $\Sigma$-RE. y no es $\Sigma$-R. Mas aun el conjunto
 $$ N = \{ \mathcal{P} \in Pro^\Sigma: AutoHalt^\Sigma(\mathcal{P}) = 0 \} $$
 no es $\Sigma$-RE
 
+
 ---
 ---
 # Combo 14. Explique en forma detallada la notación lambda
@@ -525,6 +538,7 @@ denotara la función f definida por:
 
 > Notar que f es $\Sigma$-Mixta de tipo $(n, m, s), s \in \{ \#, * \}$.
 
+
 ---
 ---
 # Combo 15.
@@ -539,6 +553,7 @@ Dado un alfabeto finito $\Sigma$ fijado previamente, tendríamos que M es una ma
 3. Si se reemplaza las variables oficiales de M por variables concretas del un programa, las variables auxiliares por variables concretas (no utilizadas en el resto del programa) y los labels auxiliares de M por labels concretos (no utilizados en el resto del programa), entonces, la palabra obtenida es un programa $\Large \epsilon$ de $\mathbb{S}^\Sigma$. Y, en criollo, si el valor de las variables concretas no esta en $D_f$, entonces no termina. Caso contrario, asigna en la variable concreta que reemplaza a V2 el valor de correr el programa obtenido.
 
 El programa $\Large \epsilon \normalsize = [N\overline{l} \longleftarrow f(N\overline{n}, P\overline{m})]$, con $l, n, m \in \omega$ tales que son variables concretas, entonces $\Large \epsilon$ es llamado la expansion del macro M, con respecto a la elección de variables y labels realizada.
+
 
 ---
 ---
@@ -557,6 +572,7 @@ Dado un alfabeto finito $\Sigma$ fijado previamente, tendríamos que M es una ma
 
 El programa (salvo la ley del GOTO para $L\overline{l}$) $\Large \epsilon \normalsize = [\text{IF P(N}\overline{i}\text{, P}\overline{j}\text{) GOTO L}\overline{l}]$, con $l, i, j \in \omega$ tales que son variables concretas, entonces $\Large \epsilon$ es llamado la expansion del macro M, con respecto a la elección de variables y labels realizada.
 
+
 ---
 ---
 # Combo 17.
@@ -573,3 +589,6 @@ Escribiremos $f : S \subseteq A \longmapsto B$ para expresar que f es una funci�
 
 #### Convencion Notacional 3:
 Muchas veces para definir una función f, lo haremos dando su dominio y su regla de asignación, es decir especificaremos en forma precisa que conjunto es el dominio de f y ademas especificaremos en forma precisa quien es $f(x)$ para cada x de dicho dominio. Obviamente esto determina por completo a la función f ya que siempre se da que $f = \{ (x, f(x)) : x \in D_f \}$.
+
+
+---

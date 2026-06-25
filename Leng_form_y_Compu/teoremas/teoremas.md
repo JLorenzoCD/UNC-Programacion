@@ -1,3 +1,5 @@
+# Teoremas
+---
 # Combo 1.
 ### Proposición (Caracterización de conjuntos $\Sigma$-PR). Un conjunto $S$ es $\Sigma$-PR sii $S$ es el dominio de alguna función $\Sigma$-PR
 > (En la inducción de la prueba hacer solo el caso de la composición)
@@ -185,6 +187,7 @@ $$
 
 los cuales son $\Sigma$-C y tendriamos a $F = \left[ F_{(1)}, F_{(2)}, F_{(3)} \right]$ donde $I_F = S$.
 
+
 ---
 ---
 # Combo 3.
@@ -235,6 +238,7 @@ Dato de entrada: $(\vec{x}, \vec{\alpha}) \in \omega^n \times \Sigma^{*m}$
 - Etapa 2: Realizar $\mathbb{P}_1$ con el valor de T como dato de entrada para obtener de salida la upla $(\vec{y}, \vec{\beta})$.
 - Etapa 3: Realizar $\mathbb{P}_2$ con el valor de T como dato de entrada para obtener de salida la upla $(\vec{z}, \vec{\gamma})$.
 - Etapa 4: Si $(\vec{y}, \vec{\beta}) = (\vec{x}, \vec{\alpha})$, entonces detenerse y dar como dato de salida el valor 1. Si $(\vec{z}, \vec{\gamma}) = (\vec{x}, \vec{\alpha})$, entonces detenerse y dar como dato de salida el valor 0. Si no sucede ninguna de las dos posibilidades mencionadas, aumentar en 1 el valor de la variable T y dirigirse a Etapa2.
+
 
 ---
 ---
@@ -428,6 +432,7 @@ $$
 
 Por lo tanto los conjuntos $D_1, D_2, H_1, H_2$ son $\Sigma$-PR y claramente son disjuntos. Por lo que h y g son $\Sigma$-PR. Por lo que G es $\Sigma$-PR.
 
+
 ---
 ---
 # Combo 5.
@@ -478,6 +483,7 @@ xy\vec{x}\vec{\alpha}\left[\prod\limits_{t=x}^{t=y}\overline{P}(t,\vec{x},\vec{\
 \end{aligned}
 $$
 entonces tenemos que $ \lambda x \vec{x} \vec{\alpha} [ \ (\forall t \in \overline{S})_{t \le x} \  P(t, \vec{x} \vec{\alpha}) \ ] $ es $\Sigma$-PR.
+
 
 ---
 ---
@@ -583,6 +589,7 @@ E_{\ast1}^{1,1}(\mathrm{N}10,\mathrm{N}3,\mathrm{P}3,\mathcal{P}_{4})\;\mathrm{G
 $$
 
 Tenemos entonces que $\mathcal{P}$ computa $p_{1}^{2,2}|_{S}$. Como $p_{1}^{2,2}|_{S}$ es $\Sigma$-C entonces por teorema tenemos que también es $\Sigma$-R. Ademas, como es una función con dominio restringido a $S$, claramente su dominio es $S$. Por lo que cumple (3).
+
 
 ---
 ---
@@ -791,6 +798,7 @@ $$
 
 Claramente este programa computa a $h$.
 
+
 ---
 ---
 # Combo 9.
@@ -863,3 +871,6 @@ $$
 f = \Phi_{\#}^{n,m} \circ \left[ p_{1}^{n,m}, \cdots, p_{n+m}^{n,m}, C_{\mathcal{P}_{0}}^{n,m} \right]
 $$
 donde cabe destacar que $p_{1}^{n,m}, \cdots, p_{n+m}^{n,m}$ son respecto al alfabeto $\Sigma \cup \Sigma^p$, es decir que tienen dominio $\omega^n \times (\Sigma \cup \Sigma^p)^{*m}$. Ya que $\Phi_{\#}^{n,m}$ es $(\Sigma \cup \Sigma^p)$-R tenemos que f lo es. Por lo que si se fija $\mathcal{P}_0$, por teorema de la independencia de Alfabeto, tendríamos que f es $\Sigma$-R.
+
+
+---
