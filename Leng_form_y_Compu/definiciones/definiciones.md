@@ -16,7 +16,7 @@ Sea $\Sigma$ un alfabeto finito. Una función f es $\Sigma$-mixta si cumple:
 ###  4. Defina "familia $\Sigma$-indexada de funciones"
 Dado un alfabeto $\Sigma$ una familia $\Sigma$-indexada de funciones seria una función $\mathcal{G}$ tal que $D_{\mathcal{G}} = \Sigma$, $\forall a \in \Sigma$ se tiene que $\mathcal{G}(a)$ es una función.
 
-###   5. Defina $R(f, G)$ (haga el caso de valores numéricos)
+###   5. Defina $R(f, \mathcal{G})$ (haga el caso de valores numéricos)
 Sea
 $$ f: S_1 \times \cdots \times S_n \times L_1 \times \cdots \times L_m \longmapsto \omega $$
 con $S_1, \cdots, S_n \subseteq \omega$ y $L_1, \cdots, L_m \subseteq \Sigma^*$ conjuntos no vacíos.
@@ -31,8 +31,8 @@ $$ R(f, \mathcal{G}) : S_1 \times \cdots \times S_n \times L_1 \times \cdots \ti
 
 $$
 \begin{aligned}
-R(f, \mathcal{G})(\vec{x}, \vec{\alpha}, \epsilon) & = & f(\vec{x}, \vec{\alpha}) \\
-R(f, \mathcal{G})(\vec{x}, \vec{\alpha}, \alpha a) & = & \mathcal{G}_a(R(f, \mathcal{G})(\vec{x}, \vec{\alpha}, \alpha), \vec{x}, \vec{\alpha}, \alpha)
+R(f, \mathcal{G})(\vec{x}, \vec{\alpha}, \epsilon) & = f(\vec{x}, \vec{\alpha}) \\
+R(f, \mathcal{G})(\vec{x}, \vec{\alpha}, \alpha a) & = \mathcal{G}_a(R(f, \mathcal{G})(\vec{x}, \vec{\alpha}, \alpha), \vec{x}, \vec{\alpha}, \alpha)
 \end{aligned}
 $$
 
@@ -57,7 +57,7 @@ Finalmente definamos
 $$ d \vdash^* d' \quad \text{sii} \quad (\exists n \in \omega) \quad d \vdash^n d'. $$
 
 ### (2) $L(M)$
-El lenguaje $L(M)$ (definición matemática ahora). Diremos que una palabra $\alpha \in \Sigma^*$ es aceptada por $M$ por alcance de estado final cuando
+Diremos que una palabra $\alpha \in \Sigma^*$ es aceptada por $M$ por alcance de estado final cuando
 
 $$ ⌊q_0 B \alpha⌋ \vdash^* d, \quad \text{con d tal que } St(d) \in F $$
 
@@ -83,7 +83,7 @@ $$
 \begin{aligned}
 (x)_i & = \max_t(pr(i)^t \ \ \text{divide a x}) \\
 (x)_i & = \text{exponente de pr(i) en la (única posible) factorización de x como producto de primos}  \\
-(x)_i & = s_i = i-esimo elemento de la infinitupla (x) \\
+(x)_i & = s_i = \text{i-esimo elemento de la infinitupla } (x) \\
 \end{aligned}
 $$
 
@@ -182,20 +182,24 @@ Si $\mathbb{P}$ es un procedimiento efectivo el cual computa a $\chi^{\omega^n \
 # Combo 6.
 ### Defina cuando un conjunto $S \subseteq \omega^n \times \Sigma^{*m}$ es llamado $\Sigma$-efectivamente enumerable y defina: "el procedimiento efectivo $\mathbb{P}$ enumera a $S$"
 
-Supongamos que $k, l, n, m \in \omega$ y que $F : D_F \subseteq \omega^n \times \Sigma^{*m} \longmapsto \omega^n \times \Sigma^{*m}$. Supongamos ademas que $n + m \ge 1$. Entonces denotaremos con $F_{(i)}$ a la función $p_i \circ F$.
+Prev
+
+Supongamos que $k, l, n, m \in \omega$ y que $F : D_F \subseteq \omega^k \times \Sigma^{*l} \longmapsto \omega^n \times \Sigma^{*m}$. Supongamos ademas que $n + m \ge 1$. Entonces denotaremos con $F_{(i)}$ a la función $p_i \circ F$.
 
 Notar que:
 $$
 \begin{aligned}
 
-    F_{(i)} &: D_F \subseteq \omega^n \times \Sigma^{*m} \longmapsto \omega, \quad \text{para cada} \ \ i = 1, \cdots, n \\
-    F_{(i)} &: D_F \subseteq \omega^n \times \Sigma^{*m} \longmapsto \Sigma^{*}, \quad \text{para cada} \ \ i = n + 1, \cdots, n + m
+    F_{(i)} &: D_F \subseteq \omega^k \times \Sigma^{*l} \longmapsto \omega, \quad \text{para cada} \ \ i = 1, \cdots, n \\
+    F_{(i)} &: D_F \subseteq \omega^k \times \Sigma^{*l} \longmapsto \Sigma^{*}, \quad \text{para cada} \ \ i = n + 1, \cdots, n + m
 
 \end{aligned}
 $$
 Por lo cual cada una de las funciones $F_{(i)}$ son $\Sigma$-mixtas.
 
-Un conjunto $S \subseteq \omega^n \times \Sigma^{*m}$ **sera llamado $\Sigma$-efectivamente enumerable** cuando sea vacio o haya una función $F : D_F \subseteq \omega^n \times \Sigma^{*m} \longmapsto \omega^n \times \Sigma^{*m}$ tal que $I_F = S$ y $F{(i)}$ sea $\Sigma$-efectivamente computable, para cada $i \in \{ 1, \cdots, n + m \}$.
+Def
+
+Un conjunto $S \subseteq \omega^n \times \Sigma^{*m}$ **sera llamado $\Sigma$-efectivamente enumerable** cuando sea vacio o haya una función $F :\omega \longmapsto \omega^n \times \Sigma^{*m}$ tal que $I_F = S$ y $F_{(i)}$ sea $\Sigma$-efectivamente computable, para cada $i \in \{ 1, \cdots, n + m \}$.
 
 El procedimiento efectivo **$\mathbb{P}$ enumera a $S$** si:
 1. El conjunto de datos de entrada de $\mathbb{P}$ es $\omega$.
@@ -275,7 +279,7 @@ Dado un conjunto $\Sigma$-mixto $S$, si $n, m \in \omega$ son tales que $S \subs
 ---
 # Combo 9. Defina:
 ### (1) "$I$ es una instruccion de $\mathcal{S}^\Sigma$"
-Una instrucción de $\mathcal{S}^\Sigma$ es ya sea una instrucción básica de $\mathcal{S}^\Sigma$ o una palabra de la forma $\alpha I$, donde $\alpha \in \{ L\overline{n} : n \in \mathbb{N} \}$ y $I$ es una instrucción básica de $\mathcal{S}^\Sigma$ .
+Una instrucción de $\mathcal{S}^\Sigma$ es ya sea una instrucción básica de $\mathcal{S}^\Sigma$ o una palabra de la forma $\alpha I$, donde $\alpha \in \{ L\overline{n} : n \in \mathbb{N} \}$ e $I$ es una instrucción básica de $\mathcal{S}^\Sigma$ .
 
 Usaremos $Ins^\Sigma$ para denotar el conjunto de todas las instrucciones de $\mathcal{S}^\Sigma$.
 
@@ -283,16 +287,16 @@ Usaremos $Ins^\Sigma$ para denotar el conjunto de todas las instrucciones de $\m
 Un programa de $\mathcal{S}^\Sigma$ es una palabra de la forma
 $$ I_1 I_2 \cdots I_n $$
 donde $n \ge 1, I_1 , \cdots, I_n \in Ins^\Sigma$ y ademas se cumple la siguiente propiedad, llamada la ley de los GOTO,
-> (G) Para cada $i \in \{1, \cdots, n \}$, si $GOTOL\overline{m}$ es un tramo final de $I_i$ , entonces existe $j \in \{1, \cdots, n \}$ tal que $I_j$ tiene label $L\overline{m}$
+> (G) Para cada $i \in \{1, \cdots, n \}$, si $GOTOL\overline{m}$ es un tramo final de $I_i$ , entonces existe $j \in \{1, \cdots, n \}$ tal que $I_j$ tiene label $L\overline{m}$, con $m \in \omega$.
 
 Usaremos $Pro^\Sigma$ para denotar el conjunto de todos los programas de $\mathcal{S}^\Sigma$.
 
-### (3) y (4) $I_{i}^{\mathcal{P}}$; $n(\mathcal{P})$
+### (3) "$I_{i}^{\mathcal{P}}$" y (4) "$n(\mathcal{P})$"
 Lema: Sea $\Sigma$ un alfabeto finito. Se tiene que: <br>
 a. Si $I_1 \cdots I_n = J_1 \cdots J_m$, con $I_1, \cdots, I_n, J_1, \cdots, J_m \in Ins^\Sigma$, entonces $n = m$ y $I_j = J_j$ para cada $j \ge 1$. <br>
 b. Si $\mathcal{P} \in Pro^\Sigma$, entonces existe una única sucesión de instrucciones $I_1, \cdots, I_n$ tal que $\mathcal{P} = I_1 \cdots I_n$.
 
-> (b) del lema anterior nos dice que dado un programa $\mathcal{P}$, tenemos unívocamente determinados $n(\mathcal{P}) \in \mathbb{N}$ y $I_1^{\mathcal{P}} , \cdots , I_{n(\mathcal{P})}^{\mathcal{P}} \in Ins^\Sigma$ tales que $P = I_1^{\mathcal{P}} \cdots I_{n(\mathcal{P})}^{\mathcal{P}}$. Definamos también $I_i^{\mathcal{P}} = \epsilon$ cuando $i = 0$ o $i \gt n(\mathcal{P})$.
+> Por (b) del lema anterior nos dice que dado un programa $\mathcal{P}$, tenemos unívocamente determinados $n(\mathcal{P}) \in \mathbb{N}$ instrucciones ($I_1^{\mathcal{P}} , \cdots , I_{n(\mathcal{P})}^{\mathcal{P}} \in Ins^\Sigma$) tales que $P = I_1^{\mathcal{P}} \cdots I_{n(\mathcal{P})}^{\mathcal{P}}$. Definamos también $I_i^{\mathcal{P}} = \epsilon$ cuando $i = 0$ o $i \gt n(\mathcal{P})$.
 
 ### (5) $Bas$
 $$
@@ -324,7 +328,7 @@ $$
 $$
 
 ### (2) "descripcion instantanea"
-Es una terna $(i, \vec{s}, \vec{\sigma})$ tal que $(\vec{s}, \vec{\sigma})$ es un estado e $i \in \omega$.
+Es una terna $(i, \vec{s}, \vec{\sigma})$ tal que $(\vec{s}, \vec{\sigma})$ es un estado e $i \in \omega$. Por lo que, dado un programa $\mathcal{P} \in Pro^\Sigma$, tendríamos que i representa la instrucción $I^{\mathcal{P}}_i$ a ejecutar con el estado $(\vec{s}, \vec{\sigma})$.
 
 ### (3) $S_\mathcal{P}$ (dar la definición matemática)
 Dado un programa $\mathcal{P}$ definiremos a continuación una función
@@ -334,7 +338,58 @@ $$
 
 la cual le asignara a una descripción instantánea $(i, \vec{s}, \vec{\sigma})$ la descripción instantánea sucesora de $(i, \vec{s}, \vec{\sigma})$ con respecto a $\mathcal{P}$.
 
-> Faltan dar todos los casos de la definición
+**Definición matemática:**
+
+Caso $i \notin \{1, \cdots, n(\mathcal{P}) \}$. Entonces $S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i,\vec{s},\vec{\sigma})$.
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{N}\overline{k}\longleftarrow\mathrm{N}\overline{k}\dot{-}1$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i+1,(s_{1},\cdots,s_{k-1},s_{k}\dot{-}1,s_{k+1},\cdots),\vec{\sigma})$$
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{N}\overline{k}\longleftarrow\mathrm{N}\overline{k}+1$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i+1,(s_{1},\cdots,s_{k-1},s_{k}+1,s_{k+1},\cdots),\vec{\sigma})$$
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{N}\overline{k}\longleftarrow\mathrm{N}\overline{n}$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i+1,(s_{1},\cdots,s_{k-1},s_{n},s_{k+1},\cdots),\vec{\sigma})$$
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{N}\overline{k}\longleftarrow0$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i+1,(s_{1},\cdots,s_{k-1},0,s_{k+1},\cdots),\vec{\sigma})$$
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{IF} \ \mathrm{N}\overline{k} \neq0 \ \mathrm{GOTO} \ \mathrm{L}\overline{m}$. Entonces tenemos dos subcasos.
+
+- Subcaso a. El valor de $\mathrm{N}\overline{k}$ en $(\vec{s},\vec{\sigma})$ es $0$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i+1,\vec{s},\vec{\sigma})$$
+
+- Subcaso b. El valor de $\mathrm{N}\overline{k}$ en $(\vec{s},\vec{\sigma})$ es no nulo. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(\min\{l:I_{l}^{\mathcal{P}}\
+\mathrm{tiene\ label\ L}\overline{m}\},\vec{s},\vec{\sigma})$$
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{P}\overline{k}\longleftarrow ^{\curvearrowright}\mathrm{P}\overline{k}$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i+1,\vec{s},(\sigma_{1},\cdots,\sigma_{k-1},^{\curvearrowright}\sigma_{k},\sigma_{k+1},\cdots))$$
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{P}\overline{k}\longleftarrow\mathrm{P}\overline{k}.a$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i+1,\vec{s},(\sigma_{1},\cdots,\sigma_{k-1},\sigma_{k}a,\sigma_{k+1},\cdots))$$
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{P}\overline{k}\longleftarrow\mathrm{P}\overline{n}$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i+1,\vec{s},(\sigma_{1},\cdots,\sigma_{k-1},\sigma_{n},\sigma_{k+1},\cdots))$$
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{P}\overline{k}\longleftarrow\varepsilon$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i+1,\vec{s},(\sigma_{1},\cdots,\sigma_{k-1},\varepsilon,\sigma_{k+1},\cdots))$$
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{IF}\;\mathrm{P}\overline{k}\;\mathrm{BEGINS}\;a\;\mathrm{GOTO}\;\mathrm{L}\overline{m}$. Entonces tenemos dos subcasos.
+
+- Subcaso a. El valor de $\mathrm{P}\overline{k}$ en $(\vec{s},\vec{\sigma})$ comienza con $a$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(\min\{l:I_{l}^{\mathcal{P}}\
+\mathrm{tiene\ label\ L}\overline{m}\},\vec{s},\vec{\sigma})$$
+
+- Subcaso b. El valor de $\mathrm{P}\overline{k}$ en $(\vec{s},\vec{\sigma})$ no comienza con $a$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i+1,\vec{s},\vec{\sigma})$$
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{GOTO}\;\mathrm{L}\overline{m}$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(\min\{l:I_{l}^{\mathcal{P}}\
+\mathrm{tiene\ label\ L}\overline{m}\},\vec{s},\vec{\sigma})$$
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{SKIP}$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i+1,\vec{s},\vec{\sigma})$$
 
 ### (4) "estado obtenido luego de t pasos, partiendo del estado $(\vec{s}, \vec{\sigma})$"
 Dado un programa $\mathcal{P}$ y un estado $(\vec{s}, \vec{\sigma})$ a la infinitupla
@@ -382,8 +437,8 @@ $$
 $$
 
 ### (2) "$f$ es $\Sigma$-computable" y (3) "$\mathcal{P}$ computa a $f$"
-Una función $\Sigma$-mixta $f: S \subseteq \omega^n \times \Sigma^{*m} \longmapsto \omega$ sera llamada $\Sigma$-computable si hay un programa $\mathcal{P}$ de $\mathcal{S}^\Sigma$ tal que $f = \Psi^{n, m, \#}_{\mathcal{P}}$. En tal caso diremos que la función $f$ es computada por $\mathcal{P}$. <br>
-Análogamente una función $\Sigma$-mixta $f: S \subseteq \omega^n \times \Sigma^{*m} \longmapsto \Sigma^*$ sera llamada $\Sigma$-computable si hay un programa $\mathcal{P}$ de $\mathcal{S}^\Sigma$ tal que $f = \Psi^{n, m, *}_{\mathcal{P}}$. En tal caso diremos que la función $f$ es computada por $\mathcal{P}$.
+Una función $\Sigma$-mixta $f: D_f \subseteq \omega^n \times \Sigma^{*m} \longmapsto \omega$ sera llamada $\Sigma$-computable si hay un programa $\mathcal{P}$ de $\mathcal{S}^\Sigma$ tal que $f = \Psi^{n, m, \#}_{\mathcal{P}}$. En tal caso diremos que la función $f$ es computada por $\mathcal{P}$. <br>
+Análogamente una función $\Sigma$-mixta $f: D_f \subseteq \omega^n \times \Sigma^{*m} \longmapsto \Sigma^*$ sera llamada $\Sigma$-computable si hay un programa $\mathcal{P}$ de $\mathcal{S}^\Sigma$ tal que $f = \Psi^{n, m, *}_{\mathcal{P}}$. En tal caso diremos que la función $f$ es computada por $\mathcal{P}$.
 
 ### (4) $M^{\le}(\mathcal{P})$
 Sea $\Sigma$ un alfabeto finito no vacio. Sea $\le$ orden total sobre $\Sigma$. Sea $P : D_P \subseteq \omega^n \times \Sigma^{*m} \times \Sigma^* \longmapsto \omega$ un predicado. Dado $(\vec{x}, \vec{\alpha}) \in \omega^n \times \Sigma^{*m}$ , cuando exista al menos un $\alpha \in \Sigma^*$ tal que $P(\vec{x}, \vec{\alpha}, \alpha) = 1$, usaremos $\min_{\alpha}^{\le} P(\vec{x}, \vec{\alpha}, \alpha)$ para denotar al menor de tales $\alpha's$.
@@ -437,8 +492,8 @@ Definición recursiva:
 $$
 \begin{aligned}
 
-& (i^{n, m}(0, \vec{x} \vec{\alpha} \mathcal{P}), E^{n, m}_{\#}(0, \vec{x} \vec{\alpha} \mathcal{P}), E^{n, m}_{*}(0, \vec{x} \vec{\alpha} \mathcal{P})) = (1, (x_1, \cdots, x_n, 0, \cdots), (\alpha_1, \cdots, \alpha_n, 0, \cdots)) \\
-& (i^{n, m}(t + 1, \vec{x} \vec{\alpha} \mathcal{P}), E^{n, m}_{\#}(t + 1, \vec{x} \vec{\alpha} \mathcal{P}), E^{n, m}_{*}(t + 1, \vec{x} \vec{\alpha} \mathcal{P})) = S_{\mathcal{P}}(i^{n, m}(t, \vec{x} \vec{\alpha} \mathcal{P}), E^{n, m}_{\#}(t, \vec{x} \vec{\alpha} \mathcal{P}), E^{n, m}_{*}(t, \vec{x} \vec{\alpha} \mathcal{P}))
+& (i^{n, m}(0, \vec{x}, \vec{\alpha}, \mathcal{P}), E^{n, m}_{\#}(0, \vec{x}, \vec{\alpha}, \mathcal{P}), E^{n, m}_{*}(0, \vec{x}, \vec{\alpha}, \mathcal{P})) = (1, (x_1, \cdots, x_n, 0, \cdots), (\alpha_1, \cdots, \alpha_n, 0, \cdots)) \\
+& (i^{n, m}(t + 1, \vec{x}, \vec{\alpha}, \mathcal{P}), E^{n, m}_{\#}(t + 1, \vec{x}, \vec{\alpha}, \mathcal{P}), E^{n, m}_{*}(t + 1, \vec{x}, \vec{\alpha}, \mathcal{P})) = S_{\mathcal{P}}(i^{n, m}(t, \vec{x}, \vec{\alpha}, \mathcal{P}), E^{n, m}_{\#}(t, \vec{x}, \vec{\alpha}, \mathcal{P}), E^{n, m}_{*}(t, \vec{x}, \vec{\alpha}, \mathcal{P}))
 
 \end{aligned}
 $$
@@ -452,7 +507,7 @@ $$
 
 & E^{n, m}_{\#(j)}: \omega \times \omega^n \times \Sigma^{*m} \times Pro^\Sigma \longmapsto \omega^{[\mathbb{N}]} \\ \\
 
-& E^{n, m}_{\#(j)}(t, \vec{x} \vec{\alpha} \mathcal{P}) = j \text{-esima coordenada de } E^{n, m}_{\#}(t, \vec{x} \vec{\alpha} \mathcal{P})
+& E^{n, m}_{\#(j)}(t, \vec{x}, \vec{\alpha}, \mathcal{P}) = j \text{-esima coordenada de } E^{n, m}_{\#}(t, \vec{x}, \vec{\alpha}, \mathcal{P})
 
 \end{aligned}
 $$
@@ -466,7 +521,7 @@ $$
 
 & E^{n, m}_{*(j)}: \omega \times \omega^n \times \Sigma^{*m} \times Pro^\Sigma \longmapsto \omega^{[\mathbb{N}]} \\ \\
 
-& E^{n, m}_{*(j)}(t, \vec{x} \vec{\alpha} \mathcal{P}) = j \text{-esima coordenada de } E^{n, m}_{*}(t, \vec{x} \vec{\alpha} \mathcal{P})
+& E^{n, m}_{*(j)}(t, \vec{x}, \vec{\alpha}, \mathcal{P}) = j \text{-esima coordenada de } E^{n, m}_{*}(t, \vec{x}, \vec{\alpha}, \mathcal{P})
 
 \end{aligned}
 $$
@@ -476,7 +531,7 @@ $$
 ### (6) $Halt^{n, m}$
 Dados $n, m \in \omega$, definamos:
 $$
-Halt^{n, m} = \lambda t \vec{x} \vec{\alpha} \mathcal{P} [ i^{n, m}(t, \vec{x} \vec{\alpha} \mathcal{P}) = n(\mathcal{P}) + 1 ]
+Halt^{n, m} = \lambda t \vec{x} \vec{\alpha} \mathcal{P} [ i^{n, m}(t, \vec{x}, \vec{\alpha}, \mathcal{P}) = n(\mathcal{P}) + 1 ]
 $$
 
 > $Halt^{n, m}$ es $(\Sigma \cup \Sigma^p)$-PR
@@ -486,10 +541,10 @@ Dados $n, m \in \omega$, definamos:
 $$
 T^{n, m} = M(Halt^{n, m}) \\ \\
 
-D_{T^{n, m}} = \{ (\vec{x} \vec{\alpha} \mathcal{P}) \in \omega^n \times \Sigma^{*m} \times Pro^\Sigma : \mathcal{P} \text{ se detiene partiendo del estado } || x_1, \cdots, x_n, \alpha_1, \cdots, \alpha_m || \}
+D_{T^{n, m}} = \{ (\vec{x}, \vec{\alpha}, \mathcal{P}) \in \omega^n \times \Sigma^{*m} \times Pro^\Sigma : \mathcal{P} \text{ se detiene partiendo del estado } || x_1, \cdots, x_n, \alpha_1, \cdots, \alpha_m || \}
 $$
 
-Para $(\vec{x} \vec{\alpha} \mathcal{P}) \in D_{T^{n, m}}$ tenemos que $T^{n, m}(\vec{x} \vec{\alpha} \mathcal{P}) =$ cantidad de pasos necesarios para que $\mathcal{P}$ se detenga partiendo del estado $|| x_1, \cdots, x_n, \alpha_1, \cdots, \alpha_m ||$
+Para $(\vec{x}, \vec{\alpha}, \mathcal{P}) \in D_{T^{n, m}}$ tenemos que $T^{n, m}(\vec{x}, \vec{\alpha}, \mathcal{P}) =$ cantidad de pasos necesarios para que $\mathcal{P}$ se detenga partiendo del estado $|| x_1, \cdots, x_n, \alpha_1, \cdots, \alpha_m ||$
 
 > $T^{n, m}$ es $(\Sigma \cup \Sigma^p)$-R
 
@@ -519,16 +574,16 @@ no es $\Sigma$-RE
 
 #### Fijado anteriormente un alfabeto $\Sigma$. Las excreciones que cumplas las siguiente condiciones serán llamada "expresiones lambdificables":
 
-- Pueden tener variables numéricas de $\omega$. Se las puede representar con letras comunes del alfabeto español (p.e.j. $x, y, z, w, b, x_1, y_1, etc$).
-- Pueden tener variables alfabéticas (palabras de $\Sigma$). Se las puede representar con letras griegas.
-- Puede ocurrir que al evaluar las variables estas expresiones no estén definidas (p.e.j. $Pred(\alpha), \quad \text{notar que } \alpha \neq \epsilon$)
+- Pueden tener variables numéricas de $\omega$. Se las representa con letras comunes del alfabeto español (p.e.j. $x, y, z, w, b, x_1, y_1, etc$).
+- Pueden tener variables alfabéticas (palabras de $\Sigma$). Se las representa con letras griegas.
+- Puede ocurrir que al evaluar las variables estas expresiones no estén definidas (p.e.j. $Pred(|\alpha|), \quad \text{notar que } \alpha \neq \epsilon$)
 - El resultado obtenido al evaluar la expresión **deberá** estar contenida en $\omega$ o en $\Sigma^*$.
 - Se puede utilizar **lenguaje coloquial castellano** (no toda expresión son operaciones matemáticas bien definidas)
 - Al evaluar las expresiones booleanas, se asume que el valor que toma esta en el conjunto $\{ 1, 0 \} \in \omega$.
 - Se puede no utilizar variables y en su lugar utilizar constantes, mientras que se cumpla lo anterior.
 
 ### Notación lambda
-Dado un alfabeto finito $\Sigma$ y una expresión lambdificable con respecto a $\Sigma$, donde $x_1, \cdots, x_n$ son todas las variables numéricas que pueden ocurrir en la expresión E y $\alpha_1, \cdots, \alpha_m$ son todas las variables alfabéticas que pueden ocurrir en la expresión E, entonces:
+Dado un alfabeto finito $\Sigma$ y una expresión lambdificable E con respecto a $\Sigma$, donde $x_1, \cdots, x_n$ son todas las variables numéricas que pueden ocurrir en la expresión E y $\alpha_1, \cdots, \alpha_m$ son todas las variables alfabéticas que pueden ocurrir en la expresión E, entonces:
 
 $$ f = \lambda x_1 \cdots x_n \alpha_1 \cdots \alpha_m [E] $$
 
@@ -536,7 +591,7 @@ denotara la función f definida por:
 - $D_f = $ conjunto de las $(x_1, \cdots, x_n, \alpha_1, \cdots, \alpha_m) \in \omega^n \times \Sigma^{m*}$ tales que E esta definida con la $(n + m)$-upla.
 - $f(x_1, \cdots, x_n, \alpha_1, \cdots, \alpha_m)$ = valor que asume o representa E cuando la evaluamos con la $(n + m)$-upla.
 
-> Notar que f es $\Sigma$-Mixta de tipo $(n, m, s), s \in \{ \#, * \}$.
+> Notar que f es $\Sigma$-Mixta de tipo $(n, m, s), s \in \{ \#, * \}$ y $n,m \in \omega$.
 
 
 ---
@@ -567,7 +622,7 @@ Dado un alfabeto finito $\Sigma$ fijado previamente, tendríamos que M es una ma
 1. Las variables oficiales de M son V1 y W1.
 2. A1 es el único label oficial de M.
 3. Si se reemplaza las variables oficiales de M por variables concretas del un programa, el label oficial po un label concreto, las variables auxiliares por variables concretas (no utilizadas en el resto del programa) y los labels auxiliares de M por labels concretos (no utilizados en el resto del programa), entonces, la palabra obtenida es un programa $\Large \epsilon$ de $\mathbb{S}^\Sigma$ **(salvo por la ley de GOTO respecto a el label concreto que reemplaza a A1)**. Y, en criollo, si el valor de las variables concretas no esta en $D_P$, entonces no termina. Caso contrario,
-    - si $P(s_i, \sigma_j) = 1$ (siendo $s_i$ y $\sigma_j$ el valor de la variable concreta con la cual se reemplazo V1 y W1) entonces luego de una cantidad finita de pasos, se disecciona a el label concreto que reemplaza a A1.
+    - si $P(s_i, \sigma_j) = 1$ (siendo $s_i$ y $\sigma_j$ el valor de la variable concreta con la cual se reemplazo V1 y W1) entonces luego de una cantidad finita de pasos, se direcciona a el label concreto que reemplaza a A1.
     - si $P(s_i, \sigma_j) = 0$ (siendo $s_i$ y $\sigma_j$ el valor de la variable concreta con la cual se reemplazo V1 y W1) entonces luego de una cantidad finita de pasos, el programa termina.
 
 El programa (salvo la ley del GOTO para $L\overline{l}$) $\Large \epsilon \normalsize = [\text{IF P(N}\overline{i}\text{, P}\overline{j}\text{) GOTO L}\overline{l}]$, con $l, i, j \in \omega$ tales que son variables concretas, entonces $\Large \epsilon$ es llamado la expansion del macro M, con respecto a la elección de variables y labels realizada.
@@ -585,7 +640,7 @@ Una función es un conjunto f de pares ordenados con la siguiente propiedad: <br
 Como es usual, dado $x \in D_f$ , usaremos $f(x)$ para denotar al único $y \in I_f$ tal que $(x, y) \in f$.
 
 #### Convencion Notacional 2:
-Escribiremos $f : S \subseteq A \longmapsto B$ para expresar que f es una función tal que $D_f = S \subset A$ y $I_f \subseteq B$. También escribiremos $f : A \longmapsto B$ para expresar que f es una función tal que $D_f = A$ y $If \subseteq B$. En tal contexto llamaremos a B conjunto de llegada. Por supuesto B no esta determinado por f ya que solo debe cumplir $I_f \subseteq B$. Es decir que cualquier conjunto B que contenga a $I_f$ puede ser considerado conjunto de llegada de f.
+Escribiremos $f : S \subseteq A \longmapsto B$ para expresar que f es una función tal que $D_f = S \subseteq A$ y $I_f \subseteq B$. También escribiremos $f : A \longmapsto B$ para expresar que f es una función tal que $D_f = A$ y $I_f \subseteq B$. En tal contexto llamaremos a B conjunto de llegada. Por supuesto B no esta determinado por f ya que solo debe cumplir $I_f \subseteq B$. Es decir que cualquier conjunto B que contenga a $I_f$ puede ser considerado conjunto de llegada de f.
 
 #### Convencion Notacional 3:
 Muchas veces para definir una función f, lo haremos dando su dominio y su regla de asignación, es decir especificaremos en forma precisa que conjunto es el dominio de f y ademas especificaremos en forma precisa quien es $f(x)$ para cada x de dicho dominio. Obviamente esto determina por completo a la función f ya que siempre se da que $f = \{ (x, f(x)) : x \in D_f \}$.

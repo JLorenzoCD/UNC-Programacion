@@ -11,7 +11,7 @@ entonces $M(P)$ es $\Sigma$-PR.
 Proof
 
 (a) <br>
-Sea $\overline{P} = P \cup C_{0}^{n+1,m}|_{(\omega^{n+1} \times \Sigma^{* m}) - D_P}$, por lema de union de funciones con dominio disjunto, tenemos que $\overline{P}$ es $\Sigma$-PR.
+Sea $\overline{P} = P \cup C_{0}^{n+1,m}|_{(\omega^{n+1} \times \Sigma^{* m}) - D_P}$, por lema de union de funciones con dominio disjunto, tenemos que $\overline{P}$ es $\Sigma$-PR y $\Sigma$-Total.
 
 Notar que:
 $$
@@ -61,20 +61,24 @@ $$
 
 Esto nos dice que
 $$
-M(\overline{P})=\left(\lambda\vec{x}\vec{\alpha}\left[\prod_{t=0}^{f(\vec{x},\vec{\alpha})}t^{P_{1}(t,\vec{x},\vec{\alpha})}\right]\right)|_{D_{M(\overline{P})}}
+M(\overline{P})=\left(\lambda\vec{x}\vec{\alpha}\left[\prod_{t=0}^{t=f(\vec{x},\vec{\alpha})}t^{P_{1}(t,\vec{x},\vec{\alpha})}\right]\right)|_{D_{M(\overline{P})}}
 $$
-por lo cual para probar que $M(\overline{P})$ es $\Sigma$-PR solo nos resta probar que la función de interna es $\Sigma$-PR, pero notar que
+por lo cual para probar que $M(\overline{P})$ es $\Sigma$-PR solo nos resta probar que la función interna es $\Sigma$-PR, pero notar que
 $$
 \begin{aligned}
 
-F = & \lambda\vec{x}\vec{\alpha}\left[\prod_{t=0}^{f(\vec{x},\vec{\alpha})}t^{P_{1}(t,\vec{x},\vec{\alpha})}\right] \\
+F = & \lambda\vec{x}\vec{\alpha}\left[\prod_{t=0}^{t=f(\vec{x},\vec{\alpha})}t^{P_{1}(t,\vec{x},\vec{\alpha})}\right] \\
 
 = & \lambda
-xy\vec{x}\vec{\alpha}\left[\prod_{t=x}^{y}t^{P_{1}(t,\vec{x},\vec{\alpha})}\right]\circ\left[C_{0}^{n,m},f,p_{1}^{n,m},\cdots,p_{n+m}^{n,m}\right]
+xy\vec{x}\vec{\alpha}\left[\prod_{t=x}^{t=y} B(t, \vec{x}, \vec{\alpha})\right]\circ\left[C_{0}^{n,m},f,p_{1}^{n,m},\cdots,p_{n+m}^{n,m}\right] \\
+
+\text{donde} \\
+
+& B = \lambda xy \left[ x^y \right] \circ \left[ p_1^{n+1, m}, P_{1} \right]
 
 \end{aligned}
 $$
-y como por lema tenemos que $\lambda xy\vec{x}\vec{\alpha}\left[\prod_{t=x}^{y}t^{P_{1}(t,\vec{x},\vec{\alpha})}\right]$ es $\Sigma$-PR, entonces F es $\Sigma$-PR.
+y como por lema tenemos que $\lambda xy\vec{x}\vec{\alpha}\left[\prod_{t=x}^{t=y} B(t, \vec{x}, \vec{\alpha}) \right]$ es $\Sigma$-PR, $B$ es $\Sigma$-PR, entonces F es $\Sigma$-PR.
 
 Por lema de restricción de dominio de función $\Sigma$-PR con un conjunto $\Sigma$-PR, tenemos que $M(\overline{P})$ es $\Sigma$-PR, por lo que $M(P)$ es $\Sigma$-PR.
 
@@ -82,7 +86,7 @@ Por lema de restricción de dominio de función $\Sigma$-PR con un conjunto $\Si
 ### Lema.
 Supongamos $f : D_f \subseteq \omega^n \times \Sigma^{∗m} \longmapsto O$ es $\Sigma$-R y $S \subseteq D_f$ es $\Sigma$-RE, entonces $f|_S$ es $\Sigma$-R.
 
-> (Haga solo el caso $S$ no vacı́o, $n = m = 1$ y $O = \Sigma^∗$ )
+> Haga solo el caso $S$ no vacı́o, $n = m = 1$ y $O = \Sigma^∗$
 
 Proof
 
@@ -111,5 +115,5 @@ $$
 \mathrm{L}3 \quad & \mathrm{SKIP} \\
 \end{aligned}
 $$
-es fácil ver que $\mathcal{P}$ computa a $f|_S$, por lo que $f|_S$ es $\Sigma$-C y por teorema tenemos que es $\Sigma$-R.
+es fácil ver que $\mathcal{P}$ computa a $f|_S$, por lo que $f|_S$ es $\Sigma$-C y por teorema (Godel vence a Neumann) tenemos que es $\Sigma$-R.
 

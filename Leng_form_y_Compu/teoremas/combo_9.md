@@ -1,7 +1,7 @@
 # Combo 9.
 ### Lema (Lema de división por casos para funciones $\Sigma$-R).
 Supongamos $f_i : D_{fi} \subseteq \omega^n \times \Sigma^{∗m} \longmapsto O$, $i = 1, \cdots, k$, son funciones $\Sigma$-R tales que $D_{f_i} \cap D{f_j} = \emptyset$ para $i \neq j$. Entonces la función $f_1 \cup \cdots \cup f_k$ es $\Sigma$-R.
-> (Haga el caso $k = 2, n = m = 1$ y $O = \omega$)
+> Haga el caso $k = 2, n = m = 1$ y $O = \omega$
 
 Proof
 
@@ -21,8 +21,7 @@ $$
 
 Ya que $f_i$ es $\Sigma$-C, por primer manantial de macros tenemos que existe la siguiente macro:
 $$
-\left[\mathrm{W}2\longleftarrow
-f_{i}(\mathrm{V}1,\mathrm{W}1)\right]\\
+\left[\mathrm{V}2 \longleftarrow f_{i}(\mathrm{V}1,\mathrm{W}1)\right]\\
 $$
 
 Sea $\mathcal{P}$ el siguiente programa:
@@ -32,10 +31,10 @@ $$
 & \left[\mathrm{IF}\;Halt^{1,1}(\mathrm{N}20,\mathrm{N}1,\mathrm{P}1,\mathcal{P}_{1})\;\mathrm{GOTO}\;\mathrm{L}2\right]\\
 & \left[\mathrm{IF}\;Halt^{1,1}(\mathrm{N}20,\mathrm{N}1,\mathrm{P}1,\mathcal{P}_{2})\;\mathrm{GOTO}\;\mathrm{L}3\right]\\
 & \mathrm{GOTO}\;\mathrm{L}1\\
-\mathrm{L}2 \quad & \left[\mathrm{P}1\longleftarrow
+\mathrm{L}2 \quad & \left[\mathrm{N}1\longleftarrow
 f_{1}(\mathrm{N}1,\mathrm{P}1)\right]\\
 & \mathrm{GOTO}\;\mathrm{L}4\\
-\mathrm{L}3\quad & \left[\mathrm{P}1\longleftarrow
+\mathrm{L}3\quad & \left[\mathrm{N}1\longleftarrow
 f_{2}(\mathrm{N}1,\mathrm{P}1)\right]\\
 \mathrm{L}4\quad & \mathrm{SKIP}
 \end{aligned}
@@ -45,6 +44,8 @@ claramente $\mathcal{P}$ computa la función $f_1 \cup f_2$, por lo que es $\Sig
 
 ---
 ### Teorema (Godel vence a Neumann). Si $f : D_f \subseteq \omega^n \times \Sigma^{∗m} \longmapsto \omega$ es $\Sigma$-C, entonces $f$ es $\Sigma$-R.
+
+> Similar al combo 3, cambia conjunto de llegada
 
 Función $\Phi_{\#}^{n,m}$: <br>
 Para $n, m \in \omega$ definamos la función $\Phi_{\#}^{n,m}$ de la siguiente manera:
@@ -67,4 +68,6 @@ Sea $\mathcal{P}_0$ un programa que compute a $f$. Veamos que $f$ es $(\Sigma \c
 $$
 f = \Phi_{\#}^{n,m} \circ \left[ p_{1}^{n,m}, \cdots, p_{n+m}^{n,m}, C_{\mathcal{P}_{0}}^{n,m} \right]
 $$
-donde cabe destacar que $p_{1}^{n,m}, \cdots, p_{n+m}^{n,m}$ son respecto al alfabeto $\Sigma \cup \Sigma^p$, es decir que tienen dominio $\omega^n \times (\Sigma \cup \Sigma^p)^{*m}$. Ya que $\Phi_{\#}^{n,m}$ es $(\Sigma \cup \Sigma^p)$-R tenemos que f lo es. Por lo que si se fija $\mathcal{P}_0$, por teorema de la independencia de Alfabeto, tendríamos que f es $\Sigma$-R.
+donde cabe destacar que $p_{1}^{n,m}, \cdots, p_{n+m}^{n,m}$ son respecto al alfabeto $\Sigma \cup \Sigma^p$, es decir que tienen dominio $\omega^n \times (\Sigma \cup \Sigma^p)^{*m}$. Ya que $\Phi_{\#}^{n,m}$ es $(\Sigma \cup \Sigma^p)$-R tenemos que f lo es.
+
+Por lo que si se fija $\mathcal{P}_0$, por teorema de la independencia de Alfabeto, tendríamos que f es $\Sigma$-R.

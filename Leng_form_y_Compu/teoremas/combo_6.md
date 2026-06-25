@@ -10,7 +10,7 @@ Como $S \neq \emptyset$ entonces fijo $(\vec{z}, \gamma) \in S$.
 
 Como $S$ es $\Sigma$-efectivamente computable, entonces tenemos que $\mathbb{P}_{1}$ es el procedimiento efectivo que computa a $\chi^{\omega^n \times \Sigma^{∗m}}_S$.
 
-Como $\omega^n \times \Sigma^{∗m}$ es claramente $\Sigma$-efectivamente computable, entonces tenemos que $\mathbb{P}_2$ es el procedimiento efectivo que enumera a $\chi^{\omega^n \times \Sigma^{∗m}}_{\omega^n \times \Sigma^{∗m}}$.
+Como $\omega^n \times \Sigma^{∗m}$ es claramente $\Sigma$-efectivamente enumerable, entonces tenemos que $\mathbb{P}_2$ es el procedimiento efectivo que enumera a $\chi^{\omega^n \times \Sigma^{∗m}}_{\omega^n \times \Sigma^{∗m}}$.
 
 Sea $\mathbb{P}_S$ el siguiente procedimiento efectivo:
 - Se recibe como dato de entrada $x \in \omega.$
@@ -28,7 +28,7 @@ Dado $S \subseteq \omega^n \times \Sigma^{∗m}$, son equivalentes <br>
 (2) $S = I_F$ , para alguna $F : D_F \subseteq \omega^k \times \Sigma^{∗l} \longmapsto \omega^n \times \Sigma^{∗m}$ tal que cada $F_{(i)}$ es $\Sigma$-recursiva. <br>
 (3) $S = D_f$ , para alguna función $\Sigma$-recursiva $f$
 
-> (Haga solo la prueba de $(2) \implies (3)$, caso k = l = 1 y n = m = 2)
+> Haga solo la prueba de $(2) \implies (3)$, caso k = l = 1 y n = m = 2
 
 Proof
 
@@ -73,7 +73,7 @@ E_{\#i}^{1,1}(\mathrm{V}3,\mathrm{V}1,\mathrm{W}1,\mathcal{P}_{i})\;\mathrm{GOTO
 E_{*i}^{1,1}(\mathrm{V}3,\mathrm{V}1,\mathrm{W}1,\mathcal{P}_{i})\;\mathrm{GOTO}\;\mathrm{A}1\right] \\
 $$
 
-Entonces el siguiente programa $\mathcal{P} \in Pro^{\Sigma}$ (se utilizan alguna macros las cuales son obviamente $\Sigma$-R):
+Entonces el siguiente programa $\mathcal{P} \in Pro^{\Sigma}$ (se utilizan alguna macros las cuales surgen del segundo manantial de macros de funciones claramente $\Sigma$-R):
 $$
 \begin{array}{l}
 \mathrm{L}1\ \mathrm{N}20\leftarrow\mathrm{N}20+1\\{}
@@ -99,4 +99,4 @@ E_{\ast1}^{1,1}(\mathrm{N}10,\mathrm{N}3,\mathrm{P}3,\mathcal{P}_{4})\;\mathrm{G
 \end{array}
 $$
 
-Tenemos entonces que $\mathcal{P}$ computa $p_{1}^{2,2}|_{S}$. Como $p_{1}^{2,2}|_{S}$ es $\Sigma$-C entonces por teorema tenemos que también es $\Sigma$-R. Ademas, como es una función con dominio restringido a $S$, claramente su dominio es $S$. Por lo que cumple (3).
+Tenemos entonces que $\mathcal{P}$ computa $p_{1}^{2,2}|_{S}$. Como $p_{1}^{2,2}|_{S}$ es $\Sigma$-C entonces por teorema (Godel vence a Neumann) tenemos que también es $\Sigma$-R. Ademas, como es una función con dominio restringido a $S$, claramente su dominio es $S$. Por lo que cumple (3).

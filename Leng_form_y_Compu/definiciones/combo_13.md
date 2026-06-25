@@ -15,8 +15,8 @@ Definición recursiva:
 $$
 \begin{aligned}
 
-& (i^{n, m}(0, \vec{x} \vec{\alpha} \mathcal{P}), E^{n, m}_{\#}(0, \vec{x} \vec{\alpha} \mathcal{P}), E^{n, m}_{*}(0, \vec{x} \vec{\alpha} \mathcal{P})) = (1, (x_1, \cdots, x_n, 0, \cdots), (\alpha_1, \cdots, \alpha_n, 0, \cdots)) \\
-& (i^{n, m}(t + 1, \vec{x} \vec{\alpha} \mathcal{P}), E^{n, m}_{\#}(t + 1, \vec{x} \vec{\alpha} \mathcal{P}), E^{n, m}_{*}(t + 1, \vec{x} \vec{\alpha} \mathcal{P})) = S_{\mathcal{P}}(i^{n, m}(t, \vec{x} \vec{\alpha} \mathcal{P}), E^{n, m}_{\#}(t, \vec{x} \vec{\alpha} \mathcal{P}), E^{n, m}_{*}(t, \vec{x} \vec{\alpha} \mathcal{P}))
+& (i^{n, m}(0, \vec{x}, \vec{\alpha}, \mathcal{P}), E^{n, m}_{\#}(0, \vec{x}, \vec{\alpha}, \mathcal{P}), E^{n, m}_{*}(0, \vec{x}, \vec{\alpha}, \mathcal{P})) = (1, (x_1, \cdots, x_n, 0, \cdots), (\alpha_1, \cdots, \alpha_n, 0, \cdots)) \\
+& (i^{n, m}(t + 1, \vec{x}, \vec{\alpha}, \mathcal{P}), E^{n, m}_{\#}(t + 1, \vec{x}, \vec{\alpha}, \mathcal{P}), E^{n, m}_{*}(t + 1, \vec{x}, \vec{\alpha}, \mathcal{P})) = S_{\mathcal{P}}(i^{n, m}(t, \vec{x}, \vec{\alpha}, \mathcal{P}), E^{n, m}_{\#}(t, \vec{x}, \vec{\alpha}, \mathcal{P}), E^{n, m}_{*}(t, \vec{x}, \vec{\alpha}, \mathcal{P}))
 
 \end{aligned}
 $$
@@ -30,7 +30,7 @@ $$
 
 & E^{n, m}_{\#(j)}: \omega \times \omega^n \times \Sigma^{*m} \times Pro^\Sigma \longmapsto \omega^{[\mathbb{N}]} \\ \\
 
-& E^{n, m}_{\#(j)}(t, \vec{x} \vec{\alpha} \mathcal{P}) = j \text{-esima coordenada de } E^{n, m}_{\#}(t, \vec{x} \vec{\alpha} \mathcal{P})
+& E^{n, m}_{\#(j)}(t, \vec{x}, \vec{\alpha}, \mathcal{P}) = j \text{-esima coordenada de } E^{n, m}_{\#}(t, \vec{x}, \vec{\alpha}, \mathcal{P})
 
 \end{aligned}
 $$
@@ -44,7 +44,7 @@ $$
 
 & E^{n, m}_{*(j)}: \omega \times \omega^n \times \Sigma^{*m} \times Pro^\Sigma \longmapsto \omega^{[\mathbb{N}]} \\ \\
 
-& E^{n, m}_{*(j)}(t, \vec{x} \vec{\alpha} \mathcal{P}) = j \text{-esima coordenada de } E^{n, m}_{*}(t, \vec{x} \vec{\alpha} \mathcal{P})
+& E^{n, m}_{*(j)}(t, \vec{x}, \vec{\alpha}, \mathcal{P}) = j \text{-esima coordenada de } E^{n, m}_{*}(t, \vec{x}, \vec{\alpha}, \mathcal{P})
 
 \end{aligned}
 $$
@@ -54,7 +54,7 @@ $$
 ### (6) $Halt^{n, m}$
 Dados $n, m \in \omega$, definamos:
 $$
-Halt^{n, m} = \lambda t \vec{x} \vec{\alpha} \mathcal{P} [ i^{n, m}(t, \vec{x} \vec{\alpha} \mathcal{P}) = n(\mathcal{P}) + 1 ]
+Halt^{n, m} = \lambda t \vec{x} \vec{\alpha} \mathcal{P} [ i^{n, m}(t, \vec{x}, \vec{\alpha}, \mathcal{P}) = n(\mathcal{P}) + 1 ]
 $$
 
 > $Halt^{n, m}$ es $(\Sigma \cup \Sigma^p)$-PR
@@ -64,10 +64,10 @@ Dados $n, m \in \omega$, definamos:
 $$
 T^{n, m} = M(Halt^{n, m}) \\ \\
 
-D_{T^{n, m}} = \{ (\vec{x} \vec{\alpha} \mathcal{P}) \in \omega^n \times \Sigma^{*m} \times Pro^\Sigma : \mathcal{P} \text{ se detiene partiendo del estado } || x_1, \cdots, x_n, \alpha_1, \cdots, \alpha_m || \}
+D_{T^{n, m}} = \{ (\vec{x}, \vec{\alpha}, \mathcal{P}) \in \omega^n \times \Sigma^{*m} \times Pro^\Sigma : \mathcal{P} \text{ se detiene partiendo del estado } || x_1, \cdots, x_n, \alpha_1, \cdots, \alpha_m || \}
 $$
 
-Para $(\vec{x} \vec{\alpha} \mathcal{P}) \in D_{T^{n, m}}$ tenemos que $T^{n, m}(\vec{x} \vec{\alpha} \mathcal{P}) =$ cantidad de pasos necesarios para que $\mathcal{P}$ se detenga partiendo del estado $|| x_1, \cdots, x_n, \alpha_1, \cdots, \alpha_m ||$
+Para $(\vec{x}, \vec{\alpha}, \mathcal{P}) \in D_{T^{n, m}}$ tenemos que $T^{n, m}(\vec{x}, \vec{\alpha}, \mathcal{P}) =$ cantidad de pasos necesarios para que $\mathcal{P}$ se detenga partiendo del estado $|| x_1, \cdots, x_n, \alpha_1, \cdots, \alpha_m ||$
 
 > $T^{n, m}$ es $(\Sigma \cup \Sigma^p)$-R
 

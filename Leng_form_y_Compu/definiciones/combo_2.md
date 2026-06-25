@@ -14,7 +14,7 @@ Finalmente definamos
 $$ d \vdash^* d' \quad \text{sii} \quad (\exists n \in \omega) \quad d \vdash^n d'. $$
 
 ### (2) $L(M)$
-El lenguaje $L(M)$ (definición matemática ahora). Diremos que una palabra $\alpha \in \Sigma^*$ es aceptada por $M$ por alcance de estado final cuando
+Diremos que una palabra $\alpha \in \Sigma^*$ es aceptada por $M$ por alcance de estado final cuando
 
 $$ ⌊q_0 B \alpha⌋ \vdash^* d, \quad \text{con d tal que } St(d) \in F $$
 
@@ -40,6 +40,6 @@ $$
 \begin{aligned}
 (x)_i & = \max_t(pr(i)^t \ \ \text{divide a x}) \\
 (x)_i & = \text{exponente de pr(i) en la (única posible) factorización de x como producto de primos}  \\
-(x)_i & = s_i = i-esimo elemento de la infinitupla (x) \\
+(x)_i & = s_i = \text{i-esimo elemento de la infinitupla } (x) \\
 \end{aligned}
 $$

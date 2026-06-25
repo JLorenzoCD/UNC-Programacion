@@ -15,8 +15,8 @@ $$
 $$
 
 ### (2) "$f$ es $\Sigma$-computable" y (3) "$\mathcal{P}$ computa a $f$"
-Una función $\Sigma$-mixta $f: S \subseteq \omega^n \times \Sigma^{*m} \longmapsto \omega$ sera llamada $\Sigma$-computable si hay un programa $\mathcal{P}$ de $\mathcal{S}^\Sigma$ tal que $f = \Psi^{n, m, \#}_{\mathcal{P}}$. En tal caso diremos que la función $f$ es computada por $\mathcal{P}$. <br>
-Análogamente una función $\Sigma$-mixta $f: S \subseteq \omega^n \times \Sigma^{*m} \longmapsto \Sigma^*$ sera llamada $\Sigma$-computable si hay un programa $\mathcal{P}$ de $\mathcal{S}^\Sigma$ tal que $f = \Psi^{n, m, *}_{\mathcal{P}}$. En tal caso diremos que la función $f$ es computada por $\mathcal{P}$.
+Una función $\Sigma$-mixta $f: D_f \subseteq \omega^n \times \Sigma^{*m} \longmapsto \omega$ sera llamada $\Sigma$-computable si hay un programa $\mathcal{P}$ de $\mathcal{S}^\Sigma$ tal que $f = \Psi^{n, m, \#}_{\mathcal{P}}$. En tal caso diremos que la función $f$ es computada por $\mathcal{P}$. <br>
+Análogamente una función $\Sigma$-mixta $f: D_f \subseteq \omega^n \times \Sigma^{*m} \longmapsto \Sigma^*$ sera llamada $\Sigma$-computable si hay un programa $\mathcal{P}$ de $\mathcal{S}^\Sigma$ tal que $f = \Psi^{n, m, *}_{\mathcal{P}}$. En tal caso diremos que la función $f$ es computada por $\mathcal{P}$.
 
 ### (4) $M^{\le}(\mathcal{P})$
 Sea $\Sigma$ un alfabeto finito no vacio. Sea $\le$ orden total sobre $\Sigma$. Sea $P : D_P \subseteq \omega^n \times \Sigma^{*m} \times \Sigma^* \longmapsto \omega$ un predicado. Dado $(\vec{x}, \vec{\alpha}) \in \omega^n \times \Sigma^{*m}$ , cuando exista al menos un $\alpha \in \Sigma^*$ tal que $P(\vec{x}, \vec{\alpha}, \alpha) = 1$, usaremos $\min_{\alpha}^{\le} P(\vec{x}, \vec{\alpha}, \alpha)$ para denotar al menor de tales $\alpha's$.

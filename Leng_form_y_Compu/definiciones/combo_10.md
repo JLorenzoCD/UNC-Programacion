@@ -13,7 +13,7 @@ $$
 $$
 
 ### (2) "descripcion instantanea"
-Es una terna $(i, \vec{s}, \vec{\sigma})$ tal que $(\vec{s}, \vec{\sigma})$ es un estado e $i \in \omega$.
+Es una terna $(i, \vec{s}, \vec{\sigma})$ tal que $(\vec{s}, \vec{\sigma})$ es un estado e $i \in \omega$. Por lo que, dado un programa $\mathcal{P} \in Pro^\Sigma$, tendríamos que i representa la instrucción $I^{\mathcal{P}}_i$ a ejecutar con el estado $(\vec{s}, \vec{\sigma})$.
 
 ### (3) $S_\mathcal{P}$ (dar la definición matemática)
 Dado un programa $\mathcal{P}$ definiremos a continuación una función
@@ -23,7 +23,58 @@ $$
 
 la cual le asignara a una descripción instantánea $(i, \vec{s}, \vec{\sigma})$ la descripción instantánea sucesora de $(i, \vec{s}, \vec{\sigma})$ con respecto a $\mathcal{P}$.
 
-> Faltan dar todos los casos de la definición
+**Definición matemática:**
+
+Caso $i \notin \{1, \cdots, n(\mathcal{P}) \}$. Entonces $S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i,\vec{s},\vec{\sigma})$.
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{N}\overline{k}\longleftarrow\mathrm{N}\overline{k}\dot{-}1$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i+1,(s_{1},\cdots,s_{k-1},s_{k}\dot{-}1,s_{k+1},\cdots),\vec{\sigma})$$
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{N}\overline{k}\longleftarrow\mathrm{N}\overline{k}+1$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i+1,(s_{1},\cdots,s_{k-1},s_{k}+1,s_{k+1},\cdots),\vec{\sigma})$$
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{N}\overline{k}\longleftarrow\mathrm{N}\overline{n}$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i+1,(s_{1},\cdots,s_{k-1},s_{n},s_{k+1},\cdots),\vec{\sigma})$$
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{N}\overline{k}\longleftarrow0$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i+1,(s_{1},\cdots,s_{k-1},0,s_{k+1},\cdots),\vec{\sigma})$$
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{IF} \ \mathrm{N}\overline{k} \neq0 \ \mathrm{GOTO} \ \mathrm{L}\overline{m}$. Entonces tenemos dos subcasos.
+
+- Subcaso a. El valor de $\mathrm{N}\overline{k}$ en $(\vec{s},\vec{\sigma})$ es $0$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i+1,\vec{s},\vec{\sigma})$$
+
+- Subcaso b. El valor de $\mathrm{N}\overline{k}$ en $(\vec{s},\vec{\sigma})$ es no nulo. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(\min\{l:I_{l}^{\mathcal{P}}\
+\mathrm{tiene\ label\ L}\overline{m}\},\vec{s},\vec{\sigma})$$
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{P}\overline{k}\longleftarrow ^{\curvearrowright}\mathrm{P}\overline{k}$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i+1,\vec{s},(\sigma_{1},\cdots,\sigma_{k-1},^{\curvearrowright}\sigma_{k},\sigma_{k+1},\cdots))$$
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{P}\overline{k}\longleftarrow\mathrm{P}\overline{k}.a$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i+1,\vec{s},(\sigma_{1},\cdots,\sigma_{k-1},\sigma_{k}a,\sigma_{k+1},\cdots))$$
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{P}\overline{k}\longleftarrow\mathrm{P}\overline{n}$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i+1,\vec{s},(\sigma_{1},\cdots,\sigma_{k-1},\sigma_{n},\sigma_{k+1},\cdots))$$
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{P}\overline{k}\longleftarrow\varepsilon$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i+1,\vec{s},(\sigma_{1},\cdots,\sigma_{k-1},\varepsilon,\sigma_{k+1},\cdots))$$
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{IF}\;\mathrm{P}\overline{k}\;\mathrm{BEGINS}\;a\;\mathrm{GOTO}\;\mathrm{L}\overline{m}$. Entonces tenemos dos subcasos.
+
+- Subcaso a. El valor de $\mathrm{P}\overline{k}$ en $(\vec{s},\vec{\sigma})$ comienza con $a$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(\min\{l:I_{l}^{\mathcal{P}}\
+\mathrm{tiene\ label\ L}\overline{m}\},\vec{s},\vec{\sigma})$$
+
+- Subcaso b. El valor de $\mathrm{P}\overline{k}$ en $(\vec{s},\vec{\sigma})$ no comienza con $a$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i+1,\vec{s},\vec{\sigma})$$
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{GOTO}\;\mathrm{L}\overline{m}$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(\min\{l:I_{l}^{\mathcal{P}}\
+\mathrm{tiene\ label\ L}\overline{m}\},\vec{s},\vec{\sigma})$$
+
+Caso $Bas(I_{i}^{\mathcal{P}})=\mathrm{SKIP}$. Entonces
+$$S_{\mathcal{P}}(i,\vec{s},\vec{\sigma})=(i+1,\vec{s},\vec{\sigma})$$
 
 ### (4) "estado obtenido luego de t pasos, partiendo del estado $(\vec{s}, \vec{\sigma})$"
 Dado un programa $\mathcal{P}$ y un estado $(\vec{s}, \vec{\sigma})$ a la infinitupla

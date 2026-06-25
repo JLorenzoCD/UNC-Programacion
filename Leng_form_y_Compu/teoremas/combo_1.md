@@ -1,6 +1,6 @@
 # Combo 1.
 ### Proposición (Caracterización de conjuntos $\Sigma$-PR). Un conjunto $S$ es $\Sigma$-PR sii $S$ es el dominio de alguna función $\Sigma$-PR
-> (En la inducción de la prueba hacer solo el caso de la composición)
+> En la inducción de la prueba hacer solo el caso de la composición
 
 Proof
 
@@ -11,9 +11,9 @@ Probare por inducción en $k$ que $D_F$ es $\Sigma$-PR para cada $F \in PR^\Sigm
 
 El caso $k=0$ es fácil, ya que las funciones en $PR^\Sigma_0$ tienen dominio contenido en $\omega^n \times \Sigma^{*m}$ y como $\omega$ y $\Sigma^*$ son conjuntos no vacíos $\Sigma$-PR, entonces el producto cruz de estos es un conjunto $\Sigma$-PR.
 
-- Supongamos que el resultado vale para un k fijo.
+- Supongamos que el resultado vale para un k fijo, con $k \gt 0$.
 
-Supongamos que $F = g \circ [g_1, \cdots, g_r ]$ con $g, g_1, \cdots, g_r \in PR^\Sigma_k$ (notar que $F \in PR^\Sigma_{k+1}$).
+Supongamos que $F = g \circ [g_1, \cdots, g_r ]$ con $g, g_1, \cdots, g_r \in (PR^\Sigma_k - PR^\Sigma_{k-1})$, por lo cual, notar que $F \in PR^\Sigma_{k+1}$.
 
 - Si $F = \emptyset$, entonces es claro que $D_F = \emptyset$ es $\Sigma$-PR.
 
@@ -31,33 +31,48 @@ $$
 
 \end{array}
 $$
-con $O \in \{ \omega, \Sigma^∗ \}$ y $k, l ∈ \omega$. Por Lema 19, hay funciones $\Sigma$-PR, $\overline{g}_1, \cdots, \overline{g}_{n + m} \in PR^\Sigma_k$ las cuales son $\Sigma$-totales y cumplen
-$$ g_i = \overline{g}_i |_{D_{g_i}} ,  \quad \text{para } i = 1, \cdots, n + m $$
+con $O \in \{ \omega, \Sigma^∗ \}$ y $k, l ∈ \omega$. Por Lema 19, hay funciones $\Sigma$-PR, $\overline{g}, \overline{g}_1, \cdots, \overline{g}_{n + m} \in PR^\Sigma_k$ las cuales son $\Sigma$-totales y cumplen
+$$
+\begin{aligned}
+& g = \overline{g} |_{D_{g}} \\
+& g_i = \overline{g}_i |_{D_{g_i}} ,  \quad \text{para } i = 1, \cdots, n + m
+\end{aligned}
+$$
 
 Por hipótesis inductiva los conjuntos $D_g , D_{g_i} , i = 1, \cdots, n + m$, son $\Sigma$-PR y por lo tanto
 $$ S = \bigcap_{i=1}^{n + m} D_{g_i} $$
 lo es. Nótese que
 $$ \chi_{D_F}^{\omega^n \times \Sigma^{*m}} = (\chi_{D_g}^{\omega^n \times \Sigma^{*m}} \circ [\overline{g}_1, \cdots, \overline{g}_{n+m}] \wedge \chi_S^{\omega^n \times \Sigma^{*m}}) $$
-lo cual nos dice que $D_F$ es $\Sigma$-PR.
+lo cual nos dice que $D_F$ es $\Sigma$-PR. Por lo cual se cumple la hipótesis para $PR^\Sigma_{k+1}$.
 
 ---
 ### Teorema (Neumann vence a Godel). Si $h$ es $\Sigma$-recursiva, entonces $h$ es $\Sigma$-computable
-> (En la inducción de la prueba hacer solo el caso $h = R(f, \mathcal{G})$, con $I_h \subseteq \omega$)
+> En la inducción de la prueba hacer solo el caso $h = R(f, \mathcal{G})$, con $I_h \subseteq \omega$
 
 Proof
 
-- Caso $h = R(f, \mathcal{G})$ ($I_h \subseteq \omega$), con:
+Probemos por inducción en k que si $h \in R^\Sigma_k$, entonces h es $\Sigma$-C.
+
+El caso $k = 0$ es trivial ya que las funciones existentes en $R^\Sigma_0$ se pueden realizar con las instrucciones básicas en $\mathcal{S}^\Sigma$.
+
+Caso $h \in R^\Sigma_k$: Valido por ser hipótesis inductiva.
+
+- Sea $h \in (R^\Sigma_{k+1} - R^\Sigma_k)$. Hay varios casos.
+
+Caso $h = M(P)$. (no se hace, combo 8).
+
+Caso $h = R(f, \mathcal{G})$ ($I_h \subseteq \omega$), con:
 $$
 \begin{aligned}
 
 f & : S_1 \times \cdots \times S_n \times L_1 \times \cdots \times L_m \longmapsto \omega \\
 
-\mathcal{G}_a & : \omega \times S_1 \times \cdots \times S_n \times L_1 \times \cdots \times L_m \times \Sigma^* \longmapsto \omega, \quad a \in \Sigma
+\mathcal{G}_a & : \omega \times S_1 \times \cdots \times S_n \times L_1 \times \cdots \times L_m \times \Sigma^* \longmapsto \omega, \quad a \in \Sigma \\
 
 \end{aligned}
 $$
 
-elementos de $R^\Sigma_k$ . Sea $\Sigma = \{ a_1 , \cdots, a_r \}$. Por hipotesis inductiva, las funciones $f$ y $\mathcal{G}_a \ (a \in \Sigma)$, son $\Sigma$-computables y por lo tanto tenemos macros
+elementos de $R^\Sigma_k$, con $S_1, \cdots, S_n \subseteq \omega$ y $L_1, \cdots, L_m \subseteq \Sigma^*$. Sea $\Sigma = \{ a_1 , \cdots, a_r \}$. Por hipotesis inductiva, las funciones $f$ y $\mathcal{G}_a \ (a \in \Sigma)$, son $\Sigma$-computables y por lo tanto tenemos macros
 $$ [V\overline{n+1} \longleftarrow f(V1, \cdots, V\overline{n}, W1, \cdots, W\overline{m})] $$
 $$
 [ V\overline{n+2} \longleftarrow \mathcal{G}_{a_{i}}(V\overline{n+1}, V1, \cdots, V\overline{n}, W1, \cdots, W\overline{m}, W\overline{m+1})], \quad i = 1, \cdots, r
