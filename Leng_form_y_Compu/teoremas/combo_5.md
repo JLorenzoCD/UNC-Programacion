@@ -50,4 +50,4 @@ xy\vec{x}\vec{\alpha}\left[\prod\limits_{t=x}^{t=y}\overline{P}(t,\vec{x},\vec{\
 $$
 entonces tenemos que $ \lambda x \vec{x} \vec{\alpha} [ \ (\forall t \in \overline{S})_{t \le x} \  \overline{P}(t, \vec{x} \vec{\alpha}) \ ] $ es $\Sigma$-PR.
 
-Por lema de la restricción del dominio de una función $\Sigma$-PR y teniendo en cuanta la siguiente igualdad $\lambda x \vec{x} \vec{\alpha} \left[ (\forall t\in\overline{S})_{t\leq x}\overline{P}(t,\vec{x},\vec{\alpha})\right]|_{D_P} = \lambda x \vec{x} \vec{\alpha} \left[ (\forall t\in\overline{S})_{t\leq x}P(t,\vec{x},\vec{\alpha})\right]$ tenemos que $\lambda x \vec{x} \vec{\alpha} \left[ (\forall t\in\overline{S})_{t\leq x}P(t,\vec{x},\vec{\alpha})\right]$ es $\Sigma$-PR.
+Por lema de la restricción del dominio de una función $\Sigma$-PR, se puede probar fácilmente que $\lambda x \vec{x} \vec{\alpha} \left[ (\forall t\in\overline{S})_{t\leq x}P(t,\vec{x},\vec{\alpha})\right]$ es $\Sigma$-PR.

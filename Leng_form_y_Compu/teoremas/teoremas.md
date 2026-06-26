@@ -124,7 +124,7 @@ Por suposición $f_i, i=1, 2$ son funciones $\Sigma$-PR, por lema tenemos que su
 
 Sean
 $$ \overline{f}_i : \omega^n \times \Sigma^{∗m} \longmapsto \Sigma^{∗}, \quad i = 1, 2 $$
-funciones $\Sigma$-PR tales que $f_i = \overline{f}_i |_{f_i}, \quad i = 1, 2$ (lema) y como por suposición tenemos que $D_{f_1} \cap D_{f_2} = \emptyset$.
+funciones $\Sigma$-PR tales que $f_i = \overline{f}_i |_{D_{f_i}}, \quad i = 1, 2$ (lema) y como por suposición tenemos que $D_{f_1} \cap D_{f_2} = \emptyset$.
 
 Entonces notar que:
 $$ f_1 \cup f_2 = ( \lambda \alpha \beta [ \alpha \beta ] \circ [ \quad \lambda x \alpha [\alpha^x] \circ[ \chi^{\omega^m \times \Sigma^{*m}}_{D_{f_1}}, \overline{f}_1 ], \quad \lambda x \alpha [\alpha^x] \circ[ \chi^{\omega^m \times \Sigma^{*m}}_{D_{f_2}}, \overline{f}_2 ] \quad ] )|_{D_{f_1} \cup D_{f_2}} $$
@@ -365,7 +365,8 @@ t+1\right\} .
 $$
 
 - Como f es $\Sigma$-PR, entonces su dominio $D_f = \omega \times S_1 \times \cdots \times S_n \times L_1 \times \cdots \times L_m$ es $\Sigma$-PR.
-- Como el producto cruz es $\Sigma$-PR, entonces los conjuntos $S_1, \cdots, S_n, L_1, \cdots, L_m$ son $\Sigma$-PR. Claramente $\omega$ es $\Sigma$-PR.
+- Como el producto cruz es $\Sigma$-PR, entonces los conjuntos $S_1, \cdots, S_n, L_1, \cdots, L_m$ son conjuntos no vacios y $\Sigma$-PR.
+- Claramente $\omega$ es $\Sigma$-PR.
 
 Por lo cual los siguientes conjuntos son $\Sigma$-PR.
 $$
@@ -444,7 +445,7 @@ xy\vec{x}\vec{\alpha}\left[\prod\limits_{t=x}^{t=y}\overline{P}(t,\vec{x},\vec{\
 $$
 entonces tenemos que $ \lambda x \vec{x} \vec{\alpha} [ \ (\forall t \in \overline{S})_{t \le x} \  \overline{P}(t, \vec{x} \vec{\alpha}) \ ] $ es $\Sigma$-PR.
 
-Por lema de la restricción del dominio de una función $\Sigma$-PR y teniendo en cuanta la siguiente igualdad $\lambda x \vec{x} \vec{\alpha} \left[ (\forall t\in\overline{S})_{t\leq x}\overline{P}(t,\vec{x},\vec{\alpha})\right]|_{D_P} = \lambda x \vec{x} \vec{\alpha} \left[ (\forall t\in\overline{S})_{t\leq x}P(t,\vec{x},\vec{\alpha})\right]$ tenemos que $\lambda x \vec{x} \vec{\alpha} \left[ (\forall t\in\overline{S})_{t\leq x}P(t,\vec{x},\vec{\alpha})\right]$ es $\Sigma$-PR.
+Por lema de la restricción del dominio de una función $\Sigma$-PR, se puede probar fácilmente que $\lambda x \vec{x} \vec{\alpha} \left[ (\forall t\in\overline{S})_{t\leq x}P(t,\vec{x},\vec{\alpha})\right]$ es $\Sigma$-PR.
 
 
 ---

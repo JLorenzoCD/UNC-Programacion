@@ -104,7 +104,8 @@ t+1\right\} .
 $$
 
 - Como f es $\Sigma$-PR, entonces su dominio $D_f = \omega \times S_1 \times \cdots \times S_n \times L_1 \times \cdots \times L_m$ es $\Sigma$-PR.
-- Como el producto cruz es $\Sigma$-PR, entonces los conjuntos $S_1, \cdots, S_n, L_1, \cdots, L_m$ son $\Sigma$-PR. Claramente $\omega$ es $\Sigma$-PR.
+- Como el producto cruz es $\Sigma$-PR, entonces los conjuntos $S_1, \cdots, S_n, L_1, \cdots, L_m$ son conjuntos no vacios y $\Sigma$-PR.
+- Claramente $\omega$ es $\Sigma$-PR.
 
 Por lo cual los siguientes conjuntos son $\Sigma$-PR.
 $$
