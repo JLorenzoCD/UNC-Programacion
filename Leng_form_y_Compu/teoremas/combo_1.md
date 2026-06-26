@@ -42,7 +42,7 @@ $$
 Por hipótesis inductiva los conjuntos $D_g , D_{g_i} , i = 1, \cdots, n + m$, son $\Sigma$-PR y por lo tanto
 $$ S = \bigcap_{i=1}^{n + m} D_{g_i} $$
 lo es. Nótese que
-$$ \chi_{D_F}^{\omega^n \times \Sigma^{*m}} = (\chi_{D_g}^{\omega^n \times \Sigma^{*m}} \circ [\overline{g}_1, \cdots, \overline{g}_{n+m}] \wedge \chi_S^{\omega^n \times \Sigma^{*m}}) $$
+$$ \chi_{D_F}^{\omega^k \times \Sigma^{*l}} = (\chi_{D_g}^{\omega^n \times \Sigma^{*m}} \circ [\overline{g}_1, \cdots, \overline{g}_{n+m}] \wedge \chi_S^{\omega^k \times \Sigma^{*l}}) $$
 lo cual nos dice que $D_F$ es $\Sigma$-PR. Por lo cual se cumple la hipótesis para $PR^\Sigma_{k+1}$.
 
 ---
