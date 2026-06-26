@@ -541,13 +541,13 @@ Halt^{1,1}(\mathrm{N}10,\mathrm{N}3,\mathrm{P}3,\mathcal{P}_{3})\;\mathrm{GOTO}\
 \left[\mathrm{IF}\;\lnot
 Halt^{1,1}(\mathrm{N}10,\mathrm{N}3,\mathrm{P}3,\mathcal{P}_{4})\;\mathrm{GOTO}\;\mathrm{L}1\right]\\
 \left[\mathrm{IF}\;\mathrm{N}1\neq
-E_{\#1}^{1,1}(\mathrm{N}10,\mathrm{N}3,\mathrm{P}3,\mathcal{P}_{1})\;\mathrm{GOTO}\;\mathrm{L}1\right]\\
+E_{\# (1)}^{1,1}(\mathrm{N}10,\mathrm{N}3,\mathrm{P}3,\mathcal{P}_{1})\;\mathrm{GOTO}\;\mathrm{L}1\right]\\
 \left[\mathrm{IF}\;\mathrm{N}2\neq
-E_{\#1}^{1,1}(\mathrm{N}10,\mathrm{N}3,\mathrm{P}3,\mathcal{P}_{2})\;\mathrm{GOTO}\;\mathrm{L}1\right]\\
+E_{\# (2)}^{1,1}(\mathrm{N}10,\mathrm{N}3,\mathrm{P}3,\mathcal{P}_{2})\;\mathrm{GOTO}\;\mathrm{L}1\right]\\
 \left[\mathrm{IF}\;\mathrm{P}1\neq
-E_{\ast1}^{1,1}(\mathrm{N}10,\mathrm{N}3,\mathrm{P}3,\mathcal{P}_{3})\;\mathrm{GOTO}\;\mathrm{L}1\right]\\
+E_{\ast (1)}^{1,1}(\mathrm{N}10,\mathrm{N}3,\mathrm{P}3,\mathcal{P}_{3})\;\mathrm{GOTO}\;\mathrm{L}1\right]\\
 \left[\mathrm{IF}\;\mathrm{P}2\neq
-E_{\ast1}^{1,1}(\mathrm{N}10,\mathrm{N}3,\mathrm{P}3,\mathcal{P}_{4})\;\mathrm{GOTO}\;\mathrm{L}1\right]
+E_{\ast (2)}^{1,1}(\mathrm{N}10,\mathrm{N}3,\mathrm{P}3,\mathcal{P}_{4})\;\mathrm{GOTO}\;\mathrm{L}1\right]
 \end{array}
 $$
 
@@ -577,7 +577,7 @@ $$
 $$
 por lo que $D_{M(P)} = D_{M(\overline{P})}$ y tenemos que $M(P)(\vec{x},\vec{\alpha}) = M(\overline{P})(\vec{x},\vec{\alpha})$, para $\forall (\vec{x}, \vec{\alpha}) \in D_{M(P)}$. Por lo que $M(P) = M(\overline{P})$.
 
-Sea $k$ tal que $\overline{P} \in PR^\Sigma_k$, como $PR^\Sigma_k \subseteq R^\Sigma_k$ tenemos que $\overline{P} \in R^\Sigma_k$ y como $\overline{P}$ es $\Sigma$-Total tenemos que $M(\overline{P}) \in R^\Sigma_{k+1}$. Entonces $M(\overline{P})$ es $\Sigma$-R, lo cual implica que $M(P)$ es $\Sigma$-R.
+Sea $k$ tal que $\overline{P} \in PR^\Sigma_k$, como $PR^\Sigma_k \subseteq R^\Sigma_k$, tenemos que $\overline{P} \in R^\Sigma_k$ y como $\overline{P}$ es $\Sigma$-Total tenemos que $M(\overline{P}) \in R^\Sigma_{k+1}$. Entonces $M(\overline{P})$ es $\Sigma$-R, lo cual implica que $M(P)$ es $\Sigma$-R.
 
 (b) <br>
 Sea f una función $\Sigma$-PR $f : \omega^n \times \Sigma^{∗m} \longmapsto \omega$.

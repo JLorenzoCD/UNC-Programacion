@@ -19,7 +19,7 @@ $$
 $$
 por lo que $D_{M(P)} = D_{M(\overline{P})}$ y tenemos que $M(P)(\vec{x},\vec{\alpha}) = M(\overline{P})(\vec{x},\vec{\alpha})$, para $\forall (\vec{x}, \vec{\alpha}) \in D_{M(P)}$. Por lo que $M(P) = M(\overline{P})$.
 
-Sea $k$ tal que $\overline{P} \in PR^\Sigma_k$, como $PR^\Sigma_k \subseteq R^\Sigma_k$ tenemos que $\overline{P} \in R^\Sigma_k$ y como $\overline{P}$ es $\Sigma$-Total tenemos que $M(\overline{P}) \in R^\Sigma_{k+1}$. Entonces $M(\overline{P})$ es $\Sigma$-R, lo cual implica que $M(P)$ es $\Sigma$-R.
+Sea $k$ tal que $\overline{P} \in PR^\Sigma_k$, como $PR^\Sigma_k \subseteq R^\Sigma_k$, tenemos que $\overline{P} \in R^\Sigma_k$ y como $\overline{P}$ es $\Sigma$-Total tenemos que $M(\overline{P}) \in R^\Sigma_{k+1}$. Entonces $M(\overline{P})$ es $\Sigma$-R, lo cual implica que $M(P)$ es $\Sigma$-R.
 
 (b) <br>
 Sea f una función $\Sigma$-PR $f : \omega^n \times \Sigma^{∗m} \longmapsto \omega$.
