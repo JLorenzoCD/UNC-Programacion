@@ -10,7 +10,7 @@ Como $S \neq \emptyset$ entonces fijo $(\vec{z}, \gamma) \in S$.
 
 Como $S$ es $\Sigma$-efectivamente computable, entonces tenemos que $\mathbb{P}_{1}$ es el procedimiento efectivo que computa a $\chi^{\omega^n \times \Sigma^{∗m}}_S$.
 
-Como $\omega^n \times \Sigma^{∗m}$ es claramente $\Sigma$-efectivamente enumerable, entonces tenemos que $\mathbb{P}_2$ es el procedimiento efectivo que enumera a $\chi^{\omega^n \times \Sigma^{∗m}}_{\omega^n \times \Sigma^{∗m}}$.
+Como $\omega^n \times \Sigma^{∗m}$ es claramente $\Sigma$-efectivamente enumerable, entonces tenemos que $\mathbb{P}_2$ es el procedimiento efectivo que enumera a $\omega^n \times \Sigma^{∗m}$.
 
 Sea $\mathbb{P}_S$ el siguiente procedimiento efectivo:
 - Se recibe como dato de entrada $x \in \omega.$
