@@ -49,7 +49,7 @@ $$
 \begin{aligned}
 d & = d_1 \\
 d' & = d_{n+1} \\ \\
-d_i & \vdash d_{n+1} , \quad i = 1, \cdots, n. \\
+d_i & \vdash d_{i+1} , \quad i = 1, \cdots, n. \\
 \end{aligned}
 $$
 
@@ -505,7 +505,7 @@ Sean $n, m \in \omega$, fijos y $j \in \mathbb{N}$. Definimos:
 $$
 \begin{aligned}
 
-& E^{n, m}_{\#(j)}: \omega \times \omega^n \times \Sigma^{*m} \times Pro^\Sigma \longmapsto \omega^{[\mathbb{N}]} \\ \\
+& E^{n, m}_{\#(j)}: \omega \times \omega^n \times \Sigma^{*m} \times Pro^\Sigma \longmapsto \omega \\ \\
 
 & E^{n, m}_{\#(j)}(t, \vec{x}, \vec{\alpha}, \mathcal{P}) = j \text{-esima coordenada de } E^{n, m}_{\#}(t, \vec{x}, \vec{\alpha}, \mathcal{P})
 
@@ -519,7 +519,7 @@ Sean $n, m \in \omega$, fijos y $j \in \mathbb{N}$. Definimos:
 $$
 \begin{aligned}
 
-& E^{n, m}_{*(j)}: \omega \times \omega^n \times \Sigma^{*m} \times Pro^\Sigma \longmapsto \omega^{[\mathbb{N}]} \\ \\
+& E^{n, m}_{*(j)}: \omega \times \omega^n \times \Sigma^{*m} \times Pro^\Sigma \longmapsto  \Sigma^* \\ \\
 
 & E^{n, m}_{*(j)}(t, \vec{x}, \vec{\alpha}, \mathcal{P}) = j \text{-esima coordenada de } E^{n, m}_{*}(t, \vec{x}, \vec{\alpha}, \mathcal{P})
 
@@ -579,7 +579,7 @@ no es $\Sigma$-RE
 - Puede ocurrir que al evaluar las variables estas expresiones no estén definidas (p.e.j. $Pred(|\alpha|), \quad \text{notar que } \alpha \neq \epsilon$)
 - El resultado obtenido al evaluar la expresión **deberá** estar contenida en $\omega$ o en $\Sigma^*$.
 - Se puede utilizar **lenguaje coloquial castellano** (no toda expresión son operaciones matemáticas bien definidas)
-- Al evaluar las expresiones booleanas, se asume que el valor que toma esta en el conjunto $\{ 1, 0 \} \in \omega$.
+- Al evaluar las expresiones booleanas, se asume que el valor que toma esta en el conjunto $\{ 1, 0 \} \subseteq \omega$.
 - Se puede no utilizar variables y en su lugar utilizar constantes, mientras que se cumpla lo anterior.
 
 ### Notación lambda

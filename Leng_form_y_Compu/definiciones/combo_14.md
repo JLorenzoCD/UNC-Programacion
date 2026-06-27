@@ -10,7 +10,7 @@
 - Puede ocurrir que al evaluar las variables estas expresiones no estén definidas (p.e.j. $Pred(|\alpha|), \quad \text{notar que } \alpha \neq \epsilon$)
 - El resultado obtenido al evaluar la expresión **deberá** estar contenida en $\omega$ o en $\Sigma^*$.
 - Se puede utilizar **lenguaje coloquial castellano** (no toda expresión son operaciones matemáticas bien definidas)
-- Al evaluar las expresiones booleanas, se asume que el valor que toma esta en el conjunto $\{ 1, 0 \} \in \omega$.
+- Al evaluar las expresiones booleanas, se asume que el valor que toma esta en el conjunto $\{ 1, 0 \} \subseteq \omega$.
 - Se puede no utilizar variables y en su lugar utilizar constantes, mientras que se cumpla lo anterior.
 
 ### Notación lambda

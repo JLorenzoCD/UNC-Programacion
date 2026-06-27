@@ -6,7 +6,7 @@ $$
 \begin{aligned}
 d & = d_1 \\
 d' & = d_{n+1} \\ \\
-d_i & \vdash d_{n+1} , \quad i = 1, \cdots, n. \\
+d_i & \vdash d_{i+1} , \quad i = 1, \cdots, n. \\
 \end{aligned}
 $$
 
