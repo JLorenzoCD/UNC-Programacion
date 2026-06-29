@@ -7,33 +7,23 @@
 Proof
 
 ($\implies$) Note que $S = D_{Pred \circ \chi_S^{\omega^n \times \Sigma^{*m}}}$ <br>
-($\Longleftarrow$) **Solo el caso de composición.** (no casos $F = R(f, g)$, $F = R(f, \mathcal{G})$, para recursion con imagen contenida en $\omega$ y $\Sigma^*$) <br>
+($\Longleftarrow$) **Solo el caso de composición.**
 
 Probare por inducción en $k$ que $D_F$ es $\Sigma$-PR para cada $F \in PR^\Sigma_k$.
 
 El caso $k=0$ es fácil, ya que las funciones en $PR^\Sigma_0$ tienen dominio contenido en $\omega^n \times \Sigma^{*m}$ y como $\omega$ y $\Sigma^*$ son conjuntos no vacíos $\Sigma$-PR, entonces el producto cruz de estos es un conjunto $\Sigma$-PR.
 
-- Supongamos que el resultado vale para un k fijo, con $k \gt 0$.
+- Supongamos que el resultado vale para un k fijo.
 
-Supongamos que $F = g \circ [g_1, \cdots, g_r ]$ con $g, g_1, \cdots, g_r \in (PR^\Sigma_k - PR^\Sigma_{k-1})$, por lo cual, notar que $F \in PR^\Sigma_{k+1}$.
+Supongamos $F \in PR^\Sigma_{k+1}$, tal que $F = g \circ [g_1, \cdots, g_r ]$ con $g, g_1, \cdots, g_r \in PR^\Sigma_k$.
 
 - Si $F = \emptyset$, entonces es claro que $D_F = \emptyset$ es $\Sigma$-PR.
 
 - Supongamos entonces que $F$ no es la función $\emptyset$.
 
 Tenemos entonces que $r$ es de la forma $n + m$ y
-$$
-\begin{array}{cl}
 
-    & g : D_g \subseteq \omega^n \times \Sigma^{∗m} \longmapsto O \\
-
-    & g_i : D_{g_i} \subseteq \omega^k \times \Sigma^{∗l} \longmapsto \omega, \quad i = 1, \cdots, n \\
-
-    & g_i : D_{g_i} \subseteq \omega^k \times \Sigma^{∗l} \longmapsto \Sigma^∗, \quad i = n + 1, \cdots, n + m \\
-
-\end{array}
-$$
-con $O \in \{ \omega, \Sigma^∗ \}$ y $k, l ∈ \omega$. Por Lema 19, hay funciones $\Sigma$-PR, $\overline{g}, \overline{g}_1, \cdots, \overline{g}_{n + m} \in PR^\Sigma_k$ las cuales son $\Sigma$-totales y cumplen
+Por Lema 19, hay funciones $\Sigma$-PR, $\overline{g}, \overline{g}_1, \cdots, \overline{g}_{n + m} \in PR^\Sigma_k$ las cuales son $\Sigma$-totales y cumplen
 $$
 \begin{aligned}
 & g = \overline{g} |_{D_{g}} \\
@@ -45,7 +35,6 @@ Por hipótesis inductiva los conjuntos $D_g , D_{g_i} , i = 1, \cdots, n + m$, s
 $$ S = \bigcap_{i=1}^{n + m} D_{g_i} $$
 lo es. Nótese que
 $$ \chi_{D_F}^{\omega^k \times \Sigma^{*l}} = (\chi_{D_g}^{\omega^n \times \Sigma^{*m}} \circ [\overline{g}_1, \cdots, \overline{g}_{n+m}] \wedge \chi_S^{\omega^k \times \Sigma^{*l}}) $$
-lo cual nos dice que $D_F$ es $\Sigma$-PR. Por lo cual se cumple la hipótesis para $PR^\Sigma_{k+1}$.
 
 ---
 ### Teorema (Neumann vence a Godel). Si $h$ es $\Sigma$-recursiva, entonces $h$ es $\Sigma$-computable
@@ -61,26 +50,11 @@ Caso $h \in R^\Sigma_k$: Valido por ser hipótesis inductiva.
 
 - Sea $h \in (R^\Sigma_{k+1} - R^\Sigma_k)$. Hay varios casos.
 
-Caso $h = M(P)$. (no se hace, combo 8).
+Caso $h = R(f, \mathcal{G})$ ($I_h \subseteq \omega$). Con $f, \mathcal{G} \in R^\Sigma_k$.
 
-Caso $h = R(f, \mathcal{G})$ ($I_h \subseteq \omega$), con:
-$$
-\begin{aligned}
+Sea $\Sigma = \{ a_1 , \cdots, a_r \}$. Por hipotesis inductiva, las funciones $f$ y $\mathcal{G}_a \ (a \in \Sigma)$, son $\Sigma$-computables y por lo tanto existen sus macros.
 
-f & : S_1 \times \cdots \times S_n \times L_1 \times \cdots \times L_m \longmapsto \omega \\
-
-\mathcal{G}_a & : \omega \times S_1 \times \cdots \times S_n \times L_1 \times \cdots \times L_m \times \Sigma^* \longmapsto \omega, \quad a \in \Sigma \\
-
-\end{aligned}
-$$
-
-elementos de $R^\Sigma_k$, con $S_1, \cdots, S_n \subseteq \omega$ y $L_1, \cdots, L_m \subseteq \Sigma^*$. Sea $\Sigma = \{ a_1 , \cdots, a_r \}$. Por hipotesis inductiva, las funciones $f$ y $\mathcal{G}_a \ (a \in \Sigma)$, son $\Sigma$-computables y por lo tanto tenemos macros
-$$ [V\overline{n+1} \longleftarrow f(V1, \cdots, V\overline{n}, W1, \cdots, W\overline{m})] $$
-$$
-[ V\overline{n+2} \longleftarrow \mathcal{G}_{a_{i}}(V\overline{n+1}, V1, \cdots, V\overline{n}, W1, \cdots, W\overline{m}, W\overline{m+1})], \quad i = 1, \cdots, r
-$$
-
-Podemos entonces hacer el siguiente programa:
+Podemos entonces hacer el siguiente programa computa a h:
 $$
 \begin{array}{rl}
 
@@ -107,8 +81,6 @@ L\overline{r+2} & N1\longleftarrow N\overline{n+1}
 \end{array}
 $$
 
-Claramente este programa computa $h$.
-
 
 ---
 ---
@@ -120,15 +92,12 @@ $i \neq j$. Entonces $f_1 \cup \cdots \cup f_k$ es $\Sigma$-PR
 
 Proof
 
-Por suposición $f_i, i=1, 2$ son funciones $\Sigma$-PR, por lema tenemos que sus dominios también deben de ser $\Sigma$-PR. Como $D_{f_1}, D_{f_2}$ son $\Sigma$-PR, entonces (por lema) $D_{f_1} \cup D_{f_2}$ es $\Sigma$-PR
+Como $f_i$ son funciones $\Sigma$-PR $\Longrightarrow$ $D_{f_i}$ son $\Sigma$-PR $\Longrightarrow$ $D_{f_1} \cup D_{f_2}$ es $\Sigma$-PR
 
-Sean
-$$ \overline{f}_i : \omega^n \times \Sigma^{∗m} \longmapsto \Sigma^{∗}, \quad i = 1, 2 $$
-funciones $\Sigma$-PR tales que $f_i = \overline{f}_i |_{D_{f_i}}, \quad i = 1, 2$ (lema) y como por suposición tenemos que $D_{f_1} \cap D_{f_2} = \emptyset$.
+Sean $\overline{f}_i$ funciones $\Sigma$-PR y  $\Sigma$-Totales tales que $f_i = \overline{f}_i |_{D_{f_i}}$ y como por suposición tenemos que $D_{f_1} \cap D_{f_2} = \emptyset$.
 
 Entonces notar que:
 $$ f_1 \cup f_2 = ( \lambda \alpha \beta [ \alpha \beta ] \circ [ \quad \lambda x \alpha [\alpha^x] \circ[ \chi^{\omega^m \times \Sigma^{*m}}_{D_{f_1}}, \overline{f}_1 ], \quad \lambda x \alpha [\alpha^x] \circ[ \chi^{\omega^m \times \Sigma^{*m}}_{D_{f_2}}, \overline{f}_2 ] \quad ] )|_{D_{f_1} \cup D_{f_2}} $$
-por lo cual $f_1 \cup f_2$ es $\Sigma$-PR.
 
 ---
 ### Proposición (Caracterización básica de conjuntos $\Sigma$-enumerables).
@@ -142,7 +111,7 @@ Sea $S \subseteq \omega^n \times \Sigma^{∗m}$ un conjunto no vacı́o. Entonce
 Proof
 
 $(1) \Longrightarrow (2)$ <br>
-Como S no es vació y sabemos que es $\Sigma$-E, entonces por definicion tenemos un $F: \omega \longrightarrow \omega^2 \times \Sigma^{*}$ tal que $I_F = S$ y $F_{(i)}$ es $\Sigma$-C, para cada $i = 1, 2, 3$. Y por primer manantial de macros, sabemos que existen las macros asociadas a cada una de las $F_{(i)}$. El siguiente programa claramente cumple con (2):
+Como S no es vació y es $\Sigma$-E $\Longrightarrow$ $\exist F: \omega \longrightarrow \omega^2 \times \Sigma^{*}$ tal que $I_F = S$ y $F_{(i)}$ es $\Sigma$-C, para cada $i = 1, 2, 3$. Y existen sus macros. El siguiente programa claramente cumple con (2):
 $$
 \begin{aligned}
 
@@ -155,7 +124,7 @@ F_{(2)}(\mathrm{N}1) \right]\\
 $$
 
 $(1) \Longleftarrow (2)$ <br>
-Utilizaremos $\mathcal{P}$ para armar cada $F_{(i)}$, con $i = 1, 2, 3$. Como sabemos que $\mathcal{P}$ siempre termina partiendo $\forall x \in \omega$, entonces $T^{1, 0}(x, \mathcal{P})$ esta definido y lo utilizare con $E^{1, 0}_{\#(j)}$ y $E^{1, 0}_{*(j)}$ para hacer los programas que computen los $F_{(i)}$, gracias al segundo manantial de macros. (claramente se fija $\mathcal{P}$ para que las funciones anteriores sean $\Sigma$-R)
+Utilizaremos $\mathcal{P}$ para armar cada $F_{(i)}$, con $i = 1, 2, 3$. Como sabemos que $\mathcal{P}$ siempre termina partiendo $\forall x \in \omega$, entonces se utilizara $T^{1, 0}(x, \mathcal{P})$, $E^{1, 0}_{\#(j)}$ y $E^{1, 0}_{*(j)}$. (claramente se fija $\mathcal{P}$ para que las funciones sean $\Sigma$-R)
 $$
 \mathcal{P_{F_{(1)}}} \in Pro^\Sigma : \\
 
@@ -167,16 +136,7 @@ $$
 \end{aligned}
 $$
 
-$$
-\mathcal{P_{F_{(2)}}} \in Pro^\Sigma : \\
-
-\begin{aligned}
-& \left[ \mathrm{N}2\leftarrow T^{1, 0}(\mathrm{N}1, \mathcal{P}) \right]\\
-
-& \left[ \mathrm{N}1\leftarrow E^{1, 0}_{\#(2)}(\mathrm{N}2, \mathrm{N}1, \mathcal{P}) \right]
-
-\end{aligned}
-$$
+...
 
 $$
 \mathcal{P_{F_{(3)}}} \in Pro^\Sigma : \\
@@ -193,8 +153,8 @@ Por lo que:
 $$
 \begin{aligned}
 
-F_{(1)} = \Psi^{1, 0, \#}_{\mathcal{P_{F_{(1)}}}} \\
-F_{(2)} = \Psi^{1, 0, \#}_{\mathcal{P_{F_{(2)}}}} \\
+F_{(1)} = \Psi^{1, 0, \#}_{\mathcal{P_{F_{(1)}}}}; \quad
+F_{(2)} = \Psi^{1, 0, \#}_{\mathcal{P_{F_{(2)}}}}; \quad
 F_{(3)} = \Psi^{1, 0, *}_{\mathcal{P_{F_{(3)}}}}
 
 \end{aligned}
@@ -210,27 +170,14 @@ los cuales son $\Sigma$-C y tendriamos a $F = \left[ F_{(1)}, F_{(2)}, F_{(3)} \
 
 > Similar al combo 9, cambia conjunto de llegada
 
-Función $\Phi_*^{n,m}$: <br>
-Para $n, m \in \omega$ definamos la función $\Phi_*^{n,m}$ de la siguiente manera:
-$$
-\begin{aligned}
-
-D_{\Phi_*^{n,m}} & = \left\{ (\vec{x},\vec{\alpha},\mathcal{P}) \in \omega^{n} \times \Sigma^{*m} \times \mathrm{Pro}^{\Sigma} :(\vec{x},\vec{\alpha}) \in D_{\Psi_{\mathcal{P}}^{n,m,*}} \right\} \\
-
-\Phi_*^{n,m}(\vec{x},\vec{\alpha},\mathcal{P}) & =\Psi_{\mathcal{P}}^{n,m,*}(\vec{x},\vec{\alpha}) \text{, para cada }(\vec{x},\vec{\alpha},\mathcal{P}) \in D_{\Phi_*^{n,m}}
-
-\end{aligned}
-$$
 Nótese que
 $$ \Phi_{*}^{n,m} = \lambda\vec{x}\vec{\alpha}\mathcal{P}\left[\Psi_{\mathcal{P}}^{n,m,*}(\vec{x},\vec{\alpha}) \right] $$
 Por teorema, tenemos que $\Phi_*^{n,m}$ es $(\Sigma \cup \Sigma^p)$-R
 
-Proof
-
 Sea $\mathcal{P}_0$ un programa que compute a $f$. Primero veremos que $f$ es $(\Sigma \cup \Sigma^p)$-R. Note que
 $$ f=\Phi_{*}^{n,m}\circ\left[p_{1}^{n,m},...,p_{n+m}^{n,m},C_{\mathcal{P}_{0}}^{n,m}\right] $$
 
-donde cabe destacar que $p_1^{n, m}, \cdots, p_{n + m}^{n, m}$ son proyecciones respecto al alfabeto $\Sigma \cup \Sigma^p$, es decir que tienen dominio $\omega^n \times (\Sigma \cup \Sigma^p)^{*m}$. Ya que $\Phi_*^{n,m}$ es $(\Sigma \cup \Sigma^p)$-R tenemos que f también lo es.
+entonces tenemos que f es $(\Sigma \cup \Sigma^p)$-R.
 
 Si se fija el $\mathcal{P}_0$, por independencia del alfabeto tendríamos que f es $\Sigma$-R.
 
@@ -251,10 +198,10 @@ $(b) \Longrightarrow (a)$ <br>
 Sean $\mathbb{P}_1$ un procedimiento efectivo que enumere a S y $\mathbb{P}_2$ un procedimiento efectivo que enumere a $(\omega^n \times \Sigma^{*m}) - S$. Es facil ver que el siguiente procedimiento computa el predicado $\chi^{\omega^n \times \Sigma^{*m}}_S$:
 
 Dato de entrada: $(\vec{x}, \vec{\alpha}) \in \omega^n \times \Sigma^{*m}$
-- Etapa 1: Darle a la variable T el valor 0.
-- Etapa 2: Realizar $\mathbb{P}_1$ con el valor de T como dato de entrada para obtener de salida la upla $(\vec{y}, \vec{\beta})$.
-- Etapa 3: Realizar $\mathbb{P}_2$ con el valor de T como dato de entrada para obtener de salida la upla $(\vec{z}, \vec{\gamma})$.
-- Etapa 4: Si $(\vec{y}, \vec{\beta}) = (\vec{x}, \vec{\alpha})$, entonces detenerse y dar como dato de salida el valor 1. Si $(\vec{z}, \vec{\gamma}) = (\vec{x}, \vec{\alpha})$, entonces detenerse y dar como dato de salida el valor 0. Si no sucede ninguna de las dos posibilidades mencionadas, aumentar en 1 el valor de la variable T y dirigirse a Etapa2.
+- Etapa 1: $T=0$.
+- Etapa 2: Ejecutar $\mathbb{P}_1$ con T para obtener la upla $(\vec{y}, \vec{\beta})$.
+- Etapa 3: Ejecutar $\mathbb{P}_2$ con T para obtener la upla $(\vec{z}, \vec{\gamma})$.
+- Etapa 4: Si $(\vec{y}, \vec{\beta}) = (\vec{x}, \vec{\alpha})$, entonces detenerse y dar como dato de salida el valor 1. Si $(\vec{z}, \vec{\gamma}) = (\vec{x}, \vec{\alpha})$, entonces detenerse y dar como dato de salida el valor 0. Caso contrario, aumentar en $T = T + 1$ y dirigirse a Etapa2.
 
 
 ---
@@ -279,11 +226,7 @@ Sea $\Sigma$ un alfabeto finito. Si $f : \omega \times S_1 \times \cdots \times 
 
 Proof
 
-Sea $G = \lambda t x \vec{x} \vec{\alpha} \left[ \ \sum_{i=x}^{i=t} \quad f(i, \vec{x}, \vec{\alpha}) \ \right]$. Ya que
-$$
-\lambda
-xy\vec{x}\vec{\alpha}\left[\sum_{i=x}^{i=y}f(i,\vec{x},\vec{\alpha})\right]=G\circ\left[p_{2}^{n+2,m},p_{1}^{n+2,m},p_{3}^{n+2,m},\cdots,p_{n+m+2}^{n+2,m}\right]
-$$
+Sea $G = \lambda t x \vec{x} \vec{\alpha} \left[ \ \sum_{i=x}^{i=t} \quad f(i, \vec{x}, \vec{\alpha}) \ \right]$. Notar que se puede armar la sumatoria utilizando composición de funciones con $G$.
 solo tenemos que probar que $G$ es $\Sigma$-PR. Primero notar que:
 $$
 \begin{aligned}
@@ -336,17 +279,7 @@ h & =C_{0}^{n+1,m}|_{D_{1}}\cup\lambda x\vec{x}\vec{\alpha}\left[f(0,\vec{x},\ve
 g & =C_{0}^{n+3,m}|_{H_{1}}\cup \lambda Atx\vec{x}\vec{\alpha}\left[A+f(t+1,\vec{x},\vec{\alpha})\right])|_{H_{2}}
 \end{aligned}
 $$
-asi que para ver que h y g son $\Sigma$-PR podemos aplicar el lema de division por casos y revisar que las funciones que componen a h y g sean $\Sigma$-PR
-
-Es claro que $C_{0}^{n+1,m}$ y $C_{0}^{n+3,m}$ son $\Sigma$-PR. También nótese que:
-$$
-\begin{aligned}
-\lambda x\vec{x}\vec{\alpha}\left[f(0,\vec{x},\vec{\alpha})\right] & = f \circ \left[C_{0}^{n+1,m},p_{2}^{n+1,m},p_{3}^{n+1,m},\cdots,p_{n+1+m}^{n+1,m} \right]\\
-
-\lambda Atx\vec{x}\vec{\alpha}\left[A+f(t+1,\vec{x},\vec{\alpha})\right]) & = \lambda xy[x+y]\circ\left[p_{1}^{n+3,m},f\circ\left[Suc\circ p_{2}^{n+3,m},p_{4}^{n+3,m},\cdots,p_{n+3+m}^{n+3,m}\right]\right]
-\end{aligned}
-$$
-lo cual, ya que f es $\Sigma$-PR, nos dice que $\lambda x\vec{x}\vec{\alpha}\left[f(0,\vec{x},\vec{\alpha})\right]$ y $\lambda Atx\vec{x}\vec{\alpha}\left[A+f(t+1,\vec{x},\vec{\alpha})\right])$ son $\Sigma$-PR. Por lo que solo nos quedaría revisar que los conjuntos que restringen a las funciones ($D_1, D_2, H_1, H_2$) son disjuntos y $\Sigma$-PR.
+Claramente las funciones utilizadas son $\Sigma$-PR. Por lo que solo nos quedaría revisar que los conjuntos que restringen a las funciones ($D_1, D_2, H_1, H_2$) son disjuntos y $\Sigma$-PR.
 $$
 \begin{aligned}
 D_{1} & =\left\{ (x,\vec{x},\vec{\alpha})\in\omega\times
@@ -355,27 +288,23 @@ L_{m}:x>0\right\} \\
 D_{2} & =\left\{ (x,\vec{x},\vec{\alpha})\in\omega\times
 S_{1}\times \cdots \times S_{n}\times L_{1}\times \cdots \times L_{m}:x=0\right\}
 \\
-H_{1} & =\left\{ (A,t,x,\vec{x},\vec{\alpha})\in\omega^{3}\times
+H_{1} & =\left\{ (z,t,x,\vec{x},\vec{\alpha})\in\omega^{3}\times
 S_{1}\times \cdots \times S_{n}\times L_{1}\times \cdots \times
 L_{m}:x>t+1\right\} \\
-H_{2} & =\left\{ (A,t,x,\vec{x},\vec{\alpha})\in\omega^{3}\times
+H_{2} & =\left\{ (z,t,x,\vec{x},\vec{\alpha})\in\omega^{3}\times
 S_{1}\times \cdots \times S_{n}\times L_{1}\times \cdots \times L_{m}:x\leq
 t+1\right\} .
 \end{aligned}
 $$
 
-- Como f es $\Sigma$-PR, entonces su dominio $D_f = \omega \times S_1 \times \cdots \times S_n \times L_1 \times \cdots \times L_m$ es $\Sigma$-PR.
-- Como el producto cruz es $\Sigma$-PR, entonces los conjuntos $S_1, \cdots, S_n, L_1, \cdots, L_m$ son conjuntos no vacios y $\Sigma$-PR.
-- Claramente $\omega$ es $\Sigma$-PR.
-
-Por lo cual los siguientes conjuntos son $\Sigma$-PR.
+Claramente los siguientes conjuntos son $\Sigma$-PR.
 $$
 D = \omega \times S_{1} \times \cdots \times S_{n} \times L_{1}\times \cdots \times L_{m} \\
 
 H = \omega^3 \times S_{1} \times \cdots \times S_{n} \times L_{1}\times \cdots \times L_{m}
 $$
 
-Por lo que las siguientes funciones características de los conjuntos $D_1, D_2, H_1, H_2$ son $\Sigma$-PR (los predicados que lo conforman son claramente $\Sigma$-PR).
+Por lo que las siguientes funciones características de los conjuntos $D_1, D_2, H_1, H_2$ son $\Sigma$-PR.
 $$
 \chi^{\omega^{1 + n} \times \Sigma^{*m}}_{D_1} = (\chi^{\omega^{1 + n} \times \Sigma^{*m}}_{D} \wedge \lambda x \vec{x} \vec{\alpha} \left[ x \gt 0 \right]) \\
 
@@ -422,14 +351,14 @@ Sea $\Sigma$ un alfabeto finito. Sea $P : S \times S_1 \times \cdots\times S_n \
 
 Proof
 
-Como $P$ es $\Sigma$-PR, entonces por lema su dominio es $\Sigma$-PR. Por lema, el producto cruz es $\Sigma$-PR si cada conjunto del mismo es no vacio y $\Sigma$-PR, por lo que $S, S_1, \cdots, S_n, L_1,\cdots, L_m$ son conjuntos $\Sigma$-PR.
+Como $P$ es $\Sigma$-PR $\Longrightarrow$ $D_P$ es $\Sigma$-PR $\Longrightarrow$ $S, S_1, \cdots, S_n, L_1,\cdots, L_m$ son conjuntos $\Sigma$-PR y no vacíos.
 
 Sea
 $$
 \overline{P} = P|_{\overline{S}\times S_{1} \times \cdots \times
 S_{n} \times L_{1} \times \cdots \times L_{m}} \cup C_{1}^{1+n,m}|_{(\omega - \overline{S}) \times S_{1} \times \cdots \times S_{n} \times L_{1}\times \cdots \times L_{m}}
 $$
-claramente $C_{1}^{1+n,m}$ es $\Sigma$-PR. Ademas, como por suposición $\overline{S}$ es $\Sigma$-PR, entonces $(\omega - \overline{S})$ también es $\Sigma$-PR. Por lema de la restricción y de la union de funciones, donde en este caso los dominios son claramente disjuntos, tendríamos que $\overline{P}$ es $\Sigma$-PR, notar que $\overline{P}$ no es $\Sigma$-Total y que el primer conjunto del producto cruz en su dominio es $\omega$.
+claramente $\overline{P}$ es $\Sigma$-PR.
 
 Por "Lema de la Sumatoria" sabemos que $\lambda x y \vec{x} \vec{\alpha} \left[ \prod_{t=x}^{t=y} \overline{P}(t, \vec{x},\vec{\alpha}) \right]$ es $\Sigma$-PR. Como es valida la siguiente igualdad:
 $$
@@ -445,11 +374,7 @@ xy\vec{x}\vec{\alpha}\left[\prod\limits_{t=x}^{t=y}\overline{P}(t,\vec{x},\vec{\
 $$
 entonces tenemos que $ \lambda x \vec{x} \vec{\alpha} [ \ (\forall t \in \overline{S})_{t \le x} \  \overline{P}(t, \vec{x} \vec{\alpha}) \ ] $ es $\Sigma$-PR.
 
-Como:
-$$
-\lambda x \vec{x} \vec{\alpha} [ \ (\forall t \in \overline{S})_{t \le x} \  \overline{P}(t, \vec{x} \vec{\alpha}) \ ] = \lambda x \vec{x} \vec{\alpha} [ \ (\forall t \in \overline{S})_{t \le x} \  P(t, \vec{x} \vec{\alpha}) \ ]
-$$
-Entonces tenemos que $\lambda x \vec{x} \vec{\alpha} [ \ (\forall t \in \overline{S})_{t \le x} \  P(t, \vec{x} \vec{\alpha}) \ ]$ es $\Sigma$-PR.
+Como la cuantificación acotada para $\overline{P}$ y $P$ daría lo mismo, tenemos que cuantificación acotada para $P$ es $\Sigma$-PR.
 
 
 ---
@@ -464,17 +389,15 @@ Proof
 
 Como $S \neq \emptyset$ entonces fijo $(\vec{z}, \gamma) \in S$.
 
-Como $S$ es $\Sigma$-efectivamente computable, entonces tenemos que $\mathbb{P}_{1}$ es el procedimiento efectivo que computa a $\chi^{\omega^n \times \Sigma^{∗m}}_S$.
+Como $S$ es $\Sigma$-EC, entonces tenemos que $\mathbb{P}_{1}$ computa a $\chi^{\omega^n \times \Sigma^{∗m}}_S$.
 
-Como $\omega^n \times \Sigma^{∗m}$ es claramente $\Sigma$-efectivamente enumerable, entonces tenemos que $\mathbb{P}_2$ es el procedimiento efectivo que enumera a $\omega^n \times \Sigma^{∗m}$.
+Como $\omega^n \times \Sigma^{∗m}$ es $\Sigma$-EE, entonces tenemos que $\mathbb{P}_2$ enumera a $\omega^n \times \Sigma^{∗m}$.
 
-Sea $\mathbb{P}_S$ el siguiente procedimiento efectivo:
+Sea $\mathbb{P}_S$ el siguiente procedimiento efectivo que enumera a $S$:
 - Se recibe como dato de entrada $x \in \omega.$
 - Etapa 1: Se ejecuta $\mathbb{P}_2$ con $x$ para obtener $(\vec{x}, \vec{\alpha}) \in \omega^n \times \Sigma^{∗m}$.
 - Etapa 2: Se ejecuta $\mathbb{P}_1$ con $(\vec{x}, \vec{\alpha})$ para obtener el valor booleano R.
 - Etapa 3: Si R = 1, dar como dato de salida $(\vec{x}, \vec{\alpha})$ y terminar. Caso contrario, dar como dato de salida $(\vec{z}, \gamma)$ y terminar.
-
-Claramente el procedimiento efectivo $\mathbb{P}_S$ enumera a $S$.
 
 ---
 
@@ -493,18 +416,10 @@ Tenemos que $S \subseteq \omega^2 \times \Sigma^{∗2}$ y $F : D_F \subseteq \om
 
 Sean $\mathcal{P}_i$ programas que computan a $F_{(i)}$, con $i = 1, 2, 3, 4$. Sea $\le$ un orden total sobre $\Sigma$. Definamos
 $$
-H_{i}=\lambda tx_{1}\alpha_{1}\left[\lnot
+\lambda tx_{1}\alpha_{1}\left[\lnot
 Halt^{1,1}(t,x_{1},\alpha_{1},\mathcal{P}_{i})\right]
 $$
-El cual, como se fija $\mathcal{P}_i$, entonces por independencia de alfabetos tenemos que $H_i$ son $\Sigma$-PR. Ademas, por segundo manantial de macros tenemos que existe la siguiente macro:
-$$
-\left[\mathrm{IF}\;H_{i}(\mathrm{V}2,\mathrm{V}1,\mathrm{W}1)\;\mathrm{GOTO}\;\mathrm{A}1\right]
-$$
-el cual la escribiré de la siguiente forma:
-$$
-\left[\mathrm{IF}\;\lnot
-Halt^{1,1}(\mathrm{V}2,\mathrm{V}1,\mathrm{W}1,\mathcal{P}_{i})\;\mathrm{GOTO}\;\mathrm{A}1\right]
-$$
+El cual, como se fija $\mathcal{P}_i$, entonces por independencia de alfabetos tenemos que son $\Sigma$-PR $\Longrightarrow$ existe sus macros.
 
 Para $i = 1, 2$ defino:
 $$
@@ -516,20 +431,9 @@ $$
 E_{i}=\lambda tx_{1}\alpha_{1}\alpha \left[\alpha\neq
 E_{*1}^{1,1}(t,x_{1},\alpha_{1},\mathcal{P}_{i})\right]
 $$
-Las cuales, como se fija $\mathcal{P}_i$, entonces por independencia de alfabetos tenemos que $E_i$ son $\Sigma$-PR. Ademas, por segundo manantial de macros tenemos que existe la siguiente macros:
-$$
-\left[\mathrm{IF}\;E_{i}(\mathrm{V}2,\mathrm{V}3,\mathrm{V}1,\mathrm{W}1)\;\mathrm{GOTO}\;\mathrm{A}1\right] \\
-\left[\mathrm{IF}\;E_{i}(\mathrm{V}2,\mathrm{V}1,\mathrm{W}1,\mathrm{W}2)\;\mathrm{GOTO}\;\mathrm{A}1\right]
-$$
-las cuales las escribiré de la siguiente forma:
-$$
-\left[\mathrm{IF}\;\mathrm{V}2\neq
-E_{\#i}^{1,1}(\mathrm{V}3,\mathrm{V}1,\mathrm{W}1,\mathcal{P}_{i})\;\mathrm{GOTO}\;\mathrm{A}1\right] \\
-\left[\mathrm{IF}\;\mathrm{W}2\neq
-E_{*i}^{1,1}(\mathrm{V}3,\mathrm{V}1,\mathrm{W}1,\mathcal{P}_{i})\;\mathrm{GOTO}\;\mathrm{A}1\right] \\
-$$
+Las cuales, como se fija $\mathcal{P}_i$, entonces por independencia de alfabetos tenemos que $E_i$ son $\Sigma$-PR $\Longrightarrow$ existen sus macros.
 
-Entonces el siguiente programa $\mathcal{P} \in Pro^{\Sigma}$ (se utilizan alguna macros las cuales surgen del segundo manantial de macros de funciones claramente $\Sigma$-R):
+Entonces el siguiente programa $\mathcal{P} \in Pro^{\Sigma}$:
 $$
 \begin{array}{l}
 \mathrm{L}1\ \mathrm{N}20\leftarrow\mathrm{N}20+1\\{}
@@ -545,13 +449,13 @@ Halt^{1,1}(\mathrm{N}10,\mathrm{N}3,\mathrm{P}3,\mathcal{P}_{3})\;\mathrm{GOTO}\
 \left[\mathrm{IF}\;\lnot
 Halt^{1,1}(\mathrm{N}10,\mathrm{N}3,\mathrm{P}3,\mathcal{P}_{4})\;\mathrm{GOTO}\;\mathrm{L}1\right]\\
 \left[\mathrm{IF}\;\mathrm{N}1\neq
-E_{\# (1)}^{1,1}(\mathrm{N}10,\mathrm{N}3,\mathrm{P}3,\mathcal{P}_{1})\;\mathrm{GOTO}\;\mathrm{L}1\right]\\
+E_{\#(1)}^{1,1}(\mathrm{N}10,\mathrm{N}3,\mathrm{P}3,\mathcal{P}_{1})\;\mathrm{GOTO}\;\mathrm{L}1\right]\\
 \left[\mathrm{IF}\;\mathrm{N}2\neq
-E_{\# (2)}^{1,1}(\mathrm{N}10,\mathrm{N}3,\mathrm{P}3,\mathcal{P}_{2})\;\mathrm{GOTO}\;\mathrm{L}1\right]\\
+E_{\#(2)}^{1,1}(\mathrm{N}10,\mathrm{N}3,\mathrm{P}3,\mathcal{P}_{2})\;\mathrm{GOTO}\;\mathrm{L}1\right]\\
 \left[\mathrm{IF}\;\mathrm{P}1\neq
-E_{\ast (1)}^{1,1}(\mathrm{N}10,\mathrm{N}3,\mathrm{P}3,\mathcal{P}_{3})\;\mathrm{GOTO}\;\mathrm{L}1\right]\\
+E_{\ast(1)}^{1,1}(\mathrm{N}10,\mathrm{N}3,\mathrm{P}3,\mathcal{P}_{3})\;\mathrm{GOTO}\;\mathrm{L}1\right]\\
 \left[\mathrm{IF}\;\mathrm{P}2\neq
-E_{\ast (2)}^{1,1}(\mathrm{N}10,\mathrm{N}3,\mathrm{P}3,\mathcal{P}_{4})\;\mathrm{GOTO}\;\mathrm{L}1\right]
+E_{\ast(2)}^{1,1}(\mathrm{N}10,\mathrm{N}3,\mathrm{P}3,\mathcal{P}_{4})\;\mathrm{GOTO}\;\mathrm{L}1\right]
 \end{array}
 $$
 
@@ -573,15 +477,11 @@ entonces $M(P)$ es $\Sigma$-PR.
 Proof
 
 (a) <br>
-Sea $\overline{P} = P \cup C_{0}^{n+1,m}|_{(\omega^{n+1} \times \Sigma^{* m}) - D_P}$, por lema de union de funciones con dominio disjunto, tenemos que $\overline{P}$ es $\Sigma$-PR y $\Sigma$-Total.
+Sea $\overline{P} = P \cup C_{0}^{n+1,m}|_{(\omega^{n+1} \times \Sigma^{* m}) - D_P}$, $\Longrightarrow$ $\overline{P}$ es $\Sigma$-PR y $\Sigma$-Total.
 
-Notar que:
-$$
-\{t\in\omega:P(t,\vec{x},\vec{\alpha})=1\}=\{t\in\omega:\overline{P}(t,\vec{x},\vec{\alpha})=1\}
-$$
-por lo que $D_{M(P)} = D_{M(\overline{P})}$ y tenemos que $M(P)(\vec{x},\vec{\alpha}) = M(\overline{P})(\vec{x},\vec{\alpha})$, para $\forall (\vec{x}, \vec{\alpha}) \in D_{M(P)}$. Por lo que $M(P) = M(\overline{P})$.
+Notar que $M(P) = M(\overline{P})$.
 
-Sea $k$ tal que $\overline{P} \in PR^\Sigma_k$, como $PR^\Sigma_k \subseteq R^\Sigma_k$, tenemos que $\overline{P} \in R^\Sigma_k$ y como $\overline{P}$ es $\Sigma$-Total tenemos que $M(\overline{P}) \in R^\Sigma_{k+1}$. Entonces $M(\overline{P})$ es $\Sigma$-R, lo cual implica que $M(P)$ es $\Sigma$-R.
+Sea $k$ tal que $\overline{P} \in PR^\Sigma_k$, como $PR^\Sigma_k \subseteq R^\Sigma_k$ tenemos que $\overline{P} \in R^\Sigma_k$ y como $\overline{P}$ es $\Sigma$-Total tenemos que $M(\overline{P}) \in R^\Sigma_{k+1}$. Entonces $M(\overline{P})$ es $\Sigma$-R, lo cual implica que $M(P)$ es $\Sigma$-R.
 
 (b) <br>
 Sea f una función $\Sigma$-PR $f : \omega^n \times \Sigma^{∗m} \longmapsto \omega$.
@@ -597,24 +497,16 @@ f(\vec{x},\vec{\alpha})}\;\overline{P}(t,\vec{x},\vec{\alpha})\right] \\
 x}\;\overline{P}(t,\vec{x},\vec{\alpha})\right]\circ\left[f,p_{1}^{n,m},\cdots,p_{n+m}^{n,m}\right]
 \end{aligned}
 $$
-
-Por lema sabemos que $\lambda x\vec{x}\vec{\alpha}\left[(\exists t\in\omega)_{t\leq x}\;\overline{P}(t,\vec{x},\vec{\alpha})\right]$ es $\Sigma$-PR y como f es $\Sigma$-PR tenemos que $\chi_{D_{M(\overline{P})}}^{\omega^{n}\times\Sigma^{\ast m}}$ es $\Sigma$-PR, por lo que $D_{M(\overline{P})}$ es $\Sigma$-PR.
+Claramente $\chi_{D_{M(\overline{P})}}^{\omega^{n}\times\Sigma^{\ast m}}$ es $\Sigma$-PR, por lo que $D_{M(\overline{P})}$ es $\Sigma$-PR.
 
 Sea
 $$
 \begin{aligned}
 
 P_{1} & = \lambda t\vec{x}\vec{\alpha}\left[\overline{P}(t,\vec{x},\vec{\alpha})\wedge(\forall j\in\omega)_{j\leq t}\;(j=t\vee\lnot\overline{P}(j,\vec{x},\vec{\alpha}))\right] \\
-
-& = \lambda zt\vec{x}\vec{\alpha}\left[(\forall j\in\omega)_{j\leq z} \; Q(j, t,\vec{x},\vec{\alpha}) \right] \circ \left[ p^{n+1,m}_1, p^{n+1,m}_1, p^{n+1,m}_2, \cdots, p^{n+1,m}_{n+1,m} \right] \\
-
-\text{donde} \\
-
-& Q = \lambda jt\vec{x}\vec{\alpha}\left[\overline{P}(t,\vec{x},\vec{\alpha})\wedge(j=t\vee\lnot\overline{P}(j,\vec{x},\vec{\alpha}))\right]\\
-
 \end{aligned}
 $$
-por lo que $P_1$ es $\Sigma$-Total y $\Sigma$-PR. Ademas nótese que $\forall (\vec{x},\vec{\alpha})\in\omega^{n}\times\Sigma^{\ast m}$ se tiene que:
+Tenemos que $P_1$ es $\Sigma$-Total y $\Sigma$-PR. Ademas nótese que $\forall (\vec{x},\vec{\alpha})\in\omega^{n}\times\Sigma^{\ast m}$ se tiene que:
 $$
 P_{1}(t,\vec{x},\vec{\alpha})=1\text{ si y solo
 si }(\vec{x},\vec{\alpha})\in D_{M(\overline{P})}\text{ y
@@ -625,24 +517,7 @@ Esto nos dice que
 $$
 M(\overline{P})=\left(\lambda\vec{x}\vec{\alpha}\left[\prod_{t=0}^{t=f(\vec{x},\vec{\alpha})}t^{P_{1}(t,\vec{x},\vec{\alpha})}\right]\right)|_{D_{M(\overline{P})}}
 $$
-por lo cual para probar que $M(\overline{P})$ es $\Sigma$-PR solo nos resta probar que la función interna es $\Sigma$-PR, pero notar que
-$$
-\begin{aligned}
-
-F = & \lambda\vec{x}\vec{\alpha}\left[\prod_{t=0}^{t=f(\vec{x},\vec{\alpha})}t^{P_{1}(t,\vec{x},\vec{\alpha})}\right] \\
-
-= & \lambda
-xy\vec{x}\vec{\alpha}\left[\prod_{t=x}^{t=y} B(t, \vec{x}, \vec{\alpha})\right]\circ\left[C_{0}^{n,m},f,p_{1}^{n,m},\cdots,p_{n+m}^{n,m}\right] \\
-
-\text{donde} \\
-
-& B = \lambda xy \left[ x^y \right] \circ \left[ p_1^{n+1, m}, P_{1} \right]
-
-\end{aligned}
-$$
-y como por lema tenemos que $\lambda xy\vec{x}\vec{\alpha}\left[\prod_{t=x}^{t=y} B(t, \vec{x}, \vec{\alpha}) \right]$ es $\Sigma$-PR, $B$ es $\Sigma$-PR, entonces F es $\Sigma$-PR.
-
-Por lema de restricción de dominio de función $\Sigma$-PR con un conjunto $\Sigma$-PR, tenemos que $M(\overline{P})$ es $\Sigma$-PR, por lo que $M(P)$ es $\Sigma$-PR.
+como la función interna es $\Sigma$-PR y por lema de restricción de dominio, tenemos que $M(\overline{P})$ es $\Sigma$-PR, por lo que $M(P)$ es $\Sigma$-PR.
 
 ---
 ### Lema.
@@ -656,7 +531,7 @@ Proof
 - Si $S = \emptyset$, entonces $f|_S = \emptyset$ y por lo que $f|_S$ es $\Sigma$-R.
 - Supongamos $S \neq \emptyset$.
 
-Como $S$ es $\Sigma$-RE entonces tenemos que hay una función $F : \omega \longmapsto \omega \times \Sigma^∗$ tal que $S = I_F$ y $F_{(1)}, F_{(2)}$ son $\Sigma$-R.
+Como $S$ es $\Sigma$-RE $\Longrightarrow$ $\exist F : \omega \longmapsto \omega \times \Sigma^∗$ tal que $S = I_F$ y $F_{(1)}, F_{(2)}$ son $\Sigma$-R.
 
 Como $f, F_{(1)}, F_{(2)}$ son $\Sigma$-R, entonces por segundo manantial de macros existen las macros para estas.
 
@@ -687,19 +562,14 @@ es fácil ver que $\mathcal{P}$ computa a $f|_S$, por lo que $f|_S$ es $\Sigma$-
 
 Proof
 
-Supongamos que $AutoHalt^\Sigma$ es $\Sigma$-recursivo. Por el segundo manantial de macros tenemos que hay una macro
-$$
-\left[ \mathrm{IF} \ AutoHalt^\Sigma(\mathrm{W1}) \ \mathrm{GOTO \ A1} \right]
-$$
+Supongamos que $AutoHalt^\Sigma$ es $\Sigma$-R $\Longrightarrow$ existe una macro para esta.
 
 Sea $\mathcal{P}_0$ el siguiente programa:
 $$
 \mathrm{L1} \quad \left[ \mathrm{IF} \ AutoHalt^\Sigma(\mathrm{P1}) \ \mathrm{GOTO \ L1} \right]
 $$
 
-Notar que $\mathcal{P}_0$ termina partiendo desde $|| \mathcal{P}_0 ||$ si y solo si $AutoHalt^\Sigma(\mathcal{P}_0) = 0$, lo cual produce una contradicción por la definición de $AutoHalt^\Sigma$.
-
-> $\forall \mathcal{P} \in Pro^\Sigma$ tenemos que $$ AutoHalt^\Sigma(\mathcal{P}) = 1 \text{ sii } \mathcal{P} \text{ se detiene partiendo del estado } ||\mathcal{P}|| $$
+Notar que produce una contradicción, por que $AutoHalt^\Sigma$ no es $\Sigma$-R.
 
 ---
 ### Teorema. Supongamos $\Sigma \supseteq \Sigma^p$ . Entonces $AutoHalt^\Sigma$ no es $\Sigma$-efectivamente computable.
@@ -719,18 +589,15 @@ no es $\Sigma$-RE
 
 Proof
 
-Para ver que $A$ es $\Sigma$-RE se lo puede hacer imperativamente dando un programa (usando macros) que enumere a $A$. De esta forma probaríamos que $A$ es $\Sigma$-E y por lo tanto (por tesis de Church) es $\Sigma$-RE.
-
 Sea $P = \lambda t \mathcal{P} \left[ Halt^{0,1}(t, \mathcal{P}, \mathcal{P}) \right]$. Note que P es $\Sigma$-PR por lo que $M(P)$ es $\Sigma$-R. Ademas note que $D_{M(P)} = A$, por ser dominio de una función $\Sigma$-R tenemos que por lema **implica que $A$ es $\Sigma$-RE**.
 
-Supongamos ahora que $N$ es $\Sigma$-RE Entonces la función $C_0^{0, 1}|_N$ es $\Sigma$-R ya que $C_0^{0, 1}$ lo es. Ademas ya que $A$ es $\Sigma$-RE. tenemos que $C_1^{0, 1}|_A$ es $\Sigma$-R.
+Supongamos ahora que $N$ es $\Sigma$-RE Entonces la función $C_0^{0, 1}|_N$ es $\Sigma$-R. Ademas ya que $A$ es $\Sigma$-RE. tenemos que $C_1^{0, 1}|_A$ es $\Sigma$-R.
 
 Ya que
 $$
 AutoHalt^\Sigma = C_1^{0, 1}|_A \cup C_0^{0, 1}|_N
 $$
-
-el lema de division por casos nos dice que $AutoHalt^\Sigma$ es $\Sigma$-R, contradiciendo el lema anterior. Este absurdo vino de suponer que N es $\Sigma$-RE, por lo que **$N$ no es $\Sigma$-RE**.
+esto nos dice que $AutoHalt^\Sigma$ es $\Sigma$-R, contradiciendo el lema anterior. Este absurdo vino de suponer que N es $\Sigma$-RE, por lo que **$N$ no es $\Sigma$-RE**.
 
 Finalmente supongamos A es $\Sigma$-R. Entonces el conjunto
 $$
@@ -752,13 +619,7 @@ Caso $h \in R^\Sigma_k$: Valido por ser hipótesis inductiva.
 
 - Sea $h \in (R^\Sigma_{k+1} - R^\Sigma_k)$. Hay varios casos.
 
-Caso $h=R(f,\mathcal{G})$. (no se hace, combo 1).
-
-Caso $h = M(P)$, con $P:\omega\times\omega^{n}\times\Sigma^{*m}\longrightarrow\omega$, un predicado perteneciente a $R^\Sigma_k$. Por hipótesis inductiva, P es $\Sigma$-C y por lo tanto tenemos una macro
-$$
-\left[\mathrm{IF}\;P(\mathrm{V}\overline{n+1}, \mathrm{V}1,\cdots,\mathrm{V}\overline{n},\mathrm{W}1,\cdots,\mathrm{W}\overline{m})\;\mathrm{GOTO}\;\mathrm{A}1\right]
-$$
-lo cual nos permite realizar el siguiente programa:
+Caso $h = M(P)$, con $P:\omega\times\omega^{n}\times\Sigma^{*m}\longrightarrow\omega$, un predicado perteneciente a $R^\Sigma_k$. Por hipótesis inductiva, P es $\Sigma$-C y por lo tanto tenemos que existe su macro, lo cual nos permite realizar el siguiente programa:
 $$
 \begin{array}{ll}
 \mathrm{L}2 &
@@ -783,22 +644,11 @@ Proof
 
 Sean $\mathcal{P}_1$ y $\mathcal{P}_1$ programas que computen las funciones $f_1$ y $f_2$ respectivamente. Para $i = 1, 2$ definamos:
 $$
-H_{i}=\lambda
-tx_{1}\alpha_{1}\left[Halt^{1,1}(t,x_{1},\alpha_{1},\mathcal{P}_{i})\right]
+\lambda t x_{1}\alpha_{1}\left[Halt^{1,1}(t,x_{1},\alpha_{1},\mathcal{P}_{i})\right]
 $$
-Notar que $H_i$ es $\Sigma$-mixta. Ademas sabemos que $Halt^{1,1}$ es $(\Sigma \cup \Sigma^p)$-PR, por lo cual $H_i$ es $(\Sigma \cup \Sigma^p)$-R. Por teorema de independencia de alfabetos tenemos que $H_i$ son $\Sigma$-PR, por lo que también es $\Sigma$-R. Por segundo manantial de macros tenemos que existe la siguiente macro
-$$
-\left[\mathrm{IF}\;H_{i}(\mathrm{V}1,\mathrm{V}2,\mathrm{W}1)\;\mathrm{GOTO}\;\mathrm{A}1\right]
-$$
-la cual la escribiré como
-$$
-\left[\mathrm{IF}\;Halt^{1,1}(\mathrm{V}1,\mathrm{V}2,\mathrm{W}1,\mathcal{P}_{i})\;\mathrm{GOTO}\;\mathrm{A}1\right]
-$$
+el cual es $\Sigma$-R $\Longrightarrow$ existen sus macros.
 
-Ya que $f_i$ es $\Sigma$-C, por primer manantial de macros tenemos que existe la siguiente macro:
-$$
-\left[\mathrm{V}2 \longleftarrow f_{i}(\mathrm{V}1,\mathrm{W}1)\right]\\
-$$
+Ya que $f_i$ es $\Sigma$-C $\Longrightarrow$ existen sus macros.
 
 Sea $\mathcal{P}$ el siguiente programa:
 $$
@@ -823,30 +673,17 @@ claramente $\mathcal{P}$ computa la función $f_1 \cup f_2$, por lo que es $\Sig
 
 > Similar al combo 3, cambia conjunto de llegada
 
-Función $\Phi_{\#}^{n,m}$: <br>
-Para $n, m \in \omega$ definamos la función $\Phi_{\#}^{n,m}$ de la siguiente manera:
-$$
-\begin{aligned}
-
-D_{\Phi_{\#}^{n,m}} & = \left\{ (\vec{x},\vec{\alpha},\mathcal{P}) \in \omega^{n} \times \Sigma^{*m} \times \mathrm{Pro}^{\Sigma} :(\vec{x},\vec{\alpha}) \in D_{\Psi_{\mathcal{P}}^{n,m,\#}} \right\} \\
-
-\Phi_{\#}^{n,m}(\vec{x},\vec{\alpha},\mathcal{P}) & =\Psi_{\mathcal{P}}^{n,m,\#}(\vec{x},\vec{\alpha}) \text{, para cada }(\vec{x},\vec{\alpha},\mathcal{P}) \in D_{\Phi_{\#}^{n,m}}
-
-\end{aligned}
-$$
 Nótese que
 $$ \Phi_{\#}^{n,m} = \lambda\vec{x}\vec{\alpha}\mathcal{P}\left[\Psi_{\mathcal{P}}^{n,m,\#}(\vec{x},\vec{\alpha}) \right] $$
 Por teorema, tenemos que $\Phi_{\#}^{n,m}$ es $(\Sigma \cup \Sigma^p)$-R
 
 Proof
 
-Sea $\mathcal{P}_0$ un programa que compute a $f$. Veamos que $f$ es $(\Sigma \cup \Sigma^p)$-R. Note que
+Sea $\mathcal{P}_0$ un programa que compute a $f$. Note que
 $$
 f = \Phi_{\#}^{n,m} \circ \left[ p_{1}^{n,m}, \cdots, p_{n+m}^{n,m}, C_{\mathcal{P}_{0}}^{n,m} \right]
 $$
-donde cabe destacar que $p_{1}^{n,m}, \cdots, p_{n+m}^{n,m}$ son respecto al alfabeto $\Sigma \cup \Sigma^p$, es decir que tienen dominio $\omega^n \times (\Sigma \cup \Sigma^p)^{*m}$. Ya que $\Phi_{\#}^{n,m}$ es $(\Sigma \cup \Sigma^p)$-R tenemos que f lo es.
-
-Por lo que si se fija $\mathcal{P}_0$, por teorema de la independencia de Alfabeto, tendríamos que f es $\Sigma$-R.
+entonces $f$ es $(\Sigma \cup \Sigma^p)$-R. Por lo que si se fija $\mathcal{P}_0$, por teorema de la independencia de Alfabeto, tendríamos que f es $\Sigma$-R.
 
 
 ---

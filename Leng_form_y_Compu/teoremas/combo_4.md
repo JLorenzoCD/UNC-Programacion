@@ -94,10 +94,10 @@ L_{m}:x>0\right\} \\
 D_{2} & =\left\{ (x,\vec{x},\vec{\alpha})\in\omega\times
 S_{1}\times \cdots \times S_{n}\times L_{1}\times \cdots \times L_{m}:x=0\right\}
 \\
-H_{1} & =\left\{ (z,t,x,\vec{x},\vec{\alpha})\in\omega^{3}\times
+H_{1} & =\left\{ (A,t,x,\vec{x},\vec{\alpha})\in\omega^{3}\times
 S_{1}\times \cdots \times S_{n}\times L_{1}\times \cdots \times
 L_{m}:x>t+1\right\} \\
-H_{2} & =\left\{ (z,t,x,\vec{x},\vec{\alpha})\in\omega^{3}\times
+H_{2} & =\left\{ (A,t,x,\vec{x},\vec{\alpha})\in\omega^{3}\times
 S_{1}\times \cdots \times S_{n}\times L_{1}\times \cdots \times L_{m}:x\leq
 t+1\right\} .
 \end{aligned}

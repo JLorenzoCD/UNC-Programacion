@@ -14,7 +14,7 @@ Como $f, \mathcal{G}_@ , \mathcal{G}_{\%}$ y $\mathcal{G}_!$ son $\Sigma$-efecti
 Se recibe como dato de entrada $(\vec{x}, \vec{\alpha}, \alpha)$, con $\vec{x} \in \omega^2$, $\vec{\alpha} \in \Sigma^{*2}$ y $\alpha \in \Sigma^*$, entonces:
 - Etapa 1: Ejecuto $\mathbb{P}_{f}$ con $(\vec{x}, \vec{\alpha})$ obteniendo A com resultado.
 - Etapa 2: Si $\alpha = \epsilon$, devuelvo A y termino.
-- Etapa 3: $C = \left[ \alpha \right]_{|\alpha|} y \ \alpha = \text{}^{\curvearrowright} \alpha$.
+- Etapa 3: $C = \left[ \alpha \right]_{|\alpha|} y \ \alpha = \alpha \text{}^{\curvearrowleft}$.
 - Etapa 4: Si $C = @$, ejecuto $\mathbb{P}_{\mathcal{G}_@}$ con $(A, \vec{x}, \vec{\alpha}, \alpha)$ obteniendo a y asigno $A = a$ e ir a Etapa 2.
 - Etapa 5: Si $C = \%$, ejecuto $\mathbb{P}_{\mathcal{G}_\%}$ con $(A, \vec{x}, \vec{\alpha}, \alpha)$ obteniendo a y asigno $A = a$ e ir a Etapa 2.
 - Etapa 6: Ejecuto $\mathbb{P}_{\mathcal{G}_!}$ con $(A, \vec{x}, \vec{\alpha}, \alpha)$ obteniendo a y asigno $A = a$ e ir a Etapa 2.
@@ -34,7 +34,7 @@ $$
 \overline{P} = P|_{\overline{S}\times S_{1} \times \cdots \times
 S_{n} \times L_{1} \times \cdots \times L_{m}} \cup C_{1}^{1+n,m}|_{(\omega - \overline{S}) \times S_{1} \times \cdots \times S_{n} \times L_{1}\times \cdots \times L_{m}}
 $$
-claramente $C_{1}^{1+n,m}$ es $\Sigma$-PR. Ademas, como por suposición $\overline{S}$ es $\Sigma$-PR, entonces $(\omega - \overline{S})$ también es $\Sigma$-PR. Por lema de la restricción y de la union de funciones, donde en este caso los dominios son claramente disjuntos, tendríamos que $\overline{P}$ es $\Sigma$-PR.
+claramente $C_{1}^{1+n,m}$ es $\Sigma$-PR. Ademas, como por suposición $\overline{S}$ es $\Sigma$-PR, entonces $(\omega - \overline{S})$ también es $\Sigma$-PR. Por lema de la restricción y de la union de funciones, donde en este caso los dominios son claramente disjuntos, tendríamos que $\overline{P}$ es $\Sigma$-PR, notar que $\overline{P}$ no es $\Sigma$-Total y que el primer conjunto del producto cruz en su dominio es $\omega$.
 
 Por "Lema de la Sumatoria" sabemos que $\lambda x y \vec{x} \vec{\alpha} \left[ \prod_{t=x}^{t=y} \overline{P}(t, \vec{x},\vec{\alpha}) \right]$ es $\Sigma$-PR. Como es valida la siguiente igualdad:
 $$
@@ -50,4 +50,8 @@ xy\vec{x}\vec{\alpha}\left[\prod\limits_{t=x}^{t=y}\overline{P}(t,\vec{x},\vec{\
 $$
 entonces tenemos que $ \lambda x \vec{x} \vec{\alpha} [ \ (\forall t \in \overline{S})_{t \le x} \  \overline{P}(t, \vec{x} \vec{\alpha}) \ ] $ es $\Sigma$-PR.
 
-Por lema de la restricción del dominio de una función $\Sigma$-PR, se puede probar fácilmente que $\lambda x \vec{x} \vec{\alpha} \left[ (\forall t\in\overline{S})_{t\leq x}P(t,\vec{x},\vec{\alpha})\right]$ es $\Sigma$-PR.
+Como:
+$$
+\lambda x \vec{x} \vec{\alpha} [ \ (\forall t \in \overline{S})_{t \le x} \  \overline{P}(t, \vec{x} \vec{\alpha}) \ ] = \lambda x \vec{x} \vec{\alpha} [ \ (\forall t \in \overline{S})_{t \le x} \  P(t, \vec{x} \vec{\alpha}) \ ]
+$$
+Entonces tenemos que $\lambda x \vec{x} \vec{\alpha} [ \ (\forall t \in \overline{S})_{t \le x} \  P(t, \vec{x} \vec{\alpha}) \ ]$ es $\Sigma$-PR.
