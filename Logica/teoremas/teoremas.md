@@ -3,7 +3,7 @@
 
 # Combo 1
 ### Teorema (Teorema del Filtro Primo)
-Sea $(L, s, i)$ un reticulado terna distributivo y $F$ un filtro. Supongamos $x_0 \in L - F$. Entonces hay un filtro primo $P$ tal que $x_0 \notin P$ y $F \subseteq P$.
+Sea $(L, s, i)$ un reticulado terna distributivo y $F$ un filtro. Supongamos $x_0 \in (L - F)$. Entonces hay un filtro primo $P$ tal que $x_0 \notin P$ y $F \subseteq P$.
 
 ### Lema (Propiedades básicas de la consistencia)
 Sea $(\Sigma, \tau)$ una teoría.
@@ -32,10 +32,11 @@ Dado $t \in T^\tau$ se da una de las siguientes:
 2. Hay únicos $n \ge 1$, $f \in \mathcal{F}_n$, $t_1, \dots, t_n \in T^\tau$ tales que $t = f(t_1, \dots, t_n)$.
 
 ### Lema
-Supongamos que $F: A \rightarrow B$ es un isomorfismo. Sea $\varphi \in F^\tau$. Entonces $$\mathbb{A} \models \varphi[(a_1, a_2, ...)] \quad \text{sii} \quad \mathbb{B} \models \varphi[(F(a_1), F(a_2), ...)]$$ para cada $(a_1, a_2, ...) \in A^\mathbb{N}$. En particular $\mathbb{A}$ y $\mathbb{B}$ satisfacen las mismas sentencias de tipo $\tau$.
+Supongamos que $F: \mathbb{A} \rightarrow \mathbb{B}$ es un isomorfismo. Sea $\varphi \in F^\tau$. Entonces $$\mathbb{A} \models \varphi[(a_1, a_2, ...)] \quad \text{sii} \quad \mathbb{B} \models \varphi[(F(a_1), F(a_2), ...)]$$ para cada $(a_1, a_2, ...) \in A^\mathbb{N}$. En particular $\mathbb{A}$ y $\mathbb{B}$ satisfacen las mismas sentencias de tipo $\tau$.
 
 ### Teorema
-Sea $T = (\Sigma, \tau)$ una teoría. Entonces $(S^\tau / \dashv\vdash_T, s^T, i^T, ^{c^T}, 0^T, 1^T)$ es un álgebra de Boole. Pruebe solo el ítem (6).
+Sea $T = (\Sigma, \tau)$ una teoría. Entonces $(S^\tau / \dashv\vdash_T, s^T, i^T, ^{c^T}, 0^T, 1^T)$ es un álgebra de Boole.
+> Pruebe solo el ítem (6).
 
 ---
 # Combo 4
@@ -51,7 +52,7 @@ Sea $\mathfrak{a}(B, s, i, ^c, 0, 1)$ un álgebra de Boole y sean $a, b \in B$. 
 2. $a \ i \ b = 0$ si y solo si $b \le a^c$
 
 ### Lema
-Sean $(L, s, i)$ y $(L', s', i')$ reticulados terna y sean $(L, \le)$ y $(L', \le')$ los posets asociados. Sea $F: L \rightarrow L'$ una función. Entonces $F$ es un isomorfismo de $(L, s, i)$ en $(L', s', i')$ si y solo si $F$ es un isomorfismo de $(L, \le)$ en $(L', \le')$.
+Sean $(L, s, i)$ y $(L', s', i')$ reticulados terna y sean $(L, \le)$ y $(L', \le')$ los posets asociados. Sea $F: \mathbb{L} \rightarrow \mathbb{L'}$ una función. Entonces $F$ es un isomorfismo de $(L, s, i)$ en $(L', s', i')$ si y solo si $F$ es un isomorfismo de $(L, \le)$ en $(L', \le')$.
 
 ---
 # Combo 5
@@ -80,7 +81,7 @@ Sea $(L, s, i)$ un reticulado terna y sea $\theta$ una congruencia de $(L, s, i)
 2. El orden parcial $\tilde{\le}$ asociado al reticulado terna $(L/\theta, \tilde{s}, \tilde{i})$ cumple $$x/\theta \le y/\theta \text{ sii } y\theta(x \ s \ y)$$
 
 ### Lema
-Sean $(L, s, i)$ y $(L', s', i')$ reticulados terna y sean $(L, \le)$ y $(L', \le')$ los posets asociados. Sea $F: L \rightarrow L'$ una función. Entonces $F$ es un isomorfismo de $(L, s, i)$ en $(L', s', i')$ si y solo si $F$ es un isomorfismo de $(L, \le)$ en $(L', \le')$.
+Sean $(L, s, i)$ y $(L', s', i')$ reticulados terna y sean $(L, \le)$ y $(L', \le')$ los posets asociados. Sea $F: \mathbb{L} \rightarrow \mathbb{L'}$ una función. Entonces $F$ es un isomorfismo de $(L, s, i)$ en $(L', s', i')$ si y solo si $F$ es un isomorfismo de $(L, \le)$ en $(L', \le')$.
 > Nota: Explicado en Combo 4
 
 ---
