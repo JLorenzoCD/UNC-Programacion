@@ -5,7 +5,7 @@
 ### (1) Defina $n(J)$ (para $J \in Just^+$)
 ### (2) Defina "par adecuado de tipo $\tau$" (No hace falta que defina cuando $J \in Just^+$ es balanceada)
 ### (3) Defina $Mod_{T}(\varphi)$
-### (4) Dados $\varphi =_d \varphi(v_1, \dots, v_n)$, $\mathbb{A}$ una estructura de tipo $\tau$ y $a_1, \dots, a_n \in A$, defina que significa $\mathbb{A} \models \varphi[a_1, \dots, a_n]$ (i.e. Convención notacional 4)
+### (4) Dados $\varphi =_d \varphi(v_1, \dots, v_n)$, $\mathbb{A}$ una estructura de tipo $\tau$ y $a_1, \dots, a_n \in A$, defina que significa $\mathbb{A} \models \varphi[a_1, \dots, a_n]$ (i.e. Convención notacional 4 de la Guía 11)
 ### (5) Defina $(L, s, i, ^c, 0, 1)/\theta$ ($\theta$ una congruencia del reticulado complementado $(L, s, i, ^c, 0, 1)$). Justifique por qué la definición de las operaciones de $(L, s, i, ^c, 0, 1)/\theta$ es inambigua. (No hace falta que defina el concepto de congruencia.)
 
 ---
@@ -17,7 +17,7 @@
 
 ---
 # Combo 3
-### (1) Dados $t =_d t(v_1, \dots, v_n) \in T^\tau$, $\mathbb{A}$ una estructura de tipo $\tau$ y $a_1, \dots, a_n \in A$, defina $t^A[a_1, \dots, a_n]$ (i.e. Convención notacional 2)
+### (1) Dados $t =_d t(v_1, \dots, v_n) \in T^\tau$, $\mathbb{A}$ una estructura de tipo $\tau$ y $a_1, \dots, a_n \in A$, defina $t^A[a_1, \dots, a_n]$ (i.e. Convención notacional 2 de la Guía 11)
 ### (2) Defina "F es un homomorfismo de $(L, s, i, ^c, 0, 1)$ en $(L', s', i', ^{c'}, 0', 1')$"
 ### (3) Defina "filtro generado por $S$ en $(L, s, i)$"
 ### (4) Defina cuando $J \in Just^+$ es balanceada (no hace falta que defina $\mathcal{B}^J$)
@@ -51,7 +51,7 @@
 ### (1) Defina $(L, s, i, ^c, 0, 1)/\theta$ ($\theta$ una congruencia del reticulado complementado $(L, s, i, ^c, 0, 1)$). Justifique por qué la definición de las operaciones de $(L, s, i, ^c, 0, 1)/\theta$ es inambigua. (No hace falta que defina el concepto de congruencia.)
 > Nota: Explicado en Combo 1 - item 5
 
-### (2) Dados $\varphi =_d \varphi(v_1, \dots, v_n)$, $\mathbb{A}$ una estructura de tipo $\tau$ y $a_1, \dots, a_n \in A$, defina qué significa $\mathbb{A} \models \varphi[a_1, \dots, a_n]$ (i.e. Convención notacional 4)
+### (2) Dados $\varphi =_d \varphi(v_1, \dots, v_n)$, $\mathbb{A}$ una estructura de tipo $\tau$ y $a_1, \dots, a_n \in A$, defina qué significa $\mathbb{A} \models \varphi[a_1, \dots, a_n]$ (i.e. Convención notacional 4 de ka Guía 11)
 > Nota: Explicado en Combo 1 - item 4
 
 ### (3) Dado un poset $(P, \le)$, defina "a es supremo de $S$ en $(P, \le)$"
@@ -78,3 +78,13 @@
 ---
 # Combo 12
 ### Defina el concepto de función y desarrolle las tres Convenciones Notacionales asociadas a dicho concepto (Guía 0)
+
+---
+# Combo 13
+### (1) Defina "tipo"
+### (2) Defina "Estructura de tipo $\tau$"
+
+---
+# Combo 14
+### (1) Defina "teoría elemental"
+### (2) Defina "prueba elemental de $\varphi$ en $(\Sigma, \tau)$, donde $(\Sigma, \tau)$ es una teoría elemental y $\varphi$ es una sentencia elemental pura de tipo $\tau$
