@@ -5,7 +5,7 @@
 Cuando hayamos hecho la declaración $\varphi=_{d}\varphi(v_{1},...,v_{n})$, si $P_{1},...,P_{n}$ son palabras cualesquiera, entonces $\varphi(P_{1},...,P_{n})$ denotará la palabra que resulta de reemplazar simultáneamente cada ocurrencia libre de $v_{1}$ en $\varphi$, por $P_{1}$, cada ocurrencia libre de $v_{2}$ en $\varphi$, por $P_{2}$, etc.
 
 * **Convención Notacional 4:**
-Cuando hayamos declarado $\varphi=_{d}\varphi(v_{1},...,v_{n})$, si $\mathbb{A}$ es un modelo de tipo $\tau$ y $a_{1},...,a_{n}\in A$, entonces $\mathbb{A}\models\varphi[a_{1}...,a_{n}]$ significara que $\mathbb{A}\models\varphi[\vec{b}]$, donde $\vec{b}$ es una asignación tal que a cada $v_{i}$ le asigna el valor $a_{i}$. Note que esto nos dice que para el caso $n=0$, $\mathbb{A}\models\varphi[]$ significara que $\mathbb{A}\models\varphi[\vec{b}]$, donde $\vec{b}$ es una asignación cualquiera. (Nótese que esta convención es inambigua gracias al Lema 7.17). En gral $\mathbb{A}\not\models\varphi[a_{1},....,a_{n}]$ significara que no sucede $\mathbb{A}\models\varphi[a_{1},....,a_{n}]$.
+    > Nota: Explicado en Combo 1 - item 4
 
 * **Convención Notacional 6:**
     Cuando hayamos declarado $\varphi=_{d}\varphi(v_{1},...,v_{n})$, entonces:
