@@ -37,17 +37,17 @@ Dados reticulados complementados $(L,\mathsf{s},\mathsf{i},^{c},0,1)$ y $(L^{\pr
 ### (3) Defina la relación "$v$ ocurre libremente en $\varphi$ a partir de $i$"
 Definamos recursivamente la relación $"v\mathit{\ ocurre\ libremente\ en\ }\varphi\mathit{\ a\ partir\ de\ }i"$, donde $v\in Var$, $\varphi\in F^{\tau}$ y $i\in\{1,...,\left\vert \varphi\right\vert \}$, de la siguiente manera:
 
-1. Si $\varphi$ es atómica, entonces $v$ ocurre libremente en $\varphi$ a partir de $i$ sii $v$ ocurre en $\varphi$ a partir de $i$
+1. Si $\varphi$ es atómica, entonces $v$ ocurre libremente en $\varphi$ a partir de $i$ $\Longleftrightarrow$ $v$ ocurre en $\varphi$ a partir de $i$
 
-2. Si $\varphi=(\varphi_{1}\eta\varphi_{2})$, entonces $v$ ocurre libremente en $\varphi$ a partir de $i$ sii se da alguna de las siguientes
+2. Si $\varphi=(\varphi_{1}\eta\varphi_{2})$, entonces $v$ ocurre libremente en $\varphi$ a partir de $i$ $\Longleftrightarrow$ se da alguna de las siguientes
 
     (a). $v$ ocurre libremente en $\varphi_{1}$ a partir de $i-1$
 
     (b). $v$ ocurre libremente en $\varphi_{2}$ a partir de $i-\left\vert (\varphi_{1}\eta\right\vert$
 
-3. Si $\varphi=\lnot\varphi_{1}$, entonces $v$ ocurre libremente en $\varphi$ a partir de $i$ sii $v$ ocurre libremente en $\varphi_{1}$ a partir de $i-1$
+3. Si $\varphi=\lnot\varphi_{1}$, entonces $v$ ocurre libremente en $\varphi$ a partir de $i$ $\Longleftrightarrow$ $v$ ocurre libremente en $\varphi_{1}$ a partir de $i-1$
 
-4. Si $\varphi=Qw\varphi_{1}$, entonces $v$ ocurre libremente en $\varphi$ a partir de $i$ sii $v\neq w$ y $v$ ocurre libremente en $\varphi_{1}$ a partir de $i-\left\vert Qw\right\vert$
+4. Si $\varphi=Qw\varphi_{1}$, entonces $v$ ocurre libremente en $\varphi$ a partir de $i$ $\Longleftrightarrow$ $v\neq w$ y $v$ ocurre libremente en $\varphi_{1}$ a partir de $i-\left\vert Qw\right\vert$
 
 ### (4) Defina reticulado cuaterna
 Por un reticulado cuaterna entenderemos una 4-upla $(L,\mathsf{s},\mathsf{i},\leq)$ tal que $L$ es un conjunto no vacío, $\mathsf{s}$ e $\mathsf{i}$ son operaciones binarias sobre $L$, $\leq$ es una relación binaria sobre $L$ y se cumplen las siguientes propiedades:
