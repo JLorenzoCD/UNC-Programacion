@@ -19,9 +19,7 @@ R_{\mathcal{P}}=\{(a,b)\in A^{2}:a,b\in S,\text{ para algún }S\in\mathcal{P}\}
 $$
 
 ### (3) Defina cuando "$\varphi_i$ está bajo la hipótesis $\varphi_l$ en $(\boldsymbol{\varphi},\mathbf{J})$" (No hace falta que defina $\mathcal{B}^J$)
-Sea $(\boldsymbol{\varphi},\mathbf{J})$ un par adecuado de tipo $\tau$. Si $\left\langle i,j\right\rangle \in\mathcal{B}^{\mathbf{J}}$, entonces $\boldsymbol{\varphi}_{i}$ será la hipótesis del bloque $\left\langle i,j\right\rangle$ en $(\boldsymbol{\varphi},\mathbf{J})$ y $\boldsymbol{\varphi}_{j}$ será la tesis del bloque $\left\langle i,j\right\rangle$ en $(\boldsymbol{\varphi},\mathbf{J})$.
-
-Diremos que $\boldsymbol{\varphi}_{i}$ esta bajo la hipótesis $\boldsymbol{\varphi}_{l}$ en $(\boldsymbol{\varphi},\mathbf{J})$ o que $\boldsymbol{\varphi}_{l}$ es una hipótesis de $\boldsymbol{\varphi}_{i}$ en $(\boldsymbol{\varphi},\mathbf{J})$ cuando haya en $\mathcal{B}^{\mathbf{J}}$ un bloque de la forma $\left\langle l,j\right\rangle$ el cual contenga a $i$.
+Sea $(\boldsymbol{\varphi},\mathbf{J})$ un par adecuado de tipo $\tau$. Si $\left\langle i,j\right\rangle \in\mathcal{B}^{\mathbf{J}}$. Diremos que $\boldsymbol{\varphi}_{i}$ esta bajo la hipótesis $\boldsymbol{\varphi}_{l}$ en $(\boldsymbol{\varphi},\mathbf{J})$ o que $\boldsymbol{\varphi}_{l}$ es una hipótesis de $\boldsymbol{\varphi}_{i}$ en $(\boldsymbol{\varphi},\mathbf{J})$ cuando haya en $\mathcal{B}^{\mathbf{J}}$ un bloque de la forma $\left\langle l,j\right\rangle$ el cual contenga a $i$.
 
 > En el paso $l$ se abre un bloque en el que $\varphi_l$ es una hipótesis, y el paso $i$ ocurre dentro de la extensión de dicho bloque antes de que se cierre en $j$.
 

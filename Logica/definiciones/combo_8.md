@@ -10,7 +10,7 @@ Sea $(P, \le)$ un poset, un subconjunto $S \subseteq P$ y $a\in P$. Decimos que 
 1. $a$ es cota superior de $S$ en $(P, \le)$.
 2. Para cada $b \in P$, si $b$ es cota superior de $S$ en $(P, \le)$, entonces $a \le b$.
 
-### (4) Defina "$i$ es anterior a $j$ en $(\varphi, J)$" (no hace falta que defina $\mathcal{B}^J$)
+### (4) Defina "$i$ es anterior a $j$ en $(\bm{\varphi}, \mathbf{J})$" (no hace falta que defina $\mathcal{B}^J$)
 Sea $(\bm{\varphi}, \mathbf{J})$ un par adecuado de longitud $n$, y sean $1 \le i, j \le n$. Diremos que el paso $i$ es anterior a $j$ en $(\boldsymbol{\varphi},\mathbf{J})$ si:
 1. $i\lt j$.
 2. Para todo $B\in\mathcal{B}^{\mathbf{J}}$ se tiene que $i\in B\Rightarrow j\in B$.
