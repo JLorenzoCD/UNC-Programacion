@@ -5,12 +5,12 @@ import re
 # de yzane (https://marketplace.visualstudio.com/items?itemName=yzane.markdown-pdf)
 
 # ------------------- Definiciones -------------------
-# DIR_PATH = "Logica/definiciones"
+# DIR_PATH = "./definiciones"
 # FILE_OUTPUT = "definiciones.md"
 # HEADER = "Definiciones"
 
 # ------------------- Teoremas -------------------
-DIR_PATH = "Logica/teoremas"
+DIR_PATH = "./teoremas"
 FILE_OUTPUT = "teoremas.md"
 HEADER = "Teoremas"
 
