@@ -7,6 +7,7 @@ Dados reticulados complementados $(L,\mathsf{s},\mathsf{i},^{c},0,1)$ y $(L^{\pr
 4. $\mathsf{s}=\mathsf{s}^{\prime}|_{L\times L}, \mathsf{i}=\mathsf{i}^{\prime}|_{L\times L}$ y $^{c}=\ ^{c^{\prime}}|_{L}$.
 
 ### (2) Defina $\mathbb{A} \models \varphi[\vec{a}]$ (versión absoluta, no dependiente de una declaración previa, i.e. $\vec{a} \in A^\mathbb{N}$. No hace falta definir $t^A[\vec{a}]$)
+Sea $\mathbb{A} = (A, i)$ una estructura de tipo $\tau$ , $\varphi \in F^\tau$ y $\vec{a} \in A^{\mathbb{N}}$ una asignación. Definamos recursivamente la relación $\mathbb{A}\models\varphi[\vec{a}]$ como:
 1. Si $\varphi=(t\equiv s)$, entonces
     - $\mathbb{A}\models\varphi[\vec{a}]$ si y solo si $t^{\mathbb{A}}[\vec{a}]=s^{\mathbb{A}}[\vec{a}]$
 

@@ -1,6 +1,11 @@
 # Combo 9
 ### (1) Defina "término elemental de tipo $\tau$"
-Sea $\tau=(\mathcal{C},\mathcal{F},\mathcal{R},a)$ un tipo. Los terminos de tipo $\tau^{\prime}$, con $\tau^{\prime}$ alguna extension de $\tau$ por nombres de constante, modelizan matematicamente a los terminos elementales de tipo $\tau$.
+Dado un tipo $\tau=(\mathcal{C},\mathcal{F},\mathcal{R},a)$ los términos elementales de tipo $\tau$ se definen con las siguientes clausulas:
+1. Cada palabra de $\mathcal{C}$ es un término elemental de tipo $\tau$
+2. Las variables $x,y,z,w,...$ son términos elementales de tipo $\tau$
+3. Los nombres de elementos fijos $a,b,c,d,...$ son términos elementales de tipo $\tau$
+4. Si $f\in\mathcal{F}_{n}$, con $n\geq1$ y $t_{1},...,t_{n}$ son términos elementales de tipo $\tau$, entonces la palabra $f(t_{1},...,t_{n})$ es un término elemental de tipo $\tau$
+5. Una palabra es un término elemental de tipo $\tau$ si y solo si se puede construir usando las clausulas anteriores
 
 ### (2) Defina $\dashv\vdash_T$
 Sea $T=(\Sigma,\tau)$ una teoría. Podemos definir la siguiente relación binaria sobre $S^{\tau}$ (conjunto de las sentencias de tipo $\tau$):
@@ -52,6 +57,17 @@ Como el resultado de las operaciones no depende de los representantes elegidos e
 
 ### (4) Defina $\mathcal{A}_T$
 Dada una teoría $T=(\Sigma,\tau)$, denotaremos con $\mathcal{A}_{T}$ al álgebra de Boole $(S^{\tau}/\mathrm{\dashv\vdash}_{T},\mathsf{s}^{T},\mathsf{i}^{T},^{\mathsf{c}^{T}},0^{T},1^{T})$. El álgebra $\mathcal{A}_{T}$ será llamada el álgebra de Lindenbaum de $T$.
+
+Donde:
+$$
+\begin{array}{lcl}
+[\varphi]_T \, s^T \, [\psi]_T & = & [\varphi \lor \psi]_T \\
+[\varphi]_T \, i^T \, [\psi]_T & = & [\varphi \land \psi]_T \\
+[\varphi]_T^{c^T} & = & [\lnot \varphi]_T \\
+0^T & = & \{\varphi \in S^\tau : (\Sigma, \tau) \vdash \lnot \varphi \text{ (i.e. }\varphi \text{ es refutable}) \} \\
+1^T & = & \{\varphi \in S^\tau : (\Sigma, \tau) \vdash \varphi \text{ (i.e. }\varphi \text{ es un teorema}) \} \\
+\end{array}
+$$
 
 ### (5) Defina "$S$ es un subuniverso del reticulado complementado $(L, s, i, ^c, 0, 1)$"
 Un conjunto $S\subseteq L$ es llamado subuniverso de $(L,\mathsf{s},\mathsf{i},^{c},0,1)$ si $0,1\in S$ y además $S$ es cerrado bajo las operaciones $\mathsf{s}$, $\mathsf{i}$ y $^{c}$.

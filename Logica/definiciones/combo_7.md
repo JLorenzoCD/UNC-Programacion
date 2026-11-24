@@ -16,6 +16,8 @@ Sean $v, w$ variables y $\varphi$ una fórmula elemental pura de tipo $\tau$. La
 
 7. Si $\varphi=Qu\varphi_{1}$, con $u\neq v,w$, entonces $v$ es sustituible por $w$ en $\varphi$ $\Longleftrightarrow$ $v$ es sustituible por $w$ en $\varphi_{1}$
 
+Con $\varphi_1, \varphi_2 \in F^\tau$, $\eta \in \{ \vee, \wedge, \rightarrow, \leftrightarrow \}$ y $Q \in \{ \forall, \exist \}$.
+
 ### (2) Defina cuando $J \in Just^+$ es balanceada (no hace falta que defina $\mathcal{B}^J$)
 > Nota: Explicado en Combo 3 - item 4
 

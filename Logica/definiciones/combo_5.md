@@ -1,5 +1,6 @@
 # Combo 5
 ### Explique la notación declaratoria para términos con sus 3 convenciones notacionales (convenciones 1, 2 y 5 de la Guía 11)
+Supongamos $v_{1},...,v_{n}\in Var$ y $t$ es un término de tipo $\tau$. Entonces escribiremos $t=_{d}t(v_{1},...,v_{n})$ para declarar que $v_{1},...,v_{n}$ son variables distintas y tales que toda variable que ocurre en $t$ pertenece a $\{v_{1},...,v_{n}\}$ (no necesariamente toda $v_{j}$ debe ocurrir en $t$). Consideraremos el caso $n=0$, es decir, a veces haremos la declaración $t=_{d}t()$ la cual simplemente expresara que $t$ es un término cerrado.
 
 * **Convención Notacional 1:**
 Cuando hayamos hecho la declaración $t=_{d}t(v_{1},...,v_{n})$, si $P_{1},...,P_{n}$ son palabras cualesquiera (no necesariamente términos), entonces $t(P_{1},...,P_{n})$ denotará la palabra que resulta de reemplazar simultáneamente cada ocurrencia de $v_{1}$ en $t$, por $P_{1}$, cada ocurrencia de $v_{2}$ en $t$, por $P_{2}$, etc.

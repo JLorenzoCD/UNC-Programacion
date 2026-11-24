@@ -1,5 +1,6 @@
 # Combo 6
 ### Explique la notación declaratoria para fórmulas con sus 3 convenciones notacionales (convenciones 3, 4 y 6 de la Guía 11). Puede asumir la notación declaratoria para términos
+Supongamos $v_{1},...,v_{n}\in Var$ y $\varphi$ es una fórmula de tipo $\tau$. Entonces escribiremos $\varphi=_{d}\varphi(v_{1},...,v_{n})$ para declarar que $v_{1},...,v_{n}$ son variables distintas y tales que $Li(\varphi)\subseteq\{v_{1},...,v_{n}\}$. Consideraremos el caso $n=0$, es decir, a veces haremos la declaración $\varphi=_{d}\varphi()$ la cual simplemente expresara que $\varphi$ es una sentencia.
 
 * **Convención Notacional 3:**
 Cuando hayamos hecho la declaración $\varphi=_{d}\varphi(v_{1},...,v_{n})$, si $P_{1},...,P_{n}$ son palabras cualesquiera, entonces $\varphi(P_{1},...,P_{n})$ denotará la palabra que resulta de reemplazar simultáneamente cada ocurrencia libre de $v_{1}$ en $\varphi$, por $P_{1}$, cada ocurrencia libre de $v_{2}$ en $\varphi$, por $P_{2}$, etc.

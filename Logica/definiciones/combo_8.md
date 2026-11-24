@@ -6,7 +6,7 @@
 > Nota: Explicado en Combo 1 - item 4
 
 ### (3) Dado un poset $(P, \le)$, defina "a es supremo de $S$ en $(P, \le)$"
-Sea $(P, \le)$ un poset, un subconjunto $S \subseteq P$ y $a\in P$. Decimos que **$a$ es supremo de $S$** en $(P, \le)$ si:
+Sea $(P, \le)$ un poset, un subconjunto $S \subseteq P$, diremos que un elemento $a\in P$ es cota superior de $S$ en $(P, \le)$ si para todo $x \in S$ se da $x \le a$. Decimos que **$a\in P$ es supremo de $S$** en $(P, \le)$ si:
 1. $a$ es cota superior de $S$ en $(P, \le)$.
 2. Para cada $b \in P$, si $b$ es cota superior de $S$ en $(P, \le)$, entonces $a \le b$.
 

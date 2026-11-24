@@ -146,6 +146,7 @@ Dados reticulados complementados $(L,\mathsf{s},\mathsf{i},^{c},0,1)$ y $(L^{\pr
 4. $\mathsf{s}=\mathsf{s}^{\prime}|_{L\times L}, \mathsf{i}=\mathsf{i}^{\prime}|_{L\times L}$ y $^{c}=\ ^{c^{\prime}}|_{L}$.
 
 ### (2) Defina $\mathbb{A} \models \varphi[\vec{a}]$ (versión absoluta, no dependiente de una declaración previa, i.e. $\vec{a} \in A^\mathbb{N}$. No hace falta definir $t^A[\vec{a}]$)
+Sea $\mathbb{A} = (A, i)$ una estructura de tipo $\tau$ , $\varphi \in F^\tau$ y $\vec{a} \in A^{\mathbb{N}}$ una asignación. Definamos recursivamente la relación $\mathbb{A}\models\varphi[\vec{a}]$ como:
 1. Si $\varphi=(t\equiv s)$, entonces
     - $\mathbb{A}\models\varphi[\vec{a}]$ si y solo si $t^{\mathbb{A}}[\vec{a}]=s^{\mathbb{A}}[\vec{a}]$
 
@@ -210,6 +211,7 @@ Por un reticulado cuaterna entenderemos una 4-upla $(L,\mathsf{s},\mathsf{i},\le
 ---
 # Combo 5
 ### Explique la notación declaratoria para términos con sus 3 convenciones notacionales (convenciones 1, 2 y 5 de la Guía 11)
+Supongamos $v_{1},...,v_{n}\in Var$ y $t$ es un término de tipo $\tau$. Entonces escribiremos $t=_{d}t(v_{1},...,v_{n})$ para declarar que $v_{1},...,v_{n}$ son variables distintas y tales que toda variable que ocurre en $t$ pertenece a $\{v_{1},...,v_{n}\}$ (no necesariamente toda $v_{j}$ debe ocurrir en $t$). Consideraremos el caso $n=0$, es decir, a veces haremos la declaración $t=_{d}t()$ la cual simplemente expresara que $t$ es un término cerrado.
 
 * **Convención Notacional 1:**
 Cuando hayamos hecho la declaración $t=_{d}t(v_{1},...,v_{n})$, si $P_{1},...,P_{n}$ son palabras cualesquiera (no necesariamente términos), entonces $t(P_{1},...,P_{n})$ denotará la palabra que resulta de reemplazar simultáneamente cada ocurrencia de $v_{1}$ en $t$, por $P_{1}$, cada ocurrencia de $v_{2}$ en $t$, por $P_{2}$, etc.
@@ -225,6 +227,7 @@ Cuando hayamos declarado $t=_{d}t(v_{1},...,v_{n})$ y se dé el caso (3) del Lem
 ---
 # Combo 6
 ### Explique la notación declaratoria para fórmulas con sus 3 convenciones notacionales (convenciones 3, 4 y 6 de la Guía 11). Puede asumir la notación declaratoria para términos
+Supongamos $v_{1},...,v_{n}\in Var$ y $\varphi$ es una fórmula de tipo $\tau$. Entonces escribiremos $\varphi=_{d}\varphi(v_{1},...,v_{n})$ para declarar que $v_{1},...,v_{n}$ son variables distintas y tales que $Li(\varphi)\subseteq\{v_{1},...,v_{n}\}$. Consideraremos el caso $n=0$, es decir, a veces haremos la declaración $\varphi=_{d}\varphi()$ la cual simplemente expresara que $\varphi$ es una sentencia.
 
 * **Convención Notacional 3:**
 Cuando hayamos hecho la declaración $\varphi=_{d}\varphi(v_{1},...,v_{n})$, si $P_{1},...,P_{n}$ son palabras cualesquiera, entonces $\varphi(P_{1},...,P_{n})$ denotará la palabra que resulta de reemplazar simultáneamente cada ocurrencia libre de $v_{1}$ en $\varphi$, por $P_{1}$, cada ocurrencia libre de $v_{2}$ en $\varphi$, por $P_{2}$, etc.
@@ -266,6 +269,8 @@ Sean $v, w$ variables y $\varphi$ una fórmula elemental pura de tipo $\tau$. La
 
 7. Si $\varphi=Qu\varphi_{1}$, con $u\neq v,w$, entonces $v$ es sustituible por $w$ en $\varphi$ $\Longleftrightarrow$ $v$ es sustituible por $w$ en $\varphi_{1}$
 
+Con $\varphi_1, \varphi_2 \in F^\tau$, $\eta \in \{ \vee, \wedge, \rightarrow, \leftrightarrow \}$ y $Q \in \{ \forall, \exist \}$.
+
 ### (2) Defina cuando $J \in Just^+$ es balanceada (no hace falta que defina $\mathcal{B}^J$)
 > Nota: Explicado en Combo 3 - item 4
 
@@ -292,7 +297,7 @@ Una teoría (de primer orden) será un par ordenado $T = (\Sigma,\tau)$, donde $
 > Nota: Explicado en Combo 1 - item 4
 
 ### (3) Dado un poset $(P, \le)$, defina "a es supremo de $S$ en $(P, \le)$"
-Sea $(P, \le)$ un poset, un subconjunto $S \subseteq P$ y $a\in P$. Decimos que **$a$ es supremo de $S$** en $(P, \le)$ si:
+Sea $(P, \le)$ un poset, un subconjunto $S \subseteq P$, diremos que un elemento $a\in P$ es cota superior de $S$ en $(P, \le)$ si para todo $x \in S$ se da $x \le a$. Decimos que **$a\in P$ es supremo de $S$** en $(P, \le)$ si:
 1. $a$ es cota superior de $S$ en $(P, \le)$.
 2. Para cada $b \in P$, si $b$ es cota superior de $S$ en $(P, \le)$, entonces $a \le b$.
 
@@ -306,7 +311,12 @@ Sea $(\bm{\varphi}, \mathbf{J})$ un par adecuado de longitud $n$, y sean $1 \le 
 ---
 # Combo 9
 ### (1) Defina "término elemental de tipo $\tau$"
-Sea $\tau=(\mathcal{C},\mathcal{F},\mathcal{R},a)$ un tipo. Los terminos de tipo $\tau^{\prime}$, con $\tau^{\prime}$ alguna extension de $\tau$ por nombres de constante, modelizan matematicamente a los terminos elementales de tipo $\tau$.
+Dado un tipo $\tau=(\mathcal{C},\mathcal{F},\mathcal{R},a)$ los términos elementales de tipo $\tau$ se definen con las siguientes clausulas:
+1. Cada palabra de $\mathcal{C}$ es un término elemental de tipo $\tau$
+2. Las variables $x,y,z,w,...$ son términos elementales de tipo $\tau$
+3. Los nombres de elementos fijos $a,b,c,d,...$ son términos elementales de tipo $\tau$
+4. Si $f\in\mathcal{F}_{n}$, con $n\geq1$ y $t_{1},...,t_{n}$ son términos elementales de tipo $\tau$, entonces la palabra $f(t_{1},...,t_{n})$ es un término elemental de tipo $\tau$
+5. Una palabra es un término elemental de tipo $\tau$ si y solo si se puede construir usando las clausulas anteriores
 
 ### (2) Defina $\dashv\vdash_T$
 Sea $T=(\Sigma,\tau)$ una teoría. Podemos definir la siguiente relación binaria sobre $S^{\tau}$ (conjunto de las sentencias de tipo $\tau$):
@@ -359,6 +369,17 @@ Como el resultado de las operaciones no depende de los representantes elegidos e
 ### (4) Defina $\mathcal{A}_T$
 Dada una teoría $T=(\Sigma,\tau)$, denotaremos con $\mathcal{A}_{T}$ al álgebra de Boole $(S^{\tau}/\mathrm{\dashv\vdash}_{T},\mathsf{s}^{T},\mathsf{i}^{T},^{\mathsf{c}^{T}},0^{T},1^{T})$. El álgebra $\mathcal{A}_{T}$ será llamada el álgebra de Lindenbaum de $T$.
 
+Donde:
+$$
+\begin{array}{lcl}
+[\varphi]_T \, s^T \, [\psi]_T & = & [\varphi \lor \psi]_T \\
+[\varphi]_T \, i^T \, [\psi]_T & = & [\varphi \land \psi]_T \\
+[\varphi]_T^{c^T} & = & [\lnot \varphi]_T \\
+0^T & = & \{\varphi \in S^\tau : (\Sigma, \tau) \vdash \lnot \varphi \text{ (i.e. }\varphi \text{ es refutable}) \} \\
+1^T & = & \{\varphi \in S^\tau : (\Sigma, \tau) \vdash \varphi \text{ (i.e. }\varphi \text{ es un teorema}) \} \\
+\end{array}
+$$
+
 ### (5) Defina "$S$ es un subuniverso del reticulado complementado $(L, s, i, ^c, 0, 1)$"
 Un conjunto $S\subseteq L$ es llamado subuniverso de $(L,\mathsf{s},\mathsf{i},^{c},0,1)$ si $0,1\in S$ y además $S$ es cerrado bajo las operaciones $\mathsf{s}$, $\mathsf{i}$ y $^{c}$.
 
@@ -367,19 +388,25 @@ Un conjunto $S\subseteq L$ es llamado subuniverso de $(L,\mathsf{s},\mathsf{i},^
 ---
 # Combo 10
 ### (1) Defina "tesis del bloque $\left\langle i,j\right\rangle$ en $(\bm{\varphi}, \mathbf{J})$"
+
+Dada $\mathbf{J}\in Just^{+}$ definamos
+$$
+\mathcal{B}^{\mathbf{J}}=\{\left\langle i,j\right\rangle :1\leq i\leq j\leq n(\mathbf{J}) \; \land \; \exists k\ \mathbf{J}_{i}=\text{HIPOTESIS}\bar{k} \; \land \; \mathbf{J}_{j}=\text{TESIS}\bar{k}\alpha\text{ para algún }\alpha\in
+JustBas\}
+$$
+
 Sea $(\boldsymbol{\varphi},\mathbf{J})$ un par adecuado de tipo $\tau$. Si $\left\langle i,j\right\rangle \in\mathcal{B}^{\mathbf{J}}$, entonces $\boldsymbol{\varphi}_{i}$ será la hipótesis del bloque $\left\langle i,j\right\rangle$ en $(\boldsymbol{\varphi},\mathbf{J})$ y $\boldsymbol{\varphi}_{j}$ será **la tesis del bloque $\left\langle i,j\right\rangle$ en $(\boldsymbol{\varphi},\mathbf{J})$**.
 
 ### (2) Defina cuando una teoría de primer orden $(\Sigma, \tau)$ es consistente
 Una teoría $(\Sigma,\tau)$ será inconsistente cuando haya una sentencia $\varphi$ tal que $(\Sigma,\tau)\vdash(\varphi\wedge\lnot\varphi)$. Una teoría $(\Sigma,\tau)$ será **consistente** cuando no sea inconsistente.
 
 ### (3) Dada una teoría elemental $(\Sigma, \tau)$ y una sentencia elemental pura $\varphi$ de tipo $\tau$, defina "prueba elemental de $\varphi$ en $(\Sigma, \tau)$"
-> "Como objeto matemático una prueba resultara ser un par ordenado de palabras cuya primera coordenada codificara en forma natural la sucesión de sentencias y su segunda coordenada codificará la sucesión de justificaciones."
+Una prueba elemental de $\varphi$ en $(\Sigma,\tau)$ será una prueba de $\varphi$ que posea las siguientes características:
+1. En la prueba se parte de una estructura de tipo $\tau$, fija pero arbitraria en el sentido que lo único que sabemos es que ella es una estructura que satisface los axiomas de $\Sigma$ (o sea esta es la única información particular que podemos usar).
+2. Las deducciones en la prueba son muy simples y obvias de justificar con mínimas frases en castellano.
+3. En la escritura de la prueba lo concerniente a la matemática misma se expresa usando solo sentencias elementales de tipo $\tau$.
 
-Sea $\tau$ un tipo. Dada una teoría elemental $(\Sigma, \tau)$ y una sentencia elemental pura $\varphi$ de tipo $\tau$, una **prueba elemental** de $\varphi$ en $(\Sigma, \tau)$ es un par adecuado $(\bm{\psi}, \mathbf{J})$ de tipo $\tau$, con $\bm{\psi} = (\psi_1, \dots, \psi_n)$ y $\mathbf{J} = (J_1, \dots, J_n)$, tal que:
-
-1. $\psi_n = \varphi$
-2. Cada paso $k \in \{1, \dots, n\}$ está correctamente justificado por $J_k$ según las reglas de deducción natural (es una hipótesis, un axioma de $\Sigma$, un axioma lógico/de igualdad, o se obtiene aplicando una regla de inferencia a pasos anteriores disponibles en $(\bm{\psi}, \mathbf{J})$).
-3. El paso final $n$ no se encuentra bajo ninguna hipótesis activa (es decir, no existe ningún bloque $\left\langle i,j\right\rangle \in \mathcal{B}^J$ tal que $i \le n \le j$).
+> Esta definición no es matemáticamente precisa.
 
 
 ---
