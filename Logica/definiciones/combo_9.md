@@ -1,17 +1,5 @@
 # Combo 9
 ### (1) Defina "término elemental de tipo $\tau$"
-
-> Duda: Esta es la definición matemáticamente imprecisa
-
-Dado un tipo $\tau=(\mathcal{C},\mathcal{F},\mathcal{R},a)$ los términos elementales de tipo $\tau$ se definen con las siguientes clausulas:
-1. Cada palabra de $\mathcal{C}$ es un término elemental de tipo $\tau$
-2. Las variables $x,y,z,w,...$ son términos elementales de tipo $\tau$
-3. Los nombres de elementos fijos $a,b,c,d,...$ son términos elementales de tipo $\tau$
-4. Si $f\in\mathcal{F}_{n}$, con $n\geq1$ y $t_{1},...,t_{n}$ son términos elementales de tipo $\tau$, entonces la palabra $f(t_{1},...,t_{n})$ es un término elemental de tipo $\tau$
-5. Una palabra es un término elemental de tipo $\tau$ si y solo si se puede construir usando las clausulas anteriores
-
-> Duda: Esta es la definición matemáticamente precisa
-
 Sea $\tau=(\mathcal{C},\mathcal{F},\mathcal{R},a)$ un tipo. Los terminos de tipo $\tau^{\prime}$, con $\tau^{\prime}$ alguna extension de $\tau$ por nombres de constante, modelizan matematicamente a los terminos elementales de tipo $\tau$.
 
 ### (2) Defina $\dashv\vdash_T$

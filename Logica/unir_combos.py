@@ -5,12 +5,12 @@ import re
 # de yzane (https://marketplace.visualstudio.com/items?itemName=yzane.markdown-pdf)
 
 # ------------------- Definiciones -------------------
-# DIR_PATH = "./definiciones"
+# DIR_PATH = "Logica/definiciones"
 # FILE_OUTPUT = "definiciones.md"
 # HEADER = "Definiciones"
 
 # ------------------- Teoremas -------------------
-DIR_PATH = "./teoremas"
+DIR_PATH = "Logica/teoremas"
 FILE_OUTPUT = "teoremas.md"
 HEADER = "Teoremas"
 
@@ -63,8 +63,6 @@ def fusionar_combos(dir_path, file_output, header):
                     # Si es el último archivo, lleva solo tres guiones. Si no, lleva doble separador.
                     if i < len(archivos_validos) - 1:
                         f_salida.write("\n\n---\n---\n")
-                    else:
-                        f_salida.write("\n\n---\n")
 
             except Exception as e:
                 print(f"Error al leer el archivo {nombre_archivo}: {e}")

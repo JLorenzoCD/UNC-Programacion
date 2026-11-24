@@ -4,7 +4,7 @@
 En este directorio se encuentra lo necesario para rendir el final de esta materia para el año 2026.
 <!-- primera mesa de noviembre (00/11/26) -->
 
-- [lista de combos para definiciones y teoremas](./2026_1_mesa_lista%20de%20combos%20de%20definiciones%20y%20teoremas%20de%20logica.pdf)
+- [lista de combos para definiciones y teoremas](./2026_1er_mesa_listas%20del%20examen%20final%20de%20logica.pdf)
 - [pdf de todas las definiciones solicitadas](./definiciones/definiciones.pdf)
 - [pdf de todas los teoremas solicitados](./teoremas/teoremas.pdf)
 
