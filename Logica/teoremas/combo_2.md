@@ -65,14 +65,18 @@ por definición de $\le$ tenemos que $x \le y$.
 Usando lo anterior podemos probar que $\inf(\{x, y\}) = x \ i \ y$ de forma similar a como vimos $\sup(\{x, y\}) = x \ s \ y$.
 
 ### Lema
-Supongamos que $\vec{a}, \vec{b}$ son asignaciones tales que si $x_i \in Li(\varphi)$, entonces $a_i = b_i$. Entonces $\mathbb{A} \models \varphi[\vec{a}]$ sii $\mathbb{A} \models \varphi[\vec{b}]$.
+Supongamos que $\vec{a}, \vec{b}$ son asignaciones tales que si $x_i \in Li(\varphi)$, entonces $a_i = b_i$. Entonces $\mathbb{A} \models \varphi[\vec{a}] \; \Longleftrightarrow \; \mathbb{A} \models \varphi[\vec{b}]$.
 
 #### Proof
 > **Resultado auxiliar utilizado:** *Lema análogo para Términos*: Sea $\mathbb{A}$ una estructura de tipo $\tau$ y sea $t \in T^\tau$. Supongamos que $\vec{a}, \vec{b}$ son asignaciones tales que $a_i = b_i$ cada vez que $x_i$ ocurre en $t$. Entonces $t^{\mathbb{A}}[\vec{a}] = t^{\mathbb{A}}[\vec{b}]$.
 
 Sea $\mathbb{A}$ una estructura de tipo $\tau$. Probaremos por inducción en $k$ que vale el *Lema* para cada $\varphi \in F_k^\tau$.
 
-**Caso Base ($k=0$):** Sea $\varphi \in F_0^\tau$. Además sean $\vec{a}, \vec{b}$ asignaciones tales que si $x_i \in Li(\varphi)$, entonces $a_i = b_i$. Entonces tenemos dos casos para $\varphi$:
+**$\text{Enu}_k$:** </br>
+Sea $\varphi \in F_k^\tau$ y sean $\vec{a}, \vec{b}$ asignaciones tales que si $x_i \in Li(\varphi)$, entonces $a_i = b_i$. Entonces $\mathbb{A} \models \varphi[\vec{a}] \; \Longleftrightarrow \; \mathbb{A} \models \varphi[\vec{b}]$.
+
+**$\text{Enu}_0$:** </br>
+Sea $\varphi \in F_0^\tau$ y sean $\vec{a}, \vec{b}$ asignaciones tales que si $x_i \in Li(\varphi)$, entonces $a_i = b_i$. Entonces tenemos dos casos para $\varphi$:
 1. $\varphi = (t \equiv s)$, con $t, s \in T^\tau$. Notar que todas las variables que ocurren en $\varphi$ son libres, entonces sabemos por el *Lema análogo para Términos* que $t^{\mathbb{A}}[\vec{a}] = t^{\mathbb{A}}[\vec{b}]$ y $s^{\mathbb{A}}[\vec{a}] = s^{\mathbb{A}}[\vec{b}]$. Ahora por definición y reemplazando obtenemos que:
 $$
 \begin{array}{cl}
@@ -93,9 +97,10 @@ $$
 \end{array}
 $$
 
-**Caso Inductivo:** Supongamos que el lema vale para todo $\varphi \in F_k^\tau$ y probaremos que vale para todo $\varphi \in F_{k+1}^\tau$. Sea $\varphi \in F_{k+1}^\tau - F_k^\tau$, ya que si $\varphi \in F_k^\tau$ sale directo. Además sean $\vec{a}, \vec{b}$ asignaciones tales que si $x_i \in Li(\varphi)$, entonces $a_i = b_i$. Entonces tenemos varios casos para $\varphi$, veremos algunos:
+**$\text{Enu}_{k+1}$:** </br>
+Supongamos que el lema vale para todo $\varphi \in F_k^\tau$ y probaremos que vale para todo $\varphi \in F_{k+1}^\tau$. Sea $\varphi \in F_{k+1}^\tau - F_k^\tau$, ya que si $\varphi \in F_k^\tau$ sale directo. Además sean $\vec{a}, \vec{b}$ asignaciones tales que si $x_i \in Li(\varphi)$, entonces $a_i = b_i$. Entonces tenemos varios casos para $\varphi$, veremos algunos:
 
-- Si $\varphi = (\varphi_1 \land \varphi_2)$: Notar que $Li(\varphi_i) \subseteq Li(\varphi)$, $i = 1, 2$; por *H.I.* tenemos que $\mathbb{A} \models \varphi_i[\vec{a}] \Longleftrightarrow \mathbb{A} \models \varphi_i[\vec{b}]$. Entonces por definición y reemplazando obtenemos que
+- Si $\varphi = (\varphi_1 \land \varphi_2)$: Notar que $Li(\varphi_i) \subseteq Li(\varphi)$, $i = 1, 2$; por $\text{Enu}_k$ tenemos que $\mathbb{A} \models \varphi_i[\vec{a}] \Longleftrightarrow \mathbb{A} \models \varphi_i[\vec{b}]$. Entonces por definición y reemplazando obtenemos que
 $$
 \begin{array}{cl}
 & \mathbb{A} \models \varphi[\vec{a}] \quad \\

@@ -26,10 +26,10 @@ Supongamos que $F: \mathbb{A} \rightarrow \mathbb{B}$ es un isomorfismo. Sea $\v
 
 Para $\vec{a} = (a_1, a_2, \dots) \in A^\mathbb{N}$, denotaremos a $(F(a_1), F(a_2), \dots)$ con $F(\vec{a})$. Vamos a probar por inducción en $k$:
 
-**$\text{Enum}_k$:** </br>
+**$\text{Enu}_k$:** </br>
 Supongamos que $F: \mathbb{A} \rightarrow \mathbb{B}$ es un isomorfismo. Sea $\varphi \in F_k^\tau$. Entonces $\mathbb{A} \models \varphi[\vec{a}] \; \Longleftrightarrow \ \mathbb{B} \models \varphi[F(\vec{a})]$ para cada $\vec{a} \in A^\mathbb{N}$.
 
-**$\text{Enum}_0$:** </br>
+**$\text{Enu}_0$:** </br>
 Sea $\varphi \in F_0^\tau$ y $\vec{a} \in A^\mathbb{N}$ arbitraria. Tenemos dos casos para $\varphi$:
 - $\varphi = (t \equiv s)$, con $t, s \in T^\tau$:
 $$
@@ -53,13 +53,13 @@ $$
 \end{aligned}
 $$
 
-**$\text{Enum}_{k+1}$:** </br>
-Supongamos que vale $\text{Enum}_k$ y probaremos que vale $\text{Enum}_{k+1}$. Sea $\varphi \in (F_{k+1}^\tau - F_k^\tau)$, ya que si $\varphi \in F_k^\tau$ sale directo. Por *Teorema de lectura única de fórmulas* hay varios casos:
+**$\text{Enu}_{k+1}$:** </br>
+Supongamos que vale $\text{Enu}_k$ y probaremos que vale $\text{Enu}_{k+1}$. Sea $\varphi \in (F_{k+1}^\tau - F_k^\tau)$, ya que si $\varphi \in F_k^\tau$ sale directo. Por *Teorema de lectura única de fórmulas* hay varios casos:
 - Si $\varphi = (\varphi_1 \land \varphi_2)$ con $\varphi_1, \varphi_2 \in F_k^\tau$, entonces
 $$
 \begin{aligned}
 \mathbb{A} \models \varphi[\vec{a}] \quad &\Longleftrightarrow \quad \mathbb{A} \models \varphi_1[\vec{a}] \text{ y } \mathbb{A} \models \varphi_2[\vec{a}] && (\text{def. de } \models) \\
-&\Longleftrightarrow \quad \mathbb{B} \models \varphi_1[F(\vec{a})] \text{ y } \mathbb{B} \models \varphi_2[F(\vec{a})] && (\text{Enum}_k) \\
+&\Longleftrightarrow \quad \mathbb{B} \models \varphi_1[F(\vec{a})] \text{ y } \mathbb{B} \models \varphi_2[F(\vec{a})] && (\text{Enu}_k) \\
 &\Longleftrightarrow \quad \mathbb{B} \models \varphi[F(\vec{a})] && (\text{def. de } \models)
 \end{aligned}
 $$
@@ -70,7 +70,7 @@ $$
 $$
 \begin{aligned}
 \mathbb{A} \models \varphi[\vec{a}] \quad &\Longleftrightarrow \quad \forall a \in A, \text{ se da } \mathbb{A} \models \varphi_1[\downarrow_j^a(\vec{a})] && (\text{def. de } \models) \\
-&\Longleftrightarrow \quad \forall a \in A, \text{ se da } \mathbb{B} \models \varphi_1[F(\downarrow_j^a(\vec{a}))] && (\text{Enum}_k) \\
+&\Longleftrightarrow \quad \forall a \in A, \text{ se da } \mathbb{B} \models \varphi_1[F(\downarrow_j^a(\vec{a}))] && (\text{Enu}_k) \\
 &\Longleftrightarrow \quad \forall a \in A, \text{ se da } \mathbb{B} \models \varphi_1[\downarrow_j^{F(a)}(F(\vec{a}))] && (\text{deducción}) \\
 &\Longleftrightarrow \quad \forall b \in B, \text{ se da } \mathbb{B} \models \varphi_1[\downarrow_j^b(F(\vec{a}))] && (F \text{ sobre, ya que es iso}) \\
 &\Longleftrightarrow \quad \mathbb{B} \models \varphi[F(\vec{a})] && (\text{def. de } \models)
