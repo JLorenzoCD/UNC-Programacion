@@ -6,8 +6,8 @@ Dado $t \in T^\tau$ se da una de las siguientes:
 
 #### Proof
 > **Resultados auxiliares utilizados:**
-> - *Lema Menú para términos*: Supongamos $t \in T_{k+1}^\tau$, con $k \ge 0$. Entonces se da alguna de las siguientes: (1) $t \in Var \cup \mathcal{C}$; (2) $t = f(t_1, \dots, t_n)$, con $n \ge 1$, $f \in \mathcal{F}_n^\tau$ y $t_1, \dots, t_n \in T_k^\tau$.
-> - *Lema Mordisqueo de Términos*: Sean $s, t \in T^\tau$ y supongamos que hay palabras $x, y, z$, con $y \neq \varepsilon$, tales que $s = xy$ y $t = yz$. Entonces $x = z = \varepsilon$ o $s, t \in \mathcal{C}$. *"En particular si un término es tramo inicial o final de otro término, entonces dichos términos son iguales"*.
+> - *Lema "Menú para términos"*.
+> - *Lema "Mordisqueo de Términos"*.
 
 Por el *Lema Menú para términos* tenemos que se dan (1) o (2) y obviamente no pueden darse ambas a la vez. Veamos que vale la unicidad de (2). Supongamos que
 $$
@@ -20,9 +20,8 @@ Supongamos que $F: \mathbb{A} \rightarrow \mathbb{B}$ es un isomorfismo. Sea $\v
 
 #### Proof
 > **Resultados auxiliares utilizados:**
-> - *Lema análogo para términos*: Sea $F: \mathbb{A} \rightarrow \mathbb{B}$ un isomorfismo. Entonces $F(t^{\mathbb{A}}[\vec{a}]) = t^{\mathbb{B}}[F(\vec{a})]$ para cada $t \in T^\tau$ y cada $\vec{a} \in A^\mathbb{N}$.
-> - *Teorema de lectura única de fórmulas*: Dado $\varphi \in F^\tau$ se da una y solo una de las siguientes: (1) $\varphi = (t \equiv s)$ con $t, s \in T^\tau$, únicos; (2) $\varphi = r(t_1, \dots, t_n)$ con $r \in \mathcal{R}_n^\tau$, $t_1, \dots, t_n \in T^\tau$, únicos; (3) $\varphi = \neg \varphi_1$ con $\varphi_1 \in F_k^\tau$, único; (4) $\varphi = (\varphi_1 \eta \varphi_2)$ con $\eta \in \{\land, \lor, \rightarrow, \leftrightarrow\}$, $\varphi_1, \varphi_2 \in F_k^\tau$, únicos; (5) $\varphi = Q v \varphi_1$ con $Q \in \{\forall, \exists\}$, $\varphi_1 \in F_k^\tau$ y $v \in Var$, únicos.
-
+> - *Lema análogo para términos*.
+> - *Teorema de "lectura única de fórmulas"*.
 
 Para $\vec{a} = (a_1, a_2, \dots) \in A^\mathbb{N}$, denotaremos a $(F(a_1), F(a_2), \dots)$ con $F(\vec{a})$. Vamos a probar por inducción en $k$:
 

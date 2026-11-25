@@ -68,7 +68,8 @@ Usando lo anterior podemos probar que $\inf(\{x, y\}) = x \ i \ y$ de forma simi
 Supongamos que $\vec{a}, \vec{b}$ son asignaciones tales que si $x_i \in Li(\varphi)$, entonces $a_i = b_i$. Entonces $\mathbb{A} \models \varphi[\vec{a}] \; \Longleftrightarrow \; \mathbb{A} \models \varphi[\vec{b}]$.
 
 #### Proof
-> **Resultado auxiliar utilizado:** *Lema análogo para Términos*: Sea $\mathbb{A}$ una estructura de tipo $\tau$ y sea $t \in T^\tau$. Supongamos que $\vec{a}, \vec{b}$ son asignaciones tales que $a_i = b_i$ cada vez que $x_i$ ocurre en $t$. Entonces $t^{\mathbb{A}}[\vec{a}] = t^{\mathbb{A}}[\vec{b}]$.
+> **Resultado auxiliar utilizado:**
+> - *Lema análogo para Términos*.
 
 Sea $\mathbb{A}$ una estructura de tipo $\tau$. Probaremos por inducción en $k$ que vale el *Lema* para cada $\varphi \in F_k^\tau$.
 

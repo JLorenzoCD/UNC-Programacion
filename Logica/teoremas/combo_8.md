@@ -7,9 +7,9 @@ para cada $a_1, a_2, \dots, a_n \in A$.
 
 #### Proof
 > **Resultados auxiliares utilizados:**
-> - *Lema análogo para términos*: Sea $F: \mathbb{A} \rightarrow \mathbb{B}$ un isomorfismo. Sea $t =_d t(v_1, \dots, v_n) \in T^\tau$. Entonces $F(t^{\mathbb{A}}[a_1, \dots, a_n]) = t^{\mathbb{B}}[F(a_1), \dots, F(a_n)]$ para cada $t \in T^\tau$ y cada $a_1, \dots, a_n \in A$.
-> - *Lema Carácter recursivo de la notación $\mathbb{A} \models \varphi[a_1, \dots, a_n]$*.
-> - *Lema Lectura única de fórmulas declaradas*.
+> - *Lema análogo para términos*.
+> - *Lema "Carácter recursivo de la notación $\mathbb{A} \models \varphi[a_1, \dots, a_n]$"*.
+> - *Lema "Lectura única de fórmulas declaradas"*.
 
 Llamaremos $(*)$ al *Lema Carácter recursivo de la notación $\mathbb{A} \models \varphi[a_1, \dots, a_n]$* y probaremos por inducción en $k$:
 

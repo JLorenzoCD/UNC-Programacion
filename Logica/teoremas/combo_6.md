@@ -4,7 +4,11 @@ Sea $T = (\Sigma, \tau)$ una teoría de primer orden. Si $\mathbb{T} \models \va
 > Haga solo el caso en que $\tau$ tiene una cantidad infinita de nombres de cte que no ocurren en las sentencias de $\Sigma$. En la exposición de la prueba no es necesario que demuestre los ítems: (1), (2), (3) y (4).
 
 #### Proof
-Asumo los ítems (1) al (4) y el modelo $\mathbb{A}_{\mathcal{U}}$:
+Asumo los ítems (1) al (4) y tomo el modelo $\mathbb{A}_{\mathcal{U}}$ de tipo $\tau$ (definido gracias a (3)):
+- Universo de $\mathbb{A}_{\mathcal{U}} = T_c^\tau / \bowtie$.
+- $c^{\mathbb{A}_{\mathcal{U}}} = c / \bowtie$, para cada $c \in \mathcal{C}$.
+- $f^{\mathbb{A}_{\mathcal{U}}}(t_1/\bowtie, \dots, t_n/\bowtie) = f(t_1, \dots, t_n)/\bowtie$, para cada $f \in \mathcal{F}_n$ y $t_1, \dots, t_n \in T_c^\tau$.
+- $r^{\mathbb{A}_{\mathcal{U}}} = \{(t_1/\bowtie, \dots, t_n/\bowtie) : [r(t_1, \dots, t_n)]_T \in \mathcal{U}\}$, para cada $r \in \mathcal{R}_n$.
 
 **(5)** Para cada $\varphi =_d \varphi(v_1, \dots, v_n) \in F^\tau$, $t_1, \dots, t_n \in T_c^\tau$, se da que
 $$
@@ -77,5 +81,4 @@ $$
     \end{aligned}
     $$
 
-
-Por lo que (5) esta probado por inducción:
+Por lo que (5) esta probado por inducción.

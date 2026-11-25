@@ -7,9 +7,8 @@ Sea $(\Sigma, \tau)$ una teoría.
 
 #### Proof
 > **Resultados auxiliares utilizados:**
-> - *Lema (Cambio de índice de hipótesis)*: Sea $(\boldsymbol{\varphi}, \mathbf{J})$ una prueba formal de $\varphi$ en $(\Sigma, \tau)$. Sea $m \in \mathbb{N}$ tal que $J_i \neq \text{HIPOTESIS}\bar{m}$ para cada $i = 1, \dots, n(\boldsymbol{\varphi})$. Supongamos que $\mathbf{J}_i = \text{HIPOTESIS}\bar{k}$ y que $\mathbf{J}_j = \text{TESIS}\bar{k}\,\alpha$, con $[\alpha]_1 \notin \text{Num}$. Sea $\tilde{\mathbf{J}}$ el resultado de reemplazar en $\mathbf{J}$ la justificación $\mathbf{J}_i$ por $\text{HIPOTESIS}\bar{m}$ y la justificación $\mathbf{J}_j$ por $\text{TESIS}\bar{m}\,\alpha$. Entonces $(\boldsymbol{\varphi}, \tilde{\mathbf{J}})$ es una prueba formal de $\varphi$ en $(\Sigma, \tau)$.
-> - *Lema (Cambio de nombres de constante auxiliares)*: Sea $(\boldsymbol{\varphi}, \mathbf{J})$ una prueba formal de $\varphi$ en $(\Sigma, \tau)$. Sea $C_1$ el conjunto de nombres de constantes auxiliares de $(\boldsymbol{\varphi}, \mathbf{J})$. Sea $e \in C_1$. Sea $\tilde{e} \notin C \cup C_1$ tal que $(C \cup (C_1 - \{e\}) \cup \{\tilde{e}\}, F, R, a)$ es un tipo. Sea $\tilde{\varphi}_i$ el resultado de reemplazar en $\varphi_i$ cada ocurrencia de $e$ por $\tilde{e}$. Entonces $(\tilde{\varphi}_1 \cdots \tilde{\varphi}_n(\boldsymbol{\varphi}), \mathbf{J})$ es una prueba formal de $\varphi$ en $(\Sigma, \tau)$.
-
+> - *Lema "Cambio de índice de hipótesis"*.
+> - *Lema "Cambio de nombres de constante auxiliares"*.
 
 **(1)** Notar que basta con hacer el caso $n = 1$. Para $n \ge 2$ sale aplicando $n$ veces el caso $n = 1$. Supongamos que $(\Sigma, \tau) \vdash \varphi_1$ y $(\Sigma \cup \{\varphi_1\}, \tau) \vdash \varphi$. Sea $(\alpha_1, \dots, \alpha_h, I_1, \dots, I_h)$ una prueba formal de $\varphi_1$ en $(\Sigma, \tau)$. Sea $(\psi_1, \dots, \psi_m, J_1, \dots, J_m)$ una prueba formal de $\varphi$ en $(\Sigma \cup \{\varphi_1\}, \tau)$. Notar que por el *Lema (Cambio de índice de hipótesis)* y el *Lema (Cambio de nombres de constante auxiliares)* podemos suponer que estas dos pruebas no comparten ningún nombre de constante auxiliar y que tampoco comparten números asociados a hipótesis o tesis. Para cada $i = 1, \dots, m$, definamos $\tilde{J}_i$ de la siguiente manera (sea $\alpha \in \{\varepsilon\} \cup \{\text{TESIS}\bar{k} : k \in \mathbb{N}\}$):
 - Si $\psi_i = \varphi_1$ y $J_i = \alpha\,\text{AXIOMAPROPIO}$, entonces $\tilde{J}_i = \alpha\,\text{EVOCACION}(\bar{h})$.
@@ -52,9 +51,9 @@ Sea $(B, s, i, ^c, 0, 1)$ un álgebra de Boole y sean $a, b \in B$. Se tiene que
 
 #### Proof
 > **Resultados auxiliares utilizados:**
-> - *Lema (Unicidad del Complemento)*: Sea $(L, s, i, 0, 1)$ un reticulado acotado. Si $(L, s, i, 0, 1)$ es distributivo, entonces todo elemento tiene a lo sumo un complemento.
-> - *Lema (útil)*: Sea $(B, s, i, ^c, 0, 1)$ un álgebra de Boole. Entonces para cualesquiera $x, y \in B$ se tiene que $y = (y \ i \ x) \ s \ (y \ i \ x^c)$.
-> - *Lema (Monotonía)*: Sea $(L, \le)$ un reticulado par y sean $x, y, z, w \in L$ tales que $x \le z$ e $y \le w$. Entonces $x \ i \ y \le z \ i \ w$.
+> - *Lema "Unicidad del Complemento en reticulado acotado distributivo"*.
+> - *Lema "útil"*: Sea $(B, s, i, ^c, 0, 1)$ un álgebra de Boole. Entonces para cualesquiera $x, y \in B$ se tiene que $y = (y \ i \ x) \ s \ (y \ i \ x^c)$.
+> - *Lema "Monotonía"*.
 
 **(1)** Para probar, veamos que $a^c \ s \ b^c$ es el complemento de $a \ i \ b$. Es decir debemos ver que
 $$
@@ -100,10 +99,8 @@ Sean $(L, s, i)$ y $(L', s', i')$ reticulados terna y sean $(L, \le)$ y $(L', \l
 
 #### Proof
 > **Resultados auxiliares utilizados:**
-> - *Teorema de Dedekind* (Combo 2.1): Sea $(L, s, i)$ un reticulado terna. La relación binaria definida por $x \le y \; \Longleftrightarrow \; x \ s \ y = y$ es un orden parcial sobre $L$ para el cual se cumple que cualesquiera sean $x, y \in L$: $\sup(\{x, y\}) = x \ s \ y$ y $\inf(\{x, y\}) = x \ i \ y$.
-> - *Lema (sup e inf en Isomorfismo de Posets)*: Sean $(P, \le)$ y $(P', \le')$ posets y sea $F: P \rightarrow P'$ un isomorfismo de posets. Para cada $x, y, z \in P$, tenemos que:
->   $$z = \sup(\{x, y\}) \quad \Longleftrightarrow \quad F(z) = F(\sup(\{x, y\})) = \sup(\{F(x), F(y)\})$$
->   $$z = \inf(\{x, y\}) \quad \Longleftrightarrow \quad F(z) = F(\inf(\{x, y\})) = \inf(\{F(x), F(y)\})$$
+> - *Teorema de Dedekind*.
+> - *Lema "sup e inf en Isomorfismo de Posets"*.
 
 **$\Rightarrow)$** Supongamos que $F$ es un isomorfismo de $(L, s, i)$ en $(L', s', i')$. Para que $F$ sea un isomorfismo de $(L, \le)$ en $(L', \le')$, debemos ver:
 1. **$F$ es biyectiva**: Lo cual sale directo ya que $F$ es isomorfismo de reticulados.

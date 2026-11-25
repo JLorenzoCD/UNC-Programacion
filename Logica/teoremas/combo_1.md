@@ -4,8 +4,8 @@ Sea $(L, s, i)$ un reticulado terna distributivo y $F$ un filtro. Supongamos $x_
 
 #### Proof
 > **Resultados auxiliares utilizados:**
-> - *Lema de Zorn*: Sea $(P, \le)$ un poset y supongamos que toda cadena en $P$ tiene al menos una cota superior. Entonces hay un elemento maximal en $(P, \le)$.
-> - *Lema para $[S)$*: Sea $(L, s, i)$ un reticulado terna. Supongamos $S \subseteq L$ es no vacío. Entonces $[S)$ es un filtro de $(L, s, i)$.
+> - *Lema de "Zorn"*.
+> - *Lema "$[S)$ es filtro"*.
 
 Sea
 $$
@@ -96,10 +96,8 @@ Sea $(\Sigma, \tau)$ una teoría.
 3. Si $(\Sigma, \tau) \nvdash \neg \varphi$, entonces $(\Sigma \cup \{\varphi\}, \tau)$ es consistente.
 
 #### Proof
-> **Resultado auxiliar utilizado: (en combo 4)** *Lema (Propiedades básicas de $\vdash$)*: Sea $(\Sigma, \tau)$ una teoría.
-> 1. (Uso de Teoremas) Si $(\Sigma, \tau) \vdash \varphi_1, \dots, \varphi_n$ y $(\Sigma \cup \{\varphi_1, \dots, \varphi_n\}, \tau) \vdash \varphi$, entonces $(\Sigma, \tau) \vdash \varphi$.
-> 2. Supongamos $(\Sigma, \tau) \vdash \varphi_1, \dots, \varphi_n$. Si $R$ es una regla distinta de GENERALIZACION y ELECCION y $\varphi$ se deduce de $\varphi_1, \dots, \varphi_n$ por la regla $R$, entonces $(\Sigma, \tau) \vdash \varphi$.
-> 3. $(\Sigma, \tau) \vdash (\varphi \rightarrow \psi) \; \Longleftrightarrow \; (\Sigma \cup \{\varphi\}, \tau) \vdash \psi$.
+> **Resultado auxiliar utilizado**
+> - *Lema "Propiedades básicas de $\vdash$" (combo 4)*.
 
 ##### Punto 1:
 **Supongamos** que $(\Sigma, \tau)$ **es inconsistente**. Por lo tanto, por definición, $(\Sigma, \tau) \vdash (\psi \land \neg \psi)$ para alguna sentencia $\psi$. Ahora, dada una sentencia $\varphi$ arbitraria pero fija, tenemos que $\varphi$ se deduce por la **regla del absurdo** a partir de $(\psi \land \neg \psi)$. Entonces por *Propiedades básicas de $\vdash$ (2)* tenemos que $(\Sigma, \tau) \vdash \varphi$. Como $\varphi$ era arbitraria pero fija, entonces vale para toda sentencia $\varphi$.
